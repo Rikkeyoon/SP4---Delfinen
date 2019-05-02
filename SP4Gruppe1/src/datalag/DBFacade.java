@@ -41,13 +41,14 @@ public class DBFacade {
             isActiveInt = 1;
         
         
-        try {
+        try{
             Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
             Statement statement = connection.createStatement();
 
-            statement.executeLargeUpdate("INSERT INTO members"
-                    + "VALUES (" + member.getFirstName() + ", " + member.getLastName() + ", "
-                    + member.getAge() + ", " + isActiveInt + ", " + getID() +
+            statement.executeLargeUpdate("INSERT INTO members (first_name, last_name, "
+                    + "age, is_active, contingent, restance) "
+                    + "VALUES ('" + member.getFirstName() + "', '" + member.getLastName() + "', "
+                    + member.getAge() + ", " + isActiveInt +
                     ", " + member.getContingent() + ", " + member.getRestance() + ")");
         } catch (SQLException e) {
 
