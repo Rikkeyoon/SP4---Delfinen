@@ -21,8 +21,9 @@ public class Controller {
         String lastName = ui.scanString();
         String dateOfBirth = ui.scanString();
         boolean isActive = ui.scanBoolean();
+        int ID = db.getID();
         
-        Member member = new Member(firstName, lastName, dateOfBirth, isActive);
+        Member member = new Member(firstName, lastName, dateOfBirth, isActive, ID);
     }
     
 }

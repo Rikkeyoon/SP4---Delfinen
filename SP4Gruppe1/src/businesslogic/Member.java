@@ -12,15 +12,17 @@ public class Member {
     private String lastName;
     private int age;
     private LocalDate dateOfBirth;
+    private int ID;
     private boolean isActive;
     private double contingent;
     private double restance;
 
-    public Member(String firstName, String lastName, String dateOfBirth, boolean isActive) {
+    public Member(String firstName, String lastName, String dateOfBirth, boolean isActive, int ID) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = LocalDate.parse(dateOfBirth);
         this.isActive = isActive;
+        this.ID = ID;
         restance = 0;
         contingent = calculateContingent();
         age = calculateAge();
