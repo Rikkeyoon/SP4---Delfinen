@@ -24,6 +24,9 @@ public class Controller {
         int ID = db.getID();
         
         Member member = new Member(firstName, lastName, dateOfBirth, isActive, ID);
+        
+        db.saveMember(member);
+        
     }
     
 }

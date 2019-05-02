@@ -35,17 +35,22 @@ public class DBFacade {
          return ID;
     }
     
-    public void createMember(Member member) {
-//        try {
-//            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-//            Statement statement = connection.createStatement();
-//
-//            statement.executeLargeUpdate("INSERT INTO bestillinger(afhenttid) "
-//                    + "VALUE ('" + bestilling.getAfhentTid() + "')");
-////            int bestilNr = findBestilNr();
-//        } catch (SQLException e) {
+    public void saveMember(Member member) {
+        int isActiveInt = 0;
+        if (member.isIsActive())
+            isActiveInt = 1;
+        
+        
+        try {
+            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            Statement statement = connection.createStatement();
 
-//        }
+            statement.executeLargeUpdate("INSERT INTO members"
+                    + "VALUES (" + member.getFirstName() + ", " + member.getLastName() + ", "
+                    + member.getAge() + ", " + isActiveInt + ", " + getID() +
+                    ", " + member.getContingent() + ", " + member.getRestance() + ")");
+        } catch (SQLException e) {
+
+        }
     }
-
 }
