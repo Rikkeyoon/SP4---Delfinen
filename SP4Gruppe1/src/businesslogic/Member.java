@@ -1,5 +1,7 @@
 package businesslogic;
 
+import java.util.Date;
+
 /*
  * @author Caroline, Rikke & Nina
  */
@@ -7,22 +9,22 @@ public class Member {
 
     private String firstName;
     private String lastName;
-    private int age;
+    private Date dateOfBirth;
     private String ssn;
     private int phoneNo;
     private boolean isActive;
     private double contingent;
     private double restance;
 
-    public Member(String firstName, String lastName, int age, String ssn, int phoneNo, boolean isActive, double contingent, double restance) {
+    public Member(String firstName, String lastName, Date dateOfBirth, String ssn, int phoneNo, boolean isActive, double restance) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
+        this.dateOfBirth = dateOfBirth;
         this.ssn = ssn;
         this.phoneNo = phoneNo;
         this.isActive = isActive;
-        this.contingent = contingent;
         this.restance = restance;
+        contingent = calculateContingent();
     }
 
     public String getFirstName() {
@@ -41,12 +43,12 @@ public class Member {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getSsn() {
@@ -92,11 +94,15 @@ public class Member {
     @Override
     public String toString() {
         return "Member:\t\t" + firstName + " "+ lastName 
-                + "\nage: \t" + age
+                + "\nage: \t" + dateOfBirth
                 + "\nssn: \t" + ssn 
                 + "\nphoneNo: \t" + phoneNo 
                 + "\nstatus: \t" + isActive 
                 + "\ncontingent: \t" + contingent 
                 + "\nrestance: \t" + restance;
+    }
+
+    private double calculateContingent() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
