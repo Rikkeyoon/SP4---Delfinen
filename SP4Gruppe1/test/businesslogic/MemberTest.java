@@ -26,7 +26,16 @@ public class MemberTest {
         double contingent = member.getContingent();
         // assert
         assertEquals(1000, contingent, 0);
-        
+    }
     
+    @Test
+    public void testMember_calculateContingent_over60_active() {
+        // arrange
+        Member member = new Member("", "", "1950-02-05", "", 0, true);
+        // act
+        double contingent = member.getContingent();
+        // assert
+        assertEquals(1000, contingent, 0);
+        
     }
 }
