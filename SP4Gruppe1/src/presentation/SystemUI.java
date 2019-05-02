@@ -1,18 +1,28 @@
 package presentation;
 
+import java.util.Scanner;
+
 /*
  * @author Caroline, Rikke & Nina
  */
 public class SystemUI implements UI {
+    
+    private Scanner input = new Scanner(System.in);
 
     @Override
     public String scanString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return input.nextLine();
     }
 
     @Override
     public boolean scanBoolean() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String answer = input.nextLine();
+        return answer.equalsIgnoreCase("y");
+    }
+
+    @Override
+    public void print(String str) {
+        System.out.println(str);
     }
     
 }
