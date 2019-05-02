@@ -118,11 +118,11 @@ public class Member {
         if (isActive) {
             if (age < 60) {
                 if (age < 18) {
-                    contingent = 1000;
+                    return 1000;
                 }
-                contingent = 1600;
+                return 1600;
             } else {
-                contingent = 1600 * 0.75;
+                return 1600 * 0.75;
             }
         }
         return 500;
