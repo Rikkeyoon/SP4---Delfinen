@@ -12,18 +12,14 @@ public class Member {
     private String lastName;
     private int age;
     private LocalDate dateOfBirth;
-    private String ssn;
-    private int phoneNo;
     private boolean isActive;
     private double contingent;
     private double restance;
 
-    public Member(String firstName, String lastName, String dateOfBirth, String ssn, int phoneNo, boolean isActive) {
+    public Member(String firstName, String lastName, String dateOfBirth, boolean isActive) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = LocalDate.parse(dateOfBirth);
-        this.ssn = ssn;
-        this.phoneNo = phoneNo;
         this.isActive = isActive;
         restance = 0;
         contingent = calculateContingent();
@@ -52,22 +48,6 @@ public class Member {
 
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = LocalDate.parse(dateOfBirth);
-    }
-
-    public String getSsn() {
-        return ssn;
-    }
-
-    public void setSsn(String ssn) {
-        this.ssn = ssn;
-    }
-
-    public int getPhoneNo() {
-        return phoneNo;
-    }
-
-    public void setPhoneNo(int phoneNo) {
-        this.phoneNo = phoneNo;
     }
 
     public boolean isIsActive() {
@@ -111,9 +91,7 @@ public class Member {
     @Override
     public String toString() {
         return "Member:\t\t" + firstName + " " + lastName
-                + "\nage: \t" + dateOfBirth
-                + "\nssn: \t" + ssn
-                + "\nphoneNo: \t" + phoneNo
+                + "\nage: \t" + age
                 + "\nstatus: \t" + isActive
                 + "\ncontingent: \t" + contingent
                 + "\nrestance: \t" + restance;
