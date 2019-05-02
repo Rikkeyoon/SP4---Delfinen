@@ -1,6 +1,7 @@
 package businesslogic;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Period;
 
 /*
  * @author Caroline, Rikke & Nina
@@ -10,21 +11,21 @@ public class Member {
     private String firstName;
     private String lastName;
     private int age;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String ssn;
     private int phoneNo;
     private boolean isActive;
     private double contingent;
     private double restance;
 
-    public Member(String firstName, String lastName, Date dateOfBirth, String ssn, int phoneNo, boolean isActive, double restance) {
+    public Member(String firstName, String lastName, String dateOfBirth, String ssn, int phoneNo, boolean isActive) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
+        this.dateOfBirth = LocalDate.parse(dateOfBirth);
         this.ssn = ssn;
         this.phoneNo = phoneNo;
         this.isActive = isActive;
-        this.restance = restance;
+        restance = 0;
         contingent = calculateContingent();
     }
 
@@ -44,12 +45,12 @@ public class Member {
         this.lastName = lastName;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = LocalDate.parse(dateOfBirth);
     }
 
     public String getSsn() {
@@ -91,7 +92,17 @@ public class Member {
     public void setRestance(double restance) {
         this.restance = restance;
     }
-
+    
+    public int getAge() {
+        // Get today
+        LocalDate today = LocalDate.now();
+        
+        //Compare birthday - today in years (= age)
+        Period period = Period.between(dateOfBirth, today);
+        int age = period.getYears();
+        return age;
+    }
+    
     @Override
     public String toString() {
         return "Member:\t\t" + firstName + " " + lastName
@@ -116,4 +127,6 @@ public class Member {
         }
         return 500;
     }
+
+    
 }
