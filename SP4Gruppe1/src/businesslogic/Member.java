@@ -27,6 +27,7 @@ public class Member {
         this.isActive = isActive;
         restance = 0;
         contingent = calculateContingent();
+        age = calculateAge();
     }
 
     public String getFirstName() {
@@ -94,12 +95,16 @@ public class Member {
     }
     
     public int getAge() {
-        // Get today
+        return age;
+    }
+    
+    private int calculateAge() {
+         // Get today
         LocalDate today = LocalDate.now();
         
         //Compare birthday - today in years (= age)
         Period period = Period.between(dateOfBirth, today);
-        int age = period.getYears();
+        age = period.getYears();
         return age;
     }
     
