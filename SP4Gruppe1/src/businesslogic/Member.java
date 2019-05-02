@@ -9,6 +9,7 @@ public class Member {
 
     private String firstName;
     private String lastName;
+    private int age;
     private Date dateOfBirth;
     private String ssn;
     private int phoneNo;
@@ -93,16 +94,26 @@ public class Member {
 
     @Override
     public String toString() {
-        return "Member:\t\t" + firstName + " "+ lastName 
+        return "Member:\t\t" + firstName + " " + lastName
                 + "\nage: \t" + dateOfBirth
-                + "\nssn: \t" + ssn 
-                + "\nphoneNo: \t" + phoneNo 
-                + "\nstatus: \t" + isActive 
-                + "\ncontingent: \t" + contingent 
+                + "\nssn: \t" + ssn
+                + "\nphoneNo: \t" + phoneNo
+                + "\nstatus: \t" + isActive
+                + "\ncontingent: \t" + contingent
                 + "\nrestance: \t" + restance;
     }
 
     private double calculateContingent() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (isActive) {
+            if (age < 60) {
+                if (age < 18) {
+                    contingent = 1000;
+                }
+                contingent = 1600;
+            } else {
+                contingent = 1600 * 0.75;
+            }
+        }
+        return 500;
     }
 }
