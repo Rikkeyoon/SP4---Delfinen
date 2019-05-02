@@ -11,7 +11,7 @@ public class MemberTest {
     @Test
     public void testMember_calculateAge() {
         //arrange 
-        Member member = new Member("", "", "1959-02-05", true);
+        Member member = new Member("", "", "1959-02-05", true, 1);
         //act
         int age = member.getAge();
         //assert
@@ -21,7 +21,7 @@ public class MemberTest {
     @Test
     public void testMember_calculateContingent_under18_active() {
         // arragne
-        Member member = new Member("", "", "1975-02-05", true);
+        Member member = new Member("", "", "1975-02-05", true, 1);
         // act
         double contingent = member.getContingent();
         // assert
@@ -31,7 +31,7 @@ public class MemberTest {
     @Test
     public void testMember_calculateContingent_over60_active() {
         // arrange
-        Member member = new Member("", "", "1996-02-05", true);
+        Member member = new Member("", "", "1996-02-05", true, 1);
         // act
         double contingent = member.getContingent();
         // assert
