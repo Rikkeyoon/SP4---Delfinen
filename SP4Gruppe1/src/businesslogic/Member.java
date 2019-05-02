@@ -74,14 +74,6 @@ public class Member {
     }
 
     public double getContingent() {
-        if (age < 60) {
-            if (age < 18) {
-            contingent = 1000;
-            }
-            contingent = 1600;
-        } else {
-            contingent = 1600 * 0.75;
-        }
         return contingent;
     }
 
