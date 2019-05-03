@@ -18,12 +18,13 @@ public class SP4Gruppe1 {
         DBConnection dbc = new DBConnection();
         DBFacade db = new DBFacade(dbc);
         
-        Controller ctrl = new Controller(ui, db);
+//        Controller ctrl = new Controller(ui, db);
 //        ctrl.createMember();
-        ctrl.deleteMember();
+//        ctrl.deleteMember();
 //        ctrl.createMember();
 //        ctrl.deleteMember();
 //        ctrl.showMemberList();
+        System.out.println(db.getCompetitiveSwimmersList());
         
     }
 
