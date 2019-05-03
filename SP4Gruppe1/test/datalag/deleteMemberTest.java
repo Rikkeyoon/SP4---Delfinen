@@ -14,7 +14,8 @@ public class deleteMemberTest {
     public void TestDeleteMember() {
         String[] input = {""};
         FakeUI ui = new FakeUI(input);
-        DBFacade db = new DBFacade();
+        DBConnection dbc = new DBConnection();
+        DBFacade db = new DBFacade(dbc);
         Controller ctrl = new Controller(ui, db);
 
         // act

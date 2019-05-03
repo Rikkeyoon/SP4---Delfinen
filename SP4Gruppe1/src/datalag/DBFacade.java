@@ -2,7 +2,6 @@ package datalag;
 
 import businesslogic.Member;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,20 +11,16 @@ import java.util.ArrayList;
  * @author Caroline, Rikke & Nina
  */
 public class DBFacade {
+    
+    private Connection connection;
 
-    private final String USER = "root";
-    private final String PASSWORD = "root";
-    private final String IP = "localhost";
-    private final String PORT = "3306";
-    private final String DATABASE = "delfinen";
-    private final String URL = "jdbc:mysql://" + IP + ":" + PORT + "/" + DATABASE
-            + "?useJDBCcompliantTimeZoneShift=true&"
-            + "useLegacyDatetimeCode=false&serverTimezone=UTC";
+    public DBFacade(DBConnection dbc) {
+        connection = dbc.getConnection();
+    }
 
     public int getID() {
         int ID = 0;
          try {
-            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
             Statement statement = connection.createStatement();
 
             ResultSet result = statement.executeQuery("SELECT LAST_INSERT_ID() FROM members");
@@ -40,7 +35,6 @@ public class DBFacade {
         int isActiveInt = convertBooleanToTinyInt(member);
         
         try{
-            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
             Statement statement = connection.createStatement();
             
             statement.executeUpdate("INSERT INTO members (first_name, last_name, "
@@ -64,7 +58,6 @@ public class DBFacade {
 
     public void deleteMember(int id) {
         try {
-            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
             Statement statement = connection.createStatement();
             statement.executeLargeUpdate("DELETE FROM competitions WHERE id =" + id);
             statement.executeLargeUpdate("DELETE FROM competitive_swimmers WHERE id =" + id);
