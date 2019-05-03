@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @author Caroline, Rikke & Nina
  */
 public class SystemUI implements UI {
-    
+
     private Scanner input = new Scanner(System.in);
 
     @Override
@@ -47,19 +47,44 @@ public class SystemUI implements UI {
                 + "3. Restance\n"
                 + "4. Top 5 swimmers\n"
                 + "5. Competition swimmers\n"
-                + "6. Trainingsreusults"
-                + "0. ");
+                + "6. Trainingsreusults\n"
+                + "0. Quit");
     }
 
     @Override
     public int mainMenuChoice() {
         int choice = input.nextInt();
-        while (choice < 0 || choice > 2) {
+        while (choice < 0 || choice > 6) {
             System.out.println(choice + " er ikke en mulighed, prøv igen: ");
             choice = input.nextInt();
         }
-
         return choice;
     }
-    
+
+    @Override
+    public void showMembersMenu() {
+        System.out.println("Choose one of the following options: \n"
+                + "1. Show members\n"
+                + "2. Add member\n"
+                + "3. Edit members\n"
+                + "4. Delete member\n"
+                + "5. Back to main menu\n"
+                + "0. Quit");
+    }
+
+    @Override
+    public int memberMenuChoice() {
+        int choice = input.nextInt();
+        while (choice < 0 || choice > 5) {
+            System.out.println(choice + " er ikke en mulighed, prøv igen: ");
+            choice = input.nextInt();
+        }
+        return choice;
+    }
+
+    @Override
+    public void showContingentMenu() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

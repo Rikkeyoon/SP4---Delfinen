@@ -20,6 +20,12 @@ public interface UI {
     public void showMainMenu();
 
     public int mainMenuChoice();
+
+    public void showMembersMenu();
+
+    public int memberMenuChoice();
+
+    public void showContingentMenu();
     
     
 }

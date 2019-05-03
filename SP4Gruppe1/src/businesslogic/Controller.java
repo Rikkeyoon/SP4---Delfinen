@@ -23,6 +23,35 @@ public class Controller {
         
         do {
             switch (ui.mainMenuChoice()) {
+                case 1: 
+                    ui.showMembersMenu();
+                    do {
+                        switch (ui.memberMenuChoice()) {
+                            case 1:
+                                showMemberList();
+                                break;
+                            case 2: 
+                                createMember();
+                                break;
+                            case 3:
+                                editMember();
+                                break;
+                            case 4:
+                                deleteMember();
+                                break;
+                            case 5:
+                                quit = true;
+                                start();
+                                break;
+                            case 6:
+                                quit = true;
+                                break;
+                        }
+                    } while (!quit);
+                    break;
+                case 2:
+                    ui.showContingentMenu();
+                    break;
             }
         }
     }
@@ -41,7 +70,6 @@ public class Controller {
         Member member = new Member(firstName, lastName, dateOfBirth, isActive, ID);
         
         db.saveMember(member);
-        
     }
 
     public void deleteMember() {
@@ -54,7 +82,10 @@ public class Controller {
         ArrayList<Member> members = db.getMemberList();
         // muligvis sorter medlemmer i forhold til ID
         ui.showMemberList(members);
-        
+    }
+
+    private void editMember() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
