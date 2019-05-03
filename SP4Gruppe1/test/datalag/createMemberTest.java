@@ -4,7 +4,6 @@ import businesslogic.Controller;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import presentation.FakeUI;
-
 /*
  * @author Caroline, Rikke, Nina & Kristine
  */

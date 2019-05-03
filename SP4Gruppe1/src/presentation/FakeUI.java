@@ -50,7 +50,6 @@ public class FakeUI implements UI{
     public int mainMenuChoice() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-<<<<<<< HEAD
 
     @Override
     public void showMembersMenu() {
@@ -66,8 +65,6 @@ public class FakeUI implements UI{
     public void showContingentMenu() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-=======
->>>>>>> origin/master
     
     
 }
