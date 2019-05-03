@@ -37,6 +37,32 @@ public class DBFacade {
         return id;
     }
 
+    public ArrayList<Member> getMemberList() {
+        ArrayList<Member> members = new ArrayList<>();
+        try {
+            //create String for the PreparedStatement
+            String selectSQL = "SELECT * FROM members";
+            //get connection
+            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+            
+            //execute the SQL query
+            ResultSet result = preparedStatement.executeQuery(selectSQL);
+            while (result.next()) {
+                String firstName = result.getString(1);
+                String lastName = result.getString(2);
+                int age = result.getInt(3);
+                boolean isActive = result.getBoolean(4);
+                int contingent = result.getInt(5);
+                int restance = result.getInt(6);
+                
+                //create a new Member object and insert it into the ArrayList
+                members.add(new Member(firstName, lastName, age, isActive, contingent, restance));
+            }
+        } catch (SQLException e) {
+        }
+        return members;
+    }
+
     public void saveMember(Member member) {
         try {
             //create String for the PreparedStatement
@@ -58,7 +84,6 @@ public class DBFacade {
             //execute the SQL query
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-
         }
     }
 
@@ -109,24 +134,4 @@ public class DBFacade {
         }
     }
 
-    public ArrayList<Member> getMemberList() {
-        ArrayList<Member> members = new ArrayList<>();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery("SELECT * FROM members");
-            while (result.next()) {
-                String firstName = result.getString(1);
-                String lastName = result.getString(2);
-                int age = result.getInt(3);
-                boolean isActive = result.getBoolean(4);
-                int contingent = result.getInt(5);
-                int restance = result.getInt(6);
-
-                members.add(new Member(firstName, lastName, age, isActive, contingent, restance));
-            }
-        } catch (SQLException e) {
-
-        }
-        return members;
-    }
 }
