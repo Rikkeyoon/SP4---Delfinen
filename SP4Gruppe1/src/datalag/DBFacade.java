@@ -1,7 +1,6 @@
 package datalag;
 
-import businesslogic.CompetitiveSwimmer;
-import businesslogic.Member;
+import businesslogic.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,7 +43,7 @@ public class DBFacade {
             String selectSQL = "SELECT * FROM members";
             //get connection
             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
-            
+
             //execute the SQL query
             ResultSet result = preparedStatement.executeQuery(selectSQL);
             while (result.next()) {
@@ -55,7 +54,7 @@ public class DBFacade {
                 int id = result.getInt(5);
                 int contingent = result.getInt(6);
                 int restance = result.getInt(7);
-                
+
                 //create a new Member object and insert it into the ArrayList
                 members.add(new Member(firstName, lastName, age, isActive, contingent, restance, id));
             }
@@ -74,7 +73,7 @@ public class DBFacade {
 
             //get connection
             PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);
-            //insert correct values into the placeholders' ( the ?) spaces
+            //insert correct values into the placeholders' (the ?) spaces
             preparedStatement.setString(1, member.getFirstName());
             preparedStatement.setString(2, member.getLastName());
             preparedStatement.setInt(3, member.getAge());
@@ -96,7 +95,7 @@ public class DBFacade {
             String deleteSQL = "DELETE FROM members WHERE id = ?";
             //get connection
             PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);
-            //insert correct values into the placeholder's ( the ?) space
+            //insert correct values into the placeholder's (the ?) space
             preparedStatement.setInt(1, id);
 
             //execute the SQL query
@@ -104,14 +103,14 @@ public class DBFacade {
         } catch (SQLException e) {
         }
     }
-    
+
     private void deleteFromCompetition(int id) {
         try {
             //create String for the PreparedStatement
             String deleteSQL = "DELETE FROM competitions WHERE id = ?";
             //get connection
             PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);
-            //insert correct values into the placeholder's ( the ?) space
+            //insert correct values into the placeholder's (the ?) space
             preparedStatement.setInt(1, id);
 
             //execute the SQL query
@@ -126,7 +125,7 @@ public class DBFacade {
             String deleteSQL = "DELETE FROM competitive_swimmers WHERE id = ?";
             //get connection
             PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);
-            //insert correct values into the placeholder's ( the ?) space
+            //insert correct values into the placeholder's (the ?) space
             preparedStatement.setInt(1, id);
 
             //execute the SQL query
@@ -134,16 +133,16 @@ public class DBFacade {
         } catch (SQLException e) {
         }
     }
-    
-    public ArrayList<CompetitiveSwimmer> getCompetitiveSwimmersList() {
-        ArrayList<CompetitiveSwimmer> swimmers = new ArrayList<>();
+
+    public ArrayList<Member> getCompetitiveSwimmersList() {
+        ArrayList<Member> swimmers = new ArrayList<>();
         try {
             //create String for the PreparedStatement
             String selectSQL = "SELECT * FROM competitive_swimmers"
                     + "NATURAL JOIN members";
             //get connection
             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
-            
+
             //execute the SQL query
             ResultSet result = preparedStatement.executeQuery(selectSQL);
             while (result.next()) {
@@ -154,12 +153,33 @@ public class DBFacade {
                 boolean isActive = result.getBoolean(8);
                 int contingent = result.getInt(9);
                 int restance = result.getInt(10);
-                
+
                 //create a new Member object and insert it into the ArrayList
-                swimmers.add((CompetitiveSwimmer) new Member(firstName, lastName, age, isActive, contingent, restance, id));
+                swimmers.add(new Member(firstName, lastName, age, isActive, contingent, restance, id));
             }
         } catch (SQLException e) {
         }
         return swimmers;
+    }
+
+    public void saveCompetitiveSwimmer(CompetitiveSwimmer member) {
+        try {
+            saveMember(member);
+            //create String for the PreparedStatement
+            String insertSQL = "INSERT INTO competitive_swimmer "
+                    + "VALUES (?, ?, ?, ?)";
+
+            //get connection
+            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);
+            //insert correct values into the placeholders' (the ?) spaces
+            preparedStatement.setInt(1, member.getId());
+            preparedStatement.setString(2, member.getDisciplin());
+            preparedStatement.setTime(3, member.getBestTime());
+            preparedStatement.setTimestamp(4, member.getDateOfBestTime());
+
+            //execute the SQL query
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+        }
     }
 }
