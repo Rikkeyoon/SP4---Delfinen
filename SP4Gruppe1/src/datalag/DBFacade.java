@@ -41,21 +41,33 @@ public class DBFacade {
         try{
             Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
             Statement statement = connection.createStatement();
-
-            statement.executeLargeUpdate("INSERT INTO members (first_name, last_name, "
+            
+            statement.executeUpdate("INSERT INTO members (first_name, last_name, "
                     + "age, is_active, contingent, restance) "
                     + "VALUES ('" + member.getFirstName() + "', '" + member.getLastName() + "', "
                     + member.getAge() + ", " + isActiveInt +
                     ", " + member.getContingent() + ", " + member.getRestance() + ")");
         } catch (SQLException e) {
+            e.printStackTrace();
 
         }
     }
+
 
     private int convertBooleanToTinyInt(Member member) {
         if (member.isIsActive()) {
             return 1;
         }
         return 0;
+    }
+
+    public void deleteMember(int id) {
+        try {
+            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            Statement statement = connection.createStatement();
+            statement.executeLargeUpdate("DELETE FROM competitions WHERE id =" + id);
+            statement.executeLargeUpdate("DELETE FROM competitive_swimmers WHERE id =" + id);
+            statement.executeLargeUpdate("DELETE FROM members WHERE id =" + id);
+        } catch (SQLException e) {}
     }
 }

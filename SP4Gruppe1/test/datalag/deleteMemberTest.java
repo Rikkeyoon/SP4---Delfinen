@@ -6,24 +6,22 @@ import static org.junit.Assert.*;
 import presentation.FakeUI;
 
 /*
- * @author Caroline, Rikke, Nina & Kristine
+ * @author Rikke, Kristine, Caroline & Nina
  */
-public class createMemberTest {
+public class deleteMemberTest {
 
     @Test
-    public void testCreateMember() {
-        // arrange
+    public void TestDeleteMember() {
         String[] input = {""};
         FakeUI ui = new FakeUI(input);
         DBFacade db = new DBFacade();
         Controller ctrl = new Controller(ui, db);
 
         // act
-        ctrl.createMember();
-        
+        ctrl.deleteMember();
+
         // assert
         
     }
-
 
 }
