@@ -45,14 +45,11 @@ public class DBFacade {
             Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
             Statement statement = connection.createStatement();
             
-            statement.executeUpdate("INSERT INTO dummy VALUE (1)");
-            System.out.println("ddddd");
-
-//            statement.executeUpdate("INSERT INTO members (first_name, last_name, "
-//                    + "age, is_active, contingent, restance) "
-//                    + "VALUES ('" + member.getFirstName() + "', '" + member.getLastName() + "', "
-//                    + member.getAge() + ", " + isActiveInt +
-//                    ", " + member.getContingent() + ", " + member.getRestance() + ")");
+            statement.executeUpdate("INSERT INTO members (first_name, last_name, "
+                    + "age, is_active, contingent, restance) "
+                    + "VALUES ('" + member.getFirstName() + "', '" + member.getLastName() + "', "
+                    + member.getAge() + ", " + isActiveInt +
+                    ", " + member.getContingent() + ", " + member.getRestance() + ")");
         } catch (SQLException e) {
             e.printStackTrace();
 
