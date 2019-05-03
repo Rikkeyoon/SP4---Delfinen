@@ -54,4 +54,14 @@ public class DBFacade {
 
         }
     }
+
+    public void deleteMember(int id) {
+        try {
+            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            Statement statement = connection.createStatement();
+            statement.executeLargeUpdate("DELETE FROM competitions WHERE id =" + id);
+            statement.executeLargeUpdate("DELETE FROM competitive_swimmers WHERE id =" + id);
+            statement.executeLargeUpdate("DELETE FROM members WHERE id =" + id);
+        } catch (SQLException e) {}
+    }
 }

@@ -9,6 +9,8 @@ public interface UI {
 
     public boolean scanBoolean();
     public void print(String str);
+
+    public int scanInt();
     
     
 }

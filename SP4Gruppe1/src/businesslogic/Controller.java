@@ -32,5 +32,11 @@ public class Controller {
         db.saveMember(member);
         
     }
+
+    public void deleteMember() {
+        ui.print("Enter the ID of the member you want to delete: ");
+        int idOnMemberToDelete = ui.scanInt();
+        db.deleteMember(idOnMemberToDelete);
+    }
     
 }
