@@ -36,10 +36,7 @@ public class DBFacade {
     }
     
     public void saveMember(Member member) {
-        int isActiveInt = 0;
-        if (member.isIsActive())
-            isActiveInt = 1;
-        
+        int isActiveInt = convertBooleanToTinyInt(member);
         
         try{
             Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -53,5 +50,12 @@ public class DBFacade {
         } catch (SQLException e) {
 
         }
+    }
+
+    private int convertBooleanToTinyInt(Member member) {
+        if (member.isIsActive()) {
+            return 1;
+        }
+        return 0;
     }
 }
