@@ -53,20 +53,55 @@ public class Controller {
                     ui.showContingentMenu();
                     do {
                         switch (ui.contingentMenuChoice()) {
+                            case 1:
+                                showContingent();
+                                break;
+                            case 2:
+                                editContingent();
+                                break;
+                            case 3:
+                                quit = true;
+                                start();
+                                break;
+                            case 0:
+                                quit = true;
+                                break;
                         }
-                    }
+                    } while (!quit);
                     break;
                 case 3: 
                     ui.showRestanceMenu();
+                    do {
+                        switch (ui.restanceMenuChoice()) {
+                            case 1:
+                                showSwimmersInRestance();
+                                break;
+                            case 2:
+                                editRestance();
+                                break;
+                            case 3:
+                                quit = true;
+                                start();
+                                break;
+                            case 0:
+                                quit = true;
+                                break;
+                        }
+                    } while (!quit);
                     break;
                 case 4:
                     showTop5Swimmers();
                     break;
                 case 5:
-                    ui.showCompetitionSwimmersMenu();
+                    ui.showCompetitiveSwimmersMenu();
+                    do {
+                        switch (ui.competitiveSwimmersMenuChoice()) {
+                            
+                        }
+                    }
                     break;
                 case 6:
-                    ui.showTrainingResultsMenu();
+                    ui.showCompetitionMenu();
                     break;
                 case 0:
                     quit = true;
@@ -109,6 +144,22 @@ public class Controller {
     }
 
     private void showTop5Swimmers() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void showContingent() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void editContingent() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void showSwimmersInRestance() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void editRestance() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
