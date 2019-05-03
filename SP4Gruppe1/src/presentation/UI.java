@@ -16,6 +16,10 @@ public interface UI {
     public int scanInt();
 
     public void showMemberList(ArrayList<Member> members);
+
+    public void showMainMenu();
+
+    public int mainMenuChoice();
     
     
 }

@@ -16,6 +16,16 @@ public class Controller {
         this.ui = ui;
         this.db = db;
     }
+    
+    public void start() {
+        boolean quit = false;
+        ui.showMainMenu();
+        
+        do {
+            switch (ui.mainMenuChoice()) {
+            }
+        }
+    }
 
     public void createMember() {
         ui.print("Please input first name: ");
@@ -42,6 +52,7 @@ public class Controller {
 
     public void showMemberList() {
         ArrayList<Member> members = db.getMemberList();
+        // muligvis sorter medlemmer i forhold til ID
         ui.showMemberList(members);
         
     }

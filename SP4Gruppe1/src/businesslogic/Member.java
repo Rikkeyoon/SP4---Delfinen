@@ -102,10 +102,10 @@ public class Member {
     @Override
     public String toString() {
         return "Member:\t\t" + firstName + " " + lastName
-                + "\nage: \t" + age
+                + "\nage: \t\t" + age
                 + "\nstatus: \t" + isActive
                 + "\ncontingent: \t" + contingent
-                + "\nrestance: \t" + restance;
+                + "\nrestance: \t" + restance + "\n";
     }
 
     private double calculateContingent() {
