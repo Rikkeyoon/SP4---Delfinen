@@ -1,5 +1,8 @@
 package presentation;
 
+import businesslogic.Member;
+import java.util.ArrayList;
+
 /*
  * @author Caroline, Rikke & Nina
  */
@@ -11,6 +14,12 @@ public interface UI {
     public void print(String str);
 
     public int scanInt();
+
+    public void showMemberList(ArrayList<Member> members);
+
+    public void showMainMenu();
+
+    public int mainMenuChoice();
     
     
 }

@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 /*
  * @author Caroline, Rikke & Nina
@@ -105,5 +107,26 @@ public class DBFacade {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
         }
+    }
+
+    public ArrayList<Member> getMemberList() {
+        ArrayList<Member> members = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery("SELECT * FROM members");
+            while (result.next()) {
+                String firstName = result.getString(1);
+                String lastName = result.getString(2);
+                int age = result.getInt(3);
+                boolean isActive = result.getBoolean(4);
+                int contingent = result.getInt(5);
+                int restance = result.getInt(6);
+
+                members.add(new Member(firstName, lastName, age, isActive, contingent, restance));
+            }
+        } catch (SQLException e) {
+
+        }
+        return members;
     }
 }
