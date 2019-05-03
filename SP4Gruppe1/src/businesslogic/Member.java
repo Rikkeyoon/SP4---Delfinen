@@ -12,29 +12,30 @@ public class Member {
     private String lastName;
     private int age;
     private LocalDate dateOfBirth;
-    private int ID;
+    private int id;
     private boolean isActive;
     private double contingent;
     private double restance;
 
-    public Member(String firstName, String lastName, String dateOfBirth, boolean isActive, int ID) {
+    public Member(String firstName, String lastName, String dateOfBirth, boolean isActive, int id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = LocalDate.parse(dateOfBirth);
         this.isActive = isActive;
-        this.ID = ID;
+        this.id = id;
         restance = 0;
         contingent = calculateContingent();
         age = calculateAge();
     }
     
-    public Member(String firstName, String lastName, int age, boolean isActive, int contingent, int restance) {
+    public Member(String firstName, String lastName, int age, boolean isActive, int contingent, int restance, int id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.isActive = isActive;
         this.contingent = contingent;
         this.restance = restance;
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -83,6 +84,14 @@ public class Member {
 
     public void setRestance(double restance) {
         this.restance = restance;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     public int getAge() {
