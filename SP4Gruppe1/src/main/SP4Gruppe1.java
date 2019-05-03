@@ -19,7 +19,8 @@ public class SP4Gruppe1 {
         
         Controller ctrl = new Controller(ui, db);
 //        ctrl.createMember();
-        ctrl.deleteMember();
+//        ctrl.deleteMember();
+        ctrl.showMemberList();
         
     }
 

@@ -42,7 +42,7 @@ public class Controller {
 
     public void showMemberList() {
         ArrayList<Member> members = db.getMemberList();
-        //ui.visMenukort(menukort);
+        ui.showMemberList(members);
         
     }
     

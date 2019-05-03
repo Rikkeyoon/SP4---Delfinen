@@ -1,5 +1,6 @@
 package presentation;
 
+import businesslogic.Member;
 import java.util.ArrayList;
 
 /*
@@ -32,6 +33,11 @@ public class FakeUI implements UI{
 
     @Override
     public int scanInt() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void showMemberList(ArrayList<Member> members) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

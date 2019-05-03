@@ -68,7 +68,6 @@ public class DBFacade {
     public ArrayList<Member> getMemberList() {
         ArrayList<Member> members = new ArrayList<>();
         try {
-            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery("SELECT * FROM members");
             while (result.next()) {
