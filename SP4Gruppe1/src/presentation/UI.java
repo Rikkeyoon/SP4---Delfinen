@@ -26,6 +26,14 @@ public interface UI {
     public int memberMenuChoice();
 
     public void showContingentMenu();
+
+    public void showRestanceMenu();
+
+    public void showCompetitionSwimmersMenu();
+
+    public void showTrainingResultsMenu();
+
+    public int contingentMenuChoice();
     
     
 }

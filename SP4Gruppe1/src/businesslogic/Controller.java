@@ -28,7 +28,7 @@ public class Controller {
                     do {
                         switch (ui.memberMenuChoice()) {
                             case 1:
-                                showMemberList();
+                                showMembersList();
                                 break;
                             case 2: 
                                 createMember();
@@ -51,9 +51,28 @@ public class Controller {
                     break;
                 case 2:
                     ui.showContingentMenu();
+                    do {
+                        switch (ui.contingentMenuChoice()) {
+                        }
+                    }
+                    break;
+                case 3: 
+                    ui.showRestanceMenu();
+                    break;
+                case 4:
+                    showTop5Swimmers();
+                    break;
+                case 5:
+                    ui.showCompetitionSwimmersMenu();
+                    break;
+                case 6:
+                    ui.showTrainingResultsMenu();
+                    break;
+                case 0:
+                    quit = true;
                     break;
             }
-        }
+        } while (!quit);
     }
 
     public void createMember() {
@@ -73,18 +92,23 @@ public class Controller {
     }
 
     public void deleteMember() {
+        showMembersList();
         ui.print("Enter the ID of the member you want to delete: ");
         int id = ui.scanInt();
         db.deleteMember(id);
     }
 
-    public void showMemberList() {
-        ArrayList<Member> members = db.getMemberList();
+    public void showMembersList() {
+        ArrayList<Member> members = db.getMembersList();
         // muligvis sorter medlemmer i forhold til ID
         ui.showMemberList(members);
     }
 
     private void editMember() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void showTop5Swimmers() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

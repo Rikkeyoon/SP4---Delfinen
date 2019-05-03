@@ -55,7 +55,7 @@ public class SystemUI implements UI {
     public int mainMenuChoice() {
         int choice = input.nextInt();
         while (choice < 0 || choice > 6) {
-            System.out.println(choice + " er ikke en mulighed, prøv igen: ");
+            System.out.println(choice + " is not an option, try again: ");
             choice = input.nextInt();
         }
         return choice;
@@ -76,7 +76,7 @@ public class SystemUI implements UI {
     public int memberMenuChoice() {
         int choice = input.nextInt();
         while (choice < 0 || choice > 5) {
-            System.out.println(choice + " er ikke en mulighed, prøv igen: ");
+            System.out.println(choice + " is not an option, try again: ");
             choice = input.nextInt();
         }
         return choice;
@@ -84,6 +84,36 @@ public class SystemUI implements UI {
 
     @Override
     public void showContingentMenu() {
+        System.out.println("Choose one of the following options: \n"
+                + "1. Show contingent\n"
+                + "2. Edit contingent\n"
+                + "3. Back to main menu\n"
+                + "0. Quit");
+    }
+
+    @Override
+    public int contingentMenuChoice() {
+        int choice = input.nextInt();
+        while (choice < 0 || choice > 3) {
+            System.out.println(choice + " is not an option, try again: ");
+            choice = input.nextInt();
+        }
+        return choice;
+        
+    }
+
+    @Override
+    public void showRestanceMenu() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void showCompetitionSwimmersMenu() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void showTrainingResultsMenu() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

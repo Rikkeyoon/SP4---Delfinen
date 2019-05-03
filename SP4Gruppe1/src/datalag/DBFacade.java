@@ -37,7 +37,7 @@ public class DBFacade {
         return id;
     }
 
-    public ArrayList<Member> getMemberList() {
+    public ArrayList<Member> getMembersList() {
         ArrayList<Member> members = new ArrayList<>();
         try {
             //create String for the PreparedStatement

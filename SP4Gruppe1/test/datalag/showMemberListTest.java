@@ -20,7 +20,7 @@ public class showMemberListTest {
         Controller ctrl = new Controller(ui, db);
         
         // act
-        ctrl.showMemberList();
+        ctrl.showMembersList();
         
         // assert
         assertTrue(ui.output.get(4).contains("Vesuvio"));

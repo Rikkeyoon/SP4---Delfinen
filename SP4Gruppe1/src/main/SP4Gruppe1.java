@@ -18,11 +18,11 @@ public class SP4Gruppe1 {
         DBFacade db = new DBFacade(dbc);
         
         Controller ctrl = new Controller(ui, db);
-        ctrl.createMember();
-//        ctrl.deleteMember();
+//        ctrl.createMember();
+        ctrl.deleteMember();
 //        ctrl.createMember();
 //        ctrl.deleteMember();
-        ctrl.showMemberList();
+//        ctrl.showMemberList();
         
     }
 
