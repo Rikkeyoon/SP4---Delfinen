@@ -135,8 +135,8 @@ public class DBFacade {
         }
     }
     
-    public ArrayList<CompetitiveSwimmer> getCompetitiveSwimmersList() {
-        ArrayList<CompetitiveSwimmer> swimmers = new ArrayList<>();
+    public ArrayList<Member> getCompetitiveSwimmersList() {
+        ArrayList<Member> swimmers = new ArrayList<>();
         try {
             //create String for the PreparedStatement
             String selectSQL = "SELECT * FROM competitive_swimmers"
@@ -156,7 +156,7 @@ public class DBFacade {
                 int restance = result.getInt(10);
                 
                 //create a new Member object and insert it into the ArrayList
-                swimmers.add((CompetitiveSwimmer) new Member(firstName, lastName, age, isActive, contingent, restance, id));
+                swimmers.add(new Member(firstName, lastName, age, isActive, contingent, restance, id));
             }
         } catch (SQLException e) {
         }

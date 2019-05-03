@@ -38,6 +38,8 @@ public interface UI {
     public int restanceMenuChoice();
 
     public int competitiveSwimmersMenuChoice();
+
+    public int competitionMenuChoice();
     
     
 }

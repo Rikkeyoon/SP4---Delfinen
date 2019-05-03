@@ -43,7 +43,7 @@ public class Controller {
                                 quit = true;
                                 start();
                                 break;
-                            case 6:
+                            case 0:
                                 quit = true;
                                 break;
                         }
@@ -96,12 +96,45 @@ public class Controller {
                     ui.showCompetitiveSwimmersMenu();
                     do {
                         switch (ui.competitiveSwimmersMenuChoice()) {
-                            
+                            case 1:
+                                showCompetitiveSwimmers();
+                                break;
+                            case 2:
+                                showTrainingsresult();
+                                break;
+                            case 3:
+                                editTrainingsresult();
+                                break;
+                            case 4:
+                                quit = true;
+                                start();
+                                break;
+                            case 0:
+                                quit = true;
+                                break;
                         }
-                    }
+                    } while (!quit);
                     break;
                 case 6:
                     ui.showCompetitionMenu();
+                    do {
+                        switch (ui.competitionMenuChoice()) {
+                            case 1:
+                                showSwimmersInCompetition();
+                                break;
+                            case 2:
+                                showCompetitionResults();
+                                break;
+                            case 3:
+                                editCompetitionResults();
+                                break;
+                            case 4:
+                                quit = true;
+                                start();
+                            case 0:
+                                quit = true;
+                        }
+                    } while (!quit);
                     break;
                 case 0:
                     quit = true;
@@ -111,9 +144,10 @@ public class Controller {
     }
 
     public void createMember() {
-        ui.print("Please input first name: ");
+        ui.scanString();
+        ui.print("Please enter first name: ");
         String firstName = ui.scanString();
-        ui.print("Please input last name: ");
+        ui.print("Please enter last name: ");
         String lastName = ui.scanString();
         ui.print("Please enter date of birth (YYYY-MM-DD): ");
         String dateOfBirth = ui.scanString();
@@ -160,6 +194,30 @@ public class Controller {
     }
 
     private void editRestance() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void showCompetitiveSwimmers() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void showTrainingsresult() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void editTrainingsresult() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void showSwimmersInCompetition() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void showCompetitionResults() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void editCompetitionResults() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
