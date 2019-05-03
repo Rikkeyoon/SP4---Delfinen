@@ -15,7 +15,8 @@ public class createMemberTest {
         // arrange
         String[] input = {""};
         FakeUI ui = new FakeUI(input);
-        DBFacade db = new DBFacade();
+        DBConnection dbc = new DBConnection();
+        DBFacade db = new DBFacade(dbc);
         Controller ctrl = new Controller(ui, db);
 
         // act
