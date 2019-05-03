@@ -29,11 +29,17 @@ public interface UI {
 
     public void showRestanceMenu();
 
-    public void showCompetitionSwimmersMenu();
+    public void showCompetitiveSwimmersMenu();
 
-    public void showTrainingResultsMenu();
+    public void showCompetitionMenu();
 
     public int contingentMenuChoice();
+
+    public int restanceMenuChoice();
+
+    public int competitiveSwimmersMenuChoice();
+
+    public int competitionMenuChoice();
     
     
 }

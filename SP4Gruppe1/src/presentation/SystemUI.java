@@ -46,8 +46,8 @@ public class SystemUI implements UI {
                 + "2. Contingent\n"
                 + "3. Restance\n"
                 + "4. Top 5 swimmers\n"
-                + "5. Competition swimmers\n"
-                + "6. Trainingsreusults\n"
+                + "5. Competitive swimmers\n"
+                + "6. Competition\n"
                 + "0. Quit");
     }
 
@@ -64,7 +64,7 @@ public class SystemUI implements UI {
     @Override
     public void showMembersMenu() {
         System.out.println("Choose one of the following options: \n"
-                + "1. Show members\n"
+                + "1. Members\n"
                 + "2. Add member\n"
                 + "3. Edit members\n"
                 + "4. Delete member\n"
@@ -85,7 +85,7 @@ public class SystemUI implements UI {
     @Override
     public void showContingentMenu() {
         System.out.println("Choose one of the following options: \n"
-                + "1. Show contingent\n"
+                + "1. Contingent\n"
                 + "2. Edit contingent\n"
                 + "3. Back to main menu\n"
                 + "0. Quit");
@@ -99,22 +99,65 @@ public class SystemUI implements UI {
             choice = input.nextInt();
         }
         return choice;
-        
     }
 
     @Override
     public void showRestanceMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Choose one of the following options: \n"
+                + "1. Swimmers in restance\n"
+                + "2. Edit restance\n"
+                + "3. back to main menu\n"
+                + "0. Quit");
     }
 
     @Override
-    public void showCompetitionSwimmersMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int restanceMenuChoice() {
+        int choice = input.nextInt();
+        while (choice < 0 || choice > 3) {
+            System.out.println(choice + " is not an option, try again: ");
+            choice = input.nextInt();
+        }
+        return choice;
     }
 
     @Override
-    public void showTrainingResultsMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void showCompetitiveSwimmersMenu() {
+        System.out.println("Choose one of the following options: \n"
+                + "1. Competitive swimmers\n"
+                + "2. Trainingsresult\n"
+                + "3. Edit trainingsresult\n"
+                + "4. Back to main menu\n"
+                + "0. Quit");
     }
+
+    @Override
+    public int competitiveSwimmersMenuChoice() {
+        int choice = input.nextInt();
+        while (choice < 0 || choice > 4) {
+            System.out.println(choice + " is not an option, try again: ");
+            choice = input.nextInt();
+        }
+        return choice;
+    }
+
+    @Override
+    public void showCompetitionMenu() {
+        System.out.println("Choose one of the following options: \n"
+                + "1. Swimmers in competition\n"
+                + "2. Competition results\n"
+                + "3. Edit results"
+                + "4. Back to main menu\n"
+                + "0. Quit");
+    }
+
+    @Override
+    public int competitionMenuChoice() {
+        int choice = input.nextInt();
+        while (choice < 0 || choice > 4) {
+            System.out.println(choice + " is not an option, try again: ");
+            choice = input.nextInt();
+        }
+        return choice;
+    } 
 
 }

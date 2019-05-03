@@ -1,13 +1,50 @@
 package businesslogic;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+
  /*
  * @author Caroline, Rikke & Nina
  */
 public class CompetitiveSwimmer extends Member {
     
-    public CompetitiveSwimmer(String firstName, String lastName, String dateOfBirth, boolean isActive, int ID) {
-        super(firstName, lastName, dateOfBirth, isActive, ID);
+    private String disciplin;
+    private Time bestTime;
+    private Timestamp dateOfBestTime;
+    
+    public CompetitiveSwimmer(String firstName, String lastName, 
+            String dateOfBirth, boolean isActive, int id, String disciplin,
+            Time bestTime, Timestamp dateOfBestTime) {
+        super(firstName, lastName, dateOfBirth, isActive, id);
+        this.disciplin = disciplin;
+        this.bestTime = bestTime;
+        this.dateOfBestTime = dateOfBestTime;
     }
+
+    public String getDisciplin() {
+        return disciplin;
+    }
+
+    public void setDisciplin(String disciplin) {
+        this.disciplin = disciplin;
+    }
+
+    public Time getBestTime() {
+        return bestTime;
+    }
+
+    public void setBestTime(Time bestTime) {
+        this.bestTime = bestTime;
+    }
+
+    public Timestamp getDateOfBestTime() {
+        return dateOfBestTime;
+    }
+
+    public void setDateOfBestTime(Timestamp dateOfBestTime) {
+        this.dateOfBestTime = dateOfBestTime;
+    }
+
     
     
 }
