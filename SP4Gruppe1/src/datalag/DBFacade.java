@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 /*
@@ -52,11 +51,12 @@ public class DBFacade {
                 String lastName = result.getString(2);
                 int age = result.getInt(3);
                 boolean isActive = result.getBoolean(4);
-                int contingent = result.getInt(5);
-                int restance = result.getInt(6);
+                int id = result.getInt(5);
+                int contingent = result.getInt(6);
+                int restance = result.getInt(7);
                 
                 //create a new Member object and insert it into the ArrayList
-                members.add(new Member(firstName, lastName, age, isActive, contingent, restance));
+                members.add(new Member(firstName, lastName, age, isActive, contingent, restance, id));
             }
         } catch (SQLException e) {
         }

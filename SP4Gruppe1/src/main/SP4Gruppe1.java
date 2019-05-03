@@ -14,6 +14,7 @@ public class SP4Gruppe1 {
 
     public static void main(String[] args) throws SQLException {
         UI ui = new SystemUI();
+                
         DBConnection dbc = new DBConnection();
         DBFacade db = new DBFacade(dbc);
         
