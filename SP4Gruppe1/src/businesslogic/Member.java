@@ -17,7 +17,8 @@ public class Member {
     private double contingent;
     private double restance;
 
-    public Member(String firstName, String lastName, String dateOfBirth, boolean isActive, int id) {
+    public Member(String firstName, String lastName, 
+            String dateOfBirth, boolean isActive, int id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = LocalDate.parse(dateOfBirth);
@@ -28,7 +29,8 @@ public class Member {
         age = calculateAge();
     }
     
-    public Member(String firstName, String lastName, int age, boolean isActive, int contingent, int restance, int id) {
+    public Member(String firstName, String lastName, int age, 
+            boolean isActive, int contingent, int restance, int id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -107,15 +109,6 @@ public class Member {
         age = period.getYears();
         return age;
     }
-    
-    @Override
-    public String toString() {
-        return "Member:\t\t" + firstName + " " + lastName
-                + "\nage: \t\t" + age
-                + "\nstatus: \t" + isActive
-                + "\ncontingent: \t" + contingent
-                + "\nrestance: \t" + restance + "\n";
-    }
 
     private double calculateContingent() {
         if (isActive) {
@@ -131,5 +124,12 @@ public class Member {
         return 500;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Member:\t\t" + firstName + " " + lastName
+                + "\nage: \t\t" + age
+                + "\nstatus: \t" + isActive
+                + "\ncontingent: \t" + contingent
+                + "\nrestance: \t" + restance + "\n";
+    }
 }
