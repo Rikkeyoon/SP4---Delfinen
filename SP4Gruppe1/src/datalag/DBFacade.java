@@ -1,5 +1,6 @@
 package datalag;
 
+import businesslogic.CompetitiveSwimmer;
 import businesslogic.Member;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -103,7 +104,7 @@ public class DBFacade {
         } catch (SQLException e) {
         }
     }
-
+    
     private void deleteFromCompetition(int id) {
         try {
             //create String for the PreparedStatement
@@ -133,5 +134,32 @@ public class DBFacade {
         } catch (SQLException e) {
         }
     }
-
+    
+    public ArrayList<CompetitiveSwimmer> getCompetitiveSwimmersList() {
+        ArrayList<CompetitiveSwimmer> swimmers = new ArrayList<>();
+        try {
+            //create String for the PreparedStatement
+            String selectSQL = "SELECT * FROM competitive_swimmers"
+                    + "NATURAL JOIN members";
+            //get connection
+            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+            
+            //execute the SQL query
+            ResultSet result = preparedStatement.executeQuery(selectSQL);
+            while (result.next()) {
+                int id = result.getInt(1);
+                String firstName = result.getString(5);
+                String lastName = result.getString(6);
+                int age = result.getInt(7);
+                boolean isActive = result.getBoolean(8);
+                int contingent = result.getInt(9);
+                int restance = result.getInt(10);
+                
+                //create a new Member object and insert it into the ArrayList
+                swimmers.add((CompetitiveSwimmer) new Member(firstName, lastName, age, isActive, contingent, restance, id));
+            }
+        } catch (SQLException e) {
+        }
+        return swimmers;
+    }
 }
