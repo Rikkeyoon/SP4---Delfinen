@@ -27,7 +27,7 @@ public class SystemUI implements UI {
 
     @Override
     public int scanInt() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return input.nextInt();
     }
     
 }
