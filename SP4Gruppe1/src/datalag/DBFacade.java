@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /*
  * @author Caroline, Rikke & Nina
@@ -69,5 +70,27 @@ public class DBFacade {
             statement.executeLargeUpdate("DELETE FROM competitive_swimmers WHERE id =" + id);
             statement.executeLargeUpdate("DELETE FROM members WHERE id =" + id);
         } catch (SQLException e) {}
+    }
+
+    public ArrayList<Member> getMemberList() {
+        ArrayList<Member> members = new ArrayList<>();
+        try {
+            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery("SELECT * FROM members");
+            while (result.next()) {
+                String firstName = result.getString(1);
+                String lastName = result.getString(2);
+                int age = result.getInt(3);
+                boolean isActive = result.getBoolean(4);
+                int contingent = result.getInt(5);
+                int restance = result.getInt(6);
+
+                members.add(new Member(firstName, lastName, age, isActive, contingent, restance));
+            }
+        } catch (SQLException e) {
+
+        }
+        return members;
     }
 }

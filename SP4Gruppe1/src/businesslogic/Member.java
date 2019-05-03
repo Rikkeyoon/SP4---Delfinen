@@ -27,6 +27,15 @@ public class Member {
         contingent = calculateContingent();
         age = calculateAge();
     }
+    
+    public Member(String firstName, String lastName, int age, boolean isActive, int contingent, int restance) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.isActive = isActive;
+        this.contingent = contingent;
+        this.restance = restance;
+    }
 
     public String getFirstName() {
         return firstName;
