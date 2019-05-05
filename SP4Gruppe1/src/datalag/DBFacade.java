@@ -40,7 +40,7 @@ public class DBFacade {
         ArrayList<Member> members = new ArrayList<>();
         try {
             //create String for the PreparedStatement
-            String selectSQL = "SELECT * FROM members";
+            String selectSQL = "SELECT * FROM members ORDER BY first_name";
             //get connection
             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
 

@@ -126,10 +126,10 @@ public class Member {
 
     @Override
     public String toString() {
-        return "Member:\t\t" + firstName + " " + lastName
-                + "\nage: \t\t" + age
-                + "\nstatus: \t" + isActive
-                + "\ncontingent: \t" + contingent
-                + "\nrestance: \t" + restance + "\n";
+        return firstName + " " + lastName
+                + "\nAge: \t\t" + age + " y/o"
+                + "\nStatus: \t" + isActive
+                + "\nContingent: \t" + contingent + " DKK"
+                + "\nRestance: \t" + restance + " DKK\n";
     }
 }

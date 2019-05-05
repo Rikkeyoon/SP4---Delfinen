@@ -169,7 +169,7 @@ public class Controller {
 
     public void showMembersList() {
         ArrayList<Member> members = db.getMembersList();
-        // muligvis sorter medlemmer i forhold til ID
+        // muligvis sorter medlemmer i forhold til ID eller alfabetisk?
         ui.showMemberList(members);
     }
 

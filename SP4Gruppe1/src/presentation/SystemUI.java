@@ -41,7 +41,10 @@ public class SystemUI implements UI {
 
     @Override
     public void showMainMenu() {
-        System.out.println("Choose one of the following options: \n"
+        System.out.println("-------------------------\n"
+                + "SVØMMEKLUBBEN - DELFINEN\n"
+                + "-------------------------\n"
+                + "Choose one of the following options: \n"
                 + "1. Members\n"
                 + "2. Contingent\n"
                 + "3. Restance\n"
@@ -64,7 +67,7 @@ public class SystemUI implements UI {
     @Override
     public void showMembersMenu() {
         System.out.println("Choose one of the following options: \n"
-                + "1. Members\n"
+                + "1. List of members\n"
                 + "2. Add member\n"
                 + "3. Edit members\n"
                 + "4. Delete member\n"

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 /*
  * @author Caroline, Rikke & Nina
  */
-public class FakeUI implements UI{
-    
+public class FakeUI implements UI {
+
     String[] input;
     int index = 0;
     public ArrayList<String> output = new ArrayList<>();
@@ -38,69 +38,102 @@ public class FakeUI implements UI{
 
     @Override
     public void showMemberList(ArrayList<Member> members) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Member member : members) {
+            output.add(member.toString());
+        }
     }
 
     @Override
     public void showMainMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        output.add("-------------------------\n"
+                + "SVØMMEKLUBBEN - DELFINEN\n"
+                + "-------------------------\n"
+                + "Choose one of the following options: \n"
+                + "1. Members\n"
+                + "2. Contingent\n"
+                + "3. Restance\n"
+                + "4. Top 5 swimmers\n"
+                + "5. Competitive swimmers\n"
+                + "6. Competition\n"
+                + "0. Quit");
     }
 
     @Override
     public int mainMenuChoice() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Integer.parseInt(input[index++]);
     }
 
     @Override
     public void showMembersMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        output.add("Choose one of the following options: \n"
+                + "1. List of members\n"
+                + "2. Add member\n"
+                + "3. Edit members\n"
+                + "4. Delete member\n"
+                + "5. Back to main menu\n"
+                + "0. Quit");
     }
 
     @Override
     public int memberMenuChoice() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Integer.parseInt(input[index++]);
     }
 
     @Override
     public void showContingentMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void showRestanceMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void showCompetitiveSwimmersMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void showCompetitionMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        output.add("Choose one of the following options: \n"
+                + "1. Contingent\n"
+                + "2. Edit contingent\n"
+                + "3. Back to main menu\n"
+                + "0. Quit");
     }
 
     @Override
     public int contingentMenuChoice() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Integer.parseInt(input[index++]);
+    }
+
+    @Override
+    public void showRestanceMenu() {
+        output.add("Choose one of the following options: \n"
+                + "1. Swimmers in restance\n"
+                + "2. Edit restance\n"
+                + "3. back to main menu\n"
+                + "0. Quit");
     }
 
     @Override
     public int restanceMenuChoice() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Integer.parseInt(input[index++]);
+    }
+
+    @Override
+    public void showCompetitiveSwimmersMenu() {
+        output.add("Choose one of the following options: \n"
+                + "1. Competitive swimmers\n"
+                + "2. Trainingsresult\n"
+                + "3. Edit trainingsresult\n"
+                + "4. Back to main menu\n"
+                + "0. Quit");
     }
 
     @Override
     public int competitiveSwimmersMenuChoice() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         return Integer.parseInt(input[index++]);
+    }
+
+    @Override
+    public void showCompetitionMenu() {
+        output.add("Choose one of the following options: \n"
+                + "1. Swimmers in competition\n"
+                + "2. Competition results\n"
+                + "3. Edit results"
+                + "4. Back to main menu\n"
+                + "0. Quit");
     }
 
     @Override
     public int competitionMenuChoice() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Integer.parseInt(input[index++]);
     }
-
-    
-    
 }
