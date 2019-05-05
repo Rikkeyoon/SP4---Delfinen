@@ -19,7 +19,7 @@ public class DBFacade {
     }
 
     public int getID() {
-        int id = 0;
+        int id = 1;
         try {
             //create String for the PreparedStatement
             String selectSQL = "SELECT LAST_INSERT_ID() FROM members";
@@ -31,8 +31,9 @@ public class DBFacade {
             while (result.next()) {
                 id = result.getInt(1);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
         }
+        
         return id;
     }
 
@@ -83,7 +84,7 @@ public class DBFacade {
 
             //execute the SQL query
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
         }
     }
 
