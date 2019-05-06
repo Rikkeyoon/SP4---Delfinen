@@ -190,7 +190,7 @@ public class SystemUI implements UI {
     }
 
         @Override
-    public String scanDate() {
+    public String scanName() {
         String choice = input.nextLine();
         while (choice.isEmpty()) {
             System.out.println("Please enter a date: ");
