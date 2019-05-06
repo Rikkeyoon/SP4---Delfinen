@@ -158,6 +158,7 @@ public class Controller {
         Member member = new Member(firstName, lastName, dateOfBirth, isActive, ID);
         
         db.saveMember(member);
+        ui.print("The following member has been added: " + member.toString());
     }
 
     private void deleteMember() {
