@@ -170,7 +170,6 @@ public class SystemUI implements UI {
         return choice;
     }
 
-
     @Override
     public String scanDate() {
         String choice = input.nextLine();
@@ -192,27 +191,18 @@ public class SystemUI implements UI {
         return choice;
     }
 
-        @Override
+    @Override
     public String scanName() {
         String choice = input.nextLine();
-        while (choice.isEmpty()) {
-            System.out.println("Please enter a date: ");
-            choice = input.nextLine();
-        }
-
-        try {
-            LocalDate.parse(choice);
-        } catch (DateTimeParseException e) {
-            boolean exceptionThrown = true;
-            while (exceptionThrown) {
-                System.out.println(choice + " is not an option, try again: ");
-                choice = input.nextLine();
-                exceptionThrown = false;
+        for (char c : choice.toCharArray()) {
+            while (!Character.isAlphabetic(c)) {
+                    System.out.println("Invalid name, please try again");
+                    choice = input.nextLine();
             }
         }
         return choice;
     }
-    
+
     @Override
     public int editMemberChoice() {
         int choice = input.nextInt();
