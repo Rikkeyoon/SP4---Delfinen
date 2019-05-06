@@ -3,11 +3,13 @@ package presentation;
 import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
- * @author Caroline, Rikke & Nina
+ * @author Caroline, Nina, Rikke og Kristine
  */
 public class SystemUI implements UI {
 
@@ -164,6 +166,48 @@ public class SystemUI implements UI {
         }
         return choice;
     }
+
+
+    @Override
+    public String scanDate() {
+        String choice = input.nextLine();
+
+        try {
+            LocalDate.parse(choice);
+        } catch (DateTimeParseException e) {
+            boolean exceptionThrown = true;
+            while (exceptionThrown) {
+                System.out.println(choice + " is not an option, try again: ");
+                choice = input.nextLine();
+                exceptionThrown = false;
+            }
+        }
+        return choice;
+    }
+
+    @Override
+    public int editMemberChoice() {
+        int choice = input.nextInt();
+        while (choice < 1 || choice > 4) {
+            System.out.println(choice + " is not an option, try again: ");
+            choice = input.nextInt();
+        }
+        return choice;
+    }
+
+    @Override
+    public int scanID() {
+        return input.nextInt();
+    }
+
+    @Override
+    public void showEditMemberMenu() {
+        System.out.println("Press 1 to edit first name\n"
+                + "Press 2 to edit last name\n"
+                + "Press 3 to edit activeness\n"
+                + "Press 4 to return");
+    }
+    
 
     @Override
     public void showTop5(ArrayList<CompetitiveSwimmer> competitiveSwimmer) {

@@ -6,7 +6,7 @@ import businesslogic.Member;
 import java.util.ArrayList;
 
 /*
- * @author Caroline, Rikke & Nina
+ * @author Caroline, Nina, Rikke og Kristine
  */
 public interface UI {
 
@@ -48,6 +48,13 @@ public interface UI {
     public void showContingentList(ArrayList<Contingent> contingent);
 
 
+    public String scanDate();
+
+    public int editMemberChoice();
+
+    public int scanID();
+
+    public void showEditMemberMenu();
     
     
 }

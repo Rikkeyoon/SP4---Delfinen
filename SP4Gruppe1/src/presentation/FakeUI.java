@@ -6,7 +6,7 @@ import businesslogic.Member;
 import java.util.ArrayList;
 
 /*
- * @author Caroline, Rikke & Nina
+ * @author Caroline, Nina, Rikke og Kristine
  */
 public class FakeUI implements UI {
 
@@ -152,4 +152,25 @@ public class FakeUI implements UI {
    
 
   
+    public String scanDate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int editMemberChoice() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int scanID() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void showEditMemberMenu() {
+        output.add("Press 1 to edit first name\n"
+                + "Press 2 to edit last name\n"
+                + "Press 3 to edit activeness\n"
+                + "Press 4 to return");
+    }
 }

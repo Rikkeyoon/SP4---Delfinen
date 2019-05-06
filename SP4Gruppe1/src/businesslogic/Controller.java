@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import presentation.UI;
 
 /*
- * @author Caroline, Rikke & Nina
+ * @author Caroline, Nina, Rikke og Kristine
  */
 public class Controller {
 
@@ -16,21 +16,21 @@ public class Controller {
         this.ui = ui;
         this.db = db;
     }
-    
+
     public void start() {
         boolean quit = false;
         ui.showMainMenu();
-        
+
         do {
             switch (ui.mainMenuChoice()) {
-                case 1: 
+                case 1:
                     ui.showMembersMenu();
                     do {
                         switch (ui.memberMenuChoice()) {
                             case 1:
                                 showMembersList();
                                 break;
-                            case 2: 
+                            case 2:
                                 createMember();
                                 break;
                             case 3:
@@ -69,7 +69,7 @@ public class Controller {
                         }
                     } while (!quit);
                     break;
-                case 3: 
+                case 3:
                     ui.showRestanceMenu();
                     do {
                         switch (ui.restanceMenuChoice()) {
@@ -131,6 +131,7 @@ public class Controller {
                             case 4:
                                 quit = true;
                                 start();
+                                break;
                             case 0:
                                 quit = true;
                         }
@@ -150,14 +151,15 @@ public class Controller {
         ui.print("Please enter last name: ");
         String lastName = ui.scanString();
         ui.print("Please enter date of birth (YYYY-MM-DD): ");
-        String dateOfBirth = ui.scanString();
+        String dateOfBirth = ui.scanDate();
         ui.print("Is the member an active member? Press Y for yes, or N for no: ");
         boolean isActive = ui.scanBoolean();
         int ID = db.getID();
-        
+
         Member member = new Member(firstName, lastName, dateOfBirth, isActive, ID);
-        
+
         db.saveMember(member);
+        ui.print("The following member has been added: " + member.toString());
     }
 
     private void deleteMember() {
@@ -173,7 +175,36 @@ public class Controller {
     }
 
     private void editMember() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ui.print("Enter the ID of the member, you would like to edit: ");
+        int id = ui.scanID();
+        Member member = getMemberbyID(id);
+        if (member == null) {
+            editMemberNull(member);
+        }
+
+        boolean quit = false;
+        ui.showEditMemberMenu();
+        while (!quit) {
+            int choice = ui.editMemberChoice();
+            switch (choice) {
+                case 1:
+                    String firstName = ui.scanString();
+                    member.setFirstName(firstName);
+                    break;
+                case 2:
+                    String lastName = ui.scanString();
+                    member.setLastName(lastName);
+                    break;
+                case 3:
+                    ui.print("Is the member an active member? Press Y for yes, or N for no: ");
+                    boolean isActive = ui.scanBoolean();
+                    member.setIsActive(isActive);
+                    break;
+                case 4:
+                    quit = true;
+                    break;
+            }
+        }
     }
 
     private void showTop5Swimmers() {
@@ -221,5 +252,23 @@ public class Controller {
     private void editCompetitionResults() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    private Member getMemberbyID(int id) {
+        ArrayList<Member> members = db.getMembersList();
+        for (Member member : members) {
+            if (member.getId() == id) {
+                return member;
+            }
+        }
+        return null;
+    }
+
+    private void editMemberNull(Member member) {
+        while (member == null) {
+            ui.print("Invalid ID, please try again: ");
+            int id = ui.scanID();
+            member = getMemberbyID(id);
+        }
+    }
+
 }

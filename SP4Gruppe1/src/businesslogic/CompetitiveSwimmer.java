@@ -4,7 +4,7 @@ import java.sql.Time;
 import java.sql.Timestamp;
 
  /*
- * @author Caroline, Rikke & Nina
+ * @author Caroline, Nina, Rikke og Kristine
  */
 public class CompetitiveSwimmer extends Member {
     
