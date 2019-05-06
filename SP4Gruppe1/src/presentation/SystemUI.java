@@ -168,6 +168,10 @@ public class SystemUI implements UI {
     @Override
     public String scanDate() {
         String choice = input.nextLine();
+        while (choice.isEmpty()) {
+            System.out.println("Please enter a date: ");
+            choice = input.nextLine();
+        }
 
         try {
             LocalDate.parse(choice);
@@ -204,6 +208,5 @@ public class SystemUI implements UI {
                 + "Press 3 to edit activeness\n"
                 + "Press 4 to return");
     }
-    
 
 }
