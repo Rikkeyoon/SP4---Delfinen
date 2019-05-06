@@ -189,6 +189,27 @@ public class SystemUI implements UI {
         return choice;
     }
 
+        @Override
+    public String scanName() {
+        String choice = input.nextLine();
+        while (choice.isEmpty()) {
+            System.out.println("Please enter a date: ");
+            choice = input.nextLine();
+        }
+
+        try {
+            LocalDate.parse(choice);
+        } catch (DateTimeParseException e) {
+            boolean exceptionThrown = true;
+            while (exceptionThrown) {
+                System.out.println(choice + " is not an option, try again: ");
+                choice = input.nextLine();
+                exceptionThrown = false;
+            }
+        }
+        return choice;
+    }
+    
     @Override
     public int editMemberChoice() {
         int choice = input.nextInt();

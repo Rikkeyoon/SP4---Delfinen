@@ -49,6 +49,8 @@ public interface UI {
 
 
     public String scanDate();
+    
+    public String scanName();
 
     public int editMemberChoice();
 
