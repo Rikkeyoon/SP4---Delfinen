@@ -1,6 +1,7 @@
 package businesslogic;
 
 import datalag.DBFacade;
+import java.sql.Time;
 import java.util.ArrayList;
 import presentation.UI;
 
@@ -278,7 +279,8 @@ public class Controller {
     }
 
     private void showTrainingsresult() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Time> trainingresults = db.getTrainingsresult();
+        ui.showTrainingresults(trainingresults);
     }
 
     private void editTrainingsresult() {

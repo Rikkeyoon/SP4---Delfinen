@@ -3,6 +3,7 @@ package presentation;
 import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
+import java.sql.Time;
 import java.util.ArrayList;
 
 /*
@@ -186,6 +187,16 @@ public class FakeUI implements UI {
 
     @Override
     public void showCompetitiveSwimmerList(ArrayList<CompetitiveSwimmer> competitiveSwimmers) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String scanName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void showTrainingresults(ArrayList<Time> trainingresults) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

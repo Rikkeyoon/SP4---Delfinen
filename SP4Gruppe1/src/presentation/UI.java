@@ -3,6 +3,7 @@ package presentation;
 import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
+import java.sql.Time;
 import java.util.ArrayList;
 
 /*
@@ -63,6 +64,8 @@ public interface UI {
     public int editContingentChoice();
 
     public void showCompetitiveSwimmerList(ArrayList<CompetitiveSwimmer> competitiveSwimmers);
+
+    public void showTrainingresults(ArrayList<Time> trainingresults);
     
     
 }

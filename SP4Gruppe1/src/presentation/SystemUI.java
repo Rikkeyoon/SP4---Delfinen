@@ -3,6 +3,7 @@ package presentation;
 import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -38,9 +39,11 @@ public class SystemUI implements UI {
 
     @Override
     public void showMemberList(ArrayList<Member> members) {
+        StringBuilder strbuild = new StringBuilder();
         for (Member member : members) {
-            System.out.println(member.toString());
+           strbuild.append(member.toString());
         }
+        System.out.println(strbuild.toString());
     }
 
     @Override
@@ -235,16 +238,20 @@ public class SystemUI implements UI {
 
     @Override
     public void showTop5(ArrayList<CompetitiveSwimmer> competitiveSwimmer) {
+        StringBuilder strbuild = new StringBuilder();
         for (CompetitiveSwimmer compSwimmer : competitiveSwimmer) {
-            System.out.println(competitiveSwimmer.toString());
+            strbuild.append(compSwimmer);
         }
+        System.out.println(strbuild.toString());
     }
 
     @Override
     public void showContingentList(ArrayList<Contingent> contingent) {
+        StringBuilder strbuild = new StringBuilder();
         for (Contingent cont : contingent) {
-            System.out.println(contingent.toString());
+            strbuild.append(cont);
         }
+        System.out.println(strbuild.toString());
     }
 
     @Override
@@ -266,5 +273,14 @@ public class SystemUI implements UI {
     @Override
     public void showCompetitiveSwimmerList(ArrayList<CompetitiveSwimmer> competitiveSwimmers) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void showTrainingresults(ArrayList<Time> trainingresults) {
+        StringBuilder strbuild = new StringBuilder();
+        for (Time trainingresult : trainingresults) {
+            strbuild.append(trainingresult);
+        }
+        System.out.println(strbuild.toString());
     }
 }

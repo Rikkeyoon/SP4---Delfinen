@@ -300,4 +300,8 @@ public class DBFacade {
         return competitiveSwimmers;
     }
 
+    public ArrayList<Time> getTrainingsresult() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
