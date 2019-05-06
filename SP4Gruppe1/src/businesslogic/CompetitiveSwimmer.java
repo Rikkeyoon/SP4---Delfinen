@@ -20,6 +20,14 @@ public class CompetitiveSwimmer extends Member {
         this.bestTime = bestTime;
         this.dateOfBestTime = dateOfBestTime;
     }
+    
+    public CompetitiveSwimmer(String firstName, String lastName, int age, int id, 
+            String disciplin, Time bestTime, Timestamp dateOfBestTime) {
+        super(firstName, lastName, age, id);
+        this.disciplin = disciplin;
+        this.bestTime = bestTime;
+        this.dateOfBestTime = dateOfBestTime;
+    }
 
     public String getDisciplin() {
         return disciplin;
@@ -43,6 +51,12 @@ public class CompetitiveSwimmer extends Member {
 
     public void setDateOfBestTime(Timestamp dateOfBestTime) {
         this.dateOfBestTime = dateOfBestTime;
+    }
+
+    @Override
+    public String toString() {
+        return 
+                "CompetitiveSwimmer{" + "disciplin=" + disciplin + ", bestTime=" + bestTime + ", dateOfBestTime=" + dateOfBestTime + '}';
     }
 
     

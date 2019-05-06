@@ -1,5 +1,7 @@
 package presentation;
 
+import businesslogic.CompetitiveSwimmer;
+import businesslogic.Contingent;
 import businesslogic.Member;
 import java.util.ArrayList;
 
@@ -40,6 +42,12 @@ public interface UI {
     public int competitiveSwimmersMenuChoice();
 
     public int competitionMenuChoice();
+
+    public void showTop5(ArrayList<CompetitiveSwimmer> competitiveSwimmer);
+
+    public void showContingentList(ArrayList<Contingent> contingent);
+
+
     
     
 }

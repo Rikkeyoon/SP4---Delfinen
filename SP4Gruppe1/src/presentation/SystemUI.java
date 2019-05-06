@@ -1,5 +1,7 @@
 package presentation;
 
+import businesslogic.CompetitiveSwimmer;
+import businesslogic.Contingent;
 import businesslogic.Member;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -161,6 +163,19 @@ public class SystemUI implements UI {
             choice = input.nextInt();
         }
         return choice;
-    } 
+    }
 
+    @Override
+    public void showTop5(ArrayList<CompetitiveSwimmer> competitiveSwimmer) {
+        for (CompetitiveSwimmer compSwimmer : competitiveSwimmer) {
+            System.out.println(competitiveSwimmer.toString());
+        }
+    }
+
+    @Override
+    public void showContingentList(ArrayList<Contingent> contingent) {
+        for (Contingent cont : contingent) {
+            System.out.println(contingent.toString());
+        }
+    }
 }

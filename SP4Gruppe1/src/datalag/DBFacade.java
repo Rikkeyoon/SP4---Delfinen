@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /*
@@ -33,7 +35,7 @@ public class DBFacade {
             }
         } catch (SQLException | NullPointerException e) {
         }
-        
+
         return id;
     }
 
@@ -139,8 +141,8 @@ public class DBFacade {
         ArrayList<Member> swimmers = new ArrayList<>();
         try {
             //create String for the PreparedStatement
-            String selectSQL = "SELECT * FROM competitive_swimmers"
-                    + "NATURAL JOIN members";
+            String selectSQL = "SELECT * FROM members"
+                    + "NATURAL JOIN competitive_swimmers";
             //get connection
             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
 
@@ -183,4 +185,59 @@ public class DBFacade {
         } catch (SQLException e) {
         }
     }
+
+    public ArrayList<CompetitiveSwimmer> getTop5() {
+        ArrayList<CompetitiveSwimmer> top5 = new ArrayList<>();
+        try {
+            //create String for the PreparedStatement
+            String selectSQL = "SELECT id, first_name, last_name, age, disciplin, "
+                    + "best_time, date_of_best_time FROM members"
+                    + "NATURAL JOIN competitive_swimmers ORDER BY best_time";
+            //get connection
+            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+
+            //execute the SQL query
+            ResultSet result = preparedStatement.executeQuery(selectSQL);
+            while (result.next()) {
+                int id = result.getInt(1);
+                String firstName = result.getString(2);
+                String lastName = result.getString(3);
+                int age = result.getInt(4);
+                String disciplin = result.getString(5);
+                Time bestTime = result.getTime(6);
+                Timestamp dateOfBestTime = result.getTimestamp(7);
+
+                //create a new Member object and insert it into the ArrayList
+                top5.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin, 
+                        bestTime, dateOfBestTime));
+            }
+        } catch (SQLException e) {
+        }
+        return top5;
+    }
+
+    public ArrayList<Contingent> getContingentList() {
+          ArrayList<Contingent> contingent = new ArrayList<>();
+        try {
+            //create String for the PreparedStatement
+            String selectSQL = "SELECT * FROM contingent";
+            //get connection
+            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+
+            //execute the SQL query
+            ResultSet result = preparedStatement.executeQuery(selectSQL);
+            while (result.next()) {
+                int under18 = result.getInt(1);
+                int between18And60 = result.getInt(2);
+                int over60 = result.getInt(3);
+                int passive = result.getInt(4);
+
+                //create a new Member object and insert it into the ArrayList
+                contingent.add(new Contingent(under18, between18And60, over60, passive));
+            }
+        } catch (SQLException e) {
+        }
+        return contingent;
+    }
+
 }
