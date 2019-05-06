@@ -61,7 +61,7 @@ public class DBFacade {
                 //create a new Member object and insert it into the ArrayList
                 members.add(new Member(firstName, lastName, age, isActive, contingent, restance, id));
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
         }
         return members;
     }
@@ -103,7 +103,7 @@ public class DBFacade {
 
             //execute the SQL query
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
         }
     }
 
@@ -118,7 +118,7 @@ public class DBFacade {
 
             //execute the SQL query
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
         }
     }
 
@@ -133,7 +133,7 @@ public class DBFacade {
 
             //execute the SQL query
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
         }
     }
 
@@ -160,7 +160,7 @@ public class DBFacade {
                 //create a new Member object and insert it into the ArrayList
                 swimmers.add(new Member(firstName, lastName, age, isActive, contingent, restance, id));
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
         }
         return swimmers;
     }
@@ -182,7 +182,7 @@ public class DBFacade {
 
             //execute the SQL query
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
         }
     }
 
@@ -211,7 +211,7 @@ public class DBFacade {
                 top5.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin, 
                         bestTime, dateOfBestTime));
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
         }
         return top5;
     }
@@ -235,9 +235,38 @@ public class DBFacade {
                 //create a new Member object and insert it into the ArrayList
                 contingent.add(new Contingent(under18, between18And60, over60, passive));
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
         }
         return contingent;
+    }
+
+    public ArrayList<Member> getMembersInRestance() {
+        ArrayList<Member> membersInRestance = new ArrayList<>();
+        try {
+            //create String for the PreparedStatement
+            String selectSQL = "SELECT * FROM members  WHERE restance != 0 "
+                    + "ORDER BY first_name";
+            //get connection
+            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+
+            //execute the SQL query
+            ResultSet result = preparedStatement.executeQuery(selectSQL);
+            while (result.next()) {
+                String firstName = result.getString(1);
+                String lastName = result.getString(2);
+                int age = result.getInt(3);
+                boolean isActive = result.getBoolean(4);
+                int id = result.getInt(5);
+                int contingent = result.getInt(6);
+                int restance = result.getInt(7);
+
+                //create a new Member object and insert it into the ArrayList
+                membersInRestance.add(new Member(firstName, lastName, age, 
+                        isActive, contingent, restance, id));
+            }
+        } catch (SQLException | NullPointerException e) {
+        }
+        return membersInRestance;
     }
 
 }

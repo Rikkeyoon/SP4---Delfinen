@@ -74,7 +74,7 @@ public class Controller {
                     do {
                         switch (ui.restanceMenuChoice()) {
                             case 1:
-                                showSwimmersInRestance();
+                                showMembersInRestance();
                                 break;
                             case 2:
                                 editRestance();
@@ -184,7 +184,7 @@ public class Controller {
 
         boolean quit = false;
         ui.showEditMemberMenu();
-        while (!quit) {
+        do {
             switch (ui.editMemberChoice()) {
                 case 1:
                     String firstName = ui.scanString();
@@ -203,7 +203,7 @@ public class Controller {
                     quit = true;
                     break;
             }
-        }
+        } while (!quit);
     }
 
     private void showTop5Swimmers() {
@@ -220,8 +220,9 @@ public class Controller {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void showSwimmersInRestance() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void showMembersInRestance() {
+        ArrayList<Member> membersInRestance = db.getMembersInRestance();
+        ui.showMemberList(membersInRestance);
     }
 
     private void editRestance() {
