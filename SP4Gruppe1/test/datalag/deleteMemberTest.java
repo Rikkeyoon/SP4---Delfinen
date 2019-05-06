@@ -19,7 +19,7 @@ public class deleteMemberTest {
         Controller ctrl = new Controller(ui, db);
 
         // act
-        ctrl.deleteMember();
+        //ctrl.deleteMember();
 
         // assert
         

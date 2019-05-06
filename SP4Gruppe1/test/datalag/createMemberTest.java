@@ -19,7 +19,7 @@ public class createMemberTest {
         Controller ctrl = new Controller(ui, db);
 
         // act
-        ctrl.createMember();
+        //ctrl.createMember();
         
         // assert
         

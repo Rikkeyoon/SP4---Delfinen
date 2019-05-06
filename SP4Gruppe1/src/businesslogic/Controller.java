@@ -143,7 +143,7 @@ public class Controller {
         } while (!quit);
     }
 
-    public void createMember() {
+    private void createMember() {
         ui.scanString();
         ui.print("Please enter first name: ");
         String firstName = ui.scanString();
@@ -160,14 +160,14 @@ public class Controller {
         db.saveMember(member);
     }
 
-    public void deleteMember() {
+    private void deleteMember() {
         showMembersList();
         ui.print("Enter the ID of the member you want to delete: ");
         int id = ui.scanInt();
         db.deleteMember(id);
     }
 
-    public void showMembersList() {
+    private void showMembersList() {
         ArrayList<Member> members = db.getMembersList();
         // muligvis sorter medlemmer i forhold til ID eller alfabetisk?
         ui.showMemberList(members);
