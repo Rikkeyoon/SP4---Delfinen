@@ -222,4 +222,20 @@ public class SystemUI implements UI {
             System.out.println(contingent.toString());
         }
     }
+
+    @Override
+    public void showEditContingentMenu() {
+        System.out.println("\nWhat would you like to change? ("
+                + "1. Under 18\n"
+                + "2. Between 18 and 60\n"
+                + "3. Over 60\n"
+                + "4. Passive\n"
+                + "9. Back to main menu\n"
+                + "0. Quit");
+    }
+
+    @Override
+    public int editContingentChoice() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
