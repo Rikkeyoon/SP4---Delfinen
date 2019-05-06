@@ -41,7 +41,7 @@ public class SystemUI implements UI {
     public void showMemberList(ArrayList<Member> members) {
         StringBuilder strbuild = new StringBuilder();
         for (Member member : members) {
-           strbuild.append(member.toString());
+            strbuild.append(member.toString());
         }
         System.out.println(strbuild.toString());
     }
@@ -170,7 +170,6 @@ public class SystemUI implements UI {
         return choice;
     }
 
-
     @Override
     public String scanDate() {
         String choice = input.nextLine();
@@ -178,21 +177,22 @@ public class SystemUI implements UI {
             System.out.println("Please enter a date: ");
             choice = input.nextLine();
         }
-
-        try {
-            LocalDate.parse(choice);
-        } catch (DateTimeParseException e) {
-            boolean exceptionThrown = true;
-            while (exceptionThrown) {
+        
+            try {
+                LocalDate.parse(choice);
+            } catch (DateTimeParseException e) {
+                boolean exceptionCaught = true;
+                
+                while (exceptionCaught) {
                 System.out.println(choice + " is not an option, try again: ");
-                choice = input.nextLine();
-                exceptionThrown = false;
+                exceptionCaught = false;
+                choice = scanDate();
+                }
             }
-        }
         return choice;
     }
 
-        @Override
+    @Override
     public String scanName() {
         String choice = input.nextLine();
         while (choice.isEmpty()) {
@@ -212,7 +212,7 @@ public class SystemUI implements UI {
         }
         return choice;
     }
-    
+
     @Override
     public int editMemberChoice() {
         int choice = input.nextInt();
