@@ -59,6 +59,8 @@ public interface UI {
     public void showEditContingentMenu();
 
     public int editContingentChoice();
+
+    public void showCompetitiveSwimmerList(ArrayList<CompetitiveSwimmer> competitiveSwimmers);
     
     
 }

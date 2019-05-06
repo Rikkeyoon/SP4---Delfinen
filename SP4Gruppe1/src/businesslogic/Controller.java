@@ -207,8 +207,8 @@ public class Controller {
     }
 
     private void showTop5Swimmers() {
-        ArrayList<CompetitiveSwimmer> competitiveSwimmer = db.getTop5();
-        ui.showTop5(competitiveSwimmer);
+        ArrayList<CompetitiveSwimmer> competitiveSwimmers = db.getTop5();
+        ui.showTop5(competitiveSwimmers);
     }
 
     private void showContingent() {
@@ -218,7 +218,7 @@ public class Controller {
 
     private void editContingent() {
         showContingent();
-        
+
         boolean quit = false;
         ui.showEditContingentMenu();
         do {
@@ -256,7 +256,8 @@ public class Controller {
     }
 
     private void showCompetitiveSwimmers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<CompetitiveSwimmer> competitiveSwimmers = db.getCompetitiveSwimmers();
+        ui.showCompetitiveSwimmerList(competitiveSwimmers);
     }
 
     private void showTrainingsresult() {

@@ -192,7 +192,8 @@ public class DBFacade {
             //create String for the PreparedStatement
             String selectSQL = "SELECT id, first_name, last_name, age, disciplin, "
                     + "best_time, date_of_best_time FROM members"
-                    + "NATURAL JOIN competitive_swimmers ORDER BY best_time";
+                    + "NATURAL JOIN competitive_swimmers ORDER BY best_time"
+                    + "LIMIT 5";
             //get connection
             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
 
@@ -267,6 +268,36 @@ public class DBFacade {
         } catch (SQLException | NullPointerException e) {
         }
         return membersInRestance;
+    }
+
+    public ArrayList<CompetitiveSwimmer> getCompetitiveSwimmers() {
+        ArrayList<CompetitiveSwimmer> competitiveSwimmers = new ArrayList<>();
+        try {
+            //create String for the PreparedStatement
+            String selectSQL = "SELECT id, first_name, last_name, age, disciplin, "
+                    + "best_time, date_of_best_time FROM members"
+                    + "NATURAL JOIN competitive_swimmers";
+            //get connection
+            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+
+            //execute the SQL query
+            ResultSet result = preparedStatement.executeQuery(selectSQL);
+            while (result.next()) {
+                int id = result.getInt(1);
+                String firstName = result.getString(2);
+                String lastName = result.getString(3);
+                int age = result.getInt(4);
+                String disciplin = result.getString(5);
+                Time bestTime = result.getTime(6);
+                Timestamp dateOfBestTime = result.getTimestamp(7);
+
+                //create a new Member object and insert it into the ArrayList
+                competitiveSwimmers.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin, 
+                        bestTime, dateOfBestTime));
+            }
+        } catch (SQLException | NullPointerException e) {
+        }
+        return competitiveSwimmers;
     }
 
 }
