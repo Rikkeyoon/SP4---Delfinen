@@ -173,4 +173,14 @@ public class FakeUI implements UI {
                 + "Press 3 to edit activeness\n"
                 + "Press 4 to return");
     }
+
+    @Override
+    public void showEditContingentMenu() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int editContingentChoice() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

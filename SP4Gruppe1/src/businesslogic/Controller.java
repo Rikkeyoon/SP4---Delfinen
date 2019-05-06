@@ -217,7 +217,33 @@ public class Controller {
     }
 
     private void editContingent() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        showContingent();
+        
+        boolean quit = false;
+        ui.showEditContingentMenu();
+        do {
+            switch (ui.editContingentChoice()) {
+                case 1:
+                    editUnder18();
+                    break;
+                case 2:
+                    editBetween18And60();
+                    break;
+                case 3:
+                    editOver60();
+                    break;
+                case 4:
+                    editPassive();
+                    break;
+                case 9:
+                    quit = true;
+                    start();
+                    break;
+                case 0:
+                    quit = true;
+                    break;
+            }
+        } while (!quit);
     }
 
     private void showMembersInRestance() {
@@ -269,6 +295,22 @@ public class Controller {
             int id = ui.scanID();
             member = getMemberbyID(id);
         }
+    }
+
+    private void editUnder18() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void editBetween18And60() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void editOver60() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void editPassive() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

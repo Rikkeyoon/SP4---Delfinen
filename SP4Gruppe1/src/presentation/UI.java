@@ -55,6 +55,10 @@ public interface UI {
     public int scanID();
 
     public void showEditMemberMenu();
+
+    public void showEditContingentMenu();
+
+    public int editContingentChoice();
     
     
 }
