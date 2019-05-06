@@ -8,7 +8,7 @@ import presentation.SystemUI;
 import presentation.UI;
 
 /*
- * @author Caroline, Rikke & Nina
+ * @author Caroline, Nina, Rikke og Kristine
  */
 public class SP4Gruppe1 {
 

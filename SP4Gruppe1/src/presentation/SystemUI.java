@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
- * @author Caroline, Rikke & Nina
+ * @author Caroline, Nina, Rikke og Kristine
  */
 public class SystemUI implements UI {
 

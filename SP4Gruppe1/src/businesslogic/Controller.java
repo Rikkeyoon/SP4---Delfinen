@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import presentation.UI;
 
 /*
- * @author Caroline, Rikke & Nina
+ * @author Caroline, Nina, Rikke og Kristine
  */
 public class Controller {
 

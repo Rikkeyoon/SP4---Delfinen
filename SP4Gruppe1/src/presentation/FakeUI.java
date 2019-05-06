@@ -4,7 +4,7 @@ import businesslogic.Member;
 import java.util.ArrayList;
 
 /*
- * @author Caroline, Rikke & Nina
+ * @author Caroline, Nina, Rikke og Kristine
  */
 public class FakeUI implements UI {
 

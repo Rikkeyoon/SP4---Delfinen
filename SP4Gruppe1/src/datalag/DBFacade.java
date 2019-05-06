@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /*
- * @author Caroline, Rikke & Nina
+ * @author Caroline, Nina, Rikke og Kristine
  */
 public class DBFacade {
 
