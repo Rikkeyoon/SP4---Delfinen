@@ -131,6 +131,7 @@ public class Controller {
                             case 4:
                                 quit = true;
                                 start();
+                                break;
                             case 0:
                                 quit = true;
                         }
