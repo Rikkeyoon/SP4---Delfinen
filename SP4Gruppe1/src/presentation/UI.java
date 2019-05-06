@@ -42,6 +42,12 @@ public interface UI {
     public int competitionMenuChoice();
 
     public String scanDate();
+
+    public int editMemberChoice();
+
+    public int scanID();
+
+    public void showEditMemberMenu();
     
     
 }

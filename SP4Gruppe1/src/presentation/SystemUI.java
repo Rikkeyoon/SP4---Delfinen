@@ -179,14 +179,31 @@ public class SystemUI implements UI {
                 exceptionThrown = false;
             }
         }
-//        String year = choice.substring(0,(choice.indexOf('-')));
-//        String month = choice.substring((choice.indexOf('-')), (choice.lastIndexOf('-')));
-//        String date = choice.substring(choice.lastIndexOf('-'));
-//        while (!(year.length() == 4 && month.length() == 2 && date.length() == 2)) {
-//            System.out.println(choice + " is not an option, try again: ");
-//            choice = input.nextLine();
-//        }
         return choice;
     }
+
+    @Override
+    public int editMemberChoice() {
+        int choice = input.nextInt();
+        while (choice < 1 || choice > 4) {
+            System.out.println(choice + " is not an option, try again: ");
+            choice = input.nextInt();
+        }
+        return choice;
+    }
+
+    @Override
+    public int scanID() {
+        return input.nextInt();
+    }
+
+    @Override
+    public void showEditMemberMenu() {
+        System.out.println("Press 1 to edit first name\n"
+                + "Press 2 to edit last name\n"
+                + "Press 3 to edit activeness\n"
+                + "Press 4 to return");
+    }
+    
 
 }
