@@ -157,6 +157,10 @@ public class FakeUI implements UI {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+      public String scanName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     @Override
     public int editMemberChoice() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -187,11 +191,6 @@ public class FakeUI implements UI {
 
     @Override
     public void showCompetitiveSwimmerList(ArrayList<CompetitiveSwimmer> competitiveSwimmers) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String scanName() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

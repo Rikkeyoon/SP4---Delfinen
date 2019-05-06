@@ -148,9 +148,9 @@ public class Controller {
     private void createMember() {
         ui.scanString();
         ui.print("Please enter first name: ");
-        String firstName = ui.scanString();
+        String firstName = ui.scanName();
         ui.print("Please enter last name: ");
-        String lastName = ui.scanString();
+        String lastName = ui.scanName();
         ui.print("Please enter date of birth (YYYY-MM-DD): ");
         String dateOfBirth = ui.scanDate();
         ui.print("Is the member an active member? Press Y for yes, or N for no: ");
