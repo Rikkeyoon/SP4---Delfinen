@@ -171,7 +171,6 @@ public class Controller {
 
     private void showMembersList() {
         ArrayList<Member> members = db.getMembersList();
-        // muligvis sorter medlemmer i forhold til ID eller alfabetisk?
         ui.showMemberList(members);
     }
 
@@ -209,11 +208,13 @@ public class Controller {
     }
 
     private void showTop5Swimmers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<CompetitiveSwimmer> competitiveSwimmer = db.getTop5();
+        ui.showTop5(competitiveSwimmer);
     }
 
     private void showContingent() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Contingent> contingent = db.getContingentList();
+        ui.showContingentList(contingent);
     }
 
     private void editContingent() {

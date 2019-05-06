@@ -1,5 +1,7 @@
 package presentation;
 
+import businesslogic.CompetitiveSwimmer;
+import businesslogic.Contingent;
 import businesslogic.Member;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -165,6 +167,7 @@ public class SystemUI implements UI {
         return choice;
     }
 
+
     @Override
     public String scanDate() {
         String choice = input.nextLine();
@@ -209,4 +212,17 @@ public class SystemUI implements UI {
                 + "Press 4 to return");
     }
 
+    @Override
+    public void showTop5(ArrayList<CompetitiveSwimmer> competitiveSwimmer) {
+        for (CompetitiveSwimmer compSwimmer : competitiveSwimmer) {
+            System.out.println(competitiveSwimmer.toString());
+        }
+    }
+
+    @Override
+    public void showContingentList(ArrayList<Contingent> contingent) {
+        for (Contingent cont : contingent) {
+            System.out.println(contingent.toString());
+        }
+    }
 }

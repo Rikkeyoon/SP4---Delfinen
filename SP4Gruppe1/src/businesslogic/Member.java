@@ -39,6 +39,13 @@ public class Member {
         this.restance = restance;
         this.id = id;
     }
+    
+    public Member(String firstName, String lastName, int age, int id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
