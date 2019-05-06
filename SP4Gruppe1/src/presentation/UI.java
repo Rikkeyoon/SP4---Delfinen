@@ -40,6 +40,8 @@ public interface UI {
     public int competitiveSwimmersMenuChoice();
 
     public int competitionMenuChoice();
+
+    public String scanDate();
     
     
 }

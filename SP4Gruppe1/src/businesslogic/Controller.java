@@ -150,7 +150,7 @@ public class Controller {
         ui.print("Please enter last name: ");
         String lastName = ui.scanString();
         ui.print("Please enter date of birth (YYYY-MM-DD): ");
-        String dateOfBirth = ui.scanString();
+        String dateOfBirth = ui.scanDate();
         ui.print("Is the member an active member? Press Y for yes, or N for no: ");
         boolean isActive = ui.scanBoolean();
         int ID = db.getID();

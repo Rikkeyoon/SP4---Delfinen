@@ -136,4 +136,9 @@ public class FakeUI implements UI {
     public int competitionMenuChoice() {
         return Integer.parseInt(input[index++]);
     }
+
+    @Override
+    public String scanDate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

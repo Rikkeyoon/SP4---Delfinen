@@ -1,6 +1,8 @@
 package presentation;
 
 import businesslogic.Member;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -161,6 +163,30 @@ public class SystemUI implements UI {
             choice = input.nextInt();
         }
         return choice;
-    } 
+    }
+
+    @Override
+    public String scanDate() {
+        String choice = input.nextLine();
+
+        try {
+            LocalDate.parse(choice);
+        } catch (DateTimeParseException e) {
+            boolean exceptionThrown = true;
+            while (exceptionThrown) {
+                System.out.println(choice + " is not an option, try again: ");
+                choice = input.nextLine();
+                exceptionThrown = false;
+            }
+        }
+//        String year = choice.substring(0,(choice.indexOf('-')));
+//        String month = choice.substring((choice.indexOf('-')), (choice.lastIndexOf('-')));
+//        String date = choice.substring(choice.lastIndexOf('-'));
+//        while (!(year.length() == 4 && month.length() == 2 && date.length() == 2)) {
+//            System.out.println(choice + " is not an option, try again: ");
+//            choice = input.nextLine();
+//        }
+        return choice;
+    }
 
 }
