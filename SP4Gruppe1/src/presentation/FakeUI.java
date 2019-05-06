@@ -195,11 +195,6 @@ public class FakeUI implements UI {
     }
 
     @Override
-    public String scanName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public void showTrainingresults(ArrayList<CompetitiveSwimmer> trainingresults) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
