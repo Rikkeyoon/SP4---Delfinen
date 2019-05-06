@@ -279,7 +279,7 @@ public class Controller {
     }
 
     private void showTrainingsresult() {
-        ArrayList<Time> trainingresults = db.getTrainingsresult();
+        ArrayList<CompetitiveSwimmer> trainingresults = db.getTrainingsresult();
         ui.showTrainingresults(trainingresults);
     }
 

@@ -300,8 +300,34 @@ public class DBFacade {
         return competitiveSwimmers;
     }
 
-    public ArrayList<Time> getTrainingsresult() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<CompetitiveSwimmer> getTrainingsresult() {
+        ArrayList<CompetitiveSwimmer> trainingresults = new ArrayList<>();
+        try {
+            //create String for the PreparedStatement
+            String selectSQL = "SELECT id, first_name, last_name, age, disciplin, "
+                    + "best_time, date_of_best_time FROM members"
+                    + "NATURAL JOIN competitive_swimmers"
+                    + "ORDER BY best_time";
+            //get connection
+            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+
+            //execute the SQL query
+            ResultSet result = preparedStatement.executeQuery(selectSQL);
+            while (result.next()) {
+                int id = result.getInt(1);
+                String firstName = result.getString(2);
+                String lastName = result.getString(3);
+                int age = result.getInt(4);
+                String disciplin = result.getString(5);
+                Time bestTime = result.getTime(6);
+                Timestamp dateOfBestTime = result.getTimestamp(7);
+
+                trainingresults.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin, 
+                        bestTime, dateOfBestTime));
+            }
+        } catch (SQLException | NullPointerException e) {
+        }
+        return trainingresults;
     }
 
 }

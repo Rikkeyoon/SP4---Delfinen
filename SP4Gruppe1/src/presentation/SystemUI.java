@@ -276,10 +276,10 @@ public class SystemUI implements UI {
     }
 
     @Override
-    public void showTrainingresults(ArrayList<Time> trainingresults) {
+    public void showTrainingresults(ArrayList<CompetitiveSwimmer> trainingresults) {
         StringBuilder strbuild = new StringBuilder();
-        for (Time trainingresult : trainingresults) {
-            strbuild.append(trainingresult);
+        for (CompetitiveSwimmer compSwimmer : trainingresults) {
+            strbuild.append(compSwimmer);
         }
         System.out.println(strbuild.toString());
     }

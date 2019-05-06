@@ -196,7 +196,7 @@ public class FakeUI implements UI {
     }
 
     @Override
-    public void showTrainingresults(ArrayList<Time> trainingresults) {
+    public void showTrainingresults(ArrayList<CompetitiveSwimmer> trainingresults) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
