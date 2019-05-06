@@ -246,6 +246,23 @@ public class Controller {
         } while (!quit);
     }
 
+    private Member getMemberbyID(int id) {
+        ArrayList<Member> members = db.getMembersList();
+        for (Member member : members) {
+            if (member.getId() == id) {
+                return member;
+            }
+        }
+        return null;
+    }
+
+    private void editMemberNull(Member member) {
+        while (member == null) {
+            ui.print("Invalid ID, please try again: ");
+            int id = ui.scanID();
+            member = getMemberbyID(id);
+        }
+    }
     private void showMembersInRestance() {
         ArrayList<Member> membersInRestance = db.getMembersInRestance();
         ui.showMemberList(membersInRestance);
@@ -280,23 +297,6 @@ public class Controller {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private Member getMemberbyID(int id) {
-        ArrayList<Member> members = db.getMembersList();
-        for (Member member : members) {
-            if (member.getId() == id) {
-                return member;
-            }
-        }
-        return null;
-    }
-
-    private void editMemberNull(Member member) {
-        while (member == null) {
-            ui.print("Invalid ID, please try again: ");
-            int id = ui.scanID();
-            member = getMemberbyID(id);
-        }
-    }
 
     private void editUnder18() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
