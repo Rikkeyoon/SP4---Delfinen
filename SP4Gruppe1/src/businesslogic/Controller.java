@@ -185,8 +185,7 @@ public class Controller {
         boolean quit = false;
         ui.showEditMemberMenu();
         while (!quit) {
-            int choice = ui.editMemberChoice();
-            switch (choice) {
+            switch (ui.editMemberChoice()) {
                 case 1:
                     String firstName = ui.scanString();
                     member.setFirstName(firstName);
