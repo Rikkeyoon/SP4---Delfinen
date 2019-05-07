@@ -3,7 +3,6 @@ package presentation;
 import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -268,14 +267,18 @@ public class SystemUI implements UI {
 
     @Override
     public void showCompetitiveSwimmerList(ArrayList<CompetitiveSwimmer> competitiveSwimmers) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder strbuild = new StringBuilder();
+        for (CompetitiveSwimmer compSwimmer : competitiveSwimmers) {
+            strbuild.append(compSwimmer);
+        }
+        System.out.println(strbuild.toString());
     }
 
     @Override
     public void showTrainingresults(ArrayList<CompetitiveSwimmer> trainingresults) {
         StringBuilder strbuild = new StringBuilder();
-        for (CompetitiveSwimmer compSwimmer : trainingresults) {
-            strbuild.append(compSwimmer);
+        for (CompetitiveSwimmer trainingresult : trainingresults) {
+            strbuild.append(trainingresult);
         }
         System.out.println(strbuild.toString());
     }
