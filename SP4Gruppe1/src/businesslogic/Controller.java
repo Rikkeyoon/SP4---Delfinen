@@ -58,7 +58,31 @@ public class Controller {
                                 showContingent();
                                 break;
                             case 2:
-                                editContingent();
+                                ui.showEditContingentMenu();
+                                do {
+                                    switch (ui.editContingentChoice()) {
+                                        case 1:
+                                            editUnder18();
+                                            break;
+                                        case 2:
+                                            editBetween18And60();
+                                            break;
+                                        case 3:
+                                            editOver60();
+                                            break;
+                                        case 4:
+                                            editPassive();
+                                            break;
+                                        case 5:
+                                            quit = true;
+                                            start();
+                                            break;
+                                        case 0:
+                                            quit = true;
+                                            break;
+                                    }
+                                } while (!quit);
+
                                 break;
                             case 3:
                                 quit = true;
@@ -217,36 +241,6 @@ public class Controller {
         ui.showContingentList(contingent);
     }
 
-    private void editContingent() {
-        showContingent();
-
-        boolean quit = false;
-        ui.showEditContingentMenu();
-        do {
-            switch (ui.editContingentChoice()) {
-                case 1:
-                    editUnder18();
-                    break;
-                case 2:
-                    editBetween18And60();
-                    break;
-                case 3:
-                    editOver60();
-                    break;
-                case 4:
-                    editPassive();
-                    break;
-                case 9:
-                    quit = true;
-                    start();
-                    break;
-                case 0:
-                    quit = true;
-                    break;
-            }
-        } while (!quit);
-    }
-
     private Member getMemberbyID(int id) {
         ArrayList<Member> members = db.getMembersList();
         for (Member member : members) {
@@ -264,6 +258,7 @@ public class Controller {
             member = getMemberbyID(id);
         }
     }
+
     private void showMembersInRestance() {
         ArrayList<Member> membersInRestance = db.getMembersInRestance();
         ui.showMemberList(membersInRestance);
@@ -299,20 +294,36 @@ public class Controller {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-
     private void editUnder18() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ui.print("What would you change the contingent to?");
+        int contingent = ui.scanInt();
+        contingent = db.editUnder18(contingent);
+        ui.print("The contingent has now been changed");
+
     }
 
     private void editBetween18And60() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ui.print("What would you change the contingent to?");
+        int contingent = ui.scanInt();
+        contingent = db.editBetween18And60(contingent);
+        ui.print("The contingent has now been changed");
     }
 
     private void editOver60() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ui.print("What would you change the contingent to?");
+        int contingent = ui.scanInt();
+        contingent = db.editOver60(contingent);
+        ui.print("The contingent has now been changed");
     }
 
     private void editPassive() {
+        ui.print("What would you change the contingent to?");
+        int contingent = ui.scanInt();
+        contingent = db.editPassive(contingent);
+        ui.print("The contingent has now been changed");
+    }
+
+    private void editContingentMenu() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

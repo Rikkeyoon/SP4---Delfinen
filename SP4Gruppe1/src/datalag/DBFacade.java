@@ -209,7 +209,7 @@ public class DBFacade {
                 Timestamp dateOfBestTime = result.getTimestamp(7);
 
                 //create a new Member object and insert it into the ArrayList
-                top5.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin, 
+                top5.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
                         bestTime, dateOfBestTime));
             }
         } catch (SQLException | NullPointerException e) {
@@ -218,7 +218,7 @@ public class DBFacade {
     }
 
     public ArrayList<Contingent> getContingentList() {
-          ArrayList<Contingent> contingent = new ArrayList<>();
+        ArrayList<Contingent> contingent = new ArrayList<>();
         try {
             //create String for the PreparedStatement
             String selectSQL = "SELECT * FROM contingent";
@@ -262,7 +262,7 @@ public class DBFacade {
                 int restance = result.getInt(7);
 
                 //create a new Member object and insert it into the ArrayList
-                membersInRestance.add(new Member(firstName, lastName, age, 
+                membersInRestance.add(new Member(firstName, lastName, age,
                         isActive, contingent, restance, id));
             }
         } catch (SQLException | NullPointerException e) {
@@ -292,7 +292,7 @@ public class DBFacade {
                 Timestamp dateOfBestTime = result.getTimestamp(7);
 
                 //create a new Member object and insert it into the ArrayList
-                competitiveSwimmers.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin, 
+                competitiveSwimmers.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
                         bestTime, dateOfBestTime));
             }
         } catch (SQLException | NullPointerException e) {
@@ -322,12 +322,58 @@ public class DBFacade {
                 Time bestTime = result.getTime(6);
                 Timestamp dateOfBestTime = result.getTimestamp(7);
 
-                trainingresults.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin, 
+                trainingresults.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
                         bestTime, dateOfBestTime));
             }
         } catch (SQLException | NullPointerException e) {
         }
         return trainingresults;
+    }
+
+    public int editUnder18(int contingent) {
+        try {
+            String UpdateSQL = "UPDATE contingent SET under_18 = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);
+            preparedStatement.setInt(1, contingent);
+
+        } catch (SQLException e) {
+        }
+        return contingent;
+
+    }
+
+    public int editBetween18And60(int contingent) {
+        try {
+            String UpdateSQL = "UPDATE contingent SET between_18_and_60 = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);
+            preparedStatement.setInt(1, contingent);
+
+        } catch (SQLException e) {
+        }
+        return contingent;
+    }
+
+    public int editOver60(int contingent) {
+        try {
+            String UpdateSQL = "UPDATE contingent SET over_60 = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);
+            preparedStatement.setInt(1, contingent);
+
+        } catch (SQLException e) {
+        }
+        return contingent;
+    }
+
+    public int editPassive(int contingent) {
+        try {
+            String UpdateSQL = "UPDATE contingent SET passive = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);
+            preparedStatement.setInt(1, contingent);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+        }
+        return contingent;
     }
 
 }
