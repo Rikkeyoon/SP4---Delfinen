@@ -33,12 +33,15 @@ public class Controller {
                                 break;
                             case 2:
                                 createMember();
+                                ui.showMembersMenu();
                                 break;
                             case 3:
                                 editMember();
+                                ui.showMainMenu();
                                 break;
                             case 4:
                                 deleteMember();
+                                ui.showMainMenu();
                                 break;
                             case 5:
                                 quit = true;
@@ -56,6 +59,7 @@ public class Controller {
                         switch (ui.contingentMenuChoice()) {
                             case 1:
                                 showContingent();
+                                ui.showContingentMenu();
                                 break;
                             case 2:
                                 ui.showEditContingentMenu();
@@ -63,15 +67,19 @@ public class Controller {
                                     switch (ui.editContingentChoice()) {
                                         case 1:
                                             editUnder18();
+                                            ui.showEditContingentMenu();
                                             break;
                                         case 2:
                                             editBetween18And60();
+                                            ui.showEditContingentMenu();
                                             break;
                                         case 3:
                                             editOver60();
+                                            ui.showEditContingentMenu();
                                             break;
                                         case 4:
                                             editPassive();
+                                            ui.showEditContingentMenu();
                                             break;
                                         case 5:
                                             quit = true;
@@ -100,9 +108,11 @@ public class Controller {
                         switch (ui.restanceMenuChoice()) {
                             case 1:
                                 showMembersInRestance();
+                                ui.showRestanceMenu();
                                 break;
                             case 2:
                                 editRestance();
+                                ui.showRestanceMenu();
                                 break;
                             case 3:
                                 quit = true;
@@ -123,12 +133,15 @@ public class Controller {
                         switch (ui.competitiveSwimmersMenuChoice()) {
                             case 1:
                                 showCompetitiveSwimmers();
+                                ui.showCompetitiveSwimmersMenu();
                                 break;
                             case 2:
                                 showTrainingsresult();
+                                ui.showCompetitiveSwimmersMenu();
                                 break;
                             case 3:
                                 editTrainingsresult();
+                                ui.showCompetitiveSwimmersMenu();
                                 break;
                             case 4:
                                 quit = true;
@@ -146,12 +159,15 @@ public class Controller {
                         switch (ui.competitionMenuChoice()) {
                             case 1:
                                 showSwimmersInCompetition();
+                                ui.showCompetitionMenu();
                                 break;
                             case 2:
                                 showCompetitionResults();
+                                ui.showCompetitionMenu();
                                 break;
                             case 3:
                                 editCompetitionResults();
+                                ui.showCompetitionMenu();
                                 break;
                             case 4:
                                 quit = true;
