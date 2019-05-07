@@ -29,33 +29,13 @@ public class Controller {
                         switch (ui.memberMenuChoice()) {
                             case 1:
                                 showMembersList();
+                                ui.showMembersMenu();
                                 break;
                             case 2:
                                 createMember();
                                 break;
                             case 3:
                                 editMember();
-                                ui.showEditMemberMenu();
-                                do {
-                                    switch (ui.editMemberChoice()) {
-                                        case 1:
-                                            editFirstName();
-                                            break;
-                                        case 2:
-                                            editLastName();
-                                            break;
-                                        case 3:
-                                            editActiveness();
-                                            break;
-                                        case 4:
-                                            quit = true;
-                                            start();
-                                            break;
-                                        case 0:
-                                            quit = true;
-                                            break;
-                                    }
-                                } while (!quit);
                                 break;
                             case 4:
                                 deleteMember();
@@ -254,7 +234,7 @@ public class Controller {
                     boolean isActive = ui.scanBoolean();
                     db.editActiveness(id, isActive);
                     ui.print("The activeness has now been changed to " + isActive);
-
+                    break;
                 case 0:
                     quit = true;
                     break;
@@ -357,25 +337,5 @@ public class Controller {
         int contingent = ui.scanInt();
         contingent = db.editPassive(contingent);
         ui.print("The contingent has now been changed " + contingent);
-    }
-
-    private void editFirstName() {
-        showMembersList();
-        ui.print("\nEnter the ID of the member, you would like to edit:");
-        int id = ui.scanID();
-        Member memberByID = db.getMemberById(id);
-        ui.print(memberByID.toString());
-        ui.print("\nWhat would you like to change the restance to?");
-        int newRestance = ui.scanInt();
-        db.editRestance(id, newRestance);
-        ui.print("The restance has now been changed to " + newRestance);
-    }
-
-    private void editLastName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void editActiveness() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
