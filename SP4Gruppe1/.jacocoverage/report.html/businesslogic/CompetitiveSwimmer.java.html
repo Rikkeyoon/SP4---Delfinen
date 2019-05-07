@@ -55,8 +55,10 @@ public class CompetitiveSwimmer extends Member {
 
     @Override
     public String toString() {
-<span class="nc" id="L58">        return </span>
-                &quot;CompetitiveSwimmer{&quot; + &quot;disciplin=&quot; + disciplin + &quot;, bestTime=&quot; + bestTime + &quot;, dateOfBestTime=&quot; + dateOfBestTime + '}';
+<span class="nc" id="L58">        return super.getFirstName() + &quot; &quot; + super.getLastName() </span>
+                + &quot;\nDisciplin: &quot; + disciplin 
+                + &quot;\nBest Time: &quot; + bestTime 
+                + &quot;\nDate of best time: &quot; + dateOfBestTime;
     }
 
     

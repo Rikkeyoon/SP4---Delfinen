@@ -1,7 +1,6 @@
 package businesslogic;
 
 import datalag.DBFacade;
-import java.sql.Time;
 import java.util.ArrayList;
 import presentation.UI;
 
@@ -209,7 +208,7 @@ public class Controller {
         ui.print("Enter the ID of the member you want to delete: ");
         int id = ui.scanInt();
         db.deleteMember(id);
-        ui.print("MemberID: " + id + " has been deleted");
+        ui.print("The member with ID number " + id + " has been deleted");
     }
 
     private void showMembersList() {
