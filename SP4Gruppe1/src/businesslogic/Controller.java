@@ -55,7 +55,7 @@ public class Controller {
                                             quit = true;
                                             break;
                                     }
-                                } while(!quit);
+                                } while (!quit);
                                 break;
                             case 4:
                                 deleteMember();
@@ -226,7 +226,7 @@ public class Controller {
         int id = ui.scanID();
         Member memberByID = db.getMemberById(id);
         ui.print(memberByID.toString());
-        
+
         boolean quit = false;
         ui.showEditMemberMenu();
         do {
@@ -237,16 +237,30 @@ public class Controller {
                     ui.print("What would you like to change the first name to?");
                     String firstName = ui.scanString();
                     db.editFirstName(id, firstName);
-                    ui.print("The firstname has now been changed to " + firstName);
+                    ui.print("The first name has now been changed to " + firstName);
                     break;
+                case 2:
+                    ui.scanString();
+                    ui.print(memberByID.toString());
+                    ui.print("What would you like to change the last name to?");
+                    String lastName = ui.scanString();
+                    db.editLastName(id, lastName);
+                    ui.print("The last name has now been changed to " + lastName);
+                    break;
+                case 3:
+                    ui.scanString();
+                    ui.print(memberByID.toString());
+                    ui.print("Is the member an active member? Press Y for yes, or N for no: ");
+                    boolean isActive = ui.scanBoolean();
+                    db.editActiveness(id, isActive);
+                    ui.print("The activeness has now been changed to " + isActive);
+
                 case 0:
                     quit = true;
                     break;
             }
-            } while (!quit);
-        }
-
-    
+        } while (!quit);
+    }
 
     private void showTop5Swimmers() {
         ArrayList<CompetitiveSwimmer> competitiveSwimmers = db.getTop5();
@@ -267,7 +281,6 @@ public class Controller {
 //        }
 //        return null;
 //    }
-
 //    private void editMemberNull(Member member) {
 //        while (member == null) {
 //            ui.print("Invalid ID, please try again: ");
@@ -275,7 +288,6 @@ public class Controller {
 //            member = getMemberbyID(id);
 //        }
 //    }
-
     private void showMembersInRestance() {
         ArrayList<Member> membersInRestance = db.getMembersInRestance();
         ui.showMemberList(membersInRestance);
@@ -348,7 +360,7 @@ public class Controller {
     }
 
     private void editFirstName() {
-            showMembersList();
+        showMembersList();
         ui.print("\nEnter the ID of the member, you would like to edit:");
         int id = ui.scanID();
         Member memberByID = db.getMemberById(id);

@@ -428,4 +428,28 @@ public class DBFacade {
         } catch (SQLException e) {
         }
     }
+
+    public void editLastName(int id, String lastName) {
+        try {
+            String UpdateSQL = "UPDATE members SET last_name = ? WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);
+            preparedStatement.setString(1, lastName);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+            
+        } catch (SQLException e) {
+        }
+    }
+
+    public void editActiveness(int id, boolean active) {
+        try {
+            String UpdateSQL = "UPDATE members SET is_active = ? WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);
+            preparedStatement.setBoolean(1, active);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+            
+        } catch (SQLException e) {
+        }
+    }
 }
