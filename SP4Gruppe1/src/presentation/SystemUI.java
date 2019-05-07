@@ -204,6 +204,15 @@ public class SystemUI implements UI {
     }
 
     @Override
+    public void showEditMemberMenu() {
+        System.out.println("What would you like to edit?\n"
+                + "1. First name\n"
+                + "2. Last name\n"
+                + "3. Activeness\n"
+                + "4. Back to main menu");
+    }
+
+    @Override
     public int editMemberChoice() {
         int choice = input.nextInt();
         while (choice < 1 || choice > 4) {
@@ -216,14 +225,6 @@ public class SystemUI implements UI {
     @Override
     public int scanID() {
         return input.nextInt();
-    }
-
-    @Override
-    public void showEditMemberMenu() {
-        System.out.println("Press 1 to edit first name\n"
-                + "Press 2 to edit last name\n"
-                + "Press 3 to edit activeness\n"
-                + "Press 4 to return");
     }
 
     @Override

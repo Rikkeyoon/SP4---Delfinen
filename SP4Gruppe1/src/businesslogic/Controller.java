@@ -36,6 +36,23 @@ public class Controller {
                                 break;
                             case 3:
                                 editMember();
+                                ui.showEditMemberMenu();
+                                do {
+                                    switch (ui.editMemberChoice()) {
+                                        case 1:
+                                            editFirstName();
+                                            break;
+                                        case 2:
+                                            editLastName();
+                                            break;
+                                        case 3:
+                                            editActiveness();
+                                        case 4:
+                                            quit = true;
+                                            start();
+                                            break;
+                                    }
+                                } while(!quit);
                                 break;
                             case 4:
                                 deleteMember();
@@ -201,36 +218,47 @@ public class Controller {
     }
 
     private void editMember() {
+        showMembersList();
         ui.print("Enter the ID of the member, you would like to edit: ");
         int id = ui.scanID();
-        Member member = getMemberbyID(id);
-        if (member == null) {
-            editMemberNull(member);
-        }
-
+        Member memberByID = db.getMemberById(id);
+        ui.print(memberByID.toString());
+        
         boolean quit = false;
         ui.showEditMemberMenu();
         do {
             switch (ui.editMemberChoice()) {
                 case 1:
+                    ui.print(memberByID.toString());
+                    ui.print("What would you like to change the first name to?");
                     String firstName = ui.scanString();
-                    member.setFirstName(firstName);
+                    firstName = db.editFirstName(id, firstName);
+                    ui.print("The firstname has now been changed to " + firstName);
                     break;
-                case 2:
-                    String lastName = ui.scanString();
-                    member.setLastName(lastName);
-                    break;
-                case 3:
-                    ui.print("Is the member an active member? Press Y for yes, or N for no: ");
-                    boolean isActive = ui.scanBoolean();
-                    member.setIsActive(isActive);
-                    break;
-                case 4:
+                case 0:
                     quit = true;
-                    break;
             }
-        } while (!quit);
-    }
+            } while (!quit);
+        }
+            
+        
+      
+        
+//                                do {
+//                                    switch (ui.editMemberChoice()) {
+//                                        case 1:
+//                                            editFirstName();
+//                                            break;
+//                                        case 2:
+//                                            editLastName();
+//                                            break;
+//                                        case 3:
+//                                            editActiveness();
+//                                        case 4:
+//                                            quit = true;
+//                                            start();
+//                                            break;
+    
 
     private void showTop5Swimmers() {
         ArrayList<CompetitiveSwimmer> competitiveSwimmers = db.getTop5();
@@ -242,23 +270,23 @@ public class Controller {
         ui.showContingentList(contingent);
     }
 
-    private Member getMemberbyID(int id) {
-        ArrayList<Member> members = db.getMembersList();
-        for (Member member : members) {
-            if (member.getId() == id) {
-                return member;
-            }
-        }
-        return null;
-    }
+//    private Member getMemberbyID(int id) {
+//        ArrayList<Member> members = db.getMembersList();
+//        for (Member member : members) {
+//            if (member.getId() == id) {
+//                return member;
+//            }
+//        }
+//        return null;
+//    }
 
-    private void editMemberNull(Member member) {
-        while (member == null) {
-            ui.print("Invalid ID, please try again: ");
-            int id = ui.scanID();
-            member = getMemberbyID(id);
-        }
-    }
+//    private void editMemberNull(Member member) {
+//        while (member == null) {
+//            ui.print("Invalid ID, please try again: ");
+//            int id = ui.scanID();
+//            member = getMemberbyID(id);
+//        }
+//    }
 
     private void showMembersInRestance() {
         ArrayList<Member> membersInRestance = db.getMembersInRestance();
@@ -275,11 +303,6 @@ public class Controller {
         int newRestance = ui.scanInt();
         newRestance = db.editRestance(id, newRestance);
         ui.print("The restance has now been changed to " + newRestance);
-    }
-    
-    private Member getMemberById(int id) {
-        Member memberById = db.getMemberById(id);
-        return memberById;
     }
 
     private void showCompetitiveSwimmers() {
@@ -334,5 +357,25 @@ public class Controller {
         int contingent = ui.scanInt();
         contingent = db.editPassive(contingent);
         ui.print("The contingent has now been changed " + contingent);
+    }
+
+    private void editFirstName() {
+            showMembersList();
+        ui.print("\nEnter the ID of the member, you would like to edit:");
+        int id = ui.scanID();
+        Member memberByID = db.getMemberById(id);
+        ui.print(memberByID.toString());
+        ui.print("\nWhat would you like to change the restance to?");
+        int newRestance = ui.scanInt();
+        newRestance = db.editRestance(id, newRestance);
+        ui.print("The restance has now been changed to " + newRestance);
+    }
+
+    private void editLastName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void editActiveness() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -416,4 +416,8 @@ public class DBFacade {
         }
         return newRestance;
     }
+
+    public String editFirstName(int id, String firstName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
