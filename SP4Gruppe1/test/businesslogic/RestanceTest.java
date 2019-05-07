@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 import presentation.FakeUI;
 
 /*
- * @author carol
+ * @author Caroline, Rikke, Nina og Kristine
  */
 public class RestanceTest {
 
