@@ -191,7 +191,7 @@ public class Controller {
         ui.print("Enter the ID of the member you want to delete: ");
         int id = ui.scanInt();
         db.deleteMember(id);
-        ui.print("The member has been deleted");
+        ui.print("The member with the id: " + id + " has been deleted");
     }
 
     private void showMembersList() {
@@ -265,7 +265,20 @@ public class Controller {
     }
 
     private void editRestance() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        showMembersList();
+        ui.print("\nEnter the ID of the member, you would like to edit:");
+        int id = ui.scanID();
+        Member memberByID = db.getMemberById(id);
+        ui.print(memberByID.toString());
+        ui.print("\nWhat would you like to change the restance to?");
+        int newRestance = ui.scanInt();
+        newRestance = db.editRestance(id, newRestance);
+        ui.print("The restance has now been changed to " + newRestance);
+    }
+    
+    private Member getMemberById(int id) {
+        Member memberById = db.getMemberById(id);
+        return memberById;
     }
 
     private void showCompetitiveSwimmers() {
@@ -298,33 +311,27 @@ public class Controller {
         ui.print("What would you change the contingent to?");
         int contingent = ui.scanInt();
         contingent = db.editUnder18(contingent);
-        ui.print("The contingent has now been changed");
-
+        ui.print("The contingent has now been changed to " + contingent);
     }
 
     private void editBetween18And60() {
         ui.print("What would you change the contingent to?");
         int contingent = ui.scanInt();
         contingent = db.editBetween18And60(contingent);
-        ui.print("The contingent has now been changed");
+        ui.print("The contingent has now been changed to " + contingent);
     }
 
     private void editOver60() {
         ui.print("What would you change the contingent to?");
         int contingent = ui.scanInt();
         contingent = db.editOver60(contingent);
-        ui.print("The contingent has now been changed");
+        ui.print("The contingent has now been changed to " + contingent);
     }
 
     private void editPassive() {
         ui.print("What would you change the contingent to?");
         int contingent = ui.scanInt();
         contingent = db.editPassive(contingent);
-        ui.print("The contingent has now been changed");
+        ui.print("The contingent has now been changed " + contingent);
     }
-
-    private void editContingentMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

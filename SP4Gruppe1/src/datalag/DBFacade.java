@@ -379,4 +379,41 @@ public class DBFacade {
         return contingent;
     }
 
+    public Member getMemberById(int id) {
+        Member member = null;
+        try {
+            //create String for the PreparedStatement
+            String selectSQL = "SELECT * FROM members WHERE id = " + id;
+            //get connection
+            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+
+            //execute the SQL query
+            ResultSet result = preparedStatement.executeQuery(selectSQL);
+            while (result.next()) {
+                String firstName = result.getString(1);
+                String lastName = result.getString(2);
+                int age = result.getInt(3);
+                boolean isActive = result.getBoolean(4);
+                int contingent = result.getInt(6);
+                int restance = result.getInt(7);
+
+                //create a new Member object and insert it into the ArrayList
+                member = new Member(firstName, lastName, age, isActive, contingent, restance, id);
+            }
+        } catch (SQLException | NullPointerException e) {
+        }
+        return member;
+    }
+
+    public int editRestance(int id, int newRestance) {
+        try {
+            String UpdateSQL = "UPDATE members SET restance = ? WHERE id = " + id;
+            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);
+            preparedStatement.setInt(1, newRestance);
+            preparedStatement.executeUpdate();
+            
+        } catch (SQLException e) {
+        }
+        return newRestance;
+    }
 }
