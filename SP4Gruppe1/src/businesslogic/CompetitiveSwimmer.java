@@ -58,7 +58,7 @@ public class CompetitiveSwimmer extends Member {
         return super.getFirstName() + " " + super.getLastName() 
                 + "\nDisciplin: " + disciplin 
                 + "\nBest Time: " + bestTime 
-                + "\nDate of best time: " + dateOfBestTime + '}';
+                + "\nDate of best time: " + dateOfBestTime;
     }
 
     
