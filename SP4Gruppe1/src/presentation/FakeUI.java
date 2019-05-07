@@ -215,4 +215,14 @@ public class FakeUI implements UI {
         }
         output.add(strBuild.toString());
     }
+
+    @Override
+    public void showSwimmersInCompetition(ArrayList<CompetitiveSwimmer> competitiveSwimmers) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void showCompetitionResults(ArrayList<CompetitiveSwimmer> competitionResults) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

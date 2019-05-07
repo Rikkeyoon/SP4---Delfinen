@@ -35,7 +35,6 @@ public class DBFacade {
             }
         } catch (SQLException | NullPointerException e) {
         }
-
         return id;
     }
 
@@ -452,4 +451,84 @@ public class DBFacade {
         } catch (SQLException e) {
         }
     }
+    
+    public ArrayList<CompetitiveSwimmer> getCompetitionSwimmers() {
+        ArrayList<CompetitiveSwimmer> competitionSwimmers = new ArrayList<>();
+        try {
+            //create String for the PreparedStatement
+            String selectSQL = "SELECT id, first_name, last_name, age, disciplin,"
+                    + "best_time, date_of_best_time, competition_name, ranking, "
+                    + "best_time FROM members NATURAL JOIN competitive_swimmers"
+                    + "NATURAL JOIN competitions ORDER BY id";
+            //get connection
+            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+
+            //execute the SQL query
+            ResultSet result = preparedStatement.executeQuery(selectSQL);
+            while (result.next()) {
+                int id = result.getInt(1);
+                String firstName = result.getString(2);
+                String lastName = result.getString(3);
+                int age = result.getInt(4);
+                String disciplin = result.getString(5);
+                Time bestTime = result.getTime(6);
+                Timestamp dateOfBestTime = result.getTimestamp(7);
+                String competitionName = result.getString(8);
+                int ranking = result.getInt(9);
+                Time bestTimeInCompetition = result.getTime(10);
+
+                //create a new Member object and insert it into the ArrayList
+                Competition competition = new Competition(competitionName, ranking, bestTimeInCompetition);
+                competitionSwimmers.add(new CompetitiveSwimmer(disciplin, bestTime, dateOfBestTime, competition, firstName, lastName, age, id));
+            }
+        } catch (SQLException | NullPointerException e) {
+        }
+        return competitionSwimmers;
+    }
+
+    public ArrayList<CompetitiveSwimmer> getCompetitionResult() {
+        ArrayList<CompetitiveSwimmer> competitionResults = new ArrayList<>();
+        try {
+            //create String for the PreparedStatement
+            String selectSQL = "SELECT best_time, ranking, competition_name, id,"
+                    + " first_name, last_name, age, disciplin, best_time, "
+                    + "date_of_best_time FROM members NATURAL JOIN "
+                    + "competitive_swimmers NATURAL JOIN competitions "
+                    + "ORDER BY best_time";
+            //get connection
+            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+
+            //execute the SQL query
+            ResultSet result = preparedStatement.executeQuery(selectSQL);
+            while (result.next()) {
+                Time bestTimeInCompetition = result.getTime(1);
+                int ranking = result.getInt(2);
+                String competitionName = result.getString(3);
+                int id = result.getInt(4);
+                String firstName = result.getString(5);
+                String lastName = result.getString(6);
+                int age = result.getInt(7);
+                String disciplin = result.getString(8);
+                Time bestTime = result.getTime(9);
+                Timestamp dateOfBestTime = result.getTimestamp(10);
+                
+
+                //create a new Member object and insert it into the ArrayList
+                Competition competition = new Competition(competitionName, ranking, bestTimeInCompetition);
+                competitionResults.add(new CompetitiveSwimmer(disciplin, bestTime, dateOfBestTime, competition, firstName, lastName, age, id));
+            }
+        } catch (SQLException | NullPointerException e) {
+        }
+        return competitionResults;
+    }
+
+
+
+
+
+
+
+
+
+
 }

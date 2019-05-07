@@ -319,12 +319,15 @@ public class Controller {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void showSwimmersInCompetition() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     private void showSwimmersInCompetition() {
+        ArrayList<CompetitiveSwimmer> competitiveSwimmers = db.getCompetitionSwimmers();
+        ui.showSwimmersInCompetition(competitiveSwimmers);
     }
 
     private void showCompetitionResults() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<CompetitiveSwimmer> competitionResults = db.getCompetitionResult();
+        ui.showCompetitionResults(competitionResults);
+
     }
 
     private void editCompetitionResults() {
@@ -378,4 +381,5 @@ public class Controller {
     private void editActiveness() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }

@@ -284,4 +284,23 @@ public class SystemUI implements UI {
         }
         System.out.println(strbuild.toString());
     }
+    
+        @Override
+    public void showSwimmersInCompetition(ArrayList<CompetitiveSwimmer> competitiveSwimmers) {
+        StringBuilder strbuild = new StringBuilder();
+        for (CompetitiveSwimmer competitiveSwimmer : competitiveSwimmers) {
+            strbuild.append(competitiveSwimmer);
+        }
+        System.out.println(strbuild.toString());
+    }
+
+    @Override
+    public void showCompetitionResults(ArrayList<CompetitiveSwimmer> competitionResults) {
+        StringBuilder strbuild = new StringBuilder();
+        for (CompetitiveSwimmer competitionResult : competitionResults) {
+            strbuild.append(competitionResult);
+        }
+        System.out.println(strbuild.toString());
+    }
+    
 }
