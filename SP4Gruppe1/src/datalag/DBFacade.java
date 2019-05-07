@@ -335,6 +335,7 @@ public class DBFacade {
             String UpdateSQL = "UPDATE contingent SET under_18 = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);
             preparedStatement.setInt(1, contingent);
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
         }
@@ -347,6 +348,7 @@ public class DBFacade {
             String UpdateSQL = "UPDATE contingent SET between_18_and_60 = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);
             preparedStatement.setInt(1, contingent);
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
         }
@@ -358,6 +360,7 @@ public class DBFacade {
             String UpdateSQL = "UPDATE contingent SET over_60 = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);
             preparedStatement.setInt(1, contingent);
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
         }
