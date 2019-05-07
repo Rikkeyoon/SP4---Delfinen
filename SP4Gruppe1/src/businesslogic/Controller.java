@@ -191,7 +191,7 @@ public class Controller {
         ui.print("Enter the ID of the member you want to delete: ");
         int id = ui.scanInt();
         db.deleteMember(id);
-        ui.print("The member with the id: " + id + " has been deleted");
+        ui.print("The member with ID number " + id + " has been deleted");
     }
 
     private void showMembersList() {
