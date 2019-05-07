@@ -405,19 +405,27 @@ public class DBFacade {
         return member;
     }
 
-    public int editRestance(int id, int newRestance) {
+    public void editRestance(int id, int newRestance) {
         try {
-            String UpdateSQL = "UPDATE members SET restance = ? WHERE id = " + id;
+            String UpdateSQL = "UPDATE members SET restance = ? WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);
             preparedStatement.setInt(1, newRestance);
+            preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
             
         } catch (SQLException e) {
         }
-        return newRestance;
     }
 
-    public String editFirstName(int id, String firstName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void editFirstName(int id, String firstName) {
+        try {
+            String UpdateSQL = "UPDATE members SET first_name = ? WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+            
+        } catch (SQLException e) {
+        }
     }
 }

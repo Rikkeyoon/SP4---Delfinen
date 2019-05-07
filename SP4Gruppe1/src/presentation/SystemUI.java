@@ -209,13 +209,14 @@ public class SystemUI implements UI {
                 + "1. First name\n"
                 + "2. Last name\n"
                 + "3. Activeness\n"
-                + "4. Back to main menu");
+                + "4. Back to main menu\n"
+                + "0. Quit");
     }
 
     @Override
     public int editMemberChoice() {
         int choice = input.nextInt();
-        while (choice < 1 || choice > 4) {
+        while (choice < 0 || choice > 4) {
             System.out.println(choice + " is not an option, try again: ");
             choice = input.nextInt();
         }

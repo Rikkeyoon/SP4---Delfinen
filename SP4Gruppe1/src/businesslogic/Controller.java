@@ -46,9 +46,13 @@ public class Controller {
                                             break;
                                         case 3:
                                             editActiveness();
+                                            break;
                                         case 4:
                                             quit = true;
                                             start();
+                                            break;
+                                        case 0:
+                                            quit = true;
                                             break;
                                     }
                                 } while(!quit);
@@ -228,35 +232,20 @@ public class Controller {
         do {
             switch (ui.editMemberChoice()) {
                 case 1:
+                    ui.scanString();
                     ui.print(memberByID.toString());
                     ui.print("What would you like to change the first name to?");
                     String firstName = ui.scanString();
-                    firstName = db.editFirstName(id, firstName);
+                    db.editFirstName(id, firstName);
                     ui.print("The firstname has now been changed to " + firstName);
                     break;
                 case 0:
                     quit = true;
+                    break;
             }
             } while (!quit);
         }
-            
-        
-      
-        
-//                                do {
-//                                    switch (ui.editMemberChoice()) {
-//                                        case 1:
-//                                            editFirstName();
-//                                            break;
-//                                        case 2:
-//                                            editLastName();
-//                                            break;
-//                                        case 3:
-//                                            editActiveness();
-//                                        case 4:
-//                                            quit = true;
-//                                            start();
-//                                            break;
+
     
 
     private void showTop5Swimmers() {
@@ -300,7 +289,7 @@ public class Controller {
         ui.print(memberByID.toString());
         ui.print("\nWhat would you like to change the restance to?");
         int newRestance = ui.scanInt();
-        newRestance = db.editRestance(id, newRestance);
+        db.editRestance(id, newRestance);
         ui.print("The restance has now been changed to " + newRestance);
     }
 
@@ -366,7 +355,7 @@ public class Controller {
         ui.print(memberByID.toString());
         ui.print("\nWhat would you like to change the restance to?");
         int newRestance = ui.scanInt();
-        newRestance = db.editRestance(id, newRestance);
+        db.editRestance(id, newRestance);
         ui.print("The restance has now been changed to " + newRestance);
     }
 
