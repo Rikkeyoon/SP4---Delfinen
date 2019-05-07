@@ -25,6 +25,6 @@ public class editMemberTest {
         ctrl.start();
         
         // assert
-        assertTrue(ui.output.get(12).contains("The firstname has now been changed to Laila")); 
+        assertTrue(ui.output.get(12).contains("The first name has now been changed to Laila")); 
     }
 }
