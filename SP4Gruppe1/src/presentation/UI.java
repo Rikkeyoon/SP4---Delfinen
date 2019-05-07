@@ -14,6 +14,7 @@ public interface UI {
     public String scanString();
 
     public boolean scanBoolean();
+    
     public void print(String str);
 
     public int scanInt();
@@ -47,7 +48,6 @@ public interface UI {
     public void showTop5(ArrayList<CompetitiveSwimmer> competitiveSwimmer);
 
     public void showContingentList(ArrayList<Contingent> contingent);
-
 
     public String scanDate();
     

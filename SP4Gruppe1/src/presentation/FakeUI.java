@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class FakeUI implements UI {
 
     String[] input;
-    int index = 0;
+    int index = 1;
     public ArrayList<String> output = new ArrayList<>();
 
     public FakeUI(String[] input) {
@@ -21,29 +21,31 @@ public class FakeUI implements UI {
 
     @Override
     public String scanString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return input[index++];
     }
 
     @Override
     public boolean scanBoolean() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return input[index++].contains("y");
     }
 
     @Override
     public void print(String str) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        output.add(str);
     }
 
     @Override
     public int scanInt() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Integer.parseInt(input[index++]);
     }
 
     @Override
     public void showMemberList(ArrayList<Member> members) {
+        StringBuilder strBuild = new StringBuilder();
         for (Member member : members) {
-            output.add(member.toString());
+            strBuild.append(member.toString());
         }
+        output.add(strBuild.toString());
     }
 
     @Override
@@ -122,7 +124,7 @@ public class FakeUI implements UI {
 
     @Override
     public int competitiveSwimmersMenuChoice() {
-         return Integer.parseInt(input[index++]);
+        return Integer.parseInt(input[index++]);
     }
 
     @Override
@@ -141,34 +143,41 @@ public class FakeUI implements UI {
     }
 
     @Override
-    public void showTop5(ArrayList<CompetitiveSwimmer> competitiveSwimmer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void showTop5(ArrayList<CompetitiveSwimmer> competitiveSwimmers) {
+        StringBuilder strBuild = new StringBuilder();
+        for (CompetitiveSwimmer compSwimmer : competitiveSwimmers) {
+            strBuild.append(compSwimmer.toString());
+        }
+        output.add(strBuild.toString());
     }
 
     @Override
     public void showContingentList(ArrayList<Contingent> contingent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder strBuild = new StringBuilder();
+        for (Contingent cont : contingent) {
+            strBuild.append(cont.toString());
+        }
+        output.add(strBuild.toString());
     }
 
-   
-
-  
+    @Override
     public String scanDate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return input[index++];
     }
 
-      public String scanName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Override
+    public String scanName() {
+        return input[index++];
     }
-    
+
     @Override
     public int editMemberChoice() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Integer.parseInt(input[index++]);
     }
 
     @Override
     public int scanID() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Integer.parseInt(input[index++]);
     }
 
     @Override
@@ -186,16 +195,24 @@ public class FakeUI implements UI {
 
     @Override
     public int editContingentChoice() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Integer.parseInt(input[index++]);
     }
 
     @Override
     public void showCompetitiveSwimmerList(ArrayList<CompetitiveSwimmer> competitiveSwimmers) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder strBuild = new StringBuilder();
+        for (CompetitiveSwimmer compSwimmer : competitiveSwimmers) {
+            strBuild.append(compSwimmer.toString());
+        }
+        output.add(strBuild.toString());
     }
 
     @Override
     public void showTrainingresults(ArrayList<CompetitiveSwimmer> trainingresults) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder strBuild = new StringBuilder();
+        for (CompetitiveSwimmer trainingresult : trainingresults) {
+            strBuild.append(trainingresult);
+        }
+        output.add(strBuild.toString());
     }
 }
