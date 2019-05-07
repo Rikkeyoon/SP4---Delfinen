@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="da"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Controller.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;SP4Gruppe1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">businesslogic</a> &gt; <span class="el_source">Controller.java</span></div><h1>Controller.java</h1><pre class="source lang-java linenums">package businesslogic;
+
+import datalag.DBFacade;
+import java.sql.Time;
+import java.util.ArrayList;
+import presentation.UI;
+
+/*
+ * @author Caroline, Nina, Rikke og Kristine
+ */
+public class Controller {
+
+    private UI ui;
+    private DBFacade db;
+
+<span class="fc" id="L16">    public Controller(UI ui, DBFacade db) {</span>
+<span class="fc" id="L17">        this.ui = ui;</span>
+<span class="fc" id="L18">        this.db = db;</span>
+<span class="fc" id="L19">    }</span>
+
+    public void start() {
+<span class="fc" id="L22">        boolean quit = false;</span>
+<span class="fc" id="L23">        ui.showMainMenu();</span>
+
+        do {
+<span class="pc bpc" id="L26" title="7 of 8 branches missed.">            switch (ui.mainMenuChoice()) {</span>
+                case 1:
+<span class="fc" id="L28">                    ui.showMembersMenu();</span>
+                    do {
+<span class="nc bnc" id="L30" title="All 7 branches missed.">                        switch (ui.memberMenuChoice()) {</span>
+                            case 1:
+<span class="nc" id="L32">                                showMembersList();</span>
+<span class="nc" id="L33">                                break;</span>
+                            case 2:
+<span class="nc" id="L35">                                createMember();</span>
+<span class="nc" id="L36">                                break;</span>
+                            case 3:
+<span class="nc" id="L38">                                editMember();</span>
+<span class="nc" id="L39">                                break;</span>
+                            case 4:
+<span class="nc" id="L41">                                deleteMember();</span>
+<span class="nc" id="L42">                                break;</span>
+                            case 5:
+<span class="nc" id="L44">                                quit = true;</span>
+<span class="nc" id="L45">                                start();</span>
+<span class="nc" id="L46">                                break;</span>
+                            case 0:
+<span class="nc" id="L48">                                quit = true;</span>
+                                break;
+                        }
+<span class="nc bnc" id="L51" title="All 2 branches missed.">                    } while (!quit);</span>
+<span class="nc" id="L52">                    break;</span>
+                case 2:
+<span class="nc" id="L54">                    ui.showContingentMenu();</span>
+                    do {
+<span class="nc bnc" id="L56" title="All 5 branches missed.">                        switch (ui.contingentMenuChoice()) {</span>
+                            case 1:
+<span class="nc" id="L58">                                showContingent();</span>
+<span class="nc" id="L59">                                break;</span>
+                            case 2:
+<span class="nc" id="L61">                                ui.showEditContingentMenu();</span>
+                                do {
+<span class="nc bnc" id="L63" title="All 7 branches missed.">                                    switch (ui.editContingentChoice()) {</span>
+                                        case 1:
+<span class="nc" id="L65">                                            editUnder18();</span>
+<span class="nc" id="L66">                                            break;</span>
+                                        case 2:
+<span class="nc" id="L68">                                            editBetween18And60();</span>
+<span class="nc" id="L69">                                            break;</span>
+                                        case 3:
+<span class="nc" id="L71">                                            editOver60();</span>
+<span class="nc" id="L72">                                            break;</span>
+                                        case 4:
+<span class="nc" id="L74">                                            editPassive();</span>
+<span class="nc" id="L75">                                            break;</span>
+                                        case 5:
+<span class="nc" id="L77">                                            quit = true;</span>
+<span class="nc" id="L78">                                            start();</span>
+<span class="nc" id="L79">                                            break;</span>
+                                        case 0:
+<span class="nc" id="L81">                                            quit = true;</span>
+                                            break;
+                                    }
+<span class="nc bnc" id="L84" title="All 2 branches missed.">                                } while (!quit);</span>
+
+<span class="nc" id="L86">                                break;</span>
+                            case 3:
+<span class="nc" id="L88">                                quit = true;</span>
+<span class="nc" id="L89">                                start();</span>
+<span class="nc" id="L90">                                break;</span>
+                            case 0:
+<span class="nc" id="L92">                                quit = true;</span>
+                                break;
+                        }
+<span class="nc bnc" id="L95" title="All 2 branches missed.">                    } while (!quit);</span>
+<span class="nc" id="L96">                    break;</span>
+                case 3:
+<span class="nc" id="L98">                    ui.showRestanceMenu();</span>
+                    do {
+<span class="nc bnc" id="L100" title="All 5 branches missed.">                        switch (ui.restanceMenuChoice()) {</span>
+                            case 1:
+<span class="nc" id="L102">                                showMembersInRestance();</span>
+<span class="nc" id="L103">                                break;</span>
+                            case 2:
+<span class="nc" id="L105">                                editRestance();</span>
+<span class="nc" id="L106">                                break;</span>
+                            case 3:
+<span class="nc" id="L108">                                quit = true;</span>
+<span class="nc" id="L109">                                start();</span>
+<span class="nc" id="L110">                                break;</span>
+                            case 0:
+<span class="nc" id="L112">                                quit = true;</span>
+                                break;
+                        }
+<span class="nc bnc" id="L115" title="All 2 branches missed.">                    } while (!quit);</span>
+<span class="nc" id="L116">                    break;</span>
+                case 4:
+<span class="nc" id="L118">                    showTop5Swimmers();</span>
+<span class="nc" id="L119">                    break;</span>
+                case 5:
+<span class="nc" id="L121">                    ui.showCompetitiveSwimmersMenu();</span>
+                    do {
+<span class="nc bnc" id="L123" title="All 6 branches missed.">                        switch (ui.competitiveSwimmersMenuChoice()) {</span>
+                            case 1:
+<span class="nc" id="L125">                                showCompetitiveSwimmers();</span>
+<span class="nc" id="L126">                                break;</span>
+                            case 2:
+<span class="nc" id="L128">                                showTrainingsresult();</span>
+<span class="nc" id="L129">                                break;</span>
+                            case 3:
+<span class="nc" id="L131">                                editTrainingsresult();</span>
+<span class="nc" id="L132">                                break;</span>
+                            case 4:
+<span class="nc" id="L134">                                quit = true;</span>
+<span class="nc" id="L135">                                start();</span>
+<span class="nc" id="L136">                                break;</span>
+                            case 0:
+<span class="nc" id="L138">                                quit = true;</span>
+                                break;
+                        }
+<span class="nc bnc" id="L141" title="All 2 branches missed.">                    } while (!quit);</span>
+<span class="nc" id="L142">                    break;</span>
+                case 6:
+<span class="nc" id="L144">                    ui.showCompetitionMenu();</span>
+                    do {
+<span class="nc bnc" id="L146" title="All 6 branches missed.">                        switch (ui.competitionMenuChoice()) {</span>
+                            case 1:
+<span class="nc" id="L148">                                showSwimmersInCompetition();</span>
+<span class="nc" id="L149">                                break;</span>
+                            case 2:
+<span class="nc" id="L151">                                showCompetitionResults();</span>
+<span class="nc" id="L152">                                break;</span>
+                            case 3:
+<span class="nc" id="L154">                                editCompetitionResults();</span>
+<span class="nc" id="L155">                                break;</span>
+                            case 4:
+<span class="nc" id="L157">                                quit = true;</span>
+<span class="nc" id="L158">                                start();</span>
+<span class="nc" id="L159">                                break;</span>
+                            case 0:
+<span class="nc" id="L161">                                quit = true;</span>
+                        }
+<span class="nc bnc" id="L163" title="All 2 branches missed.">                    } while (!quit);</span>
+<span class="nc" id="L164">                    break;</span>
+                case 0:
+<span class="nc" id="L166">                    quit = true;</span>
+                    break;
+            }
+<span class="nc bnc" id="L169" title="All 2 branches missed.">        } while (!quit);</span>
+<span class="nc" id="L170">    }</span>
+
+    private void createMember() {
+<span class="fc" id="L173">        ui.scanString();</span>
+<span class="fc" id="L174">        ui.print(&quot;Please enter first name: &quot;);</span>
+<span class="fc" id="L175">        String firstName = ui.scanName();</span>
+<span class="fc" id="L176">        ui.print(&quot;Please enter last name: &quot;);</span>
+<span class="fc" id="L177">        String lastName = ui.scanName();</span>
+<span class="fc" id="L178">        ui.print(&quot;Please enter date of birth (YYYY-MM-DD): &quot;);</span>
+<span class="fc" id="L179">        String dateOfBirth = ui.scanDate();</span>
+<span class="fc" id="L180">        ui.print(&quot;Is the member an active member? Press Y for yes, or N for no: &quot;);</span>
+<span class="fc" id="L181">        boolean isActive = ui.scanBoolean();</span>
+<span class="fc" id="L182">        int ID = db.getID();</span>
+
+<span class="nc" id="L184">        Member member = new Member(firstName, lastName, dateOfBirth, isActive, ID);</span>
+
+<span class="nc" id="L186">        db.saveMember(member);</span>
+<span class="nc" id="L187">        ui.print(&quot;The following member has been added: &quot; + member.toString());</span>
+<span class="nc" id="L188">    }</span>
+
+    private void deleteMember() {
+<span class="nc" id="L191">        showMembersList();</span>
+<span class="nc" id="L192">        ui.print(&quot;Enter the ID of the member you want to delete: &quot;);</span>
+<span class="nc" id="L193">        int id = ui.scanInt();</span>
+<span class="nc" id="L194">        db.deleteMember(id);</span>
+<span class="nc" id="L195">    }</span>
+
+    private void showMembersList() {
+<span class="nc" id="L198">        ArrayList&lt;Member&gt; members = db.getMembersList();</span>
+<span class="nc" id="L199">        ui.showMemberList(members);</span>
+<span class="nc" id="L200">    }</span>
+
+    private void editMember() {
+<span class="nc" id="L203">        ui.print(&quot;Enter the ID of the member, you would like to edit: &quot;);</span>
+<span class="nc" id="L204">        int id = ui.scanID();</span>
+<span class="nc" id="L205">        Member member = getMemberbyID(id);</span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">        if (member == null) {</span>
+<span class="nc" id="L207">            editMemberNull(member);</span>
+        }
+
+<span class="nc" id="L210">        boolean quit = false;</span>
+<span class="nc" id="L211">        ui.showEditMemberMenu();</span>
+        do {
+<span class="nc bnc" id="L213" title="All 5 branches missed.">            switch (ui.editMemberChoice()) {</span>
+                case 1:
+<span class="nc" id="L215">                    String firstName = ui.scanString();</span>
+<span class="nc" id="L216">                    member.setFirstName(firstName);</span>
+<span class="nc" id="L217">                    break;</span>
+                case 2:
+<span class="nc" id="L219">                    String lastName = ui.scanString();</span>
+<span class="nc" id="L220">                    member.setLastName(lastName);</span>
+<span class="nc" id="L221">                    break;</span>
+                case 3:
+<span class="nc" id="L223">                    ui.print(&quot;Is the member an active member? Press Y for yes, or N for no: &quot;);</span>
+<span class="nc" id="L224">                    boolean isActive = ui.scanBoolean();</span>
+<span class="nc" id="L225">                    member.setIsActive(isActive);</span>
+<span class="nc" id="L226">                    break;</span>
+                case 4:
+<span class="nc" id="L228">                    quit = true;</span>
+                    break;
+            }
+<span class="nc bnc" id="L231" title="All 2 branches missed.">        } while (!quit);</span>
+<span class="nc" id="L232">    }</span>
+
+    private void showTop5Swimmers() {
+<span class="nc" id="L235">        ArrayList&lt;CompetitiveSwimmer&gt; competitiveSwimmers = db.getTop5();</span>
+<span class="nc" id="L236">        ui.showTop5(competitiveSwimmers);</span>
+<span class="nc" id="L237">    }</span>
+
+    private void showContingent() {
+<span class="nc" id="L240">        ArrayList&lt;Contingent&gt; contingent = db.getContingentList();</span>
+<span class="nc" id="L241">        ui.showContingentList(contingent);</span>
+<span class="nc" id="L242">    }</span>
+
+    private Member getMemberbyID(int id) {
+<span class="nc" id="L245">        ArrayList&lt;Member&gt; members = db.getMembersList();</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">        for (Member member : members) {</span>
+<span class="nc bnc" id="L247" title="All 2 branches missed.">            if (member.getId() == id) {</span>
+<span class="nc" id="L248">                return member;</span>
+            }
+<span class="nc" id="L250">        }</span>
+<span class="nc" id="L251">        return null;</span>
+    }
+
+    private void editMemberNull(Member member) {
+<span class="nc bnc" id="L255" title="All 2 branches missed.">        while (member == null) {</span>
+<span class="nc" id="L256">            ui.print(&quot;Invalid ID, please try again: &quot;);</span>
+<span class="nc" id="L257">            int id = ui.scanID();</span>
+<span class="nc" id="L258">            member = getMemberbyID(id);</span>
+<span class="nc" id="L259">        }</span>
+<span class="nc" id="L260">    }</span>
+
+    private void showMembersInRestance() {
+<span class="nc" id="L263">        ArrayList&lt;Member&gt; membersInRestance = db.getMembersInRestance();</span>
+<span class="nc" id="L264">        ui.showMemberList(membersInRestance);</span>
+<span class="nc" id="L265">    }</span>
+
+    private void editRestance() {
+<span class="nc" id="L268">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
+    }
+
+    private void showCompetitiveSwimmers() {
+<span class="nc" id="L272">        ArrayList&lt;CompetitiveSwimmer&gt; competitiveSwimmers = db.getCompetitiveSwimmers();</span>
+<span class="nc" id="L273">        ui.showCompetitiveSwimmerList(competitiveSwimmers);</span>
+<span class="nc" id="L274">    }</span>
+
+    private void showTrainingsresult() {
+<span class="nc" id="L277">        ArrayList&lt;CompetitiveSwimmer&gt; trainingresults = db.getTrainingsresult();</span>
+<span class="nc" id="L278">        ui.showTrainingresults(trainingresults);</span>
+<span class="nc" id="L279">    }</span>
+
+    private void editTrainingsresult() {
+<span class="nc" id="L282">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
+    }
+
+    private void showSwimmersInCompetition() {
+<span class="nc" id="L286">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
+    }
+
+    private void showCompetitionResults() {
+<span class="nc" id="L290">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
+    }
+
+    private void editCompetitionResults() {
+<span class="nc" id="L294">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
+    }
+
+    private void editUnder18() {
+<span class="nc" id="L298">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
+<span class="nc" id="L299">        int contingent = ui.scanInt();</span>
+<span class="nc" id="L300">        contingent = db.editUnder18(contingent);</span>
+<span class="nc" id="L301">        ui.print(&quot;The contingent has now been changed&quot;);</span>
+
+<span class="nc" id="L303">    }</span>
+
+    private void editBetween18And60() {
+<span class="nc" id="L306">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
+<span class="nc" id="L307">        int contingent = ui.scanInt();</span>
+<span class="nc" id="L308">        contingent = db.editBetween18And60(contingent);</span>
+<span class="nc" id="L309">        ui.print(&quot;The contingent has now been changed&quot;);</span>
+<span class="nc" id="L310">    }</span>
+
+    private void editOver60() {
+<span class="nc" id="L313">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
+<span class="nc" id="L314">        int contingent = ui.scanInt();</span>
+<span class="nc" id="L315">        contingent = db.editOver60(contingent);</span>
+<span class="nc" id="L316">        ui.print(&quot;The contingent has now been changed&quot;);</span>
+<span class="nc" id="L317">    }</span>
+
+    private void editPassive() {
+<span class="nc" id="L320">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
+<span class="nc" id="L321">        int contingent = ui.scanInt();</span>
+<span class="nc" id="L322">        contingent = db.editPassive(contingent);</span>
+<span class="nc" id="L323">        ui.print(&quot;The contingent has now been changed&quot;);</span>
+<span class="nc" id="L324">    }</span>
+
+    private void editContingentMenu() {
+<span class="nc" id="L327">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
