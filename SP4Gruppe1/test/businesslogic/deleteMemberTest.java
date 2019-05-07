@@ -1,6 +1,5 @@
 package businesslogic;
 
-import businesslogic.Controller;
 import datalag.DBConnection;
 import datalag.DBFacade;
 import org.junit.Test;
@@ -25,7 +24,7 @@ public class deleteMemberTest {
         ctrl.start();
 
         // assert
-        assertTrue(ui.output.get(9).contains("The member has been deleted"));
+        assertTrue(ui.output.get(9).contains("deleted"));
         
     }
 

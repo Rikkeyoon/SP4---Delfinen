@@ -1,6 +1,5 @@
 package businesslogic;
 
-import businesslogic.Controller;
 import datalag.DBConnection;
 import datalag.DBFacade;
 import org.junit.Test;

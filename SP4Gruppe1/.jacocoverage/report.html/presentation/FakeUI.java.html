@@ -36,17 +36,17 @@ public class FakeUI implements UI {
 
     @Override
     public int scanInt() {
-<span class="nc" id="L39">        return Integer.parseInt(input[index++]);</span>
+<span class="fc" id="L39">        return Integer.parseInt(input[index++]);</span>
     }
 
     @Override
     public void showMemberList(ArrayList&lt;Member&gt; members) {
-<span class="nc" id="L44">        StringBuilder strBuild = new StringBuilder();</span>
-<span class="nc bnc" id="L45" title="All 2 branches missed.">        for (Member member : members) {</span>
+<span class="fc" id="L44">        StringBuilder strBuild = new StringBuilder();</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        for (Member member : members) {</span>
 <span class="nc" id="L46">            strBuild.append(member.toString());</span>
 <span class="nc" id="L47">        }</span>
-<span class="nc" id="L48">        output.add(strBuild.toString());</span>
-<span class="nc" id="L49">    }</span>
+<span class="fc" id="L48">        output.add(strBuild.toString());</span>
+<span class="fc" id="L49">    }</span>
 
     @Override
     public void showMainMenu() {

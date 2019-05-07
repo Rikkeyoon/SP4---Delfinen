@@ -1,6 +1,5 @@
 package businesslogic;
 
-import businesslogic.Controller;
 import datalag.DBConnection;
 import datalag.DBFacade;
 import org.junit.Test;
@@ -25,9 +24,26 @@ public class createMemberTest {
         ctrl.start();
         
         // assert
-        assertTrue(ui.output.get(6).contains("The following member has been added: Ole Jensen"));
-        
+        assertTrue(ui.output.get(6).contains("Ole Jensen"));
     }
+    
+    @Test
+    public void testCreateMember_create2Members() {
+        // arrange
+        String[] input = {"", "1", "2", "", "Ole", "Jensen", "1989-12-12",
+            "y", "2", "", "Mia", "Jensen", "1989-12-12",
+            "y", "0"};
+        FakeUI ui = new FakeUI(input);
+        DBConnection dbc = new DBConnection();
+        DBFacade db = new DBFacade(dbc);
+        Controller ctrl = new Controller(ui, db);
 
+        // act
+        ctrl.start();
+        
+        // assert
+        assertTrue(ui.output.get(6).contains("Ole Jensen"));
+        assertTrue(ui.output.get(11).contains("Mia Jensen"));
+    }
 
 }
