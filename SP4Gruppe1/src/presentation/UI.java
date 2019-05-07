@@ -67,6 +67,10 @@ public interface UI {
 
     public void showTrainingresults(ArrayList<CompetitiveSwimmer> trainingresults);
 
+    public void showSwimmersInCompetition(ArrayList<CompetitiveSwimmer> competitiveSwimmers);
+
+    public void showCompetitionResults(ArrayList<CompetitiveSwimmer> competitionResults);
+
     
     
 }

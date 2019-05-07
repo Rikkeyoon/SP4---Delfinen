@@ -11,6 +11,7 @@ public class CompetitiveSwimmer extends Member {
     private String disciplin;
     private Time bestTime;
     private Timestamp dateOfBestTime;
+    private Competition competition;
     
     public CompetitiveSwimmer(String firstName, String lastName, 
             String dateOfBirth, boolean isActive, int id, String disciplin,
@@ -27,6 +28,15 @@ public class CompetitiveSwimmer extends Member {
         this.disciplin = disciplin;
         this.bestTime = bestTime;
         this.dateOfBestTime = dateOfBestTime;
+    }
+    
+    public CompetitiveSwimmer(String disciplin, Time bestTime, Timestamp dateOfBestTime, 
+            Competition competition, String firstName, String lastName, int age, int id) {
+        super(firstName, lastName, age, id);
+        this.disciplin = disciplin;
+        this.bestTime = bestTime;
+        this.dateOfBestTime = dateOfBestTime;
+        this.competition = competition;
     }
 
     public String getDisciplin() {
