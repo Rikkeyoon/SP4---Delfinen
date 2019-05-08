@@ -2,6 +2,7 @@ package businesslogic;
 
 import datalag.DBConnection;
 import datalag.DBFacade;
+import datalag.FakeDBFacade;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import presentation.FakeUI;
@@ -12,7 +13,7 @@ import presentation.FakeUI;
 public class showMemberListTest {
     
     @Test
-    public void testShowMemberList() {
+    public void testShowMemberList_withDB() {
         // arrange
         String[] input = {"", "1", "2", "", "Ole", "Jensen", "1989-12-12", "y", 
             "1", "0"};
@@ -25,9 +26,22 @@ public class showMemberListTest {
         ctrl.start();
         
         // assert
-        assertTrue(ui.output.get(7).contains("Ole Jensen"));
-        
+        assertTrue(ui.output.get(8).contains("Ole Jensen"));
     }
     
-    
+    @Test
+    public void testShowMemberList_withFakeDB() {
+        // arrange
+        String[] input = {"", "1", "2", "", "Ole", "Jensen", "1989-12-12", "y", 
+            "1", "0"};
+        FakeUI ui = new FakeUI(input);
+        FakeDBFacade db = new FakeDBFacade();
+        Controller ctrl = new Controller(ui, db);
+        
+        // act
+        ctrl.start();
+        
+        // assert
+        assertTrue(ui.output.get(8).contains("Ole Jensen"));
+    }
 }
