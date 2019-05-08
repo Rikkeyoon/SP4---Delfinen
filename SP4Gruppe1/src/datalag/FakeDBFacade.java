@@ -8,7 +8,7 @@ import java.util.Comparator;
 
 /**
  *
- * @author Caroline, Nina, Rikke og Kristina
+ * @author Caroline, Nina, Rikke og Kristine
  */
 public class FakeDBFacade implements DBStorage {
 
