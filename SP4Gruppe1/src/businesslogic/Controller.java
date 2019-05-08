@@ -320,7 +320,8 @@ public class Controller {
         ui.scanString();
         ui.print("Please enter the disciplin: ");
         String disciplin = ui.scanString();
-        ui.print("Please enter the time: (HH:MM:SS)");
+        ui.print("Please enter the best time, the swimmer has performed "
+                + "during training: (HH:MM:SS)");
         LocalTime bestTime = ui.scanTime();
         ui.print("Please enter the date: (YYYY-MM-DD)");
         String dateOfBestTime = ui.scanDate();

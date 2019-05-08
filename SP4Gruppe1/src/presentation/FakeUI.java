@@ -4,6 +4,7 @@ import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /*
@@ -240,7 +241,10 @@ public class FakeUI implements UI {
 
     @Override
     public LocalTime scanTime() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String choice = input[index++];
+        DateTimeFormatter dft = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String time = choice;
+        return LocalTime.parse(time, dft);
     }
 
     @Override

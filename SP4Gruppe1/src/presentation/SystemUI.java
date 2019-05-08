@@ -65,7 +65,7 @@ public class SystemUI implements UI {
         String choice = input.nextLine();
         DateTimeFormatter dft = DateTimeFormatter.ofPattern("HH:mm:ss");
         String time = choice;
-        return LocalTime.parse(time);
+        return LocalTime.parse(time, dft);
     }
 
     @Override

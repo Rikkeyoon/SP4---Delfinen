@@ -3,9 +3,9 @@ package datalag;
 import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -97,20 +97,60 @@ public class FakeDBFacadeTest {
     public void testSaveCompetitiveSwimmer() {
         //arrange
         FakeDBFacade db = new FakeDBFacade();
-//        long bestTime = Time.parse("00:12:45");
-//        Timestamp dateOfBestTime = Timestamp.from(LocalDate.now());
-//        CompetitiveSwimmer s1 = new CompetitiveSwimmer("Sofia",
-//                "Jensen", 12, 3, "butterfly", bestTime, dateOfBestTime);
+        LocalTime bestTime = LocalTime.parse("00:12:45");
+        String dateOfBestTime = "2019-05-08";
+        CompetitiveSwimmer s1 = new CompetitiveSwimmer("Sofia",
+                "Jensen", 12, 3, "butterfly", bestTime, dateOfBestTime);
         //act
+        db.saveCompetitiveSwimmer(s1);
+        ArrayList<CompetitiveSwimmer> swimmers = db.getCompetitiveSwimmers();
         //assert
+        assertTrue(swimmers.get(0).equals(s1));
+        assertTrue(swimmers.size() == 1);
     }
 
-    /**
-     * Test of getTop5 method, of class FakeDBFacade.
-     */
-    @Test
-    public void testGetTop5() {
-    }
+//    /**
+//     * Test of getTop5 method, of class FakeDBFacade.
+//     */
+//    @Test
+//    public void testGetTop5() {
+//        //arrange
+//        FakeDBFacade db = new FakeDBFacade();
+//        LocalTime bestTime1 = LocalTime.parse("00:12:45");
+//        String dateOfBestTime1 = "2019-05-08";
+//        CompetitiveSwimmer s1 = new CompetitiveSwimmer("Sofia",
+//                "Jensen", 12, 3, "butterfly", bestTime1, dateOfBestTime1);
+//        LocalTime bestTime2 = LocalTime.parse("00:10:45");
+//        String dateOfBestTime2 = "2019-05-08";
+//        CompetitiveSwimmer s2 = new CompetitiveSwimmer("Gerta",
+//                "Jensen", 12, 3, "butterfly", bestTime2, dateOfBestTime2);
+//        LocalTime bestTime3 = LocalTime.parse("00:09:45");
+//        String dateOfBestTime3 = "2019-05-08";
+//        CompetitiveSwimmer s3 = new CompetitiveSwimmer("Sofia",
+//                "Jensen", 12, 3, "butterfly", bestTime3, dateOfBestTime3);
+//        LocalTime bestTime4 = LocalTime.parse("00:11:45");
+//        String dateOfBestTime4 = "2019-05-08";
+//        CompetitiveSwimmer s4 = new CompetitiveSwimmer("Gerta",
+//                "Jensen", 12, 3, "butterfly", bestTime4, dateOfBestTime4);
+//        LocalTime bestTime5 = LocalTime.parse("00:09:00");
+//        String dateOfBestTime5 = "2019-05-08";
+//        CompetitiveSwimmer s5 = new CompetitiveSwimmer("Sofia",
+//                "Jensen", 12, 3, "butterfly", bestTime5, dateOfBestTime5);
+//        LocalTime bestTime6 = LocalTime.parse("00:03:45");
+//        String dateOfBestTime6 = "2019-05-08";
+//        CompetitiveSwimmer s6 = new CompetitiveSwimmer("Gerta",
+//                "Jensen", 12, 3, "butterfly", bestTime6, dateOfBestTime6);
+//        //act
+//        db.saveCompetitiveSwimmer(s1);
+//        db.saveCompetitiveSwimmer(s2);
+//        db.saveCompetitiveSwimmer(s3);
+//        db.saveCompetitiveSwimmer(s4);
+//        db.saveCompetitiveSwimmer(s5);
+//        db.saveCompetitiveSwimmer(s6);
+//        ArrayList<CompetitiveSwimmer> top5 = db.getTop5();
+//        //assert
+//        assertTrue(top5.size() == 5);
+//    }
 
     /**
      * Test of getMembersInRestance method, of class FakeDBFacade.
@@ -137,6 +177,30 @@ public class FakeDBFacadeTest {
      */
     @Test
     public void testGetCompetitiveSwimmers() {
+        //arrange
+        FakeDBFacade db = new FakeDBFacade();
+        LocalTime bestTime1 = LocalTime.parse("00:12:45");
+        String dateOfBestTime1 = "2019-05-08";
+        CompetitiveSwimmer s1 = new CompetitiveSwimmer("Sofia",
+                "Jensen", 12, 3, "butterfly", bestTime1, dateOfBestTime1);
+        LocalTime bestTime2 = LocalTime.parse("00:10:45");
+        String dateOfBestTime2 = "2019-05-08";
+        CompetitiveSwimmer s2 = new CompetitiveSwimmer("Gerta",
+                "Jensen", 12, 3, "butterfly", bestTime2, dateOfBestTime2);
+        LocalTime bestTime3 = LocalTime.parse("00:09:45");
+        String dateOfBestTime3 = "2019-05-08";
+        CompetitiveSwimmer s3 = new CompetitiveSwimmer("Sofia",
+                "Jensen", 12, 3, "butterfly", bestTime3, dateOfBestTime3);
+        //act
+        db.saveCompetitiveSwimmer(s1);
+        db.saveCompetitiveSwimmer(s2);
+        db.saveCompetitiveSwimmer(s3);
+        ArrayList<CompetitiveSwimmer> swimmers = db.getCompetitiveSwimmers();
+        //assert
+        assertTrue(swimmers.get(0).equals(s1));
+        assertTrue(swimmers.get(1).equals(s2));
+        assertTrue(swimmers.get(2).equals(s3));
+        assertTrue(swimmers.size() == 3);
     }
 
     /**

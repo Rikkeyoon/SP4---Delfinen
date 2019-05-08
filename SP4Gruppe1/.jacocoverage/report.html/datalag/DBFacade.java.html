@@ -7,7 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import static java.time.temporal.TemporalQueries.localDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 /*
  * @author Caroline, Nina, Rikke og Kristine
@@ -16,503 +20,502 @@ public class DBFacade implements DBStorage{
 
     private Connection connection;
 
-<span class="fc" id="L19">    public DBFacade(DBConnection dbc) {</span>
-<span class="fc" id="L20">        connection = dbc.getConnection();</span>
-<span class="fc" id="L21">    }</span>
+<span class="fc" id="L23">    public DBFacade(DBConnection dbc) {</span>
+<span class="fc" id="L24">        connection = dbc.getConnection();</span>
+<span class="fc" id="L25">    }</span>
 
     @Override
     public int getID() {
-<span class="fc" id="L25">        int id = 1;</span>
+<span class="fc" id="L29">        int id = 1;</span>
         try {
             //create String for the PreparedStatement
-<span class="fc" id="L28">            String selectSQL = &quot;SELECT LAST_INSERT_ID() FROM members&quot;;</span>
+<span class="fc" id="L32">            String selectSQL = &quot;SELECT LAST_INSERT_ID() FROM members&quot;;</span>
             //get connection
-<span class="nc" id="L30">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
+<span class="nc" id="L34">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
 
             //execute the SQL query
-<span class="nc" id="L33">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
-<span class="nc bnc" id="L34" title="All 2 branches missed.">            while (result.next()) {</span>
-<span class="nc" id="L35">                id = result.getInt(1);</span>
+<span class="nc" id="L37">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">            while (result.next()) {</span>
+<span class="nc" id="L39">                id = result.getInt(1);</span>
             }
-<span class="fc" id="L37">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L38">        }</span>
-<span class="fc" id="L39">        return id;</span>
+<span class="fc" id="L41">        } catch (SQLException | NullPointerException e) {</span>
+<span class="nc" id="L42">        }</span>
+<span class="fc" id="L43">        return id;</span>
     }
 
     @Override
     public ArrayList&lt;Member&gt; getMembersList() {
-<span class="fc" id="L44">        ArrayList&lt;Member&gt; members = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L48">        ArrayList&lt;Member&gt; members = new ArrayList&lt;&gt;();</span>
         try {
             //create String for the PreparedStatement
-<span class="fc" id="L47">            String selectSQL = &quot;SELECT * FROM members ORDER BY first_name&quot;;</span>
+<span class="fc" id="L51">            String selectSQL = &quot;SELECT * FROM members ORDER BY first_name&quot;;</span>
             //get connection
-<span class="nc" id="L49">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
+<span class="nc" id="L53">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
 
             //execute the SQL query
-<span class="nc" id="L52">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
-<span class="nc bnc" id="L53" title="All 2 branches missed.">            while (result.next()) {</span>
-<span class="nc" id="L54">                String firstName = result.getString(1);</span>
-<span class="nc" id="L55">                String lastName = result.getString(2);</span>
-<span class="nc" id="L56">                int age = result.getInt(3);</span>
-<span class="nc" id="L57">                boolean isActive = result.getBoolean(4);</span>
-<span class="nc" id="L58">                int id = result.getInt(5);</span>
-<span class="nc" id="L59">                int contingent = result.getInt(6);</span>
-<span class="nc" id="L60">                int restance = result.getInt(7);</span>
+<span class="nc" id="L56">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            while (result.next()) {</span>
+<span class="nc" id="L58">                String firstName = result.getString(1);</span>
+<span class="nc" id="L59">                String lastName = result.getString(2);</span>
+<span class="nc" id="L60">                int age = result.getInt(3);</span>
+<span class="nc" id="L61">                boolean isActive = result.getBoolean(4);</span>
+<span class="nc" id="L62">                int id = result.getInt(5);</span>
+<span class="nc" id="L63">                int contingent = result.getInt(6);</span>
+<span class="nc" id="L64">                int restance = result.getInt(7);</span>
 
                 //create a new Member object and insert it into the ArrayList
-<span class="nc" id="L63">                members.add(new Member(firstName, lastName, age, isActive, contingent, restance, id));</span>
-<span class="nc" id="L64">            }</span>
-<span class="fc" id="L65">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L66">        }</span>
-<span class="fc" id="L67">        return members;</span>
+<span class="nc" id="L67">                members.add(new Member(firstName, lastName, age, isActive, contingent, restance, id));</span>
+<span class="nc" id="L68">            }</span>
+<span class="fc" id="L69">        } catch (SQLException | NullPointerException e) {</span>
+<span class="nc" id="L70">        }</span>
+<span class="fc" id="L71">        return members;</span>
     }
 
     @Override
     public void saveMember(Member member) {
         try {
             //create String for the PreparedStatement
-<span class="fc" id="L74">            String insertSQL = &quot;INSERT INTO members &quot;</span>
+<span class="fc" id="L78">            String insertSQL = &quot;INSERT INTO members &quot;</span>
                     + &quot;(first_name, last_name, age, is_active, &quot;
                     + &quot;contingent, restance) VALUES&quot;
                     + &quot;(?, ?, ?, ?, ?, ?)&quot;;
 
             //get connection
-<span class="nc" id="L80">            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);</span>
+<span class="nc" id="L84">            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);</span>
             //insert correct values into the placeholders' (the ?) spaces
-<span class="nc" id="L82">            preparedStatement.setString(1, member.getFirstName());</span>
-<span class="nc" id="L83">            preparedStatement.setString(2, member.getLastName());</span>
-<span class="nc" id="L84">            preparedStatement.setInt(3, member.getAge());</span>
-<span class="nc" id="L85">            preparedStatement.setBoolean(4, member.isIsActive());</span>
-<span class="nc" id="L86">            preparedStatement.setDouble(5, member.getContingent());</span>
-<span class="nc" id="L87">            preparedStatement.setDouble(6, member.getRestance());</span>
+<span class="nc" id="L86">            preparedStatement.setString(1, member.getFirstName());</span>
+<span class="nc" id="L87">            preparedStatement.setString(2, member.getLastName());</span>
+<span class="nc" id="L88">            preparedStatement.setInt(3, member.getAge());</span>
+<span class="nc" id="L89">            preparedStatement.setBoolean(4, member.isIsActive());</span>
+<span class="nc" id="L90">            preparedStatement.setDouble(5, member.getContingent());</span>
+<span class="nc" id="L91">            preparedStatement.setDouble(6, member.getRestance());</span>
 
             //execute the SQL query
-<span class="nc" id="L90">            preparedStatement.executeUpdate();</span>
-<span class="fc" id="L91">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L92">        }</span>
-<span class="fc" id="L93">    }</span>
+<span class="nc" id="L94">            preparedStatement.executeUpdate();</span>
+<span class="fc" id="L95">        } catch (SQLException | NullPointerException e) {</span>
+<span class="nc" id="L96">        }</span>
+<span class="fc" id="L97">    }</span>
 
     @Override
     public void deleteMember(int id) {
         try {
-<span class="fc" id="L98">            deleteFromCompetition(id);</span>
-<span class="fc" id="L99">            deleteFromCompetitiveSwimmers(id);</span>
+<span class="fc" id="L102">            deleteFromCompetition(id);</span>
+<span class="fc" id="L103">            deleteFromCompetitiveSwimmers(id);</span>
             //create String for the PreparedStatement
-<span class="fc" id="L101">            String deleteSQL = &quot;DELETE FROM members WHERE id = ?&quot;;</span>
+<span class="fc" id="L105">            String deleteSQL = &quot;DELETE FROM members WHERE id = ?&quot;;</span>
             //get connection
-<span class="nc" id="L103">            PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);</span>
+<span class="nc" id="L107">            PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);</span>
             //insert correct values into the placeholder's (the ?) space
-<span class="nc" id="L105">            preparedStatement.setInt(1, id);</span>
+<span class="nc" id="L109">            preparedStatement.setInt(1, id);</span>
 
             //execute the SQL query
-<span class="nc" id="L108">            preparedStatement.executeUpdate();</span>
-<span class="fc" id="L109">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L110">        }</span>
-<span class="fc" id="L111">    }</span>
+<span class="nc" id="L112">            preparedStatement.executeUpdate();</span>
+<span class="fc" id="L113">        } catch (SQLException | NullPointerException e) {</span>
+<span class="nc" id="L114">        }</span>
+<span class="fc" id="L115">    }</span>
 
     private void deleteFromCompetition(int id) {
         try {
             //create String for the PreparedStatement
-<span class="fc" id="L116">            String deleteSQL = &quot;DELETE FROM competitions WHERE id = ?&quot;;</span>
+<span class="fc" id="L120">            String deleteSQL = &quot;DELETE FROM competitions WHERE id = ?&quot;;</span>
             //get connection
-<span class="nc" id="L118">            PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);</span>
+<span class="nc" id="L122">            PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);</span>
             //insert correct values into the placeholder's (the ?) space
-<span class="nc" id="L120">            preparedStatement.setInt(1, id);</span>
+<span class="nc" id="L124">            preparedStatement.setInt(1, id);</span>
 
             //execute the SQL query
-<span class="nc" id="L123">            preparedStatement.executeUpdate();</span>
-<span class="fc" id="L124">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L125">        }</span>
-<span class="fc" id="L126">    }</span>
+<span class="nc" id="L127">            preparedStatement.executeUpdate();</span>
+<span class="fc" id="L128">        } catch (SQLException | NullPointerException e) {</span>
+<span class="nc" id="L129">        }</span>
+<span class="fc" id="L130">    }</span>
 
     private void deleteFromCompetitiveSwimmers(int id) {
         try {
             //create String for the PreparedStatement
-<span class="fc" id="L131">            String deleteSQL = &quot;DELETE FROM competitive_swimmers WHERE id = ?&quot;;</span>
+<span class="fc" id="L135">            String deleteSQL = &quot;DELETE FROM competitive_swimmers WHERE id = ?&quot;;</span>
             //get connection
-<span class="nc" id="L133">            PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);</span>
+<span class="nc" id="L137">            PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);</span>
             //insert correct values into the placeholder's (the ?) space
-<span class="nc" id="L135">            preparedStatement.setInt(1, id);</span>
+<span class="nc" id="L139">            preparedStatement.setInt(1, id);</span>
 
             //execute the SQL query
-<span class="nc" id="L138">            preparedStatement.executeUpdate();</span>
-<span class="fc" id="L139">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L140">        }</span>
-<span class="fc" id="L141">    }</span>
+<span class="nc" id="L142">            preparedStatement.executeUpdate();</span>
+<span class="fc" id="L143">        } catch (SQLException | NullPointerException e) {</span>
+<span class="nc" id="L144">        }</span>
+<span class="fc" id="L145">    }</span>
 
     @Override
     public void saveCompetitiveSwimmer(CompetitiveSwimmer member) {
         try {
-<span class="nc" id="L146">            saveMember(member);</span>
+<span class="nc" id="L150">            saveMember(member);</span>
             //create String for the PreparedStatement
-<span class="nc" id="L148">            String insertSQL = &quot;INSERT INTO competitive_swimmer &quot;</span>
+<span class="nc" id="L152">            String insertSQL = &quot;INSERT INTO competitive_swimmer &quot;</span>
                     + &quot;VALUES (?, ?, ?, ?)&quot;;
 
             //get connection
-<span class="nc" id="L152">            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);</span>
+<span class="nc" id="L156">            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);</span>
             //insert correct values into the placeholders' (the ?) spaces
-<span class="nc" id="L154">            preparedStatement.setInt(1, member.getId());</span>
-<span class="nc" id="L155">            preparedStatement.setString(2, member.getDisciplin());</span>
-<span class="nc" id="L156">            preparedStatement.setTime(3, member.getBestTime());</span>
-<span class="nc" id="L157">            preparedStatement.setTimestamp(4, member.getDateOfBestTime());</span>
-
+<span class="nc" id="L158">            preparedStatement.setInt(1, member.getId());</span>
+<span class="nc" id="L159">            preparedStatement.setString(2, member.getDisciplin());</span>
+<span class="nc" id="L160">            preparedStatement.setObject(3, member.getBestTime());</span>
+<span class="nc" id="L161">            preparedStatement.setObject(4, member.getDateOfBestTime());</span>
             //execute the SQL query
-<span class="nc" id="L160">            preparedStatement.executeUpdate();</span>
-<span class="nc" id="L161">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L162">        }</span>
-<span class="nc" id="L163">    }</span>
+<span class="nc" id="L163">            preparedStatement.executeUpdate();</span>
+<span class="nc" id="L164">        } catch (SQLException | NullPointerException e) {</span>
+<span class="nc" id="L165">        }</span>
+<span class="nc" id="L166">    }</span>
 
     @Override
     public ArrayList&lt;CompetitiveSwimmer&gt; getTop5() {
-<span class="nc" id="L167">        ArrayList&lt;CompetitiveSwimmer&gt; top5 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L170">        ArrayList&lt;CompetitiveSwimmer&gt; top5 = new ArrayList&lt;&gt;();</span>
         try {
             //create String for the PreparedStatement
-<span class="nc" id="L170">            String selectSQL = &quot;SELECT id, first_name, last_name, age, disciplin, &quot;</span>
+<span class="nc" id="L173">            String selectSQL = &quot;SELECT id, first_name, last_name, age, disciplin, &quot;</span>
                     + &quot;best_time, date_of_best_time FROM members&quot;
                     + &quot;NATURAL JOIN competitive_swimmers ORDER BY best_time&quot;
                     + &quot;LIMIT 5&quot;;
             //get connection
-<span class="nc" id="L175">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
+<span class="nc" id="L178">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
 
             //execute the SQL query
-<span class="nc" id="L178">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
-<span class="nc bnc" id="L179" title="All 2 branches missed.">            while (result.next()) {</span>
-<span class="nc" id="L180">                int id = result.getInt(1);</span>
-<span class="nc" id="L181">                String firstName = result.getString(2);</span>
-<span class="nc" id="L182">                String lastName = result.getString(3);</span>
-<span class="nc" id="L183">                int age = result.getInt(4);</span>
-<span class="nc" id="L184">                String disciplin = result.getString(5);</span>
-<span class="nc" id="L185">                Time bestTime = result.getTime(6);</span>
-<span class="nc" id="L186">                Timestamp dateOfBestTime = result.getTimestamp(7);</span>
+<span class="nc" id="L181">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
+<span class="nc bnc" id="L182" title="All 2 branches missed.">            while (result.next()) {</span>
+<span class="nc" id="L183">                int id = result.getInt(1);</span>
+<span class="nc" id="L184">                String firstName = result.getString(2);</span>
+<span class="nc" id="L185">                String lastName = result.getString(3);</span>
+<span class="nc" id="L186">                int age = result.getInt(4);</span>
+<span class="nc" id="L187">                String disciplin = result.getString(5);</span>
+<span class="nc" id="L188">                Time bestTime = result.getTime(6);</span>
+<span class="nc" id="L189">                Date dateOfBestTime = result.getDate(7);</span>
 
                 //create a new Member object and insert it into the ArrayList
-<span class="nc" id="L189">                top5.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,</span>
-                        bestTime, dateOfBestTime));
-<span class="nc" id="L191">            }</span>
-<span class="nc" id="L192">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L193">        }</span>
-<span class="nc" id="L194">        return top5;</span>
+//                top5.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
+//                        bestTime, dateOfBestTime));
+<span class="nc" id="L194">            }</span>
+<span class="nc" id="L195">        } catch (SQLException | NullPointerException e) {</span>
+<span class="nc" id="L196">        }</span>
+<span class="nc" id="L197">        return top5;</span>
     }
 
     @Override
     public ArrayList&lt;Contingent&gt; getContingentList() {
-<span class="nc" id="L199">        ArrayList&lt;Contingent&gt; contingent = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L202">        ArrayList&lt;Contingent&gt; contingent = new ArrayList&lt;&gt;();</span>
         try {
             //create String for the PreparedStatement
-<span class="nc" id="L202">            String selectSQL = &quot;SELECT * FROM contingent&quot;;</span>
+<span class="nc" id="L205">            String selectSQL = &quot;SELECT * FROM contingent&quot;;</span>
             //get connection
-<span class="nc" id="L204">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
+<span class="nc" id="L207">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
 
             //execute the SQL query
-<span class="nc" id="L207">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
-<span class="nc bnc" id="L208" title="All 2 branches missed.">            while (result.next()) {</span>
-<span class="nc" id="L209">                int under18 = result.getInt(1);</span>
-<span class="nc" id="L210">                int between18And60 = result.getInt(2);</span>
-<span class="nc" id="L211">                int over60 = result.getInt(3);</span>
-<span class="nc" id="L212">                int passive = result.getInt(4);</span>
+<span class="nc" id="L210">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
+<span class="nc bnc" id="L211" title="All 2 branches missed.">            while (result.next()) {</span>
+<span class="nc" id="L212">                int under18 = result.getInt(1);</span>
+<span class="nc" id="L213">                int between18And60 = result.getInt(2);</span>
+<span class="nc" id="L214">                int over60 = result.getInt(3);</span>
+<span class="nc" id="L215">                int passive = result.getInt(4);</span>
 
                 //create a new Member object and insert it into the ArrayList
-<span class="nc" id="L215">                contingent.add(new Contingent(under18, between18And60, over60, passive));</span>
-<span class="nc" id="L216">            }</span>
-<span class="nc" id="L217">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L218">        }</span>
-<span class="nc" id="L219">        return contingent;</span>
+<span class="nc" id="L218">                contingent.add(new Contingent(under18, between18And60, over60, passive));</span>
+<span class="nc" id="L219">            }</span>
+<span class="nc" id="L220">        } catch (SQLException | NullPointerException e) {</span>
+<span class="nc" id="L221">        }</span>
+<span class="nc" id="L222">        return contingent;</span>
     }
 
     @Override
     public ArrayList&lt;Member&gt; getMembersInRestance() {
-<span class="nc" id="L224">        ArrayList&lt;Member&gt; membersInRestance = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L227">        ArrayList&lt;Member&gt; membersInRestance = new ArrayList&lt;&gt;();</span>
         try {
             //create String for the PreparedStatement
-<span class="nc" id="L227">            String selectSQL = &quot;SELECT * FROM members  WHERE restance != 0 &quot;</span>
+<span class="nc" id="L230">            String selectSQL = &quot;SELECT * FROM members  WHERE restance != 0 &quot;</span>
                     + &quot;ORDER BY first_name&quot;;
             //get connection
-<span class="nc" id="L230">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
+<span class="nc" id="L233">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
 
             //execute the SQL query
-<span class="nc" id="L233">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
-<span class="nc bnc" id="L234" title="All 2 branches missed.">            while (result.next()) {</span>
-<span class="nc" id="L235">                String firstName = result.getString(1);</span>
-<span class="nc" id="L236">                String lastName = result.getString(2);</span>
-<span class="nc" id="L237">                int age = result.getInt(3);</span>
-<span class="nc" id="L238">                boolean isActive = result.getBoolean(4);</span>
-<span class="nc" id="L239">                int id = result.getInt(5);</span>
-<span class="nc" id="L240">                int contingent = result.getInt(6);</span>
-<span class="nc" id="L241">                int restance = result.getInt(7);</span>
+<span class="nc" id="L236">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
+<span class="nc bnc" id="L237" title="All 2 branches missed.">            while (result.next()) {</span>
+<span class="nc" id="L238">                String firstName = result.getString(1);</span>
+<span class="nc" id="L239">                String lastName = result.getString(2);</span>
+<span class="nc" id="L240">                int age = result.getInt(3);</span>
+<span class="nc" id="L241">                boolean isActive = result.getBoolean(4);</span>
+<span class="nc" id="L242">                int id = result.getInt(5);</span>
+<span class="nc" id="L243">                int contingent = result.getInt(6);</span>
+<span class="nc" id="L244">                int restance = result.getInt(7);</span>
 
                 //create a new Member object and insert it into the ArrayList
-<span class="nc" id="L244">                membersInRestance.add(new Member(firstName, lastName, age,</span>
+<span class="nc" id="L247">                membersInRestance.add(new Member(firstName, lastName, age,</span>
                         isActive, contingent, restance, id));
-<span class="nc" id="L246">            }</span>
-<span class="nc" id="L247">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L248">        }</span>
-<span class="nc" id="L249">        return membersInRestance;</span>
+<span class="nc" id="L249">            }</span>
+<span class="nc" id="L250">        } catch (SQLException | NullPointerException e) {</span>
+<span class="nc" id="L251">        }</span>
+<span class="nc" id="L252">        return membersInRestance;</span>
     }
 
     @Override
     public ArrayList&lt;CompetitiveSwimmer&gt; getCompetitiveSwimmers() {
-<span class="nc" id="L254">        ArrayList&lt;CompetitiveSwimmer&gt; competitiveSwimmers = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L257">        ArrayList&lt;CompetitiveSwimmer&gt; competitiveSwimmers = new ArrayList&lt;&gt;();</span>
         try {
             //create String for the PreparedStatement
-<span class="nc" id="L257">            String selectSQL = &quot;SELECT id, first_name, last_name, age, disciplin, &quot;</span>
+<span class="nc" id="L260">            String selectSQL = &quot;SELECT id, first_name, last_name, age, disciplin, &quot;</span>
                     + &quot;best_time, date_of_best_time FROM members&quot;
                     + &quot;NATURAL JOIN competitive_swimmers&quot;;
             //get connection
-<span class="nc" id="L261">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
+<span class="nc" id="L264">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
 
             //execute the SQL query
-<span class="nc" id="L264">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
-<span class="nc bnc" id="L265" title="All 2 branches missed.">            while (result.next()) {</span>
-<span class="nc" id="L266">                int id = result.getInt(1);</span>
-<span class="nc" id="L267">                String firstName = result.getString(2);</span>
-<span class="nc" id="L268">                String lastName = result.getString(3);</span>
-<span class="nc" id="L269">                int age = result.getInt(4);</span>
-<span class="nc" id="L270">                String disciplin = result.getString(5);</span>
-<span class="nc" id="L271">                Time bestTime = result.getTime(6);</span>
-<span class="nc" id="L272">                Timestamp dateOfBestTime = result.getTimestamp(7);</span>
+<span class="nc" id="L267">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
+<span class="nc bnc" id="L268" title="All 2 branches missed.">            while (result.next()) {</span>
+<span class="nc" id="L269">                int id = result.getInt(1);</span>
+<span class="nc" id="L270">                String firstName = result.getString(2);</span>
+<span class="nc" id="L271">                String lastName = result.getString(3);</span>
+<span class="nc" id="L272">                int age = result.getInt(4);</span>
+<span class="nc" id="L273">                String disciplin = result.getString(5);</span>
+<span class="nc" id="L274">                Time bestTime = result.getTime(6);</span>
+<span class="nc" id="L275">                Timestamp dateOfBestTime = result.getTimestamp(7);</span>
 
                 //create a new Member object and insert it into the ArrayList
-<span class="nc" id="L275">                competitiveSwimmers.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,</span>
-                        bestTime, dateOfBestTime));
-<span class="nc" id="L277">            }</span>
-<span class="nc" id="L278">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L279">        }</span>
-<span class="nc" id="L280">        return competitiveSwimmers;</span>
+//                competitiveSwimmers.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
+//                        bestTime, dateOfBestTime));
+<span class="nc" id="L280">            }</span>
+<span class="nc" id="L281">        } catch (SQLException | NullPointerException e) {</span>
+<span class="nc" id="L282">        }</span>
+<span class="nc" id="L283">        return competitiveSwimmers;</span>
     }
 
     @Override
     public ArrayList&lt;CompetitiveSwimmer&gt; getTrainingsresult() {
-<span class="nc" id="L285">        ArrayList&lt;CompetitiveSwimmer&gt; trainingresults = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L288">        ArrayList&lt;CompetitiveSwimmer&gt; trainingresults = new ArrayList&lt;&gt;();</span>
         try {
             //create String for the PreparedStatement
-<span class="nc" id="L288">            String selectSQL = &quot;SELECT id, first_name, last_name, age, disciplin, &quot;</span>
+<span class="nc" id="L291">            String selectSQL = &quot;SELECT id, first_name, last_name, age, disciplin, &quot;</span>
                     + &quot;best_time, date_of_best_time FROM members&quot;
                     + &quot;NATURAL JOIN competitive_swimmers&quot;
                     + &quot;ORDER BY best_time&quot;;
             //get connection
-<span class="nc" id="L293">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
+<span class="nc" id="L296">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
 
             //execute the SQL query
-<span class="nc" id="L296">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
-<span class="nc bnc" id="L297" title="All 2 branches missed.">            while (result.next()) {</span>
-<span class="nc" id="L298">                int id = result.getInt(1);</span>
-<span class="nc" id="L299">                String firstName = result.getString(2);</span>
-<span class="nc" id="L300">                String lastName = result.getString(3);</span>
-<span class="nc" id="L301">                int age = result.getInt(4);</span>
-<span class="nc" id="L302">                String disciplin = result.getString(5);</span>
-<span class="nc" id="L303">                Time bestTime = result.getTime(6);</span>
-<span class="nc" id="L304">                Timestamp dateOfBestTime = result.getTimestamp(7);</span>
+<span class="nc" id="L299">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
+<span class="nc bnc" id="L300" title="All 2 branches missed.">            while (result.next()) {</span>
+<span class="nc" id="L301">                int id = result.getInt(1);</span>
+<span class="nc" id="L302">                String firstName = result.getString(2);</span>
+<span class="nc" id="L303">                String lastName = result.getString(3);</span>
+<span class="nc" id="L304">                int age = result.getInt(4);</span>
+<span class="nc" id="L305">                String disciplin = result.getString(5);</span>
+<span class="nc" id="L306">                Time bestTime = result.getTime(6);</span>
+<span class="nc" id="L307">                Timestamp dateOfBestTime = result.getTimestamp(7);</span>
 
-<span class="nc" id="L306">                trainingresults.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,</span>
-                        bestTime, dateOfBestTime));
-<span class="nc" id="L308">            }</span>
-<span class="nc" id="L309">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L310">        }</span>
-<span class="nc" id="L311">        return trainingresults;</span>
+//                trainingresults.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
+//                        bestTime, dateOfBestTime));
+<span class="nc" id="L311">            }</span>
+<span class="nc" id="L312">        } catch (SQLException | NullPointerException e) {</span>
+<span class="nc" id="L313">        }</span>
+<span class="nc" id="L314">        return trainingresults;</span>
     }
 
     @Override
     public int editUnder18(int contingent) {
         try {
-<span class="nc" id="L317">            String UpdateSQL = &quot;UPDATE contingent SET under_18 = ?&quot;;</span>
-<span class="nc" id="L318">            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);</span>
-<span class="nc" id="L319">            preparedStatement.setInt(1, contingent);</span>
-<span class="nc" id="L320">            preparedStatement.executeUpdate();</span>
+<span class="nc" id="L320">            String UpdateSQL = &quot;UPDATE contingent SET under_18 = ?&quot;;</span>
+<span class="nc" id="L321">            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);</span>
+<span class="nc" id="L322">            preparedStatement.setInt(1, contingent);</span>
+<span class="nc" id="L323">            preparedStatement.executeUpdate();</span>
 
-<span class="nc" id="L322">        } catch (SQLException e) {</span>
-<span class="nc" id="L323">        }</span>
-<span class="nc" id="L324">        return contingent;</span>
+<span class="nc" id="L325">        } catch (SQLException e) {</span>
+<span class="nc" id="L326">        }</span>
+<span class="nc" id="L327">        return contingent;</span>
 
     }
 
     @Override
     public int editBetween18And60(int contingent) {
         try {
-<span class="nc" id="L331">            String UpdateSQL = &quot;UPDATE contingent SET between_18_and_60 = ?&quot;;</span>
-<span class="nc" id="L332">            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);</span>
-<span class="nc" id="L333">            preparedStatement.setInt(1, contingent);</span>
-<span class="nc" id="L334">            preparedStatement.executeUpdate();</span>
+<span class="nc" id="L334">            String UpdateSQL = &quot;UPDATE contingent SET between_18_and_60 = ?&quot;;</span>
+<span class="nc" id="L335">            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);</span>
+<span class="nc" id="L336">            preparedStatement.setInt(1, contingent);</span>
+<span class="nc" id="L337">            preparedStatement.executeUpdate();</span>
 
-<span class="nc" id="L336">        } catch (SQLException e) {</span>
-<span class="nc" id="L337">        }</span>
-<span class="nc" id="L338">        return contingent;</span>
+<span class="nc" id="L339">        } catch (SQLException e) {</span>
+<span class="nc" id="L340">        }</span>
+<span class="nc" id="L341">        return contingent;</span>
     }
 
     @Override
     public int editOver60(int contingent) {
         try {
-<span class="nc" id="L344">            String UpdateSQL = &quot;UPDATE contingent SET over_60 = ?&quot;;</span>
-<span class="nc" id="L345">            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);</span>
-<span class="nc" id="L346">            preparedStatement.setInt(1, contingent);</span>
-<span class="nc" id="L347">            preparedStatement.executeUpdate();</span>
+<span class="nc" id="L347">            String UpdateSQL = &quot;UPDATE contingent SET over_60 = ?&quot;;</span>
+<span class="nc" id="L348">            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);</span>
+<span class="nc" id="L349">            preparedStatement.setInt(1, contingent);</span>
+<span class="nc" id="L350">            preparedStatement.executeUpdate();</span>
 
-<span class="nc" id="L349">        } catch (SQLException e) {</span>
-<span class="nc" id="L350">        }</span>
-<span class="nc" id="L351">        return contingent;</span>
+<span class="nc" id="L352">        } catch (SQLException e) {</span>
+<span class="nc" id="L353">        }</span>
+<span class="nc" id="L354">        return contingent;</span>
     }
 
     @Override
     public int editPassive(int contingent) {
         try {
-<span class="nc" id="L357">            String UpdateSQL = &quot;UPDATE contingent SET passive = ?&quot;;</span>
-<span class="nc" id="L358">            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);</span>
-<span class="nc" id="L359">            preparedStatement.setInt(1, contingent);</span>
-<span class="nc" id="L360">            preparedStatement.executeUpdate();</span>
+<span class="nc" id="L360">            String UpdateSQL = &quot;UPDATE contingent SET passive = ?&quot;;</span>
+<span class="nc" id="L361">            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);</span>
+<span class="nc" id="L362">            preparedStatement.setInt(1, contingent);</span>
+<span class="nc" id="L363">            preparedStatement.executeUpdate();</span>
 
-<span class="nc" id="L362">        } catch (SQLException e) {</span>
-<span class="nc" id="L363">        }</span>
-<span class="nc" id="L364">        return contingent;</span>
+<span class="nc" id="L365">        } catch (SQLException e) {</span>
+<span class="nc" id="L366">        }</span>
+<span class="nc" id="L367">        return contingent;</span>
     }
 
     @Override
     public Member getMemberById(int id) {
-<span class="fc" id="L369">        Member member = null;</span>
+<span class="fc" id="L372">        Member member = null;</span>
         try {
             //create String for the PreparedStatement
-<span class="fc" id="L372">            String selectSQL = &quot;SELECT * FROM members WHERE id = &quot; + id;</span>
+<span class="fc" id="L375">            String selectSQL = &quot;SELECT * FROM members WHERE id = &quot; + id;</span>
             //get connection
-<span class="nc" id="L374">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
+<span class="nc" id="L377">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
 
             //execute the SQL query
-<span class="nc" id="L377">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
-<span class="nc bnc" id="L378" title="All 2 branches missed.">            while (result.next()) {</span>
-<span class="nc" id="L379">                String firstName = result.getString(1);</span>
-<span class="nc" id="L380">                String lastName = result.getString(2);</span>
-<span class="nc" id="L381">                int age = result.getInt(3);</span>
-<span class="nc" id="L382">                boolean isActive = result.getBoolean(4);</span>
-<span class="nc" id="L383">                int contingent = result.getInt(6);</span>
-<span class="nc" id="L384">                int restance = result.getInt(7);</span>
+<span class="nc" id="L380">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
+<span class="nc bnc" id="L381" title="All 2 branches missed.">            while (result.next()) {</span>
+<span class="nc" id="L382">                String firstName = result.getString(1);</span>
+<span class="nc" id="L383">                String lastName = result.getString(2);</span>
+<span class="nc" id="L384">                int age = result.getInt(3);</span>
+<span class="nc" id="L385">                boolean isActive = result.getBoolean(4);</span>
+<span class="nc" id="L386">                int contingent = result.getInt(6);</span>
+<span class="nc" id="L387">                int restance = result.getInt(7);</span>
 
                 //create a new Member object and insert it into the ArrayList
-<span class="nc" id="L387">                member = new Member(firstName, lastName, age, isActive, contingent, restance, id);</span>
-<span class="nc" id="L388">            }</span>
-<span class="fc" id="L389">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L390">        }</span>
-<span class="fc" id="L391">        return member;</span>
+<span class="nc" id="L390">                member = new Member(firstName, lastName, age, isActive, contingent, restance, id);</span>
+<span class="nc" id="L391">            }</span>
+<span class="fc" id="L392">        } catch (SQLException | NullPointerException e) {</span>
+<span class="nc" id="L393">        }</span>
+<span class="fc" id="L394">        return member;</span>
     }
 
     @Override
     public void editRestance(int id, int newRestance) {
         try {
-<span class="nc" id="L397">            String UpdateSQL = &quot;UPDATE members SET restance = ? WHERE id = ?&quot;;</span>
-<span class="nc" id="L398">            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);</span>
-<span class="nc" id="L399">            preparedStatement.setInt(1, newRestance);</span>
-<span class="nc" id="L400">            preparedStatement.setInt(2, id);</span>
-<span class="nc" id="L401">            preparedStatement.executeUpdate();</span>
+<span class="nc" id="L400">            String UpdateSQL = &quot;UPDATE members SET restance = ? WHERE id = ?&quot;;</span>
+<span class="nc" id="L401">            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);</span>
+<span class="nc" id="L402">            preparedStatement.setInt(1, newRestance);</span>
+<span class="nc" id="L403">            preparedStatement.setInt(2, id);</span>
+<span class="nc" id="L404">            preparedStatement.executeUpdate();</span>
             
-<span class="nc" id="L403">        } catch (SQLException e) {</span>
-<span class="nc" id="L404">        }</span>
-<span class="nc" id="L405">    }</span>
+<span class="nc" id="L406">        } catch (SQLException e) {</span>
+<span class="nc" id="L407">        }</span>
+<span class="nc" id="L408">    }</span>
 
     @Override
     public void editFirstName(int id, String firstName) {
         try {
-<span class="nc" id="L410">            String UpdateSQL = &quot;UPDATE members SET first_name = ? WHERE id = ?&quot;;</span>
-<span class="nc" id="L411">            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);</span>
-<span class="nc" id="L412">            preparedStatement.setString(1, firstName);</span>
-<span class="nc" id="L413">            preparedStatement.setInt(2, id);</span>
-<span class="nc" id="L414">            preparedStatement.executeUpdate();</span>
+<span class="nc" id="L413">            String UpdateSQL = &quot;UPDATE members SET first_name = ? WHERE id = ?&quot;;</span>
+<span class="nc" id="L414">            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);</span>
+<span class="nc" id="L415">            preparedStatement.setString(1, firstName);</span>
+<span class="nc" id="L416">            preparedStatement.setInt(2, id);</span>
+<span class="nc" id="L417">            preparedStatement.executeUpdate();</span>
             
-<span class="nc" id="L416">        } catch (SQLException e) {</span>
-<span class="nc" id="L417">        }</span>
-<span class="nc" id="L418">    }</span>
+<span class="nc" id="L419">        } catch (SQLException e) {</span>
+<span class="nc" id="L420">        }</span>
+<span class="nc" id="L421">    }</span>
 
     @Override
     public void editLastName(int id, String lastName) {
         try {
-<span class="nc" id="L423">            String UpdateSQL = &quot;UPDATE members SET last_name = ? WHERE id = ?&quot;;</span>
-<span class="nc" id="L424">            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);</span>
-<span class="nc" id="L425">            preparedStatement.setString(1, lastName);</span>
-<span class="nc" id="L426">            preparedStatement.setInt(2, id);</span>
-<span class="nc" id="L427">            preparedStatement.executeUpdate();</span>
+<span class="nc" id="L426">            String UpdateSQL = &quot;UPDATE members SET last_name = ? WHERE id = ?&quot;;</span>
+<span class="nc" id="L427">            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);</span>
+<span class="nc" id="L428">            preparedStatement.setString(1, lastName);</span>
+<span class="nc" id="L429">            preparedStatement.setInt(2, id);</span>
+<span class="nc" id="L430">            preparedStatement.executeUpdate();</span>
             
-<span class="nc" id="L429">        } catch (SQLException e) {</span>
-<span class="nc" id="L430">        }</span>
-<span class="nc" id="L431">    }</span>
+<span class="nc" id="L432">        } catch (SQLException e) {</span>
+<span class="nc" id="L433">        }</span>
+<span class="nc" id="L434">    }</span>
 
     @Override
     public void editActiveness(int id, boolean active) {
         try {
-<span class="nc" id="L436">            String UpdateSQL = &quot;UPDATE members SET is_active = ? WHERE id = ?&quot;;</span>
-<span class="nc" id="L437">            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);</span>
-<span class="nc" id="L438">            preparedStatement.setBoolean(1, active);</span>
-<span class="nc" id="L439">            preparedStatement.setInt(2, id);</span>
-<span class="nc" id="L440">            preparedStatement.executeUpdate();</span>
+<span class="nc" id="L439">            String UpdateSQL = &quot;UPDATE members SET is_active = ? WHERE id = ?&quot;;</span>
+<span class="nc" id="L440">            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);</span>
+<span class="nc" id="L441">            preparedStatement.setBoolean(1, active);</span>
+<span class="nc" id="L442">            preparedStatement.setInt(2, id);</span>
+<span class="nc" id="L443">            preparedStatement.executeUpdate();</span>
             
-<span class="nc" id="L442">        } catch (SQLException e) {</span>
-<span class="nc" id="L443">        }</span>
-<span class="nc" id="L444">    }</span>
+<span class="nc" id="L445">        } catch (SQLException e) {</span>
+<span class="nc" id="L446">        }</span>
+<span class="nc" id="L447">    }</span>
     
     @Override
     public ArrayList&lt;CompetitiveSwimmer&gt; getCompetitionSwimmers() {
-<span class="nc" id="L448">        ArrayList&lt;CompetitiveSwimmer&gt; competitionSwimmers = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L451">        ArrayList&lt;CompetitiveSwimmer&gt; competitionSwimmers = new ArrayList&lt;&gt;();</span>
         try {
             //create String for the PreparedStatement
-<span class="nc" id="L451">            String selectSQL = &quot;SELECT id, first_name, last_name, age, disciplin,&quot;</span>
+<span class="nc" id="L454">            String selectSQL = &quot;SELECT id, first_name, last_name, age, disciplin,&quot;</span>
                     + &quot;best_time, date_of_best_time, competition_name, ranking, &quot;
                     + &quot;best_time FROM members NATURAL JOIN competitive_swimmers&quot;
                     + &quot;NATURAL JOIN competitions ORDER BY id&quot;;
             //get connection
-<span class="nc" id="L456">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
+<span class="nc" id="L459">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
 
             //execute the SQL query
-<span class="nc" id="L459">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
-<span class="nc bnc" id="L460" title="All 2 branches missed.">            while (result.next()) {</span>
-<span class="nc" id="L461">                int id = result.getInt(1);</span>
-<span class="nc" id="L462">                String firstName = result.getString(2);</span>
-<span class="nc" id="L463">                String lastName = result.getString(3);</span>
-<span class="nc" id="L464">                int age = result.getInt(4);</span>
-<span class="nc" id="L465">                String disciplin = result.getString(5);</span>
-<span class="nc" id="L466">                Time bestTime = result.getTime(6);</span>
-<span class="nc" id="L467">                Timestamp dateOfBestTime = result.getTimestamp(7);</span>
-<span class="nc" id="L468">                String competitionName = result.getString(8);</span>
-<span class="nc" id="L469">                int ranking = result.getInt(9);</span>
-<span class="nc" id="L470">                Time bestTimeInCompetition = result.getTime(10);</span>
+<span class="nc" id="L462">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
+<span class="nc bnc" id="L463" title="All 2 branches missed.">            while (result.next()) {</span>
+<span class="nc" id="L464">                int id = result.getInt(1);</span>
+<span class="nc" id="L465">                String firstName = result.getString(2);</span>
+<span class="nc" id="L466">                String lastName = result.getString(3);</span>
+<span class="nc" id="L467">                int age = result.getInt(4);</span>
+<span class="nc" id="L468">                String disciplin = result.getString(5);</span>
+<span class="nc" id="L469">                Time bestTime = result.getTime(6);</span>
+<span class="nc" id="L470">                Timestamp dateOfBestTime = result.getTimestamp(7);</span>
+<span class="nc" id="L471">                String competitionName = result.getString(8);</span>
+<span class="nc" id="L472">                int ranking = result.getInt(9);</span>
+<span class="nc" id="L473">                Time bestTimeInCompetition = result.getTime(10);</span>
 
                 //create a new Member object and insert it into the ArrayList
-<span class="nc" id="L473">                Competition competition = new Competition(competitionName, ranking, bestTimeInCompetition);</span>
-<span class="nc" id="L474">                competitionSwimmers.add(new CompetitiveSwimmer(disciplin, bestTime, dateOfBestTime, competition, firstName, lastName, age, id));</span>
-<span class="nc" id="L475">            }</span>
-<span class="nc" id="L476">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L477">        }</span>
-<span class="nc" id="L478">        return competitionSwimmers;</span>
+//                Competition competition = new Competition(competitionName, ranking, bestTimeInCompetition);
+//                competitionSwimmers.add(new CompetitiveSwimmer(disciplin, bestTime, dateOfBestTime, competition, firstName, lastName, age, id));
+<span class="nc" id="L478">            }</span>
+<span class="nc" id="L479">        } catch (SQLException | NullPointerException e) {</span>
+<span class="nc" id="L480">        }</span>
+<span class="nc" id="L481">        return competitionSwimmers;</span>
     }
 
     @Override
     public ArrayList&lt;CompetitiveSwimmer&gt; getCompetitionResult() {
-<span class="nc" id="L483">        ArrayList&lt;CompetitiveSwimmer&gt; competitionResults = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L486">        ArrayList&lt;CompetitiveSwimmer&gt; competitionResults = new ArrayList&lt;&gt;();</span>
         try {
             //create String for the PreparedStatement
-<span class="nc" id="L486">            String selectSQL = &quot;SELECT best_time, ranking, competition_name, id,&quot;</span>
+<span class="nc" id="L489">            String selectSQL = &quot;SELECT best_time, ranking, competition_name, id,&quot;</span>
                     + &quot; first_name, last_name, age, disciplin, best_time, &quot;
                     + &quot;date_of_best_time FROM members NATURAL JOIN &quot;
                     + &quot;competitive_swimmers NATURAL JOIN competitions &quot;
                     + &quot;ORDER BY best_time&quot;;
             //get connection
-<span class="nc" id="L492">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
+<span class="nc" id="L495">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
 
             //execute the SQL query
-<span class="nc" id="L495">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
-<span class="nc bnc" id="L496" title="All 2 branches missed.">            while (result.next()) {</span>
-<span class="nc" id="L497">                Time bestTimeInCompetition = result.getTime(1);</span>
-<span class="nc" id="L498">                int ranking = result.getInt(2);</span>
-<span class="nc" id="L499">                String competitionName = result.getString(3);</span>
-<span class="nc" id="L500">                int id = result.getInt(4);</span>
-<span class="nc" id="L501">                String firstName = result.getString(5);</span>
-<span class="nc" id="L502">                String lastName = result.getString(6);</span>
-<span class="nc" id="L503">                int age = result.getInt(7);</span>
-<span class="nc" id="L504">                String disciplin = result.getString(8);</span>
-<span class="nc" id="L505">                Time bestTime = result.getTime(9);</span>
-<span class="nc" id="L506">                Timestamp dateOfBestTime = result.getTimestamp(10);</span>
+<span class="nc" id="L498">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
+<span class="nc bnc" id="L499" title="All 2 branches missed.">            while (result.next()) {</span>
+<span class="nc" id="L500">                Time bestTimeInCompetition = result.getTime(1);</span>
+<span class="nc" id="L501">                int ranking = result.getInt(2);</span>
+<span class="nc" id="L502">                String competitionName = result.getString(3);</span>
+<span class="nc" id="L503">                int id = result.getInt(4);</span>
+<span class="nc" id="L504">                String firstName = result.getString(5);</span>
+<span class="nc" id="L505">                String lastName = result.getString(6);</span>
+<span class="nc" id="L506">                int age = result.getInt(7);</span>
+<span class="nc" id="L507">                String disciplin = result.getString(8);</span>
+<span class="nc" id="L508">                Time bestTime = result.getTime(9);</span>
+<span class="nc" id="L509">                Timestamp dateOfBestTime = result.getTimestamp(10);</span>
                 
 
                 //create a new Member object and insert it into the ArrayList
-<span class="nc" id="L510">                Competition competition = new Competition(competitionName, ranking, bestTimeInCompetition);</span>
-<span class="nc" id="L511">                competitionResults.add(new CompetitiveSwimmer(disciplin, bestTime, dateOfBestTime, competition, firstName, lastName, age, id));</span>
-<span class="nc" id="L512">            }</span>
-<span class="nc" id="L513">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L514">        }</span>
-<span class="nc" id="L515">        return competitionResults;</span>
+//                Competition competition = new Competition(competitionName, ranking, bestTimeInCompetition);
+//                competitionResults.add(new CompetitiveSwimmer(disciplin, bestTime, dateOfBestTime, competition, firstName, lastName, age, id));
+<span class="nc" id="L515">            }</span>
+<span class="nc" id="L516">        } catch (SQLException | NullPointerException e) {</span>
+<span class="nc" id="L517">        }</span>
+<span class="nc" id="L518">        return competitionResults;</span>
     }
 
 }
