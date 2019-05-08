@@ -26,33 +26,34 @@ public class Controller {
             switch (ui.mainMenuChoice()) {
                 case 1:
                     ui.showMembersMenu();
-                    do {
-                        switch (ui.memberMenuChoice()) {
-                            case 1:
-                                showMembersList();
-                                ui.showMembersMenu();
-                                break;
-                            case 2:
-                                createMember();
-                                ui.showMembersMenu();
-                                break;
-                            case 3:
-                                editMember();
-                                ui.showMainMenu();
-                                break;
-                            case 4:
-                                deleteMember();
-                                ui.showMainMenu();
-                                break;
-                            case 5:
-                                quit = true;
-                                start();
-                                break;
-                            case 0:
-                                quit = true;
-                                break;
-                        }
-                    } while (!quit);
+                    quit = memberMenu(quit);
+//                    do {
+//                        switch (ui.memberMenuChoice()) {
+//                            case 1:
+//                                showMembersList();
+//                                ui.showMembersMenu();
+//                                break;
+//                            case 2:
+//                                createMember();
+//                                ui.showMembersMenu();
+//                                break;
+//                            case 3:
+//                                editMember();
+//                                ui.showMainMenu();
+//                                break;
+//                            case 4:
+//                                deleteMember();
+//                                ui.showMainMenu();
+//                                break;
+//                            case 5:
+//                                quit = true;
+//                                start();
+//                                break;
+//                            case 0:
+//                                quit = true;
+//                                break;
+//                        }
+//                    } while (!quit);
                     break;
                 case 2:
                     ui.showContingentMenu();
@@ -190,6 +191,37 @@ public class Controller {
         } while (!quit);
     }
 
+    private boolean memberMenu(boolean quit) {
+        do {
+            switch (ui.memberMenuChoice()) {
+                case 1:
+                    showMembersList();
+                    ui.showMembersMenu();
+                    break;
+                case 2:
+                    createMember();
+                    ui.showMembersMenu();
+                    break;
+                case 3:
+                    editMember();
+                    ui.showMainMenu();
+                    break;
+                case 4:
+                    deleteMember();
+                    ui.showMainMenu();
+                    break;
+                case 5:
+                    quit = true;
+                    start();
+                    break;
+                case 0:
+                    quit = true;
+                    break;
+            }
+        } while (!quit);
+        return quit;
+    }
+
     private void createMember() {
         ui.scanString();
         ui.print("Please enter first name: ");
@@ -325,7 +357,7 @@ public class Controller {
         LocalTime bestTime = ui.scanTime();
         ui.print("Please enter the date: (YYYY-MM-DD)");
         String dateOfBestTime = ui.scanDate();
-        
+
         CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer(id, disciplin, bestTime, dateOfBestTime);
         db.saveCompetitiveSwimmer(competitiveSwimmer);
 
@@ -343,7 +375,7 @@ public class Controller {
         int id = ui.scanID();
         Member memberByID = db.getMemberById(id);
         ui.print(memberByID.toString());
-        
+
         boolean quit = false;
         ui.showEditTrainingsresultMenu();
         do {
@@ -369,7 +401,7 @@ public class Controller {
                     db.editDate(id, newDateOfBestTime);
                     ui.print("The date has now been changed to " + newDateOfBestTime);
                     break;
-                case 4: 
+                case 4:
                     quit = true;
                     start();
                     break;
