@@ -22,7 +22,7 @@ public class Controller {
 <span class="fc" id="L22">        ui.showMainMenu();</span>
 
         do {
-<span class="pc bpc" id="L25" title="6 of 8 branches missed.">            switch (ui.mainMenuChoice()) {</span>
+<span class="pc bpc" id="L25" title="5 of 8 branches missed.">            switch (ui.mainMenuChoice()) {</span>
                 case 1:
 <span class="fc" id="L27">                    ui.showMembersMenu();</span>
                     do {
@@ -54,21 +54,21 @@ public class Controller {
 <span class="fc bfc" id="L54" title="All 2 branches covered.">                    } while (!quit);</span>
 <span class="fc" id="L55">                    break;</span>
                 case 2:
-<span class="nc" id="L57">                    ui.showContingentMenu();</span>
+<span class="fc" id="L57">                    ui.showContingentMenu();</span>
                     do {
-<span class="nc bnc" id="L59" title="All 5 branches missed.">                        switch (ui.contingentMenuChoice()) {</span>
+<span class="pc bpc" id="L59" title="4 of 5 branches missed.">                        switch (ui.contingentMenuChoice()) {</span>
                             case 1:
 <span class="nc" id="L61">                                showContingent();</span>
 <span class="nc" id="L62">                                ui.showContingentMenu();</span>
 <span class="nc" id="L63">                                break;</span>
                             case 2:
-<span class="nc" id="L65">                                ui.showEditContingentMenu();</span>
+<span class="fc" id="L65">                                ui.showEditContingentMenu();</span>
                                 do {
-<span class="nc bnc" id="L67" title="All 7 branches missed.">                                    switch (ui.editContingentChoice()) {</span>
+<span class="pc bpc" id="L67" title="5 of 7 branches missed.">                                    switch (ui.editContingentChoice()) {</span>
                                         case 1:
-<span class="nc" id="L69">                                            editUnder18();</span>
-<span class="nc" id="L70">                                            ui.showEditContingentMenu();</span>
-<span class="nc" id="L71">                                            break;</span>
+<span class="fc" id="L69">                                            editUnder18();</span>
+<span class="fc" id="L70">                                            ui.showEditContingentMenu();</span>
+<span class="fc" id="L71">                                            break;</span>
                                         case 2:
 <span class="nc" id="L73">                                            editBetween18And60();</span>
 <span class="nc" id="L74">                                            ui.showEditContingentMenu();</span>
@@ -86,12 +86,12 @@ public class Controller {
 <span class="nc" id="L86">                                            start();</span>
 <span class="nc" id="L87">                                            break;</span>
                                         case 0:
-<span class="nc" id="L89">                                            quit = true;</span>
+<span class="fc" id="L89">                                            quit = true;</span>
                                             break;
                                     }
-<span class="nc bnc" id="L92" title="All 2 branches missed.">                                } while (!quit);</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">                                } while (!quit);</span>
 
-<span class="nc" id="L94">                                break;</span>
+<span class="fc" id="L94">                                break;</span>
                             case 3:
 <span class="nc" id="L96">                                quit = true;</span>
 <span class="nc" id="L97">                                start();</span>
@@ -100,8 +100,8 @@ public class Controller {
 <span class="nc" id="L100">                                quit = true;</span>
                                 break;
                         }
-<span class="nc bnc" id="L103" title="All 2 branches missed.">                    } while (!quit);</span>
-<span class="nc" id="L104">                    break;</span>
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">                    } while (!quit);</span>
+<span class="fc" id="L104">                    break;</span>
                 case 3:
 <span class="fc" id="L106">                    ui.showRestanceMenu();</span>
                     do {
@@ -331,11 +331,11 @@ public class Controller {
     }
 
     private void editUnder18() {
-<span class="nc" id="L334">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
-<span class="nc" id="L335">        int contingent = ui.scanInt();</span>
-<span class="nc" id="L336">        contingent = db.editUnder18(contingent);</span>
-<span class="nc" id="L337">        ui.print(&quot;The contingent has now been changed to &quot; + contingent);</span>
-<span class="nc" id="L338">    }</span>
+<span class="fc" id="L334">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
+<span class="fc" id="L335">        int contingent = ui.scanInt();</span>
+<span class="fc" id="L336">        contingent = db.editUnder18(contingent);</span>
+<span class="fc" id="L337">        ui.print(&quot;The contingent has now been changed to &quot; + contingent);</span>
+<span class="fc" id="L338">    }</span>
 
     private void editBetween18And60() {
 <span class="nc" id="L341">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
