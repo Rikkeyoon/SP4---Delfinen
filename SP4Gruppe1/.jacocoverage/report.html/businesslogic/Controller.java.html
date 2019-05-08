@@ -26,11 +26,11 @@ public class Controller {
                 case 1:
 <span class="fc" id="L27">                    ui.showMembersMenu();</span>
                     do {
-<span class="pc bpc" id="L29" title="5 of 7 branches missed.">                        switch (ui.memberMenuChoice()) {</span>
+<span class="pc bpc" id="L29" title="2 of 7 branches missed.">                        switch (ui.memberMenuChoice()) {</span>
                             case 1:
-<span class="nc" id="L31">                                showMembersList();</span>
-<span class="nc" id="L32">                                ui.showMembersMenu();</span>
-<span class="nc" id="L33">                                break;</span>
+<span class="fc" id="L31">                                showMembersList();</span>
+<span class="fc" id="L32">                                ui.showMembersMenu();</span>
+<span class="fc" id="L33">                                break;</span>
                             case 2:
 <span class="fc" id="L35">                                createMember();</span>
 <span class="fc" id="L36">                                ui.showMembersMenu();</span>
@@ -40,19 +40,19 @@ public class Controller {
 <span class="nc" id="L40">                                ui.showMainMenu();</span>
 <span class="nc" id="L41">                                break;</span>
                             case 4:
-<span class="nc" id="L43">                                deleteMember();</span>
-<span class="nc" id="L44">                                ui.showMainMenu();</span>
-<span class="nc" id="L45">                                break;</span>
+<span class="fc" id="L43">                                deleteMember();</span>
+<span class="fc" id="L44">                                ui.showMainMenu();</span>
+<span class="fc" id="L45">                                break;</span>
                             case 5:
 <span class="fc" id="L47">                                quit = true;</span>
 <span class="nc" id="L48">                                start();</span>
 <span class="nc" id="L49">                                break;</span>
                             case 0:
-<span class="nc" id="L51">                                quit = true;</span>
+<span class="fc" id="L51">                                quit = true;</span>
                                 break;
                         }
-<span class="pc bpc" id="L54" title="1 of 2 branches missed.">                    } while (!quit);</span>
-<span class="nc" id="L55">                    break;</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">                    } while (!quit);</span>
+<span class="fc" id="L55">                    break;</span>
                 case 2:
 <span class="nc" id="L57">                    ui.showContingentMenu();</span>
                     do {
@@ -182,8 +182,8 @@ public class Controller {
 <span class="nc" id="L182">                    quit = true;</span>
                     break;
             }
-<span class="nc bnc" id="L185" title="All 2 branches missed.">        } while (!quit);</span>
-<span class="nc" id="L186">    }</span>
+<span class="pc bpc" id="L185" title="1 of 2 branches missed.">        } while (!quit);</span>
+<span class="fc" id="L186">    }</span>
 
     private void createMember() {
 <span class="fc" id="L189">        ui.scanString();</span>
@@ -204,12 +204,12 @@ public class Controller {
 <span class="fc" id="L204">    }</span>
 
     private void deleteMember() {
-<span class="nc" id="L207">        showMembersList();</span>
-<span class="nc" id="L208">        ui.print(&quot;Enter the ID of the member you want to delete: &quot;);</span>
-<span class="nc" id="L209">        int id = ui.scanInt();</span>
-<span class="nc" id="L210">        db.deleteMember(id);</span>
-<span class="nc" id="L211">        ui.print(&quot;The member with ID number &quot; + id + &quot; has been deleted&quot;);</span>
-<span class="nc" id="L212">    }</span>
+<span class="fc" id="L207">        showMembersList();</span>
+<span class="fc" id="L208">        ui.print(&quot;Enter the ID of the member you want to delete: &quot;);</span>
+<span class="fc" id="L209">        int id = ui.scanInt();</span>
+<span class="fc" id="L210">        db.deleteMember(id);</span>
+<span class="fc" id="L211">        ui.print(&quot;The member with ID number &quot; + id + &quot; has been deleted&quot;);</span>
+<span class="fc" id="L212">    }</span>
 
     private void showMembersList() {
 <span class="fc" id="L215">        ArrayList&lt;Member&gt; members = db.getMembersList();</span>
@@ -217,14 +217,14 @@ public class Controller {
 <span class="fc" id="L217">    }</span>
 
     private void editMember() {
-<span class="nc" id="L220">        showMembersList();</span>
-<span class="nc" id="L221">        ui.print(&quot;Enter the ID of the member, you would like to edit: &quot;);</span>
-<span class="nc" id="L222">        int id = ui.scanID();</span>
-<span class="nc" id="L223">        Member memberByID = db.getMemberById(id);</span>
-<span class="nc" id="L224">        ui.print(memberByID.toString());</span>
+<span class="fc" id="L220">        showMembersList();</span>
+<span class="fc" id="L221">        ui.print(&quot;Enter the ID of the member, you would like to edit: &quot;);</span>
+<span class="fc" id="L222">        int id = ui.scanID();</span>
+<span class="fc" id="L223">        Member memberByID = db.getMemberById(id);</span>
+<span class="fc" id="L224">        ui.print(memberByID.toString());</span>
 
-<span class="nc" id="L226">        boolean quit = false;</span>
-<span class="nc" id="L227">        ui.showEditMemberMenu();</span>
+<span class="fc" id="L226">        boolean quit = false;</span>
+<span class="fc" id="L227">        ui.showEditMemberMenu();</span>
         do {
 <span class="nc bnc" id="L229" title="All 5 branches missed.">            switch (ui.editMemberChoice()) {</span>
                 case 1:

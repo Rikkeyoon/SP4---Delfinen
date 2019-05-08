@@ -10,46 +10,56 @@ public class Competition {
     private String competitionName;
     private int ranking;
     private Time bestTimeInCompetition;
+    private CompetitiveSwimmer competitiveSwimmer;
 
-<span class="nc" id="L14">    public Competition(CompetitiveSwimmer competitiveSwimmer, String competitionName, int ranking, Time bestTimeInCompetition) {</span>
-<span class="nc" id="L15">        this.competitionName = competitionName;</span>
-<span class="nc" id="L16">        this.ranking = ranking;</span>
-<span class="nc" id="L17">        this.bestTimeInCompetition = bestTimeInCompetition;</span>
-<span class="nc" id="L18">    }</span>
+<span class="nc" id="L15">    public Competition(CompetitiveSwimmer competitiveSwimmer, String competitionName, int ranking, Time bestTimeInCompetition) {</span>
+<span class="nc" id="L16">        this.competitionName = competitionName;</span>
+<span class="nc" id="L17">        this.ranking = ranking;</span>
+<span class="nc" id="L18">        this.bestTimeInCompetition = bestTimeInCompetition;</span>
+<span class="nc" id="L19">        this.competitiveSwimmer = competitiveSwimmer;</span>
+<span class="nc" id="L20">    }</span>
 
-<span class="nc" id="L20">    public Competition(String competitionName, int ranking, Time bestTimeInCompetition) {</span>
-<span class="nc" id="L21">        this.competitionName = competitionName;</span>
-<span class="nc" id="L22">        this.ranking = ranking;</span>
-<span class="nc" id="L23">        this.bestTimeInCompetition = bestTimeInCompetition;</span>
-<span class="nc" id="L24">    }</span>
+<span class="nc" id="L22">    public Competition(String competitionName, int ranking, Time bestTimeInCompetition) {</span>
+<span class="nc" id="L23">        this.competitionName = competitionName;</span>
+<span class="nc" id="L24">        this.ranking = ranking;</span>
+<span class="nc" id="L25">        this.bestTimeInCompetition = bestTimeInCompetition;</span>
+<span class="nc" id="L26">    }</span>
     
     public String getCompetitionName() {
-<span class="nc" id="L27">        return competitionName;</span>
+<span class="nc" id="L29">        return competitionName;</span>
     }
 
     public void setCompetitionName(String competitionName) {
-<span class="nc" id="L31">        this.competitionName = competitionName;</span>
-<span class="nc" id="L32">    }</span>
+<span class="nc" id="L33">        this.competitionName = competitionName;</span>
+<span class="nc" id="L34">    }</span>
 
     public int getRanking() {
-<span class="nc" id="L35">        return ranking;</span>
+<span class="nc" id="L37">        return ranking;</span>
     }
 
     public void setRanking(int ranking) {
-<span class="nc" id="L39">        this.ranking = ranking;</span>
-<span class="nc" id="L40">    }</span>
+<span class="nc" id="L41">        this.ranking = ranking;</span>
+<span class="nc" id="L42">    }</span>
 
     public Time getBestTimeInCompetition() {
-<span class="nc" id="L43">        return bestTimeInCompetition;</span>
+<span class="nc" id="L45">        return bestTimeInCompetition;</span>
     }
 
     public void setBestTimeInCompetition(Time bestTimeInCompetition) {
-<span class="nc" id="L47">        this.bestTimeInCompetition = bestTimeInCompetition;</span>
-<span class="nc" id="L48">    }</span>
+<span class="nc" id="L49">        this.bestTimeInCompetition = bestTimeInCompetition;</span>
+<span class="nc" id="L50">    }</span>
+
+    public CompetitiveSwimmer getCompetitiveSwimmer() {
+<span class="nc" id="L53">        return competitiveSwimmer;</span>
+    }
+
+    public void setCompetitiveSwimmer(CompetitiveSwimmer competitiveSwimmer) {
+<span class="nc" id="L57">        this.competitiveSwimmer = competitiveSwimmer;</span>
+<span class="nc" id="L58">    }</span>
 
     @Override
     public String toString() {
-<span class="nc" id="L52">        return &quot;CompetitionName: \t&quot; + competitionName </span>
+<span class="nc" id="L62">        return &quot;CompetitionName: \t&quot; + competitionName </span>
                 + &quot;\nRanking: \t\t&quot; + ranking 
                 + &quot;\nBestTimeInCompetition: \t\t&quot; + bestTimeInCompetition;
     }

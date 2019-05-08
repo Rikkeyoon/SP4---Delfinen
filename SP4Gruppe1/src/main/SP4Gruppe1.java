@@ -3,6 +3,7 @@ package main;
 import businesslogic.Controller;
 import datalag.DBConnection;
 import datalag.DBFacade;
+import datalag.DBStorage;
 import java.sql.SQLException;
 import presentation.SystemUI;
 import presentation.UI;
@@ -16,7 +17,7 @@ public class SP4Gruppe1 {
         UI ui = new SystemUI();
                 
         DBConnection dbc = new DBConnection();
-        DBFacade db = new DBFacade(dbc);
+        DBStorage db = new DBFacade(dbc);
         
         Controller ctrl = new Controller(ui, db);
 //        ctrl.createMember();

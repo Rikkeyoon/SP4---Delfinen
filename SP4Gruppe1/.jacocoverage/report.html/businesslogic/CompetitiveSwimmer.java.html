@@ -63,15 +63,21 @@ public class CompetitiveSwimmer extends Member {
 <span class="nc" id="L63">        this.dateOfBestTime = dateOfBestTime;</span>
 <span class="nc" id="L64">    }</span>
 
+    public Competition getCompetition() {
+<span class="nc" id="L67">        return competition;</span>
+    }
+
+    public void setCompetition(Competition competition) {
+<span class="nc" id="L71">        this.competition = competition;</span>
+<span class="nc" id="L72">    }</span>
+    
     @Override
     public String toString() {
-<span class="nc" id="L68">        return super.getFirstName() + &quot; &quot; + super.getLastName() </span>
+<span class="nc" id="L76">        return super.getFirstName() + &quot; &quot; + super.getLastName() </span>
                 + &quot;\nDisciplin: &quot; + disciplin 
                 + &quot;\nBest Time: &quot; + bestTime 
                 + &quot;\nDate of best time: &quot; + dateOfBestTime;
     }
-
-    
     
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

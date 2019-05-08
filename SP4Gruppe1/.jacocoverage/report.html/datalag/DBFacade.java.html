@@ -95,10 +95,10 @@ public class DBFacade implements DBStorage{
     @Override
     public void deleteMember(int id) {
         try {
-<span class="nc" id="L98">            deleteFromCompetition(id);</span>
-<span class="nc" id="L99">            deleteFromCompetitiveSwimmers(id);</span>
+<span class="fc" id="L98">            deleteFromCompetition(id);</span>
+<span class="fc" id="L99">            deleteFromCompetitiveSwimmers(id);</span>
             //create String for the PreparedStatement
-<span class="nc" id="L101">            String deleteSQL = &quot;DELETE FROM members WHERE id = ?&quot;;</span>
+<span class="fc" id="L101">            String deleteSQL = &quot;DELETE FROM members WHERE id = ?&quot;;</span>
             //get connection
 <span class="nc" id="L103">            PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);</span>
             //insert correct values into the placeholder's (the ?) space
@@ -106,14 +106,14 @@ public class DBFacade implements DBStorage{
 
             //execute the SQL query
 <span class="nc" id="L108">            preparedStatement.executeUpdate();</span>
-<span class="nc" id="L109">        } catch (SQLException | NullPointerException e) {</span>
+<span class="fc" id="L109">        } catch (SQLException | NullPointerException e) {</span>
 <span class="nc" id="L110">        }</span>
-<span class="nc" id="L111">    }</span>
+<span class="fc" id="L111">    }</span>
 
     private void deleteFromCompetition(int id) {
         try {
             //create String for the PreparedStatement
-<span class="nc" id="L116">            String deleteSQL = &quot;DELETE FROM competitions WHERE id = ?&quot;;</span>
+<span class="fc" id="L116">            String deleteSQL = &quot;DELETE FROM competitions WHERE id = ?&quot;;</span>
             //get connection
 <span class="nc" id="L118">            PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);</span>
             //insert correct values into the placeholder's (the ?) space
@@ -121,14 +121,14 @@ public class DBFacade implements DBStorage{
 
             //execute the SQL query
 <span class="nc" id="L123">            preparedStatement.executeUpdate();</span>
-<span class="nc" id="L124">        } catch (SQLException | NullPointerException e) {</span>
+<span class="fc" id="L124">        } catch (SQLException | NullPointerException e) {</span>
 <span class="nc" id="L125">        }</span>
-<span class="nc" id="L126">    }</span>
+<span class="fc" id="L126">    }</span>
 
     private void deleteFromCompetitiveSwimmers(int id) {
         try {
             //create String for the PreparedStatement
-<span class="nc" id="L131">            String deleteSQL = &quot;DELETE FROM competitive_swimmers WHERE id = ?&quot;;</span>
+<span class="fc" id="L131">            String deleteSQL = &quot;DELETE FROM competitive_swimmers WHERE id = ?&quot;;</span>
             //get connection
 <span class="nc" id="L133">            PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);</span>
             //insert correct values into the placeholder's (the ?) space
@@ -136,9 +136,9 @@ public class DBFacade implements DBStorage{
 
             //execute the SQL query
 <span class="nc" id="L138">            preparedStatement.executeUpdate();</span>
-<span class="nc" id="L139">        } catch (SQLException | NullPointerException e) {</span>
+<span class="fc" id="L139">        } catch (SQLException | NullPointerException e) {</span>
 <span class="nc" id="L140">        }</span>
-<span class="nc" id="L141">    }</span>
+<span class="fc" id="L141">    }</span>
 
     @Override
     public void saveCompetitiveSwimmer(CompetitiveSwimmer member) {

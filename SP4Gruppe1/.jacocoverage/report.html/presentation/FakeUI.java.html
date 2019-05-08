@@ -36,15 +36,15 @@ public class FakeUI implements UI {
 
     @Override
     public int scanInt() {
-<span class="nc" id="L39">        return Integer.parseInt(input[index++]);</span>
+<span class="fc" id="L39">        return Integer.parseInt(input[index++]);</span>
     }
 
     @Override
     public void showMemberList(ArrayList&lt;Member&gt; members) {
 <span class="fc" id="L44">        StringBuilder strBuild = new StringBuilder();</span>
-<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        for (Member member : members) {</span>
-<span class="nc" id="L46">            strBuild.append(member.toString());</span>
-<span class="nc" id="L47">        }</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        for (Member member : members) {</span>
+<span class="fc" id="L46">            strBuild.append(member.toString());</span>
+<span class="fc" id="L47">        }</span>
 <span class="fc" id="L48">        output.add(strBuild.toString());</span>
 <span class="fc" id="L49">    }</span>
 
@@ -182,11 +182,11 @@ public class FakeUI implements UI {
 
     @Override
     public void showEditMemberMenu() {
-<span class="nc" id="L185">        output.add(&quot;Press 1 to edit first name\n&quot;</span>
+<span class="fc" id="L185">        output.add(&quot;Press 1 to edit first name\n&quot;</span>
                 + &quot;Press 2 to edit last name\n&quot;
                 + &quot;Press 3 to edit activeness\n&quot;
                 + &quot;Press 4 to return&quot;);
-<span class="nc" id="L189">    }</span>
+<span class="fc" id="L189">    }</span>
 
     @Override
     public void showEditContingentMenu() {
