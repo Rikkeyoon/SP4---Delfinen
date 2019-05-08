@@ -1,10 +1,7 @@
 package businesslogic;
 
-import datalag.DBFacade;
-import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import presentation.UI;
 import datalag.DBStorage;
 
@@ -340,7 +337,46 @@ public class Controller {
     }
 
     private void editTrainingsresult() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        showTrainingsresult();
+        ui.print("Enter the ID of the member, you would like to edit: ");
+        int id = ui.scanID();
+        Member memberByID = db.getMemberById(id);
+        ui.print(memberByID.toString());
+        
+        boolean quit = false;
+        ui.showEditTrainingsresultMenu();
+        do {
+            switch (ui.editTrainingsresultChoice()) {
+                case 1:
+                    ui.scanString();
+                    ui.print("What would you like to change the disciplin to?");
+                    String newDisciplin = ui.scanString();
+                    db.editDisciplin(id, newDisciplin);
+                    ui.print("The disciplin has now been changed to " + newDisciplin);
+                    break;
+                case 2:
+                    ui.scanString();
+                    ui.print("What would you like to change their best time to? (HH:MM:SS)");
+                    LocalTime newBestTime = ui.scanTime();
+                    db.editBestTime(id, newBestTime);
+                    ui.print("The best time has now been changed to " + newBestTime);
+                    break;
+                case 3:
+                    ui.scanString();
+                    ui.print("What would you like to change the date to? (YYYY-MM-DD)");
+                    String newDateOfBestTime = ui.scanDate();
+                    db.editDate(id, newDateOfBestTime);
+                    ui.print("The date has now been changed to " + newDateOfBestTime);
+                    break;
+                case 4: 
+                    quit = true;
+                    start();
+                    break;
+                case 0:
+                    quit = true;
+                    break;
+            }
+        } while (!quit);
     }
 
     private void showSwimmersInCompetition() {
