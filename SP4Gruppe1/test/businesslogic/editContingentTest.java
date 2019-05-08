@@ -23,6 +23,5 @@ public class editContingentTest {
         
         // assert
         assertTrue(ui.output.get(5).contains("changed"));
-                
     }
 }
