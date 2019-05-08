@@ -1,6 +1,8 @@
 package businesslogic;
 
 import datalag.DBFacade;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import presentation.UI;
 
@@ -166,10 +168,14 @@ public class Controller {
                                 ui.showCompetitionMenu();
                                 break;
                             case 3:
-                                editCompetitionResults();
+                                insertCompetitionResultForCompetitiveSwimmer();
                                 ui.showCompetitionMenu();
                                 break;
                             case 4:
+                                editCompetitionResults();
+                                ui.showCompetitionMenu();
+                                break;
+                            case 5:
                                 quit = true;
                                 start();
                                 break;
@@ -357,5 +363,23 @@ public class Controller {
         contingent = db.editPassive(contingent);
         ui.print("The contingent has now been changed " + contingent);
     }
-    
+
+    private void insertCompetitionResultForCompetitiveSwimmer() {
+        ui.print("Enter the ID of the competitiveSwimmer, you would like to write the results for: ");
+        int compSwimID = ui.scanID();
+        Member id = db.getCompetitiveSwimmerbyID(compSwimID);
+        ui.print("Enter the name of the Competition: ");
+        String competition = ui.scanString();
+        ui.print("Enter the date of the competition (YYYY-MM-DD): ");
+        String dateOfCompetition = ui.scanDate();
+        ui.print("Enter ranking: ");
+        int ranking = ui.scanInt();
+        ui.print("Enter the best time the swimmer swam(HH:MM:SS): ");
+        String time = ui.scanString();
+        
+        Member member = new Member(id);
+        Competition comp  = new Competition(member, competition, dateOfCompetition, ranking, time);
+        db.saveCompetition(comp, id);
+        
+    }
 }

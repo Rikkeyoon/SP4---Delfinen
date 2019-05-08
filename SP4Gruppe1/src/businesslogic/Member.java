@@ -47,6 +47,13 @@ public class Member {
         this.id = id;
     }
 
+    public Member(Member id) {
+    }
+
+    public Member(int id) {
+        this.id = id;
+    }
+
     public String getFirstName() {
         return firstName;
     }

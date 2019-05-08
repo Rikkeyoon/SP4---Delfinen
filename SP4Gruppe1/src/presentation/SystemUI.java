@@ -154,15 +154,16 @@ public class SystemUI implements UI {
         System.out.println("Choose one of the following options: \n"
                 + "1. Swimmers in competition\n"
                 + "2. Competition results\n"
-                + "3. Edit results"
-                + "4. Back to main menu\n"
+                + "3. Result for Swimmer\n"
+                + "4. Edit results\n"
+                + "5. Back to main menu\n"
                 + "0. Quit");
     }
 
     @Override
     public int competitionMenuChoice() {
         int choice = input.nextInt();
-        while (choice < 0 || choice > 4) {
+        while (choice < 0 || choice > 5) {
             System.out.println(choice + " is not an option, try again: ");
             choice = input.nextInt();
         }

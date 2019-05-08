@@ -2,6 +2,7 @@ package datalag;
 
 import businesslogic.*;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -177,7 +178,7 @@ public class DBFacade {
             preparedStatement.setInt(1, member.getId());
             preparedStatement.setString(2, member.getDisciplin());
             preparedStatement.setTime(3, member.getBestTime());
-            preparedStatement.setTimestamp(4, member.getDateOfBestTime());
+            preparedStatement.setDate(4, member.getDateOfBestTime());
 
             //execute the SQL query
             preparedStatement.executeUpdate();
@@ -205,7 +206,7 @@ public class DBFacade {
                 int age = result.getInt(4);
                 String disciplin = result.getString(5);
                 Time bestTime = result.getTime(6);
-                Timestamp dateOfBestTime = result.getTimestamp(7);
+                Date dateOfBestTime = result.getDate(7);
 
                 //create a new Member object and insert it into the ArrayList
                 top5.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
@@ -288,7 +289,7 @@ public class DBFacade {
                 int age = result.getInt(4);
                 String disciplin = result.getString(5);
                 Time bestTime = result.getTime(6);
-                Timestamp dateOfBestTime = result.getTimestamp(7);
+                Date dateOfBestTime = result.getDate(7);
 
                 //create a new Member object and insert it into the ArrayList
                 competitiveSwimmers.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
@@ -319,7 +320,7 @@ public class DBFacade {
                 int age = result.getInt(4);
                 String disciplin = result.getString(5);
                 Time bestTime = result.getTime(6);
-                Timestamp dateOfBestTime = result.getTimestamp(7);
+                Date dateOfBestTime = result.getDate(7);
 
                 trainingresults.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
                         bestTime, dateOfBestTime));
@@ -411,7 +412,7 @@ public class DBFacade {
             preparedStatement.setInt(1, newRestance);
             preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
-            
+
         } catch (SQLException e) {
         }
     }
@@ -423,7 +424,7 @@ public class DBFacade {
             preparedStatement.setString(1, firstName);
             preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
-            
+
         } catch (SQLException e) {
         }
     }
@@ -435,7 +436,7 @@ public class DBFacade {
             preparedStatement.setString(1, lastName);
             preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
-            
+
         } catch (SQLException e) {
         }
     }
@@ -447,11 +448,11 @@ public class DBFacade {
             preparedStatement.setBoolean(1, active);
             preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
-            
+
         } catch (SQLException e) {
         }
     }
-    
+
     public ArrayList<CompetitiveSwimmer> getCompetitionSwimmers() {
         ArrayList<CompetitiveSwimmer> competitionSwimmers = new ArrayList<>();
         try {
@@ -472,14 +473,15 @@ public class DBFacade {
                 int age = result.getInt(4);
                 String disciplin = result.getString(5);
                 Time bestTime = result.getTime(6);
-                Timestamp dateOfBestTime = result.getTimestamp(7);
-                String competitionName = result.getString(8);
-                int ranking = result.getInt(9);
-                Time bestTimeInCompetition = result.getTime(10);
+                Date dateOfBestTime = result.getDate(7);
+                String competition = result.getString(8);
+                Date dateOfCompetition = result.getDate(9);
+                int ranking = result.getInt(10);
+                Time bestTimeInCompetition = result.getTime(11);
 
                 //create a new Member object and insert it into the ArrayList
-                Competition competition = new Competition(competitionName, ranking, bestTimeInCompetition);
-                competitionSwimmers.add(new CompetitiveSwimmer(disciplin, bestTime, dateOfBestTime, competition, firstName, lastName, age, id));
+                Competition competit = new Competition(competition, dateOfCompetition, ranking, bestTimeInCompetition);
+                competitionSwimmers.add(new CompetitiveSwimmer(disciplin, bestTime, dateOfBestTime, competit, firstName, lastName, age, id));
             }
         } catch (SQLException | NullPointerException e) {
         }
@@ -503,32 +505,75 @@ public class DBFacade {
             while (result.next()) {
                 Time bestTimeInCompetition = result.getTime(1);
                 int ranking = result.getInt(2);
-                String competitionName = result.getString(3);
+                String competition = result.getString(3);
                 int id = result.getInt(4);
                 String firstName = result.getString(5);
                 String lastName = result.getString(6);
                 int age = result.getInt(7);
                 String disciplin = result.getString(8);
                 Time bestTime = result.getTime(9);
-                Timestamp dateOfBestTime = result.getTimestamp(10);
+                Date dateOfBestTime = result.getDate(10);
                 
-
+                /*Member member = new Member(id);
+                Competition comp = new Competition(competition, dateOfCompetition, ranking, bestTimeInCompetition);
+                competitiveSwimmer = new CompetitiveSwimmer(member, comp);*/
                 //create a new Member object and insert it into the ArrayList
-                Competition competition = new Competition(competitionName, ranking, bestTimeInCompetition);
-                competitionResults.add(new CompetitiveSwimmer(disciplin, bestTime, dateOfBestTime, competition, firstName, lastName, age, id));
+                Competition competit = new Competition(competition, ranking, bestTimeInCompetition);
+                competitionResults.add(new CompetitiveSwimmer(disciplin, bestTime, dateOfBestTime, competit, firstName, lastName, age, id));
             }
         } catch (SQLException | NullPointerException e) {
         }
         return competitionResults;
     }
 
+    public CompetitiveSwimmer getCompetitiveSwimmerbyID(int id) {
+        CompetitiveSwimmer competitiveSwimmer = null;
+        try {
+            //create String for the PreparedStatement
+            String selectSQL = "SELECT id, competition_name, ranking, best_time "
+                    + "FROM competitions NATURAL JOIN competitive_swimmers  WHERE id = " + id;
+            //get connection
+            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
 
+            //execute the SQL query
+            ResultSet result = preparedStatement.executeQuery(selectSQL);
+            while (result.next()) {
+                
+                id = result.getInt(1);
+                String competition = result.getString(2);
+                Date dateOfCompetition = result.getDate(3);
+                int ranking = result.getInt(4);
+                Time bestTimeInCompetition = result.getTime(5);
+                
+                //create a new Member object and insert it into the ArrayList
+                Member member = new Member(id);
+                Competition comp = new Competition(competition, dateOfCompetition, ranking, bestTimeInCompetition);
+                competitiveSwimmer = new CompetitiveSwimmer(member, comp);
+            }
+        } catch (SQLException | NullPointerException e) {
+        }
+        return competitiveSwimmer;
+    }
 
+    public void saveCompetition(Competition comp, int id) {
+        try {
+            //create String for the PreparedStatement
+            String insertSQL = "INSERT INTO competitions "
+                    + "(id, competition_name, ranking, best_time) "
+                    + "VALUES(?, ?, ?, ?)";
 
-
-
-
-
-
-
-}
+            //get connection
+            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);
+            //insert correct values into the placeholders' (the ?) spaces
+            preparedStatement.setInt(1, id);
+            preparedStatement.setString(2, comp.getCompetitionName());
+            preparedStatement.setDate(3, comp.getDateOfCompetition());
+            preparedStatement.setInt(4, comp.getRanking());
+            preparedStatement.setObject(5, comp.getBestTimeInCompetition());
+            
+            //execute the SQL query
+            preparedStatement.executeUpdate();
+        } catch (SQLException | NullPointerException e) {
+        }
+    }
+    }
