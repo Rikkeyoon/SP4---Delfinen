@@ -179,6 +179,11 @@ public class FakeDBFacade implements DBStorage {
 
     @Override
     public ArrayList<CompetitiveSwimmer> getCompetitionResult() {
+        /*We can't just compare the swimmers by their best time, because it
+         *correlates to their trainingresults, and not their results/times 
+         *in the competitions; therefore, we have to do it this way
+         */
+        
         //get the compititions the competitive swimmer has been in
         ArrayList<Competition> competitions = new ArrayList<>();
         for (CompetitiveSwimmer compSwimmer : swimmersInCompetition) {
