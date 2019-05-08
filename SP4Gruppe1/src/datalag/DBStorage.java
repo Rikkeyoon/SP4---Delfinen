@@ -3,6 +3,7 @@ package datalag;
 import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 /*
@@ -51,6 +52,12 @@ public interface DBStorage {
     public ArrayList<CompetitiveSwimmer> getCompetitionSwimmers();
     
     public ArrayList<CompetitiveSwimmer> getCompetitionResult();
+
+    public void editDisciplin(int id, String newDisciplin);
+
+    public void editBestTime(int id, LocalTime newBestTime);
+
+    public void editDate(int id, String newDateOfBestTime);
     
     
 

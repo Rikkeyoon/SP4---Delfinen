@@ -3,7 +3,6 @@ package presentation;
 import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
-import java.sql.Time;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -246,6 +245,16 @@ public class FakeUI implements UI {
         DateTimeFormatter dft = DateTimeFormatter.ofPattern("HH:mm:ss");
         String time = choice;
         return LocalTime.parse(time, dft);
+    }
+
+    @Override
+    public void showEditTrainingsresultMenu() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int editTrainingsresultChoice() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

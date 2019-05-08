@@ -3,15 +3,11 @@ package presentation;
 import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
-import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 /*
@@ -316,6 +312,26 @@ public class SystemUI implements UI {
             strbuild.append(competitionResult);
         }
         System.out.println(strbuild.toString());
+    }
+
+    @Override
+    public void showEditTrainingsresultMenu() {
+        System.out.println("What would you like to edit?\n"
+                + "\n1. Disciplin"
+                + "\n2. Best time"
+                + "\n3. Date of best time"
+                + "\n4. Back to main menu"
+                + "\n0. Quit");
+    }
+
+    @Override
+    public int editTrainingsresultChoice() {
+        int choice = input.nextInt();
+        while (choice < 0 || choice > 4) {
+            System.out.println(choice + " is not an option, try again: ");
+            choice = input.nextInt();
+        }
+        return choice;
     }
 
 }

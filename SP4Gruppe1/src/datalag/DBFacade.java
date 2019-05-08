@@ -7,9 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalTime;
-import static java.time.temporal.TemporalQueries.localDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -518,4 +516,40 @@ public class DBFacade implements DBStorage{
         return competitionResults;
     }
 
+    @Override
+    public void editDisciplin(int id, String newDisciplin) {
+        try {
+            String UpdateSQL = "UPDATE competitive_swimmers SET disciplin = ? WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);
+            preparedStatement.setString(1, newDisciplin);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+        }
+    }
+
+    @Override
+    public void editBestTime(int id, LocalTime newBestTime) {
+        try {
+            String UpdateSQL = "UPDATE competitive_swimmers SET best_time = ? WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);
+            preparedStatement.setObject(1, newBestTime);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+        }
+    }
+
+    @Override
+    public void editDate(int id, String newDateOfBestTime) {
+        try {
+            String UpdateSQL = "UPDATE competitive_swimmers SET date_of_best_time = ? WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);
+            preparedStatement.setObject(1, newDateOfBestTime);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+            
+        } catch (SQLException e) {
+        }
+    }
 }

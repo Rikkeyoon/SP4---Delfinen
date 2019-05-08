@@ -75,6 +75,10 @@ public interface UI {
 
     public LocalTime scanTime();
 
+    public void showEditTrainingsresultMenu();
+
+    public int editTrainingsresultChoice();
+
 
 
 
