@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="da"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>FakeDBFacade.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;SP4Gruppe1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">datalag</a> &gt; <span class="el_source">FakeDBFacade.java</span></div><h1>FakeDBFacade.java</h1><pre class="source lang-java linenums">package datalag;
 
-import businesslogic.Competition;
-import businesslogic.CompetitiveSwimmer;
-import businesslogic.Contingent;
-import businesslogic.Member;
+import businesslogic.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,169 +9,178 @@ import java.util.Comparator;
  *
  * @author Caroline, Nina, Rikke og Kristina
  */
-<span class="fc" id="L15">public class FakeDBFacade implements DBStorage {</span>
+public class FakeDBFacade implements DBStorage {
 
-<span class="fc" id="L17">    private int id = 1;</span>
-<span class="fc" id="L18">    private ArrayList&lt;Member&gt; members = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L19">    private ArrayList&lt;CompetitiveSwimmer&gt; competitiveSwimmers = new ArrayList&lt;&gt;();</span>
-    private ArrayList&lt;Contingent&gt; contingentList;
-    private ArrayList&lt;CompetitiveSwimmer&gt; swimmersInCompetition;
-<span class="fc" id="L22">    private Comparator&lt;CompetitiveSwimmer&gt; compareBestTime</span>
-            = (CompetitiveSwimmer o1, CompetitiveSwimmer o2) -&gt; {
-<span class="nc" id="L24">                return o1.getBestTime().compareTo(o2.getBestTime());</span>
-            };
-<span class="fc" id="L26">    private Comparator&lt;Competition&gt; compareCompetitionTime</span>
-            = (Competition o1, Competition o2) -&gt; {
-<span class="nc" id="L28">                return o1.getBestTimeInCompetition()</span>
-<span class="nc" id="L29">                        .compareTo(o2.getBestTimeInCompetition());</span>
-            };
+<span class="fc" id="L14">    private int id = 1;</span>
+    private ArrayList&lt;Member&gt; members;
+    private ArrayList&lt;CompetitiveSwimmer&gt; competitiveSwimmers;
+    private ArrayList&lt;Contingent&gt; contingentList;;
+    private ArrayList&lt;CompetitiveSwimmer&gt; swimmersInCompetition;;
+    private Comparator&lt;CompetitiveSwimmer&gt; compareBestTime;
+    private Comparator&lt;Competition&gt; compareCompetitionTime;
+
+<span class="fc" id="L22">    public FakeDBFacade() {</span>
+<span class="fc" id="L23">        compareCompetitionTime = (Competition o1, Competition o2) -&gt; {</span>
+<span class="nc" id="L24">            return o1.getBestTimeInCompetition()</span>
+<span class="nc" id="L25">                    .compareTo(o2.getBestTimeInCompetition());</span>
+        };
+<span class="fc" id="L27">        compareBestTime = (CompetitiveSwimmer o1, CompetitiveSwimmer o2) -&gt; {</span>
+<span class="nc" id="L28">            return o1.getBestTime().compareTo(o2.getBestTime());</span>
+        };
+        
+<span class="fc" id="L31">        swimmersInCompetition = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L32">        contingentList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L33">        contingentList.add(new Contingent(1000, 1600, (int)(1600 * 0.75), 500));</span>
+<span class="fc" id="L34">        competitiveSwimmers = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L35">        members = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L36">    }</span>
 
     @Override
     public int getID() {
-<span class="fc" id="L34">        return id++;</span>
+<span class="fc" id="L40">        return id++;</span>
     }
 
     @Override
     public ArrayList&lt;Member&gt; getMembersList() {
-<span class="fc" id="L39">        return members;</span>
+<span class="fc" id="L45">        return members;</span>
     }
 
     @Override
     public void saveMember(Member member) {
-<span class="fc" id="L44">        members.add(member);</span>
-<span class="fc" id="L45">    }</span>
-
-    @Override
-    public void deleteMember(int id) {
-<span class="fc" id="L49">        Member member = getMemberById(id);</span>
-<span class="fc" id="L50">        members.remove(member);</span>
+<span class="fc" id="L50">        members.add(member);</span>
 <span class="fc" id="L51">    }</span>
 
     @Override
+    public void deleteMember(int id) {
+<span class="fc" id="L55">        Member member = getMemberById(id);</span>
+<span class="fc" id="L56">        members.remove(member);</span>
+<span class="fc" id="L57">    }</span>
+
+    @Override
     public void saveCompetitiveSwimmer(CompetitiveSwimmer member) {
-<span class="nc" id="L55">        competitiveSwimmers.add(member);</span>
-<span class="nc" id="L56">    }</span>
+<span class="nc" id="L61">        competitiveSwimmers.add(member);</span>
+<span class="nc" id="L62">    }</span>
 
     @Override
     public ArrayList&lt;CompetitiveSwimmer&gt; getTop5() {
-<span class="nc" id="L60">        ArrayList&lt;CompetitiveSwimmer&gt; top5 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L66">        ArrayList&lt;CompetitiveSwimmer&gt; top5 = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L62">        Collections.sort(competitiveSwimmers, compareBestTime);</span>
-<span class="nc bnc" id="L63" title="All 2 branches missed.">        for (int i = 0; i &lt; 5; i++) {</span>
-<span class="nc" id="L64">            CompetitiveSwimmer swimmer = competitiveSwimmers.get(i);</span>
-<span class="nc" id="L65">            top5.add(swimmer);</span>
+<span class="nc" id="L68">        Collections.sort(competitiveSwimmers, compareBestTime);</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        for (int i = 0; i &lt; 5; i++) {</span>
+<span class="nc" id="L70">            CompetitiveSwimmer swimmer = competitiveSwimmers.get(i);</span>
+<span class="nc" id="L71">            top5.add(swimmer);</span>
         }
-<span class="nc" id="L67">        return top5;</span>
+<span class="nc" id="L73">        return top5;</span>
     }
 
     @Override
     public ArrayList&lt;Contingent&gt; getContingentList() {
-<span class="nc" id="L72">        return contingentList;</span>
+<span class="fc" id="L78">        return contingentList;</span>
     }
 
     @Override
     public ArrayList&lt;Member&gt; getMembersInRestance() {
-<span class="fc" id="L77">        ArrayList&lt;Member&gt; membersInRestance = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L78" title="All 2 branches covered.">        for (Member member : members) {</span>
-<span class="fc bfc" id="L79" title="All 2 branches covered.">            if (member.getRestance() != 0) {</span>
-<span class="fc" id="L80">                membersInRestance.add(member);</span>
+<span class="fc" id="L83">        ArrayList&lt;Member&gt; membersInRestance = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        for (Member member : members) {</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">            if (member.getRestance() != 0) {</span>
+<span class="fc" id="L86">                membersInRestance.add(member);</span>
             }
-<span class="fc" id="L82">        }</span>
-<span class="fc" id="L83">        return membersInRestance;</span>
+<span class="fc" id="L88">        }</span>
+<span class="fc" id="L89">        return membersInRestance;</span>
     }
 
     @Override
     public ArrayList&lt;CompetitiveSwimmer&gt; getCompetitiveSwimmers() {
-<span class="nc" id="L88">        return competitiveSwimmers;</span>
-    }
-
-    @Override
-    public ArrayList&lt;CompetitiveSwimmer&gt; getTrainingsresult() {
-<span class="nc" id="L93">        Collections.sort(competitiveSwimmers, compareBestTime);</span>
 <span class="nc" id="L94">        return competitiveSwimmers;</span>
     }
 
     @Override
+    public ArrayList&lt;CompetitiveSwimmer&gt; getTrainingsresult() {
+<span class="nc" id="L99">        Collections.sort(competitiveSwimmers, compareBestTime);</span>
+<span class="nc" id="L100">        return competitiveSwimmers;</span>
+    }
+
+    @Override
     public int editUnder18(int contingent) {
-<span class="nc bnc" id="L99" title="All 2 branches missed.">        for (Contingent con : contingentList) {</span>
-<span class="nc" id="L100">            con.setUnder18(contingent);</span>
-<span class="nc" id="L101">        }</span>
-<span class="nc" id="L102">        return 0;</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">        for (Contingent con : contingentList) {</span>
+<span class="fc" id="L106">            con.setUnder18(contingent);</span>
+<span class="fc" id="L107">        }</span>
+<span class="fc" id="L108">        return 0;</span>
     }
 
     @Override
     public int editBetween18And60(int contingent) {
-<span class="nc bnc" id="L107" title="All 2 branches missed.">        for (Contingent con : contingentList) {</span>
-<span class="nc" id="L108">            con.setBetween18And60(contingent);</span>
-<span class="nc" id="L109">        }</span>
-<span class="nc" id="L110">        return 0;</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">        for (Contingent con : contingentList) {</span>
+<span class="fc" id="L114">            con.setBetween18And60(contingent);</span>
+<span class="fc" id="L115">        }</span>
+<span class="fc" id="L116">        return 0;</span>
     }
 
     @Override
     public int editOver60(int contingent) {
-<span class="nc bnc" id="L115" title="All 2 branches missed.">        for (Contingent con : contingentList) {</span>
-<span class="nc" id="L116">            con.setOver60(contingent);</span>
-<span class="nc" id="L117">        }</span>
-<span class="nc" id="L118">        return 0;</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">        for (Contingent con : contingentList) {</span>
+<span class="fc" id="L122">            con.setOver60(contingent);</span>
+<span class="fc" id="L123">        }</span>
+<span class="fc" id="L124">        return 0;</span>
     }
 
     @Override
     public int editPassive(int contingent) {
-<span class="nc bnc" id="L123" title="All 2 branches missed.">        for (Contingent con : contingentList) {</span>
-<span class="nc" id="L124">            con.setPassive(contingent);</span>
-<span class="nc" id="L125">        }</span>
-<span class="nc" id="L126">        return 0;</span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">        for (Contingent con : contingentList) {</span>
+<span class="fc" id="L130">            con.setPassive(contingent);</span>
+<span class="fc" id="L131">        }</span>
+<span class="fc" id="L132">        return 0;</span>
     }
 
     @Override
     public Member getMemberById(int id) {
-<span class="pc bpc" id="L131" title="1 of 2 branches missed.">        for (Member member : members) {</span>
-<span class="fc bfc" id="L132" title="All 2 branches covered.">            if (member.getId() == id) {</span>
-<span class="fc" id="L133">                return member;</span>
+<span class="pc bpc" id="L137" title="1 of 2 branches missed.">        for (Member member : members) {</span>
+<span class="fc bfc" id="L138" title="All 2 branches covered.">            if (member.getId() == id) {</span>
+<span class="fc" id="L139">                return member;</span>
             }
-<span class="fc" id="L135">        }</span>
-<span class="nc" id="L136">        return null;</span>
+<span class="fc" id="L141">        }</span>
+<span class="nc" id="L142">        return null;</span>
     }
 
     @Override
     public void editRestance(int id, int newRestance) {
-<span class="nc bnc" id="L141" title="All 2 branches missed.">        for (Member member : members) {</span>
-<span class="nc bnc" id="L142" title="All 2 branches missed.">            if (member.getId() == id) {</span>
-<span class="nc" id="L143">                member.setRestance(newRestance);</span>
+<span class="fc bfc" id="L147" title="All 2 branches covered.">        for (Member member : members) {</span>
+<span class="pc bpc" id="L148" title="1 of 2 branches missed.">            if (member.getId() == id) {</span>
+<span class="fc" id="L149">                member.setRestance(newRestance);</span>
             }
-<span class="nc" id="L145">        }</span>
-<span class="nc" id="L146">    }</span>
+<span class="fc" id="L151">        }</span>
+<span class="fc" id="L152">    }</span>
 
     @Override
     public void editFirstName(int id, String firstName) {
-<span class="nc bnc" id="L150" title="All 2 branches missed.">        for (Member member : members) {</span>
-<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (member.getId() == id) {</span>
-<span class="nc" id="L152">                member.setFirstName(firstName);</span>
+<span class="fc bfc" id="L156" title="All 2 branches covered.">        for (Member member : members) {</span>
+<span class="pc bpc" id="L157" title="1 of 2 branches missed.">            if (member.getId() == id) {</span>
+<span class="fc" id="L158">                member.setFirstName(firstName);</span>
             }
-<span class="nc" id="L154">        }</span>
-<span class="nc" id="L155">    }</span>
+<span class="fc" id="L160">        }</span>
+<span class="fc" id="L161">    }</span>
 
     @Override
     public void editLastName(int id, String lastName) {
-<span class="nc bnc" id="L159" title="All 2 branches missed.">        for (Member member : members) {</span>
-<span class="nc bnc" id="L160" title="All 2 branches missed.">            if (member.getId() == id) {</span>
-<span class="nc" id="L161">                member.setLastName(lastName);</span>
+<span class="fc bfc" id="L165" title="All 2 branches covered.">        for (Member member : members) {</span>
+<span class="pc bpc" id="L166" title="1 of 2 branches missed.">            if (member.getId() == id) {</span>
+<span class="fc" id="L167">                member.setLastName(lastName);</span>
             }
-<span class="nc" id="L163">        }</span>
-<span class="nc" id="L164">    }</span>
+<span class="fc" id="L169">        }</span>
+<span class="fc" id="L170">    }</span>
 
     @Override
     public void editActiveness(int id, boolean active) {
-<span class="nc bnc" id="L168" title="All 2 branches missed.">        for (Member member : members) {</span>
-<span class="nc bnc" id="L169" title="All 2 branches missed.">            if (member.getId() == id) {</span>
-<span class="nc" id="L170">                member.setIsActive(active);</span>
+<span class="fc bfc" id="L174" title="All 2 branches covered.">        for (Member member : members) {</span>
+<span class="pc bpc" id="L175" title="1 of 2 branches missed.">            if (member.getId() == id) {</span>
+<span class="fc" id="L176">                member.setIsActive(active);</span>
             }
-<span class="nc" id="L172">        }</span>
-<span class="nc" id="L173">    }</span>
+<span class="fc" id="L178">        }</span>
+<span class="fc" id="L179">    }</span>
 
     @Override
     public ArrayList&lt;CompetitiveSwimmer&gt; getCompetitionSwimmers() {
-<span class="nc" id="L177">        return swimmersInCompetition;</span>
+<span class="nc" id="L183">        return swimmersInCompetition;</span>
     }
 
     @Override
@@ -185,23 +191,23 @@ import java.util.Comparator;
          */
         
         //get the compititions the competitive swimmer has been in
-<span class="nc" id="L188">        ArrayList&lt;Competition&gt; competitions = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L189" title="All 2 branches missed.">        for (CompetitiveSwimmer compSwimmer : swimmersInCompetition) {</span>
-<span class="nc" id="L190">            Competition competition = compSwimmer.getCompetition();</span>
-<span class="nc" id="L191">            competitions.add(competition);</span>
-<span class="nc" id="L192">        }</span>
+<span class="nc" id="L194">        ArrayList&lt;Competition&gt; competitions = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">        for (CompetitiveSwimmer compSwimmer : swimmersInCompetition) {</span>
+<span class="nc" id="L196">            Competition competition = compSwimmer.getCompetition();</span>
+<span class="nc" id="L197">            competitions.add(competition);</span>
+<span class="nc" id="L198">        }</span>
         //sort the list of competitions after the best times
-<span class="nc" id="L194">        Collections.sort(competitions, compareCompetitionTime);</span>
+<span class="nc" id="L200">        Collections.sort(competitions, compareCompetitionTime);</span>
         
         /*create a temporary ArrayList, so the ArrayList returned is 
          *sorted by the best times
          */
-<span class="nc" id="L199">        ArrayList&lt;CompetitiveSwimmer&gt; compSwimmers = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L200" title="All 2 branches missed.">        for (Competition competition : competitions) {</span>
-<span class="nc" id="L201">            CompetitiveSwimmer compSwimmer = competition.getCompetitiveSwimmer();</span>
-<span class="nc" id="L202">            compSwimmers.add(compSwimmer);</span>
-<span class="nc" id="L203">        }</span>
-<span class="nc" id="L204">        return compSwimmers;</span>
+<span class="nc" id="L205">        ArrayList&lt;CompetitiveSwimmer&gt; compSwimmers = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">        for (Competition competition : competitions) {</span>
+<span class="nc" id="L207">            CompetitiveSwimmer compSwimmer = competition.getCompetitiveSwimmer();</span>
+<span class="nc" id="L208">            compSwimmers.add(compSwimmer);</span>
+<span class="nc" id="L209">        }</span>
+<span class="nc" id="L210">        return compSwimmers;</span>
     }
 
 }

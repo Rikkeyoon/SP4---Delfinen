@@ -1,9 +1,6 @@
 package datalag;
 
-import businesslogic.Competition;
-import businesslogic.CompetitiveSwimmer;
-import businesslogic.Contingent;
-import businesslogic.Member;
+import businesslogic.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -15,19 +12,28 @@ import java.util.Comparator;
 public class FakeDBFacade implements DBStorage {
 
     private int id = 1;
-    private ArrayList<Member> members = new ArrayList<>();
-    private ArrayList<CompetitiveSwimmer> competitiveSwimmers = new ArrayList<>();
-    private ArrayList<Contingent> contingentList;
-    private ArrayList<CompetitiveSwimmer> swimmersInCompetition;
-    private Comparator<CompetitiveSwimmer> compareBestTime
-            = (CompetitiveSwimmer o1, CompetitiveSwimmer o2) -> {
-                return o1.getBestTime().compareTo(o2.getBestTime());
-            };
-    private Comparator<Competition> compareCompetitionTime
-            = (Competition o1, Competition o2) -> {
-                return o1.getBestTimeInCompetition()
-                        .compareTo(o2.getBestTimeInCompetition());
-            };
+    private ArrayList<Member> members;
+    private ArrayList<CompetitiveSwimmer> competitiveSwimmers;
+    private ArrayList<Contingent> contingentList;;
+    private ArrayList<CompetitiveSwimmer> swimmersInCompetition;;
+    private Comparator<CompetitiveSwimmer> compareBestTime;
+    private Comparator<Competition> compareCompetitionTime;
+
+    public FakeDBFacade() {
+        compareCompetitionTime = (Competition o1, Competition o2) -> {
+            return o1.getBestTimeInCompetition()
+                    .compareTo(o2.getBestTimeInCompetition());
+        };
+        compareBestTime = (CompetitiveSwimmer o1, CompetitiveSwimmer o2) -> {
+            return o1.getBestTime().compareTo(o2.getBestTime());
+        };
+        
+        swimmersInCompetition = new ArrayList<>();
+        contingentList = new ArrayList<>();
+        contingentList.add(new Contingent(1000, 1600, (int)(1600 * 0.75), 500));
+        competitiveSwimmers = new ArrayList<>();
+        members = new ArrayList<>();
+    }
 
     @Override
     public int getID() {

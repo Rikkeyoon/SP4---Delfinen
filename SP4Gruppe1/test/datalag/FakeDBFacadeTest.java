@@ -151,6 +151,13 @@ public class FakeDBFacadeTest {
      */
     @Test
     public void testEditUnder18() {
+        //arrange
+        FakeDBFacade db = new FakeDBFacade();
+        int newContingent = 700;
+        //act
+        db.editUnder18(newContingent);
+        //assert
+        assertTrue(db.getContingentList().get(0).toString().contains("700"));
     }
 
     /**
@@ -158,6 +165,13 @@ public class FakeDBFacadeTest {
      */
     @Test
     public void testEditBetween18And60() {
+        //arrange
+        FakeDBFacade db = new FakeDBFacade();
+        int newContingent = 700;
+        //act
+        db.editBetween18And60(newContingent);
+        //assert
+        assertTrue(db.getContingentList().get(0).toString().contains("700"));
     }
 
     /**
@@ -165,6 +179,13 @@ public class FakeDBFacadeTest {
      */
     @Test
     public void testEditOver60() {
+        //arrange
+        FakeDBFacade db = new FakeDBFacade();
+        int newContingent = 700;
+        //act
+        db.editOver60(newContingent);
+        //assert
+        assertTrue(db.getContingentList().get(0).toString().contains("700"));
     }
 
     /**
@@ -172,6 +193,13 @@ public class FakeDBFacadeTest {
      */
     @Test
     public void testEditPassive() {
+        //arrange
+        FakeDBFacade db = new FakeDBFacade();
+        int newContingent = 700;
+        //act
+        db.editPassive(newContingent);
+        //assert
+        assertTrue(db.getContingentList().get(0).toString().contains("700"));
     }
 
     /**
@@ -179,6 +207,17 @@ public class FakeDBFacadeTest {
      */
     @Test
     public void testEditRestance() {
+        //arrange
+        FakeDBFacade db = new FakeDBFacade();
+        Member m1 = new Member("Ole", "Jensen", 48, true, 1600, 0, 1);
+        db.saveMember(m1);
+        int newRestance = 200;
+        //act
+        db.editRestance(1, newRestance);
+        ArrayList<Member> members = db.getMembersList();
+        int restanceForM1 = (int) members.get(0).getRestance();
+        //assert
+        assertTrue(restanceForM1 == newRestance);
     }
 
     /**
@@ -186,13 +225,33 @@ public class FakeDBFacadeTest {
      */
     @Test
     public void testEditFirstName() {
+        //arrange
+        FakeDBFacade db = new FakeDBFacade();
+        Member m1 = new Member("Ole", "Jensen", 48, true, 1600, 0, 1);
+        db.saveMember(m1);
+        String newName = "Hans";
+        //act
+        db.editFirstName(1, newName);
+        ArrayList<Member> members = db.getMembersList();
+        //assert
+        assertTrue(members.get(0).getFirstName().equals(newName));
     }
-
+    
     /**
      * Test of editLastName method, of class FakeDBFacade.
      */
     @Test
     public void testEditLastName() {
+        //arrange
+        FakeDBFacade db = new FakeDBFacade();
+        Member m1 = new Member("Ole", "Jensen", 48, true, 1600, 0, 1);
+        db.saveMember(m1);
+        String newName = "Hansen";
+        //act
+        db.editLastName(1, newName);
+        ArrayList<Member> members = db.getMembersList();
+        //assert
+        assertTrue(members.get(0).getLastName().equals(newName));
     }
 
     /**
@@ -200,6 +259,16 @@ public class FakeDBFacadeTest {
      */
     @Test
     public void testEditActiveness() {
+        //arrange
+        FakeDBFacade db = new FakeDBFacade();
+        Member m1 = new Member("Ole", "Jensen", 48, true, 1600, 0, 1);
+        db.saveMember(m1);
+        boolean active = false;
+        //act
+        db.editActiveness(1, active);
+        ArrayList<Member> members = db.getMembersList();
+        //assert
+        assertFalse(members.get(0).isIsActive());
     }
 
     /**
