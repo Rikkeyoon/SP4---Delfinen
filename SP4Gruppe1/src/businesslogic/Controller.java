@@ -27,33 +27,6 @@ public class Controller {
                 case 1:
                     ui.showMembersMenu();
                     quit = memberMenu(quit);
-//                    do {
-//                        switch (ui.memberMenuChoice()) {
-//                            case 1:
-//                                showMembersList();
-//                                ui.showMembersMenu();
-//                                break;
-//                            case 2:
-//                                createMember();
-//                                ui.showMembersMenu();
-//                                break;
-//                            case 3:
-//                                editMember();
-//                                ui.showMainMenu();
-//                                break;
-//                            case 4:
-//                                deleteMember();
-//                                ui.showMainMenu();
-//                                break;
-//                            case 5:
-//                                quit = true;
-//                                start();
-//                                break;
-//                            case 0:
-//                                quit = true;
-//                                break;
-//                        }
-//                    } while (!quit);
                     break;
                 case 2:
                     ui.showContingentMenu();
