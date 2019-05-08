@@ -3,9 +3,15 @@ package presentation;
 import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 /*
@@ -34,6 +40,36 @@ public class SystemUI implements UI {
     @Override
     public int scanInt() {
         return input.nextInt();
+    }
+
+    @Override
+    public String scanDate() {
+        String choice = input.nextLine();
+        while (choice.isEmpty()) {
+            System.out.println("Please enter a date: ");
+            choice = input.nextLine();
+        }
+
+        try {
+            LocalDate.parse(choice);
+        } catch (DateTimeParseException e) {
+            boolean exceptionCaught = true;
+
+            while (exceptionCaught) {
+                System.out.println(choice + " is not an option, try again: ");
+                exceptionCaught = false;
+                choice = scanDate();
+            }
+        }
+        return choice;
+    }
+
+    @Override
+    public LocalTime scanTime() {
+        String choice = input.nextLine();
+        DateTimeFormatter dft = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String time = choice;
+        return LocalTime.parse(time);
     }
 
     @Override
@@ -133,16 +169,17 @@ public class SystemUI implements UI {
     public void showCompetitiveSwimmersMenu() {
         System.out.println("Choose one of the following options: \n"
                 + "1. Competitive swimmers\n"
-                + "2. Trainingsresult\n"
-                + "3. Edit trainingsresult\n"
-                + "4. Back to main menu\n"
+                + "2. Create competitive swimmer\n"
+                + "3. Trainingsresult\n"
+                + "4. Edit trainingsresult\n"
+                + "5. Back to main menu\n"
                 + "0. Quit");
     }
 
     @Override
     public int competitiveSwimmersMenuChoice() {
         int choice = input.nextInt();
-        while (choice < 0 || choice > 4) {
+        while (choice < 0 || choice > 5) {
             System.out.println(choice + " is not an option, try again: ");
             choice = input.nextInt();
         }
@@ -165,28 +202,6 @@ public class SystemUI implements UI {
         while (choice < 0 || choice > 4) {
             System.out.println(choice + " is not an option, try again: ");
             choice = input.nextInt();
-        }
-        return choice;
-    }
-
-    @Override
-    public String scanDate() {
-        String choice = input.nextLine();
-        while (choice.isEmpty()) {
-            System.out.println("Please enter a date: ");
-            choice = input.nextLine();
-        }
-
-        try {
-            LocalDate.parse(choice);
-        } catch (DateTimeParseException e) {
-            boolean exceptionCaught = true;
-
-            while (exceptionCaught) {
-                System.out.println(choice + " is not an option, try again: ");
-                exceptionCaught = false;
-                choice = scanDate();
-            }
         }
         return choice;
     }
@@ -284,8 +299,8 @@ public class SystemUI implements UI {
         }
         System.out.println(strbuild.toString());
     }
-    
-        @Override
+
+    @Override
     public void showSwimmersInCompetition(ArrayList<CompetitiveSwimmer> competitiveSwimmers) {
         StringBuilder strbuild = new StringBuilder();
         for (CompetitiveSwimmer competitiveSwimmer : competitiveSwimmers) {
@@ -302,5 +317,5 @@ public class SystemUI implements UI {
         }
         System.out.println(strbuild.toString());
     }
-    
+
 }

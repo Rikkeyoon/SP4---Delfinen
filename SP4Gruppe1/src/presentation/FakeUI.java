@@ -4,6 +4,7 @@ import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 /*
@@ -225,4 +226,13 @@ public class FakeUI implements UI {
     public void showCompetitionResults(ArrayList<CompetitiveSwimmer> competitionResults) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public LocalTime scanTime() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+
+ 
 }

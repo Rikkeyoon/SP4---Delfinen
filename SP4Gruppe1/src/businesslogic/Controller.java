@@ -1,7 +1,10 @@
 package businesslogic;
 
 import datalag.DBFacade;
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import presentation.UI;
 
 /*
@@ -136,14 +139,18 @@ public class Controller {
                                 ui.showCompetitiveSwimmersMenu();
                                 break;
                             case 2:
-                                showTrainingsresult();
+                                createCompetitiveSwimmer();
                                 ui.showCompetitiveSwimmersMenu();
                                 break;
                             case 3:
-                                editTrainingsresult();
+                                showTrainingsresult();
                                 ui.showCompetitiveSwimmersMenu();
                                 break;
                             case 4:
+                                editTrainingsresult();
+                                ui.showCompetitiveSwimmersMenu();
+                                break;
+                            case 5:
                                 quit = true;
                                 start();
                                 break;
@@ -306,6 +313,26 @@ public class Controller {
         ui.showCompetitiveSwimmerList(competitiveSwimmers);
     }
 
+    private void createCompetitiveSwimmer() {
+        showMembersList();
+        ui.print("Please enter the ID for the member you want to add as a competitive swimmer");
+        int id = ui.scanID();
+        Member memberByID = db.getMemberById(id);
+        ui.print(memberByID.toString());
+        ui.scanString();
+        ui.print("Please enter the disciplin: ");
+        String disciplin = ui.scanString();
+        ui.print("Please enter the time: (HH:MM:SS)");
+        LocalTime bestTime = ui.scanTime();
+        ui.print("Please enter the date: (YYYY-MM-DD)");
+        String dateOfBestTime = ui.scanDate();
+        
+        CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer(id, disciplin, bestTime, dateOfBestTime);
+        db.saveCompetitiveSwimmer(competitiveSwimmer);
+
+        ui.print("The following member has been added: " + competitiveSwimmer.toString() + "\n");
+    }
+
     private void showTrainingsresult() {
         ArrayList<CompetitiveSwimmer> trainingresults = db.getTrainingsresult();
         ui.showTrainingresults(trainingresults);
@@ -315,7 +342,7 @@ public class Controller {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-     private void showSwimmersInCompetition() {
+    private void showSwimmersInCompetition() {
         ArrayList<CompetitiveSwimmer> competitiveSwimmers = db.getCompetitionSwimmers();
         ui.showSwimmersInCompetition(competitiveSwimmers);
     }
@@ -357,5 +384,5 @@ public class Controller {
         contingent = db.editPassive(contingent);
         ui.print("The contingent has now been changed " + contingent);
     }
-    
+
 }

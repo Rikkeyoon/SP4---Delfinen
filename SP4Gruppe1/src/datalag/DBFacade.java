@@ -7,7 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import static java.time.temporal.TemporalQueries.localDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 /*
  * @author Caroline, Nina, Rikke og Kristine
@@ -176,9 +180,8 @@ public class DBFacade {
             //insert correct values into the placeholders' (the ?) spaces
             preparedStatement.setInt(1, member.getId());
             preparedStatement.setString(2, member.getDisciplin());
-            preparedStatement.setTime(3, member.getBestTime());
-            preparedStatement.setTimestamp(4, member.getDateOfBestTime());
-
+            preparedStatement.setObject(3, member.getBestTime());
+            preparedStatement.setObject(4, member.getDateOfBestTime());
             //execute the SQL query
             preparedStatement.executeUpdate();
         } catch (SQLException | NullPointerException e) {
@@ -205,11 +208,11 @@ public class DBFacade {
                 int age = result.getInt(4);
                 String disciplin = result.getString(5);
                 Time bestTime = result.getTime(6);
-                Timestamp dateOfBestTime = result.getTimestamp(7);
+                Date dateOfBestTime = result.getDate(7);
 
                 //create a new Member object and insert it into the ArrayList
-                top5.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
-                        bestTime, dateOfBestTime));
+//                top5.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
+//                        bestTime, dateOfBestTime));
             }
         } catch (SQLException | NullPointerException e) {
         }
@@ -291,8 +294,8 @@ public class DBFacade {
                 Timestamp dateOfBestTime = result.getTimestamp(7);
 
                 //create a new Member object and insert it into the ArrayList
-                competitiveSwimmers.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
-                        bestTime, dateOfBestTime));
+//                competitiveSwimmers.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
+//                        bestTime, dateOfBestTime));
             }
         } catch (SQLException | NullPointerException e) {
         }
@@ -321,8 +324,8 @@ public class DBFacade {
                 Time bestTime = result.getTime(6);
                 Timestamp dateOfBestTime = result.getTimestamp(7);
 
-                trainingresults.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
-                        bestTime, dateOfBestTime));
+//                trainingresults.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
+//                        bestTime, dateOfBestTime));
             }
         } catch (SQLException | NullPointerException e) {
         }
@@ -478,8 +481,8 @@ public class DBFacade {
                 Time bestTimeInCompetition = result.getTime(10);
 
                 //create a new Member object and insert it into the ArrayList
-                Competition competition = new Competition(competitionName, ranking, bestTimeInCompetition);
-                competitionSwimmers.add(new CompetitiveSwimmer(disciplin, bestTime, dateOfBestTime, competition, firstName, lastName, age, id));
+//                Competition competition = new Competition(competitionName, ranking, bestTimeInCompetition);
+//                competitionSwimmers.add(new CompetitiveSwimmer(disciplin, bestTime, dateOfBestTime, competition, firstName, lastName, age, id));
             }
         } catch (SQLException | NullPointerException e) {
         }
@@ -514,8 +517,8 @@ public class DBFacade {
                 
 
                 //create a new Member object and insert it into the ArrayList
-                Competition competition = new Competition(competitionName, ranking, bestTimeInCompetition);
-                competitionResults.add(new CompetitiveSwimmer(disciplin, bestTime, dateOfBestTime, competition, firstName, lastName, age, id));
+//                Competition competition = new Competition(competitionName, ranking, bestTimeInCompetition);
+//                competitionResults.add(new CompetitiveSwimmer(disciplin, bestTime, dateOfBestTime, competition, firstName, lastName, age, id));
             }
         } catch (SQLException | NullPointerException e) {
         }

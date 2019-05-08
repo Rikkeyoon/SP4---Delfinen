@@ -46,6 +46,10 @@ public class Member {
         this.age = age;
         this.id = id;
     }
+    
+    public Member(int id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -125,7 +129,7 @@ public class Member {
                 }
                 return 1600;
             } else {
-                return 1600 * 0.75;
+                    return 1600 * 0.75;
             }
         }
         return 500;
