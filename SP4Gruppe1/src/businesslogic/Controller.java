@@ -1,8 +1,8 @@
 package businesslogic;
 
-import datalag.DBFacade;
 import java.util.ArrayList;
 import presentation.UI;
+import datalag.DBStorage;
 
 /*
  * @author Caroline, Nina, Rikke og Kristine
@@ -10,9 +10,9 @@ import presentation.UI;
 public class Controller {
 
     private UI ui;
-    private DBFacade db;
+    private DBStorage db;
 
-    public Controller(UI ui, DBFacade db) {
+    public Controller(UI ui, DBStorage db) {
         this.ui = ui;
         this.db = db;
     }

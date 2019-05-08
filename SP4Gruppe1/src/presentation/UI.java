@@ -14,7 +14,7 @@ public interface UI {
     public String scanString();
 
     public boolean scanBoolean();
-    
+
     public void print(String str);
 
     public int scanInt();
@@ -50,7 +50,7 @@ public interface UI {
     public void showContingentList(ArrayList<Contingent> contingent);
 
     public String scanDate();
-    
+
     public String scanName();
 
     public int editMemberChoice();
@@ -71,6 +71,4 @@ public interface UI {
 
     public void showCompetitionResults(ArrayList<CompetitiveSwimmer> competitionResults);
 
-    
-    
 }
