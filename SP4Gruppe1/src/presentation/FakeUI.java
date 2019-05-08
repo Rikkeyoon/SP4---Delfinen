@@ -190,7 +190,11 @@ public class FakeUI implements UI {
 
     @Override
     public void showEditContingentMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        output.add("Choose one of the following options: \n"
+                + "1. Contingent\n"
+                + "2. Edit contingent\n"
+                + "3. Back to main menu\n"
+                + "0. Quit");
     }
 
     @Override
@@ -218,11 +222,19 @@ public class FakeUI implements UI {
 
     @Override
     public void showSwimmersInCompetition(ArrayList<CompetitiveSwimmer> competitiveSwimmers) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder strBuild = new StringBuilder();
+        for (CompetitiveSwimmer compSwimmer : competitiveSwimmers) {
+            strBuild.append(compSwimmer);
+        }
+        output.add(strBuild.toString());
     }
 
     @Override
     public void showCompetitionResults(ArrayList<CompetitiveSwimmer> competitionResults) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder strBuild = new StringBuilder();
+        for (CompetitiveSwimmer compSwimmer : competitionResults) {
+            strBuild.append(compSwimmer);
+        }
+        output.add(strBuild.toString());
     }
 }

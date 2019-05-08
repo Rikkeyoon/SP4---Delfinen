@@ -14,9 +14,9 @@ public class editMemberTest {
     
     @Test
     public void testEditMember_editFirstName_withDB() {
-       // arrange
+        // arrange
         String[] input = {"", "1", "2", "", "Ole", "Jensen", "1989-12-12",
-            "y", "3", "1", "", "Laila", "0"};
+            "y", "3", "1", "1", "Laila", "0", "0"};
         FakeUI ui = new FakeUI(input);
         DBConnection dbc = new DBConnection();
         DBFacade db = new DBFacade(dbc);
@@ -31,9 +31,9 @@ public class editMemberTest {
     
     @Test
     public void testEditMember_editLastName_withDB() {
-       // arrange
+        // arrange
         String[] input = {"", "1", "2", "", "Ole", "Jensen", "1989-12-12",
-            "y", "3", "1", "", "Laila", "0"};
+            "y", "3", "1", "2", "Hansen", "0", "0"};
         FakeUI ui = new FakeUI(input);
         DBConnection dbc = new DBConnection();
         DBFacade db = new DBFacade(dbc);
@@ -48,9 +48,9 @@ public class editMemberTest {
     
     @Test
     public void testEditMember_editActiveness_withDB() {
-       // arrange
+        // arrange
         String[] input = {"", "1", "2", "", "Ole", "Jensen", "1989-12-12",
-            "y", "3", "1", "", "n", "0"};
+            "y", "3", "1", "3", "n", "0"};
         FakeUI ui = new FakeUI(input);
         DBConnection dbc = new DBConnection();
         DBFacade db = new DBFacade(dbc);
@@ -65,9 +65,9 @@ public class editMemberTest {
     
     @Test
     public void testEditMember_editFirstName_withFakeDB() {
-       // arrange
+        // arrange
         String[] input = {"", "1", "2", "", "Ole", "Jensen", "1989-12-12",
-            "y", "3", "1", "", "Laila", "0"};
+            "y", "3", "1", "1", "Laila", "0", "0"};
         FakeUI ui = new FakeUI(input);
         FakeDBFacade db = new FakeDBFacade();
         Controller ctrl = new Controller(ui, db);
@@ -81,9 +81,9 @@ public class editMemberTest {
     
     @Test
     public void testEditMember_editLastName_withFakeDB() {
-       // arrange
+        // arrange
         String[] input = {"", "1", "2", "", "Ole", "Jensen", "1989-12-12",
-            "y", "3", "1", "", "Laila", "0"};
+            "y", "3", "1", "2", "Hansen", "0", "0"};
         FakeUI ui = new FakeUI(input);
         FakeDBFacade db = new FakeDBFacade();
         Controller ctrl = new Controller(ui, db);
@@ -97,9 +97,9 @@ public class editMemberTest {
     
     @Test
     public void testEditMember_editActiveness_withFakeDB() {
-       // arrange
+        // arrange
         String[] input = {"", "1", "2", "", "Ole", "Jensen", "1989-12-12",
-            "y", "3", "1", "", "n", "0"};
+            "y", "3", "1", "3", "n", "0", "0"};
         FakeUI ui = new FakeUI(input);
         FakeDBFacade db = new FakeDBFacade();
         Controller ctrl = new Controller(ui, db);

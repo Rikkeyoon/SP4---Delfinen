@@ -26,7 +26,6 @@ public class SP4Gruppe1 {
 //        ctrl.deleteMember();
 //        ctrl.showMemberList();
 //        System.out.println(db.getCompetitiveSwimmersList());
-          System.out.println("");
           ctrl.start();
         
     }
