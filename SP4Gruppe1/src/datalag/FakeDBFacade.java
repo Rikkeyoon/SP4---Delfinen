@@ -1,6 +1,7 @@
 package datalag;
 
 import businesslogic.*;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -208,6 +209,21 @@ public class FakeDBFacade implements DBStorage {
             compSwimmers.add(compSwimmer);
         }
         return compSwimmers;
+    }
+
+    @Override
+    public void editDisciplin(int id, String newDisciplin) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void editBestTime(int id, LocalTime newBestTime) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void editDate(int id, String newDateOfBestTime) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
