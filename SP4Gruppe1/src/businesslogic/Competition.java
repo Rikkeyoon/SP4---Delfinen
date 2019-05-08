@@ -10,11 +10,13 @@ public class Competition {
     private String competitionName;
     private int ranking;
     private Time bestTimeInCompetition;
+    private CompetitiveSwimmer competitiveSwimmer;
 
     public Competition(CompetitiveSwimmer competitiveSwimmer, String competitionName, int ranking, Time bestTimeInCompetition) {
         this.competitionName = competitionName;
         this.ranking = ranking;
         this.bestTimeInCompetition = bestTimeInCompetition;
+        this.competitiveSwimmer = competitiveSwimmer;
     }
 
     public Competition(String competitionName, int ranking, Time bestTimeInCompetition) {
@@ -45,6 +47,14 @@ public class Competition {
 
     public void setBestTimeInCompetition(Time bestTimeInCompetition) {
         this.bestTimeInCompetition = bestTimeInCompetition;
+    }
+
+    public CompetitiveSwimmer getCompetitiveSwimmer() {
+        return competitiveSwimmer;
+    }
+
+    public void setCompetitiveSwimmer(CompetitiveSwimmer competitiveSwimmer) {
+        this.competitiveSwimmer = competitiveSwimmer;
     }
 
     @Override

@@ -16,7 +16,7 @@ import java.util.Date;
 /*
  * @author Caroline, Nina, Rikke og Kristine
  */
-public class DBFacade {
+public class DBFacade implements DBStorage{
 
     private Connection connection;
 
@@ -24,6 +24,7 @@ public class DBFacade {
         connection = dbc.getConnection();
     }
 
+    @Override
     public int getID() {
         int id = 1;
         try {
@@ -42,6 +43,7 @@ public class DBFacade {
         return id;
     }
 
+    @Override
     public ArrayList<Member> getMembersList() {
         ArrayList<Member> members = new ArrayList<>();
         try {
@@ -69,6 +71,7 @@ public class DBFacade {
         return members;
     }
 
+    @Override
     public void saveMember(Member member) {
         try {
             //create String for the PreparedStatement
@@ -93,6 +96,7 @@ public class DBFacade {
         }
     }
 
+    @Override
     public void deleteMember(int id) {
         try {
             deleteFromCompetition(id);
@@ -140,34 +144,7 @@ public class DBFacade {
         }
     }
 
-    public ArrayList<Member> getCompetitiveSwimmersList() {
-        ArrayList<Member> swimmers = new ArrayList<>();
-        try {
-            //create String for the PreparedStatement
-            String selectSQL = "SELECT * FROM members"
-                    + "NATURAL JOIN competitive_swimmers";
-            //get connection
-            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
-
-            //execute the SQL query
-            ResultSet result = preparedStatement.executeQuery(selectSQL);
-            while (result.next()) {
-                int id = result.getInt(1);
-                String firstName = result.getString(5);
-                String lastName = result.getString(6);
-                int age = result.getInt(7);
-                boolean isActive = result.getBoolean(8);
-                int contingent = result.getInt(9);
-                int restance = result.getInt(10);
-
-                //create a new Member object and insert it into the ArrayList
-                swimmers.add(new Member(firstName, lastName, age, isActive, contingent, restance, id));
-            }
-        } catch (SQLException | NullPointerException e) {
-        }
-        return swimmers;
-    }
-
+    @Override
     public void saveCompetitiveSwimmer(CompetitiveSwimmer member) {
         try {
             saveMember(member);
@@ -188,6 +165,7 @@ public class DBFacade {
         }
     }
 
+    @Override
     public ArrayList<CompetitiveSwimmer> getTop5() {
         ArrayList<CompetitiveSwimmer> top5 = new ArrayList<>();
         try {
@@ -219,6 +197,7 @@ public class DBFacade {
         return top5;
     }
 
+    @Override
     public ArrayList<Contingent> getContingentList() {
         ArrayList<Contingent> contingent = new ArrayList<>();
         try {
@@ -243,6 +222,7 @@ public class DBFacade {
         return contingent;
     }
 
+    @Override
     public ArrayList<Member> getMembersInRestance() {
         ArrayList<Member> membersInRestance = new ArrayList<>();
         try {
@@ -272,6 +252,7 @@ public class DBFacade {
         return membersInRestance;
     }
 
+    @Override
     public ArrayList<CompetitiveSwimmer> getCompetitiveSwimmers() {
         ArrayList<CompetitiveSwimmer> competitiveSwimmers = new ArrayList<>();
         try {
@@ -302,6 +283,7 @@ public class DBFacade {
         return competitiveSwimmers;
     }
 
+    @Override
     public ArrayList<CompetitiveSwimmer> getTrainingsresult() {
         ArrayList<CompetitiveSwimmer> trainingresults = new ArrayList<>();
         try {
@@ -332,6 +314,7 @@ public class DBFacade {
         return trainingresults;
     }
 
+    @Override
     public int editUnder18(int contingent) {
         try {
             String UpdateSQL = "UPDATE contingent SET under_18 = ?";
@@ -345,6 +328,7 @@ public class DBFacade {
 
     }
 
+    @Override
     public int editBetween18And60(int contingent) {
         try {
             String UpdateSQL = "UPDATE contingent SET between_18_and_60 = ?";
@@ -357,6 +341,7 @@ public class DBFacade {
         return contingent;
     }
 
+    @Override
     public int editOver60(int contingent) {
         try {
             String UpdateSQL = "UPDATE contingent SET over_60 = ?";
@@ -369,6 +354,7 @@ public class DBFacade {
         return contingent;
     }
 
+    @Override
     public int editPassive(int contingent) {
         try {
             String UpdateSQL = "UPDATE contingent SET passive = ?";
@@ -381,6 +367,7 @@ public class DBFacade {
         return contingent;
     }
 
+    @Override
     public Member getMemberById(int id) {
         Member member = null;
         try {
@@ -407,6 +394,7 @@ public class DBFacade {
         return member;
     }
 
+    @Override
     public void editRestance(int id, int newRestance) {
         try {
             String UpdateSQL = "UPDATE members SET restance = ? WHERE id = ?";
@@ -419,6 +407,7 @@ public class DBFacade {
         }
     }
 
+    @Override
     public void editFirstName(int id, String firstName) {
         try {
             String UpdateSQL = "UPDATE members SET first_name = ? WHERE id = ?";
@@ -431,6 +420,7 @@ public class DBFacade {
         }
     }
 
+    @Override
     public void editLastName(int id, String lastName) {
         try {
             String UpdateSQL = "UPDATE members SET last_name = ? WHERE id = ?";
@@ -443,6 +433,7 @@ public class DBFacade {
         }
     }
 
+    @Override
     public void editActiveness(int id, boolean active) {
         try {
             String UpdateSQL = "UPDATE members SET is_active = ? WHERE id = ?";
@@ -455,6 +446,7 @@ public class DBFacade {
         }
     }
     
+    @Override
     public ArrayList<CompetitiveSwimmer> getCompetitionSwimmers() {
         ArrayList<CompetitiveSwimmer> competitionSwimmers = new ArrayList<>();
         try {
@@ -489,6 +481,7 @@ public class DBFacade {
         return competitionSwimmers;
     }
 
+    @Override
     public ArrayList<CompetitiveSwimmer> getCompetitionResult() {
         ArrayList<CompetitiveSwimmer> competitionResults = new ArrayList<>();
         try {
@@ -524,14 +517,5 @@ public class DBFacade {
         }
         return competitionResults;
     }
-
-
-
-
-
-
-
-
-
 
 }

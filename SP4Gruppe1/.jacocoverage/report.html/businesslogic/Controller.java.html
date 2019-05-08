@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="da"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Controller.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;SP4Gruppe1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">businesslogic</a> &gt; <span class="el_source">Controller.java</span></div><h1>Controller.java</h1><pre class="source lang-java linenums">package businesslogic;
 
-import datalag.DBFacade;
 import java.util.ArrayList;
 import presentation.UI;
+import datalag.DBStorage;
 
 /*
  * @author Caroline, Nina, Rikke og Kristine
@@ -10,9 +10,9 @@ import presentation.UI;
 public class Controller {
 
     private UI ui;
-    private DBFacade db;
+    private DBStorage db;
 
-<span class="fc" id="L15">    public Controller(UI ui, DBFacade db) {</span>
+<span class="fc" id="L15">    public Controller(UI ui, DBStorage db) {</span>
 <span class="fc" id="L16">        this.ui = ui;</span>
 <span class="fc" id="L17">        this.db = db;</span>
 <span class="fc" id="L18">    }</span>
@@ -22,317 +22,341 @@ public class Controller {
 <span class="fc" id="L22">        ui.showMainMenu();</span>
 
         do {
-<span class="pc bpc" id="L25" title="7 of 8 branches missed.">            switch (ui.mainMenuChoice()) {</span>
+<span class="pc bpc" id="L25" title="5 of 8 branches missed.">            switch (ui.mainMenuChoice()) {</span>
                 case 1:
 <span class="fc" id="L27">                    ui.showMembersMenu();</span>
                     do {
-<span class="pc bpc" id="L29" title="3 of 7 branches missed.">                        switch (ui.memberMenuChoice()) {</span>
+<span class="pc bpc" id="L29" title="1 of 7 branches missed.">                        switch (ui.memberMenuChoice()) {</span>
                             case 1:
 <span class="fc" id="L31">                                showMembersList();</span>
-<span class="fc" id="L32">                                break;</span>
+<span class="fc" id="L32">                                ui.showMembersMenu();</span>
+<span class="fc" id="L33">                                break;</span>
                             case 2:
-<span class="fc" id="L34">                                createMember();</span>
-<span class="fc" id="L35">                                break;</span>
+<span class="fc" id="L35">                                createMember();</span>
+<span class="fc" id="L36">                                ui.showMembersMenu();</span>
+<span class="fc" id="L37">                                break;</span>
                             case 3:
-<span class="nc" id="L37">                                editMember();</span>
-<span class="nc" id="L38">                                break;</span>
-                            case 4:
-<span class="fc" id="L40">                                deleteMember();</span>
+<span class="fc" id="L39">                                editMember();</span>
+<span class="fc" id="L40">                                ui.showMainMenu();</span>
 <span class="fc" id="L41">                                break;</span>
+                            case 4:
+<span class="fc" id="L43">                                deleteMember();</span>
+<span class="fc" id="L44">                                ui.showMainMenu();</span>
+<span class="fc" id="L45">                                break;</span>
                             case 5:
-<span class="nc" id="L43">                                quit = true;</span>
-<span class="nc" id="L44">                                start();</span>
-<span class="nc" id="L45">                                break;</span>
-                            case 0:
 <span class="fc" id="L47">                                quit = true;</span>
+<span class="nc" id="L48">                                start();</span>
+<span class="nc" id="L49">                                break;</span>
+                            case 0:
+<span class="fc" id="L51">                                quit = true;</span>
                                 break;
                         }
-<span class="fc bfc" id="L50" title="All 2 branches covered.">                    } while (!quit);</span>
-<span class="fc" id="L51">                    break;</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">                    } while (!quit);</span>
+<span class="fc" id="L55">                    break;</span>
                 case 2:
-<span class="nc" id="L53">                    ui.showContingentMenu();</span>
+<span class="fc" id="L57">                    ui.showContingentMenu();</span>
                     do {
-<span class="nc bnc" id="L55" title="All 5 branches missed.">                        switch (ui.contingentMenuChoice()) {</span>
+<span class="pc bpc" id="L59" title="4 of 5 branches missed.">                        switch (ui.contingentMenuChoice()) {</span>
                             case 1:
-<span class="nc" id="L57">                                showContingent();</span>
-<span class="nc" id="L58">                                break;</span>
+<span class="nc" id="L61">                                showContingent();</span>
+<span class="nc" id="L62">                                ui.showContingentMenu();</span>
+<span class="nc" id="L63">                                break;</span>
                             case 2:
-<span class="nc" id="L60">                                ui.showEditContingentMenu();</span>
+<span class="fc" id="L65">                                ui.showEditContingentMenu();</span>
                                 do {
-<span class="nc bnc" id="L62" title="All 7 branches missed.">                                    switch (ui.editContingentChoice()) {</span>
+<span class="pc bpc" id="L67" title="5 of 7 branches missed.">                                    switch (ui.editContingentChoice()) {</span>
                                         case 1:
-<span class="nc" id="L64">                                            editUnder18();</span>
-<span class="nc" id="L65">                                            break;</span>
+<span class="fc" id="L69">                                            editUnder18();</span>
+<span class="fc" id="L70">                                            ui.showEditContingentMenu();</span>
+<span class="fc" id="L71">                                            break;</span>
                                         case 2:
-<span class="nc" id="L67">                                            editBetween18And60();</span>
-<span class="nc" id="L68">                                            break;</span>
+<span class="nc" id="L73">                                            editBetween18And60();</span>
+<span class="nc" id="L74">                                            ui.showEditContingentMenu();</span>
+<span class="nc" id="L75">                                            break;</span>
                                         case 3:
-<span class="nc" id="L70">                                            editOver60();</span>
-<span class="nc" id="L71">                                            break;</span>
+<span class="nc" id="L77">                                            editOver60();</span>
+<span class="nc" id="L78">                                            ui.showEditContingentMenu();</span>
+<span class="nc" id="L79">                                            break;</span>
                                         case 4:
-<span class="nc" id="L73">                                            editPassive();</span>
-<span class="nc" id="L74">                                            break;</span>
+<span class="nc" id="L81">                                            editPassive();</span>
+<span class="nc" id="L82">                                            ui.showEditContingentMenu();</span>
+<span class="nc" id="L83">                                            break;</span>
                                         case 5:
-<span class="nc" id="L76">                                            quit = true;</span>
-<span class="nc" id="L77">                                            start();</span>
-<span class="nc" id="L78">                                            break;</span>
+<span class="nc" id="L85">                                            quit = true;</span>
+<span class="nc" id="L86">                                            start();</span>
+<span class="nc" id="L87">                                            break;</span>
                                         case 0:
-<span class="nc" id="L80">                                            quit = true;</span>
+<span class="fc" id="L89">                                            quit = true;</span>
                                             break;
                                     }
-<span class="nc bnc" id="L83" title="All 2 branches missed.">                                } while (!quit);</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">                                } while (!quit);</span>
 
-<span class="nc" id="L85">                                break;</span>
+<span class="fc" id="L94">                                break;</span>
                             case 3:
-<span class="nc" id="L87">                                quit = true;</span>
-<span class="nc" id="L88">                                start();</span>
-<span class="nc" id="L89">                                break;</span>
+<span class="nc" id="L96">                                quit = true;</span>
+<span class="nc" id="L97">                                start();</span>
+<span class="nc" id="L98">                                break;</span>
                             case 0:
-<span class="nc" id="L91">                                quit = true;</span>
+<span class="nc" id="L100">                                quit = true;</span>
                                 break;
                         }
-<span class="nc bnc" id="L94" title="All 2 branches missed.">                    } while (!quit);</span>
-<span class="nc" id="L95">                    break;</span>
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">                    } while (!quit);</span>
+<span class="fc" id="L104">                    break;</span>
                 case 3:
-<span class="nc" id="L97">                    ui.showRestanceMenu();</span>
+<span class="fc" id="L106">                    ui.showRestanceMenu();</span>
                     do {
-<span class="nc bnc" id="L99" title="All 5 branches missed.">                        switch (ui.restanceMenuChoice()) {</span>
+<span class="nc bnc" id="L108" title="All 5 branches missed.">                        switch (ui.restanceMenuChoice()) {</span>
                             case 1:
-<span class="nc" id="L101">                                showMembersInRestance();</span>
-<span class="nc" id="L102">                                break;</span>
+<span class="nc" id="L110">                                showMembersInRestance();</span>
+<span class="nc" id="L111">                                ui.showRestanceMenu();</span>
+<span class="nc" id="L112">                                break;</span>
                             case 2:
-<span class="nc" id="L104">                                editRestance();</span>
-<span class="nc" id="L105">                                break;</span>
+<span class="nc" id="L114">                                editRestance();</span>
+<span class="nc" id="L115">                                ui.showRestanceMenu();</span>
+<span class="nc" id="L116">                                break;</span>
                             case 3:
-<span class="nc" id="L107">                                quit = true;</span>
-<span class="nc" id="L108">                                start();</span>
-<span class="nc" id="L109">                                break;</span>
+<span class="nc" id="L118">                                quit = true;</span>
+<span class="nc" id="L119">                                start();</span>
+<span class="nc" id="L120">                                break;</span>
                             case 0:
-<span class="nc" id="L111">                                quit = true;</span>
+<span class="nc" id="L122">                                quit = true;</span>
                                 break;
                         }
-<span class="nc bnc" id="L114" title="All 2 branches missed.">                    } while (!quit);</span>
-<span class="nc" id="L115">                    break;</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">                    } while (!quit);</span>
+<span class="nc" id="L126">                    break;</span>
                 case 4:
-<span class="nc" id="L117">                    showTop5Swimmers();</span>
-<span class="nc" id="L118">                    break;</span>
+<span class="nc" id="L128">                    showTop5Swimmers();</span>
+<span class="nc" id="L129">                    break;</span>
                 case 5:
-<span class="nc" id="L120">                    ui.showCompetitiveSwimmersMenu();</span>
+<span class="nc" id="L131">                    ui.showCompetitiveSwimmersMenu();</span>
                     do {
-<span class="nc bnc" id="L122" title="All 6 branches missed.">                        switch (ui.competitiveSwimmersMenuChoice()) {</span>
+<span class="nc bnc" id="L133" title="All 6 branches missed.">                        switch (ui.competitiveSwimmersMenuChoice()) {</span>
                             case 1:
-<span class="nc" id="L124">                                showCompetitiveSwimmers();</span>
-<span class="nc" id="L125">                                break;</span>
+<span class="nc" id="L135">                                showCompetitiveSwimmers();</span>
+<span class="nc" id="L136">                                ui.showCompetitiveSwimmersMenu();</span>
+<span class="nc" id="L137">                                break;</span>
                             case 2:
-<span class="nc" id="L127">                                showTrainingsresult();</span>
-<span class="nc" id="L128">                                break;</span>
+<span class="nc" id="L139">                                showTrainingsresult();</span>
+<span class="nc" id="L140">                                ui.showCompetitiveSwimmersMenu();</span>
+<span class="nc" id="L141">                                break;</span>
                             case 3:
-<span class="nc" id="L130">                                editTrainingsresult();</span>
-<span class="nc" id="L131">                                break;</span>
+<span class="nc" id="L143">                                editTrainingsresult();</span>
+<span class="nc" id="L144">                                ui.showCompetitiveSwimmersMenu();</span>
+<span class="nc" id="L145">                                break;</span>
                             case 4:
-<span class="nc" id="L133">                                quit = true;</span>
-<span class="nc" id="L134">                                start();</span>
-<span class="nc" id="L135">                                break;</span>
+<span class="nc" id="L147">                                quit = true;</span>
+<span class="nc" id="L148">                                start();</span>
+<span class="nc" id="L149">                                break;</span>
                             case 0:
-<span class="nc" id="L137">                                quit = true;</span>
+<span class="nc" id="L151">                                quit = true;</span>
                                 break;
                         }
-<span class="nc bnc" id="L140" title="All 2 branches missed.">                    } while (!quit);</span>
-<span class="nc" id="L141">                    break;</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">                    } while (!quit);</span>
+<span class="nc" id="L155">                    break;</span>
                 case 6:
-<span class="nc" id="L143">                    ui.showCompetitionMenu();</span>
+<span class="nc" id="L157">                    ui.showCompetitionMenu();</span>
                     do {
-<span class="nc bnc" id="L145" title="All 6 branches missed.">                        switch (ui.competitionMenuChoice()) {</span>
+<span class="nc bnc" id="L159" title="All 6 branches missed.">                        switch (ui.competitionMenuChoice()) {</span>
                             case 1:
-<span class="nc" id="L147">                                showSwimmersInCompetition();</span>
-<span class="nc" id="L148">                                break;</span>
+<span class="nc" id="L161">                                showSwimmersInCompetition();</span>
+<span class="nc" id="L162">                                ui.showCompetitionMenu();</span>
+<span class="nc" id="L163">                                break;</span>
                             case 2:
-<span class="nc" id="L150">                                showCompetitionResults();</span>
-<span class="nc" id="L151">                                break;</span>
+<span class="nc" id="L165">                                showCompetitionResults();</span>
+<span class="nc" id="L166">                                ui.showCompetitionMenu();</span>
+<span class="nc" id="L167">                                break;</span>
                             case 3:
-<span class="nc" id="L153">                                editCompetitionResults();</span>
-<span class="nc" id="L154">                                break;</span>
+<span class="nc" id="L169">                                editCompetitionResults();</span>
+<span class="nc" id="L170">                                ui.showCompetitionMenu();</span>
+<span class="nc" id="L171">                                break;</span>
                             case 4:
-<span class="nc" id="L156">                                quit = true;</span>
-<span class="nc" id="L157">                                start();</span>
-<span class="nc" id="L158">                                break;</span>
+<span class="nc" id="L173">                                quit = true;</span>
+<span class="nc" id="L174">                                start();</span>
+<span class="nc" id="L175">                                break;</span>
                             case 0:
-<span class="nc" id="L160">                                quit = true;</span>
+<span class="nc" id="L177">                                quit = true;</span>
                         }
-<span class="nc bnc" id="L162" title="All 2 branches missed.">                    } while (!quit);</span>
-<span class="nc" id="L163">                    break;</span>
+<span class="nc bnc" id="L179" title="All 2 branches missed.">                    } while (!quit);</span>
+<span class="nc" id="L180">                    break;</span>
                 case 0:
-<span class="nc" id="L165">                    quit = true;</span>
+<span class="nc" id="L182">                    quit = true;</span>
                     break;
             }
-<span class="pc bpc" id="L168" title="1 of 2 branches missed.">        } while (!quit);</span>
-<span class="fc" id="L169">    }</span>
+<span class="pc bpc" id="L185" title="1 of 2 branches missed.">        } while (!quit);</span>
+<span class="fc" id="L186">    }</span>
 
     private void createMember() {
-<span class="fc" id="L172">        ui.scanString();</span>
-<span class="fc" id="L173">        ui.print(&quot;Please enter first name: &quot;);</span>
-<span class="fc" id="L174">        String firstName = ui.scanName();</span>
-<span class="fc" id="L175">        ui.print(&quot;Please enter last name: &quot;);</span>
-<span class="fc" id="L176">        String lastName = ui.scanName();</span>
-<span class="fc" id="L177">        ui.print(&quot;Please enter date of birth (YYYY-MM-DD): &quot;);</span>
-<span class="fc" id="L178">        String dateOfBirth = ui.scanDate();</span>
-<span class="fc" id="L179">        ui.print(&quot;Is the member an active member? Press Y for yes, or N for no: &quot;);</span>
-<span class="fc" id="L180">        boolean isActive = ui.scanBoolean();</span>
-<span class="fc" id="L181">        int ID = db.getID();</span>
+<span class="fc" id="L189">        ui.scanString();</span>
+<span class="fc" id="L190">        ui.print(&quot;Please enter first name: &quot;);</span>
+<span class="fc" id="L191">        String firstName = ui.scanName();</span>
+<span class="fc" id="L192">        ui.print(&quot;Please enter last name: &quot;);</span>
+<span class="fc" id="L193">        String lastName = ui.scanName();</span>
+<span class="fc" id="L194">        ui.print(&quot;Please enter date of birth (YYYY-MM-DD): &quot;);</span>
+<span class="fc" id="L195">        String dateOfBirth = ui.scanDate();</span>
+<span class="fc" id="L196">        ui.print(&quot;Is the member an active member? Press Y for yes, or N for no: &quot;);</span>
+<span class="fc" id="L197">        boolean isActive = ui.scanBoolean();</span>
+<span class="fc" id="L198">        int ID = db.getID();</span>
 
-<span class="fc" id="L183">        Member member = new Member(firstName, lastName, dateOfBirth, isActive, ID);</span>
+<span class="fc" id="L200">        Member member = new Member(firstName, lastName, dateOfBirth, isActive, ID);</span>
 
-<span class="fc" id="L185">        db.saveMember(member);</span>
-<span class="fc" id="L186">        ui.print(&quot;The following member has been added: &quot; + member.toString());</span>
-<span class="fc" id="L187">    }</span>
+<span class="fc" id="L202">        db.saveMember(member);</span>
+<span class="fc" id="L203">        ui.print(&quot;The following member has been added: &quot; + member.toString());</span>
+<span class="fc" id="L204">    }</span>
 
     private void deleteMember() {
-<span class="fc" id="L190">        showMembersList();</span>
-<span class="fc" id="L191">        ui.print(&quot;Enter the ID of the member you want to delete: &quot;);</span>
-<span class="fc" id="L192">        int id = ui.scanInt();</span>
-<span class="fc" id="L193">        db.deleteMember(id);</span>
-<span class="fc" id="L194">        ui.print(&quot;The member with ID number &quot; + id + &quot; has been deleted&quot;);</span>
-<span class="fc" id="L195">    }</span>
+<span class="fc" id="L207">        showMembersList();</span>
+<span class="fc" id="L208">        ui.print(&quot;Enter the ID of the member you want to delete: &quot;);</span>
+<span class="fc" id="L209">        int id = ui.scanInt();</span>
+<span class="fc" id="L210">        db.deleteMember(id);</span>
+<span class="fc" id="L211">        ui.print(&quot;The member with ID number &quot; + id + &quot; has been deleted&quot;);</span>
+<span class="fc" id="L212">    }</span>
 
     private void showMembersList() {
-<span class="fc" id="L198">        ArrayList&lt;Member&gt; members = db.getMembersList();</span>
-<span class="fc" id="L199">        ui.showMemberList(members);</span>
-<span class="fc" id="L200">    }</span>
+<span class="fc" id="L215">        ArrayList&lt;Member&gt; members = db.getMembersList();</span>
+<span class="fc" id="L216">        ui.showMemberList(members);</span>
+<span class="fc" id="L217">    }</span>
 
     private void editMember() {
-<span class="nc" id="L203">        ui.print(&quot;Enter the ID of the member, you would like to edit: &quot;);</span>
-<span class="nc" id="L204">        int id = ui.scanID();</span>
-<span class="nc" id="L205">        Member member = getMemberbyID(id);</span>
-<span class="nc bnc" id="L206" title="All 2 branches missed.">        if (member == null) {</span>
-<span class="nc" id="L207">            editMemberNull(member);</span>
-        }
+<span class="fc" id="L220">        showMembersList();</span>
+<span class="fc" id="L221">        ui.print(&quot;Enter the ID of the member, you would like to edit: &quot;);</span>
+<span class="fc" id="L222">        int id = ui.scanID();</span>
+<span class="fc" id="L223">        Member memberByID = db.getMemberById(id);</span>
+<span class="fc" id="L224">        ui.print(memberByID.toString());</span>
 
-<span class="nc" id="L210">        boolean quit = false;</span>
-<span class="nc" id="L211">        ui.showEditMemberMenu();</span>
+<span class="fc" id="L226">        boolean quit = false;</span>
+<span class="fc" id="L227">        ui.showEditMemberMenu();</span>
         do {
-<span class="nc bnc" id="L213" title="All 5 branches missed.">            switch (ui.editMemberChoice()) {</span>
+<span class="pc bpc" id="L229" title="1 of 5 branches missed.">            switch (ui.editMemberChoice()) {</span>
                 case 1:
-<span class="nc" id="L215">                    String firstName = ui.scanString();</span>
-<span class="nc" id="L216">                    member.setFirstName(firstName);</span>
-<span class="nc" id="L217">                    break;</span>
+<span class="fc" id="L231">                    ui.scanString();</span>
+<span class="fc" id="L232">                    ui.print(memberByID.toString());</span>
+<span class="fc" id="L233">                    ui.print(&quot;What would you like to change the first name to?&quot;);</span>
+<span class="fc" id="L234">                    String firstName = ui.scanString();</span>
+<span class="fc" id="L235">                    db.editFirstName(id, firstName);</span>
+<span class="fc" id="L236">                    ui.print(&quot;The first name has now been changed to &quot; + firstName);</span>
+<span class="fc" id="L237">                    break;</span>
                 case 2:
-<span class="nc" id="L219">                    String lastName = ui.scanString();</span>
-<span class="nc" id="L220">                    member.setLastName(lastName);</span>
-<span class="nc" id="L221">                    break;</span>
+<span class="fc" id="L239">                    ui.scanString();</span>
+<span class="fc" id="L240">                    ui.print(memberByID.toString());</span>
+<span class="fc" id="L241">                    ui.print(&quot;What would you like to change the last name to?&quot;);</span>
+<span class="fc" id="L242">                    String lastName = ui.scanString();</span>
+<span class="fc" id="L243">                    db.editLastName(id, lastName);</span>
+<span class="fc" id="L244">                    ui.print(&quot;The last name has now been changed to &quot; + lastName);</span>
+<span class="fc" id="L245">                    break;</span>
                 case 3:
-<span class="nc" id="L223">                    ui.print(&quot;Is the member an active member? Press Y for yes, or N for no: &quot;);</span>
-<span class="nc" id="L224">                    boolean isActive = ui.scanBoolean();</span>
-<span class="nc" id="L225">                    member.setIsActive(isActive);</span>
-<span class="nc" id="L226">                    break;</span>
-                case 4:
-<span class="nc" id="L228">                    quit = true;</span>
+<span class="fc" id="L247">                    ui.scanString();</span>
+<span class="fc" id="L248">                    ui.print(memberByID.toString());</span>
+<span class="fc" id="L249">                    ui.print(&quot;Is the member an active member? Press Y for yes, or N for no: &quot;);</span>
+<span class="fc" id="L250">                    boolean isActive = ui.scanBoolean();</span>
+<span class="fc" id="L251">                    db.editActiveness(id, isActive);</span>
+<span class="fc" id="L252">                    ui.print(&quot;The activeness has now been changed to &quot; + isActive);</span>
+<span class="fc" id="L253">                    break;</span>
+                case 0:
+<span class="fc" id="L255">                    quit = true;</span>
                     break;
             }
-<span class="nc bnc" id="L231" title="All 2 branches missed.">        } while (!quit);</span>
-<span class="nc" id="L232">    }</span>
+<span class="fc bfc" id="L258" title="All 2 branches covered.">        } while (!quit);</span>
+<span class="fc" id="L259">    }</span>
 
     private void showTop5Swimmers() {
-<span class="nc" id="L235">        ArrayList&lt;CompetitiveSwimmer&gt; competitiveSwimmers = db.getTop5();</span>
-<span class="nc" id="L236">        ui.showTop5(competitiveSwimmers);</span>
-<span class="nc" id="L237">    }</span>
+<span class="nc" id="L262">        ArrayList&lt;CompetitiveSwimmer&gt; competitiveSwimmers = db.getTop5();</span>
+<span class="nc" id="L263">        ui.showTop5(competitiveSwimmers);</span>
+<span class="nc" id="L264">    }</span>
 
     private void showContingent() {
-<span class="nc" id="L240">        ArrayList&lt;Contingent&gt; contingent = db.getContingentList();</span>
-<span class="nc" id="L241">        ui.showContingentList(contingent);</span>
-<span class="nc" id="L242">    }</span>
+<span class="nc" id="L267">        ArrayList&lt;Contingent&gt; contingent = db.getContingentList();</span>
+<span class="nc" id="L268">        ui.showContingentList(contingent);</span>
+<span class="nc" id="L269">    }</span>
 
-    private Member getMemberbyID(int id) {
-<span class="nc" id="L245">        ArrayList&lt;Member&gt; members = db.getMembersList();</span>
-<span class="nc bnc" id="L246" title="All 2 branches missed.">        for (Member member : members) {</span>
-<span class="nc bnc" id="L247" title="All 2 branches missed.">            if (member.getId() == id) {</span>
-<span class="nc" id="L248">                return member;</span>
-            }
-<span class="nc" id="L250">        }</span>
-<span class="nc" id="L251">        return null;</span>
-    }
-
-    private void editMemberNull(Member member) {
-<span class="nc bnc" id="L255" title="All 2 branches missed.">        while (member == null) {</span>
-<span class="nc" id="L256">            ui.print(&quot;Invalid ID, please try again: &quot;);</span>
-<span class="nc" id="L257">            int id = ui.scanID();</span>
-<span class="nc" id="L258">            member = getMemberbyID(id);</span>
-<span class="nc" id="L259">        }</span>
-<span class="nc" id="L260">    }</span>
-
+//    private Member getMemberbyID(int id) {
+//        ArrayList&lt;Member&gt; members = db.getMembersList();
+//        for (Member member : members) {
+//            if (member.getId() == id) {
+//                return member;
+//            }
+//        }
+//        return null;
+//    }
+//    private void editMemberNull(Member member) {
+//        while (member == null) {
+//            ui.print(&quot;Invalid ID, please try again: &quot;);
+//            int id = ui.scanID();
+//            member = getMemberbyID(id);
+//        }
+//    }
     private void showMembersInRestance() {
-<span class="nc" id="L263">        ArrayList&lt;Member&gt; membersInRestance = db.getMembersInRestance();</span>
-<span class="nc" id="L264">        ui.showMemberList(membersInRestance);</span>
-<span class="nc" id="L265">    }</span>
+<span class="nc" id="L288">        ArrayList&lt;Member&gt; membersInRestance = db.getMembersInRestance();</span>
+<span class="nc" id="L289">        ui.showMemberList(membersInRestance);</span>
+<span class="nc" id="L290">    }</span>
 
     private void editRestance() {
-<span class="nc" id="L268">        showMembersList();</span>
-<span class="nc" id="L269">        ui.print(&quot;\nEnter the ID of the member, you would like to edit:&quot;);</span>
-<span class="nc" id="L270">        int id = ui.scanID();</span>
-<span class="nc" id="L271">        Member memberByID = db.getMemberById(id);</span>
-<span class="nc" id="L272">        ui.print(memberByID.toString());</span>
-<span class="nc" id="L273">        ui.print(&quot;\nWhat would you like to change the restance to?&quot;);</span>
-<span class="nc" id="L274">        int newRestance = ui.scanInt();</span>
-<span class="nc" id="L275">        newRestance = db.editRestance(id, newRestance);</span>
-<span class="nc" id="L276">        ui.print(&quot;The restance has now been changed to &quot; + newRestance);</span>
-<span class="nc" id="L277">    }</span>
-    
-    private Member getMemberById(int id) {
-<span class="nc" id="L280">        Member memberById = db.getMemberById(id);</span>
-<span class="nc" id="L281">        return memberById;</span>
-    }
+<span class="fc" id="L293">        showMembersList();</span>
+<span class="fc" id="L294">        ui.print(&quot;\nEnter the ID of the member, you would like to edit:&quot;);</span>
+<span class="fc" id="L295">        int id = ui.scanID();</span>
+<span class="fc" id="L296">        Member memberByID = db.getMemberById(id);</span>
+<span class="nc" id="L297">        ui.print(memberByID.toString());</span>
+<span class="nc" id="L298">        ui.print(&quot;\nWhat would you like to change the restance to?&quot;);</span>
+<span class="nc" id="L299">        int newRestance = ui.scanInt();</span>
+<span class="nc" id="L300">        db.editRestance(id, newRestance);</span>
+<span class="nc" id="L301">        ui.print(&quot;The restance has now been changed to &quot; + newRestance);</span>
+<span class="nc" id="L302">    }</span>
 
     private void showCompetitiveSwimmers() {
-<span class="nc" id="L285">        ArrayList&lt;CompetitiveSwimmer&gt; competitiveSwimmers = db.getCompetitiveSwimmers();</span>
-<span class="nc" id="L286">        ui.showCompetitiveSwimmerList(competitiveSwimmers);</span>
-<span class="nc" id="L287">    }</span>
+<span class="nc" id="L305">        ArrayList&lt;CompetitiveSwimmer&gt; competitiveSwimmers = db.getCompetitiveSwimmers();</span>
+<span class="nc" id="L306">        ui.showCompetitiveSwimmerList(competitiveSwimmers);</span>
+<span class="nc" id="L307">    }</span>
 
     private void showTrainingsresult() {
-<span class="nc" id="L290">        ArrayList&lt;CompetitiveSwimmer&gt; trainingresults = db.getTrainingsresult();</span>
-<span class="nc" id="L291">        ui.showTrainingresults(trainingresults);</span>
-<span class="nc" id="L292">    }</span>
+<span class="nc" id="L310">        ArrayList&lt;CompetitiveSwimmer&gt; trainingresults = db.getTrainingsresult();</span>
+<span class="nc" id="L311">        ui.showTrainingresults(trainingresults);</span>
+<span class="nc" id="L312">    }</span>
 
     private void editTrainingsresult() {
-<span class="nc" id="L295">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
+<span class="nc" id="L315">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
     }
 
-    private void showSwimmersInCompetition() {
-<span class="nc" id="L299">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
-    }
+     private void showSwimmersInCompetition() {
+<span class="nc" id="L319">        ArrayList&lt;CompetitiveSwimmer&gt; competitiveSwimmers = db.getCompetitionSwimmers();</span>
+<span class="nc" id="L320">        ui.showSwimmersInCompetition(competitiveSwimmers);</span>
+<span class="nc" id="L321">    }</span>
 
     private void showCompetitionResults() {
-<span class="nc" id="L303">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
-    }
+<span class="nc" id="L324">        ArrayList&lt;CompetitiveSwimmer&gt; competitionResults = db.getCompetitionResult();</span>
+<span class="nc" id="L325">        ui.showCompetitionResults(competitionResults);</span>
+
+<span class="nc" id="L327">    }</span>
 
     private void editCompetitionResults() {
-<span class="nc" id="L307">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
+<span class="nc" id="L330">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
     }
 
     private void editUnder18() {
-<span class="nc" id="L311">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
-<span class="nc" id="L312">        int contingent = ui.scanInt();</span>
-<span class="nc" id="L313">        contingent = db.editUnder18(contingent);</span>
-<span class="nc" id="L314">        ui.print(&quot;The contingent has now been changed to &quot; + contingent);</span>
-<span class="nc" id="L315">    }</span>
+<span class="fc" id="L334">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
+<span class="fc" id="L335">        int contingent = ui.scanInt();</span>
+<span class="fc" id="L336">        contingent = db.editUnder18(contingent);</span>
+<span class="fc" id="L337">        ui.print(&quot;The contingent has now been changed to &quot; + contingent);</span>
+<span class="fc" id="L338">    }</span>
 
     private void editBetween18And60() {
-<span class="nc" id="L318">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
-<span class="nc" id="L319">        int contingent = ui.scanInt();</span>
-<span class="nc" id="L320">        contingent = db.editBetween18And60(contingent);</span>
-<span class="nc" id="L321">        ui.print(&quot;The contingent has now been changed to &quot; + contingent);</span>
-<span class="nc" id="L322">    }</span>
+<span class="nc" id="L341">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
+<span class="nc" id="L342">        int contingent = ui.scanInt();</span>
+<span class="nc" id="L343">        contingent = db.editBetween18And60(contingent);</span>
+<span class="nc" id="L344">        ui.print(&quot;The contingent has now been changed to &quot; + contingent);</span>
+<span class="nc" id="L345">    }</span>
 
     private void editOver60() {
-<span class="nc" id="L325">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
-<span class="nc" id="L326">        int contingent = ui.scanInt();</span>
-<span class="nc" id="L327">        contingent = db.editOver60(contingent);</span>
-<span class="nc" id="L328">        ui.print(&quot;The contingent has now been changed to &quot; + contingent);</span>
-<span class="nc" id="L329">    }</span>
+<span class="nc" id="L348">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
+<span class="nc" id="L349">        int contingent = ui.scanInt();</span>
+<span class="nc" id="L350">        contingent = db.editOver60(contingent);</span>
+<span class="nc" id="L351">        ui.print(&quot;The contingent has now been changed to &quot; + contingent);</span>
+<span class="nc" id="L352">    }</span>
 
     private void editPassive() {
-<span class="nc" id="L332">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
-<span class="nc" id="L333">        int contingent = ui.scanInt();</span>
-<span class="nc" id="L334">        contingent = db.editPassive(contingent);</span>
-<span class="nc" id="L335">        ui.print(&quot;The contingent has now been changed &quot; + contingent);</span>
-<span class="nc" id="L336">    }</span>
+<span class="nc" id="L355">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
+<span class="nc" id="L356">        int contingent = ui.scanInt();</span>
+<span class="nc" id="L357">        contingent = db.editPassive(contingent);</span>
+<span class="nc" id="L358">        ui.print(&quot;The contingent has now been changed &quot; + contingent);</span>
+<span class="nc" id="L359">    }</span>
+    
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

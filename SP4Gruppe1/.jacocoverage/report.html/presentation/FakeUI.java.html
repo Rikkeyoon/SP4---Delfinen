@@ -42,9 +42,9 @@ public class FakeUI implements UI {
     @Override
     public void showMemberList(ArrayList&lt;Member&gt; members) {
 <span class="fc" id="L44">        StringBuilder strBuild = new StringBuilder();</span>
-<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        for (Member member : members) {</span>
-<span class="nc" id="L46">            strBuild.append(member.toString());</span>
-<span class="nc" id="L47">        }</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        for (Member member : members) {</span>
+<span class="fc" id="L46">            strBuild.append(member.toString());</span>
+<span class="fc" id="L47">        }</span>
 <span class="fc" id="L48">        output.add(strBuild.toString());</span>
 <span class="fc" id="L49">    }</span>
 
@@ -86,30 +86,30 @@ public class FakeUI implements UI {
 
     @Override
     public void showContingentMenu() {
-<span class="nc" id="L89">        output.add(&quot;Choose one of the following options: \n&quot;</span>
+<span class="fc" id="L89">        output.add(&quot;Choose one of the following options: \n&quot;</span>
                 + &quot;1. Contingent\n&quot;
                 + &quot;2. Edit contingent\n&quot;
                 + &quot;3. Back to main menu\n&quot;
                 + &quot;0. Quit&quot;);
-<span class="nc" id="L94">    }</span>
+<span class="fc" id="L94">    }</span>
 
     @Override
     public int contingentMenuChoice() {
-<span class="nc" id="L98">        return Integer.parseInt(input[index++]);</span>
+<span class="fc" id="L98">        return Integer.parseInt(input[index++]);</span>
     }
 
     @Override
     public void showRestanceMenu() {
-<span class="nc" id="L103">        output.add(&quot;Choose one of the following options: \n&quot;</span>
+<span class="fc" id="L103">        output.add(&quot;Choose one of the following options: \n&quot;</span>
                 + &quot;1. Swimmers in restance\n&quot;
                 + &quot;2. Edit restance\n&quot;
                 + &quot;3. back to main menu\n&quot;
                 + &quot;0. Quit&quot;);
-<span class="nc" id="L108">    }</span>
+<span class="fc" id="L108">    }</span>
 
     @Override
     public int restanceMenuChoice() {
-<span class="nc" id="L112">        return Integer.parseInt(input[index++]);</span>
+<span class="fc" id="L112">        return Integer.parseInt(input[index++]);</span>
     }
 
     @Override
@@ -172,48 +172,70 @@ public class FakeUI implements UI {
 
     @Override
     public int editMemberChoice() {
-<span class="nc" id="L175">        return Integer.parseInt(input[index++]);</span>
+<span class="fc" id="L175">        return Integer.parseInt(input[index++]);</span>
     }
 
     @Override
     public int scanID() {
-<span class="nc" id="L180">        return Integer.parseInt(input[index++]);</span>
+<span class="fc" id="L180">        return Integer.parseInt(input[index++]);</span>
     }
 
     @Override
     public void showEditMemberMenu() {
-<span class="nc" id="L185">        output.add(&quot;Press 1 to edit first name\n&quot;</span>
+<span class="fc" id="L185">        output.add(&quot;Press 1 to edit first name\n&quot;</span>
                 + &quot;Press 2 to edit last name\n&quot;
                 + &quot;Press 3 to edit activeness\n&quot;
                 + &quot;Press 4 to return&quot;);
-<span class="nc" id="L189">    }</span>
+<span class="fc" id="L189">    }</span>
 
     @Override
     public void showEditContingentMenu() {
-<span class="nc" id="L193">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
-    }
+<span class="fc" id="L193">        output.add(&quot;Choose one of the following options: \n&quot;</span>
+                + &quot;1. Contingent\n&quot;
+                + &quot;2. Edit contingent\n&quot;
+                + &quot;3. Back to main menu\n&quot;
+                + &quot;0. Quit&quot;);
+<span class="fc" id="L198">    }</span>
 
     @Override
     public int editContingentChoice() {
-<span class="nc" id="L198">        return Integer.parseInt(input[index++]);</span>
+<span class="fc" id="L202">        return Integer.parseInt(input[index++]);</span>
     }
 
     @Override
     public void showCompetitiveSwimmerList(ArrayList&lt;CompetitiveSwimmer&gt; competitiveSwimmers) {
-<span class="nc" id="L203">        StringBuilder strBuild = new StringBuilder();</span>
-<span class="nc bnc" id="L204" title="All 2 branches missed.">        for (CompetitiveSwimmer compSwimmer : competitiveSwimmers) {</span>
-<span class="nc" id="L205">            strBuild.append(compSwimmer.toString());</span>
-<span class="nc" id="L206">        }</span>
-<span class="nc" id="L207">        output.add(strBuild.toString());</span>
-<span class="nc" id="L208">    }</span>
+<span class="nc" id="L207">        StringBuilder strBuild = new StringBuilder();</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">        for (CompetitiveSwimmer compSwimmer : competitiveSwimmers) {</span>
+<span class="nc" id="L209">            strBuild.append(compSwimmer.toString());</span>
+<span class="nc" id="L210">        }</span>
+<span class="nc" id="L211">        output.add(strBuild.toString());</span>
+<span class="nc" id="L212">    }</span>
 
     @Override
     public void showTrainingresults(ArrayList&lt;CompetitiveSwimmer&gt; trainingresults) {
-<span class="nc" id="L212">        StringBuilder strBuild = new StringBuilder();</span>
-<span class="nc bnc" id="L213" title="All 2 branches missed.">        for (CompetitiveSwimmer trainingresult : trainingresults) {</span>
-<span class="nc" id="L214">            strBuild.append(trainingresult);</span>
-<span class="nc" id="L215">        }</span>
-<span class="nc" id="L216">        output.add(strBuild.toString());</span>
-<span class="nc" id="L217">    }</span>
+<span class="nc" id="L216">        StringBuilder strBuild = new StringBuilder();</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">        for (CompetitiveSwimmer trainingresult : trainingresults) {</span>
+<span class="nc" id="L218">            strBuild.append(trainingresult);</span>
+<span class="nc" id="L219">        }</span>
+<span class="nc" id="L220">        output.add(strBuild.toString());</span>
+<span class="nc" id="L221">    }</span>
+
+    @Override
+    public void showSwimmersInCompetition(ArrayList&lt;CompetitiveSwimmer&gt; competitiveSwimmers) {
+<span class="nc" id="L225">        StringBuilder strBuild = new StringBuilder();</span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">        for (CompetitiveSwimmer compSwimmer : competitiveSwimmers) {</span>
+<span class="nc" id="L227">            strBuild.append(compSwimmer);</span>
+<span class="nc" id="L228">        }</span>
+<span class="nc" id="L229">        output.add(strBuild.toString());</span>
+<span class="nc" id="L230">    }</span>
+
+    @Override
+    public void showCompetitionResults(ArrayList&lt;CompetitiveSwimmer&gt; competitionResults) {
+<span class="nc" id="L234">        StringBuilder strBuild = new StringBuilder();</span>
+<span class="nc bnc" id="L235" title="All 2 branches missed.">        for (CompetitiveSwimmer compSwimmer : competitionResults) {</span>
+<span class="nc" id="L236">            strBuild.append(compSwimmer);</span>
+<span class="nc" id="L237">        }</span>
+<span class="nc" id="L238">        output.add(strBuild.toString());</span>
+<span class="nc" id="L239">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

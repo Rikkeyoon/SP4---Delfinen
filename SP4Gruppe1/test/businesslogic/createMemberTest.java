@@ -2,6 +2,7 @@ package businesslogic;
 
 import datalag.DBConnection;
 import datalag.DBFacade;
+import datalag.FakeDBFacade;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import presentation.FakeUI;
@@ -11,7 +12,7 @@ import presentation.FakeUI;
 public class createMemberTest {
 
     @Test
-    public void testCreateMember() {
+    public void testCreateMember_withDB() {
         // arrange
         String[] input = {"", "1", "2", "", "Ole", "Jensen", "1989-12-12",
             "y", "0"};
@@ -28,7 +29,7 @@ public class createMemberTest {
     }
     
     @Test
-    public void testCreateMember_create2Members() {
+    public void testCreateMember_create2Members_withDB() {
         // arrange
         String[] input = {"", "1", "2", "", "Ole", "Jensen", "1989-12-12",
             "y", "2", "", "Mia", "Jensen", "1989-12-12",
@@ -43,7 +44,41 @@ public class createMemberTest {
         
         // assert
         assertTrue(ui.output.get(6).contains("Ole Jensen"));
-        assertTrue(ui.output.get(11).contains("Mia Jensen"));
+        assertTrue(ui.output.get(12).contains("Mia Jensen"));
     }
+    
+    @Test
+    public void testCreateMember_withFakeDB() {
+        // arrange
+        String[] input = {"", "1", "2", "", "Ole", "Jensen", "1989-12-12",
+            "y", "0"};
+        FakeUI ui = new FakeUI(input);
+        FakeDBFacade db = new FakeDBFacade();
+        Controller ctrl = new Controller(ui, db);
 
+        // act
+        ctrl.start();
+        
+        // assert
+        assertTrue(ui.output.get(6).contains("Ole Jensen"));
+    }
+    
+    @Test
+    public void testCreateMember_create2Members_withFakeDB() {
+        // arrange
+        String[] input = {"", "1", "2", "", "Ole", "Jensen", "1989-12-12",
+            "y", "2", "", "Mia", "Jensen", "1989-12-12",
+            "y", "0"};
+        FakeUI ui = new FakeUI(input);
+        FakeDBFacade db = new FakeDBFacade();
+        Controller ctrl = new Controller(ui, db);
+
+        // act
+        ctrl.start();
+        
+        // assert
+        assertTrue(ui.output.get(6).contains("Ole Jensen"));
+        assertTrue(ui.output.get(12).contains("Mia Jensen"));
+    }
+   
 }
