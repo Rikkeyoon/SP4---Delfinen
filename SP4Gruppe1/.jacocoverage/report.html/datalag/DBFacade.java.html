@@ -224,10 +224,10 @@ public class DBFacade implements DBStorage{
 
     @Override
     public ArrayList&lt;Member&gt; getMembersInRestance() {
-<span class="nc" id="L227">        ArrayList&lt;Member&gt; membersInRestance = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L227">        ArrayList&lt;Member&gt; membersInRestance = new ArrayList&lt;&gt;();</span>
         try {
             //create String for the PreparedStatement
-<span class="nc" id="L230">            String selectSQL = &quot;SELECT * FROM members  WHERE restance != 0 &quot;</span>
+<span class="fc" id="L230">            String selectSQL = &quot;SELECT * FROM members  WHERE restance != 0 &quot;</span>
                     + &quot;ORDER BY first_name&quot;;
             //get connection
 <span class="nc" id="L233">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
@@ -247,9 +247,9 @@ public class DBFacade implements DBStorage{
 <span class="nc" id="L247">                membersInRestance.add(new Member(firstName, lastName, age,</span>
                         isActive, contingent, restance, id));
 <span class="nc" id="L249">            }</span>
-<span class="nc" id="L250">        } catch (SQLException | NullPointerException e) {</span>
+<span class="fc" id="L250">        } catch (SQLException | NullPointerException e) {</span>
 <span class="nc" id="L251">        }</span>
-<span class="nc" id="L252">        return membersInRestance;</span>
+<span class="fc" id="L252">        return membersInRestance;</span>
     }
 
     @Override

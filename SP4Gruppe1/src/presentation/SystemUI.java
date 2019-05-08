@@ -130,7 +130,7 @@ public class SystemUI implements UI {
     @Override
     public void showContingentMenu() {
         System.out.println("Choose one of the following options: \n"
-                + "1. Contingent\n"
+                + "1. Contingent prices\n"
                 + "2. Edit contingent\n"
                 + "3. Back to main menu\n"
                 + "0. Quit");
@@ -149,7 +149,7 @@ public class SystemUI implements UI {
     @Override
     public void showRestanceMenu() {
         System.out.println("Choose one of the following options: \n"
-                + "1. Swimmers in restance\n"
+                + "1. List of swimmers in restance\n"
                 + "2. Edit restance\n"
                 + "3. back to main menu\n"
                 + "0. Quit");
@@ -168,7 +168,7 @@ public class SystemUI implements UI {
     @Override
     public void showCompetitiveSwimmersMenu() {
         System.out.println("Choose one of the following options: \n"
-                + "1. Competitive swimmers\n"
+                + "1. List of competitive swimmers\n"
                 + "2. Create competitive swimmer\n"
                 + "3. Trainingsresult\n"
                 + "4. Edit trainingsresult\n"
@@ -189,7 +189,7 @@ public class SystemUI implements UI {
     @Override
     public void showCompetitionMenu() {
         System.out.println("Choose one of the following options: \n"
-                + "1. Swimmers in competition\n"
+                + "1. List of swimmers in competition\n"
                 + "2. Competition results\n"
                 + "3. Edit results"
                 + "4. Back to main menu\n"
