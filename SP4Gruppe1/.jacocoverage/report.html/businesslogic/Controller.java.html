@@ -56,31 +56,31 @@ public class Controller {
                 case 2:
 <span class="fc" id="L57">                    ui.showContingentMenu();</span>
                     do {
-<span class="pc bpc" id="L59" title="4 of 5 branches missed.">                        switch (ui.contingentMenuChoice()) {</span>
+<span class="pc bpc" id="L59" title="2 of 5 branches missed.">                        switch (ui.contingentMenuChoice()) {</span>
                             case 1:
-<span class="nc" id="L61">                                showContingent();</span>
-<span class="nc" id="L62">                                ui.showContingentMenu();</span>
-<span class="nc" id="L63">                                break;</span>
+<span class="fc" id="L61">                                showContingent();</span>
+<span class="fc" id="L62">                                ui.showContingentMenu();</span>
+<span class="fc" id="L63">                                break;</span>
                             case 2:
 <span class="fc" id="L65">                                ui.showEditContingentMenu();</span>
                                 do {
-<span class="pc bpc" id="L67" title="5 of 7 branches missed.">                                    switch (ui.editContingentChoice()) {</span>
+<span class="pc bpc" id="L67" title="2 of 7 branches missed.">                                    switch (ui.editContingentChoice()) {</span>
                                         case 1:
 <span class="fc" id="L69">                                            editUnder18();</span>
 <span class="fc" id="L70">                                            ui.showEditContingentMenu();</span>
 <span class="fc" id="L71">                                            break;</span>
                                         case 2:
-<span class="nc" id="L73">                                            editBetween18And60();</span>
-<span class="nc" id="L74">                                            ui.showEditContingentMenu();</span>
-<span class="nc" id="L75">                                            break;</span>
+<span class="fc" id="L73">                                            editBetween18And60();</span>
+<span class="fc" id="L74">                                            ui.showEditContingentMenu();</span>
+<span class="fc" id="L75">                                            break;</span>
                                         case 3:
-<span class="nc" id="L77">                                            editOver60();</span>
-<span class="nc" id="L78">                                            ui.showEditContingentMenu();</span>
-<span class="nc" id="L79">                                            break;</span>
+<span class="fc" id="L77">                                            editOver60();</span>
+<span class="fc" id="L78">                                            ui.showEditContingentMenu();</span>
+<span class="fc" id="L79">                                            break;</span>
                                         case 4:
-<span class="nc" id="L81">                                            editPassive();</span>
-<span class="nc" id="L82">                                            ui.showEditContingentMenu();</span>
-<span class="nc" id="L83">                                            break;</span>
+<span class="fc" id="L81">                                            editPassive();</span>
+<span class="fc" id="L82">                                            ui.showEditContingentMenu();</span>
+<span class="fc" id="L83">                                            break;</span>
                                         case 5:
 <span class="nc" id="L85">                                            quit = true;</span>
 <span class="nc" id="L86">                                            start();</span>
@@ -97,10 +97,10 @@ public class Controller {
 <span class="nc" id="L97">                                start();</span>
 <span class="nc" id="L98">                                break;</span>
                             case 0:
-<span class="nc" id="L100">                                quit = true;</span>
+<span class="fc" id="L100">                                quit = true;</span>
                                 break;
                         }
-<span class="pc bpc" id="L103" title="1 of 2 branches missed.">                    } while (!quit);</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">                    } while (!quit);</span>
 <span class="fc" id="L104">                    break;</span>
                 case 3:
 <span class="fc" id="L106">                    ui.showRestanceMenu();</span>
@@ -264,9 +264,9 @@ public class Controller {
 <span class="nc" id="L264">    }</span>
 
     private void showContingent() {
-<span class="nc" id="L267">        ArrayList&lt;Contingent&gt; contingent = db.getContingentList();</span>
-<span class="nc" id="L268">        ui.showContingentList(contingent);</span>
-<span class="nc" id="L269">    }</span>
+<span class="fc" id="L267">        ArrayList&lt;Contingent&gt; contingent = db.getContingentList();</span>
+<span class="fc" id="L268">        ui.showContingentList(contingent);</span>
+<span class="fc" id="L269">    }</span>
 
 //    private Member getMemberbyID(int id) {
 //        ArrayList&lt;Member&gt; members = db.getMembersList();
@@ -338,25 +338,25 @@ public class Controller {
 <span class="fc" id="L338">    }</span>
 
     private void editBetween18And60() {
-<span class="nc" id="L341">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
-<span class="nc" id="L342">        int contingent = ui.scanInt();</span>
-<span class="nc" id="L343">        contingent = db.editBetween18And60(contingent);</span>
-<span class="nc" id="L344">        ui.print(&quot;The contingent has now been changed to &quot; + contingent);</span>
-<span class="nc" id="L345">    }</span>
+<span class="fc" id="L341">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
+<span class="fc" id="L342">        int contingent = ui.scanInt();</span>
+<span class="fc" id="L343">        contingent = db.editBetween18And60(contingent);</span>
+<span class="fc" id="L344">        ui.print(&quot;The contingent has now been changed to &quot; + contingent);</span>
+<span class="fc" id="L345">    }</span>
 
     private void editOver60() {
-<span class="nc" id="L348">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
-<span class="nc" id="L349">        int contingent = ui.scanInt();</span>
-<span class="nc" id="L350">        contingent = db.editOver60(contingent);</span>
-<span class="nc" id="L351">        ui.print(&quot;The contingent has now been changed to &quot; + contingent);</span>
-<span class="nc" id="L352">    }</span>
+<span class="fc" id="L348">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
+<span class="fc" id="L349">        int contingent = ui.scanInt();</span>
+<span class="fc" id="L350">        contingent = db.editOver60(contingent);</span>
+<span class="fc" id="L351">        ui.print(&quot;The contingent has now been changed to &quot; + contingent);</span>
+<span class="fc" id="L352">    }</span>
 
     private void editPassive() {
-<span class="nc" id="L355">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
-<span class="nc" id="L356">        int contingent = ui.scanInt();</span>
-<span class="nc" id="L357">        contingent = db.editPassive(contingent);</span>
-<span class="nc" id="L358">        ui.print(&quot;The contingent has now been changed &quot; + contingent);</span>
-<span class="nc" id="L359">    }</span>
+<span class="fc" id="L355">        ui.print(&quot;What would you change the contingent to?&quot;);</span>
+<span class="fc" id="L356">        int contingent = ui.scanInt();</span>
+<span class="fc" id="L357">        contingent = db.editPassive(contingent);</span>
+<span class="fc" id="L358">        ui.print(&quot;The contingent has now been changed &quot; + contingent);</span>
+<span class="fc" id="L359">    }</span>
     
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

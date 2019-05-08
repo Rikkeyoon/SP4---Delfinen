@@ -153,12 +153,12 @@ public class FakeUI implements UI {
 
     @Override
     public void showContingentList(ArrayList&lt;Contingent&gt; contingent) {
-<span class="nc" id="L156">        StringBuilder strBuild = new StringBuilder();</span>
-<span class="nc bnc" id="L157" title="All 2 branches missed.">        for (Contingent cont : contingent) {</span>
-<span class="nc" id="L158">            strBuild.append(cont.toString());</span>
-<span class="nc" id="L159">        }</span>
-<span class="nc" id="L160">        output.add(strBuild.toString());</span>
-<span class="nc" id="L161">    }</span>
+<span class="fc" id="L156">        StringBuilder strBuild = new StringBuilder();</span>
+<span class="fc bfc" id="L157" title="All 2 branches covered.">        for (Contingent cont : contingent) {</span>
+<span class="fc" id="L158">            strBuild.append(cont.toString());</span>
+<span class="fc" id="L159">        }</span>
+<span class="fc" id="L160">        output.add(strBuild.toString());</span>
+<span class="fc" id="L161">    }</span>
 
     @Override
     public String scanDate() {
