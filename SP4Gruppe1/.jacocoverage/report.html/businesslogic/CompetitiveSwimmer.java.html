@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="da"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>CompetitiveSwimmer.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;SP4Gruppe1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">businesslogic</a> &gt; <span class="el_source">CompetitiveSwimmer.java</span></div><h1>CompetitiveSwimmer.java</h1><pre class="source lang-java linenums">package businesslogic;
 
-import java.sql.Time;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
  /*
  * @author Caroline, Nina, Rikke og Kristine
@@ -9,71 +9,81 @@ import java.sql.Timestamp;
 public class CompetitiveSwimmer extends Member {
     
     private String disciplin;
-    private Time bestTime;
-    private Timestamp dateOfBestTime;
+    private LocalTime bestTime;
+    private LocalDate dateOfBestTime;
     private Competition competition;
     
     public CompetitiveSwimmer(String firstName, String lastName, 
             String dateOfBirth, boolean isActive, int id, String disciplin,
-            Time bestTime, Timestamp dateOfBestTime) {
+            LocalTime bestTime, String dateOfBestTime) {
 <span class="nc" id="L19">        super(firstName, lastName, dateOfBirth, isActive, id);</span>
 <span class="nc" id="L20">        this.disciplin = disciplin;</span>
 <span class="nc" id="L21">        this.bestTime = bestTime;</span>
-<span class="nc" id="L22">        this.dateOfBestTime = dateOfBestTime;</span>
+<span class="nc" id="L22">        this.dateOfBestTime = LocalDate.parse(dateOfBestTime);</span>
 <span class="nc" id="L23">    }</span>
     
     public CompetitiveSwimmer(String firstName, String lastName, int age, int id, 
-            String disciplin, Time bestTime, Timestamp dateOfBestTime) {
-<span class="nc" id="L27">        super(firstName, lastName, age, id);</span>
-<span class="nc" id="L28">        this.disciplin = disciplin;</span>
-<span class="nc" id="L29">        this.bestTime = bestTime;</span>
-<span class="nc" id="L30">        this.dateOfBestTime = dateOfBestTime;</span>
-<span class="nc" id="L31">    }</span>
+            String disciplin, LocalTime bestTime, String dateOfBestTime) {
+<span class="fc" id="L27">        super(firstName, lastName, age, id);</span>
+<span class="fc" id="L28">        this.disciplin = disciplin;</span>
+<span class="fc" id="L29">        this.bestTime = bestTime;</span>
+<span class="fc" id="L30">        this.dateOfBestTime = LocalDate.parse(dateOfBestTime);</span>
+<span class="fc" id="L31">    }</span>
     
-    public CompetitiveSwimmer(String disciplin, Time bestTime, Timestamp dateOfBestTime, 
+    public CompetitiveSwimmer(String disciplin, LocalTime bestTime, String dateOfBestTime, 
             Competition competition, String firstName, String lastName, int age, int id) {
 <span class="nc" id="L35">        super(firstName, lastName, age, id);</span>
 <span class="nc" id="L36">        this.disciplin = disciplin;</span>
 <span class="nc" id="L37">        this.bestTime = bestTime;</span>
-<span class="nc" id="L38">        this.dateOfBestTime = dateOfBestTime;</span>
+<span class="nc" id="L38">        this.dateOfBestTime = LocalDate.parse(dateOfBestTime);</span>
 <span class="nc" id="L39">        this.competition = competition;</span>
 <span class="nc" id="L40">    }</span>
+    
+    public CompetitiveSwimmer(int id, String disciplin,
+            LocalTime bestTime, String dateOfBestTime) {
+<span class="nc" id="L44">        super(id);</span>
+<span class="nc" id="L45">        this.disciplin = disciplin;</span>
+<span class="nc" id="L46">        this.bestTime = bestTime;</span>
+<span class="nc" id="L47">        this.dateOfBestTime = LocalDate.parse(dateOfBestTime);</span>
+<span class="nc" id="L48">    }</span>
+
 
     public String getDisciplin() {
-<span class="nc" id="L43">        return disciplin;</span>
+<span class="nc" id="L52">        return disciplin;</span>
     }
 
     public void setDisciplin(String disciplin) {
-<span class="nc" id="L47">        this.disciplin = disciplin;</span>
-<span class="nc" id="L48">    }</span>
+<span class="nc" id="L56">        this.disciplin = disciplin;</span>
+<span class="nc" id="L57">    }</span>
 
-    public Time getBestTime() {
-<span class="nc" id="L51">        return bestTime;</span>
+    public LocalTime getBestTime() {
+<span class="nc" id="L60">        return bestTime;</span>
     }
 
-    public void setBestTime(Time bestTime) {
-<span class="nc" id="L55">        this.bestTime = bestTime;</span>
-<span class="nc" id="L56">    }</span>
+    public void setBestTime(LocalTime bestTime) {
+<span class="nc" id="L64">        this.bestTime = bestTime;</span>
+<span class="nc" id="L65">    }</span>
 
-    public Timestamp getDateOfBestTime() {
-<span class="nc" id="L59">        return dateOfBestTime;</span>
+    public LocalDate getDateOfBestTime() {
+<span class="nc" id="L68">        return dateOfBestTime;</span>
     }
 
-    public void setDateOfBestTime(Timestamp dateOfBestTime) {
-<span class="nc" id="L63">        this.dateOfBestTime = dateOfBestTime;</span>
-<span class="nc" id="L64">    }</span>
+    public void setDateOfBestTime(LocalDate dateOfBestTime) {
+<span class="nc" id="L72">        this.dateOfBestTime = dateOfBestTime;</span>
+<span class="nc" id="L73">    }</span>
 
     public Competition getCompetition() {
-<span class="nc" id="L67">        return competition;</span>
+<span class="nc" id="L76">        return competition;</span>
     }
 
     public void setCompetition(Competition competition) {
-<span class="nc" id="L71">        this.competition = competition;</span>
-<span class="nc" id="L72">    }</span>
+<span class="nc" id="L80">        this.competition = competition;</span>
+<span class="nc" id="L81">    }</span>
     
     @Override
     public String toString() {
-<span class="nc" id="L76">        return super.getFirstName() + &quot; &quot; + super.getLastName() </span>
+<span class="nc" id="L85">        return &quot;\n&quot; + super.getFirstName() + &quot; &quot; + super.getLastName()</span>
+<span class="nc" id="L86">                + &quot;\nID: &quot; + super.getId()</span>
                 + &quot;\nDisciplin: &quot; + disciplin 
                 + &quot;\nBest Time: &quot; + bestTime 
                 + &quot;\nDate of best time: &quot; + dateOfBestTime;

@@ -25,7 +25,7 @@ public class FakeDBFacade implements DBStorage {
 <span class="nc" id="L25">                    .compareTo(o2.getBestTimeInCompetition());</span>
         };
 <span class="fc" id="L27">        compareBestTime = (CompetitiveSwimmer o1, CompetitiveSwimmer o2) -&gt; {</span>
-<span class="nc" id="L28">            return o1.getBestTime().compareTo(o2.getBestTime());</span>
+<span class="nc" id="L28">            return (o1.getBestTime()).compareTo(o2.getBestTime());</span>
         };
         
 <span class="fc" id="L31">        swimmersInCompetition = new ArrayList&lt;&gt;();</span>
@@ -58,8 +58,8 @@ public class FakeDBFacade implements DBStorage {
 
     @Override
     public void saveCompetitiveSwimmer(CompetitiveSwimmer member) {
-<span class="nc" id="L61">        competitiveSwimmers.add(member);</span>
-<span class="nc" id="L62">    }</span>
+<span class="fc" id="L61">        competitiveSwimmers.add(member);</span>
+<span class="fc" id="L62">    }</span>
 
     @Override
     public ArrayList&lt;CompetitiveSwimmer&gt; getTop5() {
@@ -91,7 +91,7 @@ public class FakeDBFacade implements DBStorage {
 
     @Override
     public ArrayList&lt;CompetitiveSwimmer&gt; getCompetitiveSwimmers() {
-<span class="nc" id="L94">        return competitiveSwimmers;</span>
+<span class="fc" id="L94">        return competitiveSwimmers;</span>
     }
 
     @Override

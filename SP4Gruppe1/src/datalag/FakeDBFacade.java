@@ -25,7 +25,7 @@ public class FakeDBFacade implements DBStorage {
                     .compareTo(o2.getBestTimeInCompetition());
         };
         compareBestTime = (CompetitiveSwimmer o1, CompetitiveSwimmer o2) -> {
-            return o1.getBestTime().compareTo(o2.getBestTime());
+            return (o1.getBestTime()).compareTo(o2.getBestTime());
         };
         
         swimmersInCompetition = new ArrayList<>();
