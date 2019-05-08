@@ -63,6 +63,14 @@ public class CompetitiveSwimmer extends Member {
         this.dateOfBestTime = dateOfBestTime;
     }
 
+    public Competition getCompetition() {
+        return competition;
+    }
+
+    public void setCompetition(Competition competition) {
+        this.competition = competition;
+    }
+    
     @Override
     public String toString() {
         return super.getFirstName() + " " + super.getLastName() 
@@ -70,7 +78,5 @@ public class CompetitiveSwimmer extends Member {
                 + "\nBest Time: " + bestTime 
                 + "\nDate of best time: " + dateOfBestTime;
     }
-
-    
     
 }

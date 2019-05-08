@@ -1,5 +1,6 @@
 package datalag;
 
+import businesslogic.Competition;
 import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
@@ -17,9 +18,15 @@ public class FakeDBFacade implements DBStorage {
     private ArrayList<Member> members = new ArrayList<>();
     private ArrayList<CompetitiveSwimmer> competitiveSwimmers = new ArrayList<>();
     private ArrayList<Contingent> contingentList;
+    private ArrayList<CompetitiveSwimmer> swimmersInCompetition;
     private Comparator<CompetitiveSwimmer> compareBestTime
             = (CompetitiveSwimmer o1, CompetitiveSwimmer o2) -> {
                 return o1.getBestTime().compareTo(o2.getBestTime());
+            };
+    private Comparator<Competition> compareCompetitionTime
+            = (Competition o1, Competition o2) -> {
+                return o1.getBestTimeInCompetition()
+                        .compareTo(o2.getBestTimeInCompetition());
             };
 
     @Override
@@ -51,7 +58,7 @@ public class FakeDBFacade implements DBStorage {
     @Override
     public ArrayList<CompetitiveSwimmer> getTop5() {
         ArrayList<CompetitiveSwimmer> top5 = new ArrayList<>();
-        
+
         Collections.sort(competitiveSwimmers, compareBestTime);
         for (int i = 0; i < 5; i++) {
             CompetitiveSwimmer swimmer = competitiveSwimmers.get(i);
@@ -89,22 +96,34 @@ public class FakeDBFacade implements DBStorage {
 
     @Override
     public int editUnder18(int contingent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Contingent con : contingentList) {
+            con.setUnder18(contingent);
+        }
+        return 0;
     }
 
     @Override
     public int editBetween18And60(int contingent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Contingent con : contingentList) {
+            con.setBetween18And60(contingent);
+        }
+        return 0;
     }
 
     @Override
     public int editOver60(int contingent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Contingent con : contingentList) {
+            con.setOver60(contingent);
+        }
+        return 0;
     }
 
     @Override
     public int editPassive(int contingent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Contingent con : contingentList) {
+            con.setPassive(contingent);
+        }
+        return 0;
     }
 
     @Override
@@ -119,32 +138,65 @@ public class FakeDBFacade implements DBStorage {
 
     @Override
     public void editRestance(int id, int newRestance) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Member member : members) {
+            if (member.getId() == id) {
+                member.setRestance(newRestance);
+            }
+        }
     }
 
     @Override
     public void editFirstName(int id, String firstName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Member member : members) {
+            if (member.getId() == id) {
+                member.setFirstName(firstName);
+            }
+        }
     }
 
     @Override
     public void editLastName(int id, String lastName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Member member : members) {
+            if (member.getId() == id) {
+                member.setLastName(lastName);
+            }
+        }
     }
 
     @Override
     public void editActiveness(int id, boolean active) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Member member : members) {
+            if (member.getId() == id) {
+                member.setIsActive(active);
+            }
+        }
     }
 
     @Override
     public ArrayList<CompetitiveSwimmer> getCompetitionSwimmers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return swimmersInCompetition;
     }
 
     @Override
     public ArrayList<CompetitiveSwimmer> getCompetitionResult() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //get the compititions the competitive swimmer has been in
+        ArrayList<Competition> competitions = new ArrayList<>();
+        for (CompetitiveSwimmer compSwimmer : swimmersInCompetition) {
+            Competition competition = compSwimmer.getCompetition();
+            competitions.add(competition);
+        }
+        //sort the list of competitions after the best times
+        Collections.sort(competitions, compareCompetitionTime);
+        
+        /*create a temporary ArrayList, so the ArrayList returned is 
+         *sorted by the best times
+         */
+        ArrayList<CompetitiveSwimmer> compSwimmers = new ArrayList<>();
+        for (Competition competition : competitions) {
+            CompetitiveSwimmer compSwimmer = competition.getCompetitiveSwimmer();
+            compSwimmers.add(compSwimmer);
+        }
+        return compSwimmers;
     }
 
 }

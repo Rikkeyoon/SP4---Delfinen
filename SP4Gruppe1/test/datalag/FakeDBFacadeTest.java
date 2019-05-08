@@ -113,17 +113,23 @@ public class FakeDBFacadeTest {
     }
 
     /**
-     * Test of getContingentList method, of class FakeDBFacade.
-     */
-    @Test
-    public void testGetContingentList() {
-    }
-
-    /**
      * Test of getMembersInRestance method, of class FakeDBFacade.
      */
     @Test
     public void testGetMembersInRestance() {
+        //arrange
+        FakeDBFacade db = new FakeDBFacade();
+        Member m1 = new Member("Ole", "Jensen", 48, true, 1600, 0, 1);
+        Member m2 = new Member("Mia", "Jensen", 40, false, 500, 500, 2);
+        Member m3 = new Member("Sofia", "Jensen", 12, true, 1000, 0, 3);
+        //act
+        db.saveMember(m1);
+        db.saveMember(m2);
+        db.saveMember(m3);
+        ArrayList<Member> membersInRestance = db.getMembersInRestance();
+        //assert
+        assertTrue(membersInRestance.get(0).equals(m2));
+        assertTrue(membersInRestance.size() == 1);
     }
 
     /**
@@ -166,13 +172,6 @@ public class FakeDBFacadeTest {
      */
     @Test
     public void testEditPassive() {
-    }
-
-    /**
-     * Test of getMemberById method, of class FakeDBFacade.
-     */
-    @Test
-    public void testGetMemberById() {
     }
 
     /**
