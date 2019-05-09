@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-//import java.util.Date;
 
 /*
  * @author Caroline, Nina, Rikke og Kristine
