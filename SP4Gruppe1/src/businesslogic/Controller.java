@@ -287,6 +287,9 @@ public class Controller {
     private void showMembersInRestance() {
         ArrayList<Member> membersInRestance = db.getMembersInRestance();
         ui.showMemberList(membersInRestance);
+        if(membersInRestance.isEmpty()){
+            System.out.println ("There are currently no members in restance");
+        }        
     }
 
     private void editRestance() {
