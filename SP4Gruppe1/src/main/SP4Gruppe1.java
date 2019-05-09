@@ -15,14 +15,13 @@ public class SP4Gruppe1 {
 
     public static void main(String[] args) throws SQLException {
         UI ui = new SystemUI();
-                
+
         DBConnection dbc = new DBConnection();
         DBStorage db = new DBFacade(dbc);
-        
-        Controller ctrl = new Controller(ui, db);
 
-          ctrl.start();
-        
+        Controller ctrl = new Controller(ui, db);
+        ctrl.start();
+
     }
 
 }
