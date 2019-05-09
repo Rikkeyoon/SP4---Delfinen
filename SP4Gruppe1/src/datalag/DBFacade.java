@@ -469,14 +469,14 @@ public class DBFacade implements DBStorage {
                 String bestTime = result.getString(6);
                 String dateOfBestTime = result.getString(7);
                 String competition = result.getString(8);
-                String dateOfCompetition =  result.getString(9);
+                String dateOfCompetition = result.getString(9);
                 int ranking = result.getInt(10);
                 String bestTimeInCompetition = result.getString(11);
 
                 //create a new Member object and insert it into the ArrayList
                 Competition competit = new Competition(competition, LocalDate.parse(dateOfCompetition),
                         ranking, LocalTime.parse(bestTimeInCompetition));
-                competitionSwimmers.add(new CompetitiveSwimmer(disciplin, LocalTime.parse(bestTime), 
+                competitionSwimmers.add(new CompetitiveSwimmer(disciplin, LocalTime.parse(bestTime),
                         LocalDate.parse(dateOfBestTime), competit, firstName, lastName, age, id));
             }
         } catch (SQLException | NullPointerException e) {
@@ -505,8 +505,8 @@ public class DBFacade implements DBStorage {
 
                 //create a new Member object and insert it into the ArrayList
                 Member member = new Member(id);
-                competitionResults.add(new Competition(member, competition, 
-                        LocalDate.parse(dateOfCompetition), ranking, 
+                competitionResults.add(new Competition(member, competition,
+                        LocalDate.parse(dateOfCompetition), ranking,
                         LocalTime.parse(bestTimeInCompetition)));
             }
         } catch (SQLException | NullPointerException e) {
@@ -651,7 +651,7 @@ public class DBFacade implements DBStorage {
         } catch (SQLException e) {
         }
     }
-    
+
     @Override
     public CompetitiveSwimmer getComSwimById(int id) {
         CompetitiveSwimmer compSwim = null;
@@ -660,7 +660,7 @@ public class DBFacade implements DBStorage {
                     + "best_time, date_of_best_time FROM members"
                     + " NATURAL JOIN competitive_swimmers WHERE id = " + id;
             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
-            
+
             ResultSet result = preparedStatement.executeQuery(selectSQL);
             while (result.next()) {
                 String firstName = result.getString(1);
@@ -669,12 +669,41 @@ public class DBFacade implements DBStorage {
                 String disciplin = result.getString(4);
                 String bestTime = result.getString(5);
                 String dateOfBestTime = result.getString(6);
-                
-                compSwim = new CompetitiveSwimmer(firstName, lastName, age, disciplin, 
+
+                compSwim = new CompetitiveSwimmer(firstName, lastName, age, disciplin,
                         LocalTime.parse(bestTime), LocalDate.parse(dateOfBestTime));
             }
         } catch (SQLException | NullPointerException e) {
         }
         return compSwim;
     }
+
+    @Override
+    public ArrayList<Member> getNonCompetitiveMemberList() {
+        ArrayList<Member> nonCompetitiveMembers = new ArrayList<>();
+        try {
+            //create String for the PreparedStatement
+            String selectSQL = "SELECT * FROM members ORDER BY first_name";
+            //get connection
+            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+
+            //execute the SQL query
+            ResultSet result = preparedStatement.executeQuery(selectSQL);
+            while (result.next()) {
+                String firstName = result.getString(1);
+                String lastName = result.getString(2);
+                int age = result.getInt(3);
+                boolean isActive = result.getBoolean(4);
+                int id = result.getInt(5);
+                int contingent = result.getInt(6);
+                int restance = result.getInt(7);
+
+                //create a new Member object and insert it into the ArrayList
+                nonCompetitiveMembers.add(new Member(firstName, lastName, age, isActive, contingent, restance, id));
+            }
+        } catch (SQLException | NullPointerException e) {
+        }
+        return nonCompetitiveMembers;
+    }
 }
+

@@ -70,4 +70,6 @@ public interface DBStorage {
     
     public CompetitiveSwimmer getComSwimById(int id);
 
+    public ArrayList<Member> getNonCompetitiveMemberList();
+
 }

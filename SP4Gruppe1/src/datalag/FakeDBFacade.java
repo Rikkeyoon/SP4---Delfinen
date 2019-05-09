@@ -250,4 +250,9 @@ public class FakeDBFacade implements DBStorage {
         return null;
     }
 
+    @Override
+    public ArrayList<Member> getNonCompetitiveMemberList() {
+        return members;
+    }
+
 }

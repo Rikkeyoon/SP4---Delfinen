@@ -354,7 +354,7 @@ public class Controller {
     }
 
     private void createCompetitiveSwimmer() {
-        showMembersList();
+        showNonCompetitiveMembers();
         ui.print("Please enter the ID for the member you want to add as a competitive swimmer");
         int id = ui.scanID();
         Member memberByID = db.getMemberById(id);
@@ -365,6 +365,7 @@ public class Controller {
         ui.print("Please enter the best time, the swimmer has performed "
                 + "during training: (HH:MM:SS)");
         LocalTime bestTime = ui.scanTime();
+        ui.scanString();
         ui.print("Please enter the date: (YYYY-MM-DD)");
         String dateOfBestTime = ui.scanDate();
 
@@ -374,6 +375,12 @@ public class Controller {
         ui.print("\nThe following member has been added: " + competitiveSwimmer.toString() + "\n");
     }
 
+    
+    private void showNonCompetitiveMembers() {
+        ArrayList<Member> nonCompetitiveMembers = db.getNonCompetitiveMemberList();
+        ui.showMemberList(nonCompetitiveMembers);
+    }
+    
     private void showTrainingsresult() {
         ArrayList<CompetitiveSwimmer> trainingresults = db.getTrainingsresult();
         ui.showTrainingresults(trainingresults);
