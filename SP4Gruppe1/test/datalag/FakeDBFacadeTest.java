@@ -98,7 +98,8 @@ public class FakeDBFacadeTest {
         //arrange
         FakeDBFacade db = new FakeDBFacade();
         LocalTime bestTime = LocalTime.parse("00:12:45");
-        String dateOfBestTime = "2019-05-08";
+        String dateString = "2019-05-08";
+        LocalDate dateOfBestTime = LocalDate.parse(dateString);
         CompetitiveSwimmer s1 = new CompetitiveSwimmer("Sofia",
                 "Jensen", 12, 3, "butterfly", bestTime, dateOfBestTime);
         //act
@@ -180,17 +181,16 @@ public class FakeDBFacadeTest {
         //arrange
         FakeDBFacade db = new FakeDBFacade();
         LocalTime bestTime1 = LocalTime.parse("00:12:45");
-        String dateOfBestTime1 = "2019-05-08";
+        String dateString = "2019-05-08";
+        LocalDate dateOfBestTime = LocalDate.parse(dateString);
         CompetitiveSwimmer s1 = new CompetitiveSwimmer("Sofia",
-                "Jensen", 12, 3, "butterfly", bestTime1, dateOfBestTime1);
+                "Jensen", 12, 3, "butterfly", bestTime1, dateOfBestTime);
         LocalTime bestTime2 = LocalTime.parse("00:10:45");
-        String dateOfBestTime2 = "2019-05-08";
         CompetitiveSwimmer s2 = new CompetitiveSwimmer("Gerta",
-                "Jensen", 12, 3, "butterfly", bestTime2, dateOfBestTime2);
+                "Jensen", 12, 3, "butterfly", bestTime2, dateOfBestTime);
         LocalTime bestTime3 = LocalTime.parse("00:09:45");
-        String dateOfBestTime3 = "2019-05-08";
         CompetitiveSwimmer s3 = new CompetitiveSwimmer("Sofia",
-                "Jensen", 12, 3, "butterfly", bestTime3, dateOfBestTime3);
+                "Jensen", 12, 3, "butterfly", bestTime3, dateOfBestTime);
         //act
         db.saveCompetitiveSwimmer(s1);
         db.saveCompetitiveSwimmer(s2);
