@@ -3,87 +3,83 @@
 import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
-import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 /*
  * @author Caroline, Nina, Rikke og Kristine
  */
-<span class="nc" id="L20">public class SystemUI implements UI {</span>
+<span class="nc" id="L16">public class SystemUI implements UI {</span>
 
-<span class="nc" id="L22">    private Scanner input = new Scanner(System.in);</span>
+<span class="nc" id="L18">    private Scanner input = new Scanner(System.in);</span>
 
     @Override
     public String scanString() {
-<span class="nc" id="L26">        return input.nextLine();</span>
+<span class="nc" id="L22">        return input.nextLine();</span>
     }
 
     @Override
     public boolean scanBoolean() {
-<span class="nc" id="L31">        String answer = input.nextLine();</span>
-<span class="nc" id="L32">        return answer.equalsIgnoreCase(&quot;y&quot;);</span>
+<span class="nc" id="L27">        String answer = input.nextLine();</span>
+<span class="nc" id="L28">        return answer.equalsIgnoreCase(&quot;y&quot;);</span>
     }
 
     @Override
     public void print(String str) {
-<span class="nc" id="L37">        System.out.println(str);</span>
-<span class="nc" id="L38">    }</span>
+<span class="nc" id="L33">        System.out.println(str);</span>
+<span class="nc" id="L34">    }</span>
 
     @Override
     public int scanInt() {
-<span class="nc" id="L42">        return input.nextInt();</span>
+<span class="nc" id="L38">        return input.nextInt();</span>
     }
 
     @Override
     public String scanDate() {
-<span class="nc" id="L47">        String choice = input.nextLine();</span>
-<span class="nc bnc" id="L48" title="All 2 branches missed.">        while (choice.isEmpty()) {</span>
-<span class="nc" id="L49">            System.out.println(&quot;Please enter a date: &quot;);</span>
-<span class="nc" id="L50">            choice = input.nextLine();</span>
+<span class="nc" id="L43">        String choice = input.nextLine();</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        while (choice.isEmpty()) {</span>
+<span class="nc" id="L45">            System.out.println(&quot;Please enter a date: &quot;);</span>
+<span class="nc" id="L46">            choice = input.nextLine();</span>
         }
 
         try {
-<span class="nc" id="L54">            LocalDate.parse(choice);</span>
-<span class="nc" id="L55">        } catch (DateTimeParseException e) {</span>
-<span class="nc" id="L56">            boolean exceptionCaught = true;</span>
+<span class="nc" id="L50">            LocalDate.parse(choice);</span>
+<span class="nc" id="L51">        } catch (DateTimeParseException e) {</span>
+<span class="nc" id="L52">            boolean exceptionCaught = true;</span>
 
-<span class="nc bnc" id="L58" title="All 2 branches missed.">            while (exceptionCaught) {</span>
-<span class="nc" id="L59">                System.out.println(choice + &quot; is not an option, try again: &quot;);</span>
-<span class="nc" id="L60">                exceptionCaught = false;</span>
-<span class="nc" id="L61">                choice = scanDate();</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            while (exceptionCaught) {</span>
+<span class="nc" id="L55">                System.out.println(choice + &quot; is not an option, try again: &quot;);</span>
+<span class="nc" id="L56">                exceptionCaught = false;</span>
+<span class="nc" id="L57">                choice = scanDate();</span>
             }
-<span class="nc" id="L63">        }</span>
-<span class="nc" id="L64">        return choice;</span>
+<span class="nc" id="L59">        }</span>
+<span class="nc" id="L60">        return choice;</span>
     }
 
     @Override
     public LocalTime scanTime() {
-<span class="nc" id="L69">        String choice = input.nextLine();</span>
-<span class="nc" id="L70">        DateTimeFormatter dft = DateTimeFormatter.ofPattern(&quot;HH:mm:ss&quot;);</span>
-<span class="nc" id="L71">        String time = choice;</span>
-<span class="nc" id="L72">        return LocalTime.parse(time, dft);</span>
+<span class="nc" id="L65">        String choice = input.nextLine();</span>
+<span class="nc" id="L66">        DateTimeFormatter dft = DateTimeFormatter.ofPattern(&quot;HH:mm:ss&quot;);</span>
+<span class="nc" id="L67">        String time = choice;</span>
+<span class="nc" id="L68">        return LocalTime.parse(time, dft);</span>
     }
 
     @Override
     public void showMemberList(ArrayList&lt;Member&gt; members) {
-<span class="nc" id="L77">        StringBuilder strbuild = new StringBuilder();</span>
-<span class="nc bnc" id="L78" title="All 2 branches missed.">        for (Member member : members) {</span>
-<span class="nc" id="L79">            strbuild.append(member.toString());</span>
-<span class="nc" id="L80">        }</span>
-<span class="nc" id="L81">        System.out.println(strbuild.toString());</span>
-<span class="nc" id="L82">    }</span>
+<span class="nc" id="L73">        StringBuilder strbuild = new StringBuilder();</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        for (Member member : members) {</span>
+<span class="nc" id="L75">            strbuild.append(member.toString());</span>
+<span class="nc" id="L76">        }</span>
+<span class="nc" id="L77">        System.out.println(strbuild.toString());</span>
+<span class="nc" id="L78">    }</span>
 
     @Override
     public void showMainMenu() {
-<span class="nc" id="L86">        System.out.println(&quot;-------------------------\n&quot;</span>
+<span class="nc" id="L82">        System.out.println(&quot;-------------------------\n&quot;</span>
                 + &quot;SVØMMEKLUBBEN - DELFINEN\n&quot;
                 + &quot;-------------------------\n&quot;
                 + &quot;Choose one of the following options: \n&quot;
@@ -94,229 +90,249 @@ import java.util.Scanner;
                 + &quot;5. Competitive swimmers\n&quot;
                 + &quot;6. Competition\n&quot;
                 + &quot;0. Quit&quot;);
-<span class="nc" id="L97">    }</span>
+<span class="nc" id="L93">    }</span>
 
     @Override
     public int mainMenuChoice() {
-<span class="nc" id="L101">        int choice = input.nextInt();</span>
-<span class="nc bnc" id="L102" title="All 4 branches missed.">        while (choice &lt; 0 || choice &gt; 6) {</span>
-<span class="nc" id="L103">            System.out.println(choice + &quot; is not an option, try again: &quot;);</span>
-<span class="nc" id="L104">            choice = input.nextInt();</span>
+<span class="nc" id="L97">        int choice = input.nextInt();</span>
+<span class="nc bnc" id="L98" title="All 4 branches missed.">        while (choice &lt; 0 || choice &gt; 6) {</span>
+<span class="nc" id="L99">            System.out.println(choice + &quot; is not an option, try again: &quot;);</span>
+<span class="nc" id="L100">            choice = input.nextInt();</span>
         }
-<span class="nc" id="L106">        return choice;</span>
+<span class="nc" id="L102">        return choice;</span>
     }
 
     @Override
     public void showMembersMenu() {
-<span class="nc" id="L111">        System.out.println(&quot;Choose one of the following options: \n&quot;</span>
+<span class="nc" id="L107">        System.out.println(&quot;Choose one of the following options: \n&quot;</span>
                 + &quot;1. List of members\n&quot;
                 + &quot;2. Add member\n&quot;
                 + &quot;3. Edit members\n&quot;
                 + &quot;4. Delete member\n&quot;
                 + &quot;5. Back to main menu\n&quot;
                 + &quot;0. Quit&quot;);
-<span class="nc" id="L118">    }</span>
+<span class="nc" id="L114">    }</span>
 
     @Override
     public int memberMenuChoice() {
-<span class="nc" id="L122">        int choice = input.nextInt();</span>
-<span class="nc bnc" id="L123" title="All 4 branches missed.">        while (choice &lt; 0 || choice &gt; 5) {</span>
-<span class="nc" id="L124">            System.out.println(choice + &quot; is not an option, try again: &quot;);</span>
-<span class="nc" id="L125">            choice = input.nextInt();</span>
+<span class="nc" id="L118">        int choice = input.nextInt();</span>
+<span class="nc bnc" id="L119" title="All 4 branches missed.">        while (choice &lt; 0 || choice &gt; 5) {</span>
+<span class="nc" id="L120">            System.out.println(choice + &quot; is not an option, try again: &quot;);</span>
+<span class="nc" id="L121">            choice = input.nextInt();</span>
         }
-<span class="nc" id="L127">        return choice;</span>
+<span class="nc" id="L123">        return choice;</span>
     }
 
     @Override
     public void showContingentMenu() {
-<span class="nc" id="L132">        System.out.println(&quot;Choose one of the following options: \n&quot;</span>
+<span class="nc" id="L128">        System.out.println(&quot;Choose one of the following options: \n&quot;</span>
                 + &quot;1. Contingent prices\n&quot;
                 + &quot;2. Edit contingent\n&quot;
                 + &quot;3. Back to main menu\n&quot;
                 + &quot;0. Quit&quot;);
-<span class="nc" id="L137">    }</span>
+<span class="nc" id="L133">    }</span>
 
     @Override
     public int contingentMenuChoice() {
-<span class="nc" id="L141">        int choice = input.nextInt();</span>
-<span class="nc bnc" id="L142" title="All 4 branches missed.">        while (choice &lt; 0 || choice &gt; 3) {</span>
-<span class="nc" id="L143">            System.out.println(choice + &quot; is not an option, try again: &quot;);</span>
-<span class="nc" id="L144">            choice = input.nextInt();</span>
+<span class="nc" id="L137">        int choice = input.nextInt();</span>
+<span class="nc bnc" id="L138" title="All 4 branches missed.">        while (choice &lt; 0 || choice &gt; 3) {</span>
+<span class="nc" id="L139">            System.out.println(choice + &quot; is not an option, try again: &quot;);</span>
+<span class="nc" id="L140">            choice = input.nextInt();</span>
         }
-<span class="nc" id="L146">        return choice;</span>
+<span class="nc" id="L142">        return choice;</span>
     }
 
     @Override
     public void showRestanceMenu() {
-<span class="nc" id="L151">        System.out.println(&quot;Choose one of the following options: \n&quot;</span>
+<span class="nc" id="L147">        System.out.println(&quot;Choose one of the following options: \n&quot;</span>
                 + &quot;1. List of swimmers in restance\n&quot;
                 + &quot;2. Edit restance\n&quot;
                 + &quot;3. back to main menu\n&quot;
                 + &quot;0. Quit&quot;);
-<span class="nc" id="L156">    }</span>
+<span class="nc" id="L152">    }</span>
 
     @Override
     public int restanceMenuChoice() {
-<span class="nc" id="L160">        int choice = input.nextInt();</span>
-<span class="nc bnc" id="L161" title="All 4 branches missed.">        while (choice &lt; 0 || choice &gt; 3) {</span>
-<span class="nc" id="L162">            System.out.println(choice + &quot; is not an option, try again: &quot;);</span>
-<span class="nc" id="L163">            choice = input.nextInt();</span>
+<span class="nc" id="L156">        int choice = input.nextInt();</span>
+<span class="nc bnc" id="L157" title="All 4 branches missed.">        while (choice &lt; 0 || choice &gt; 3) {</span>
+<span class="nc" id="L158">            System.out.println(choice + &quot; is not an option, try again: &quot;);</span>
+<span class="nc" id="L159">            choice = input.nextInt();</span>
         }
-<span class="nc" id="L165">        return choice;</span>
+<span class="nc" id="L161">        return choice;</span>
     }
 
     @Override
     public void showCompetitiveSwimmersMenu() {
-<span class="nc" id="L170">        System.out.println(&quot;Choose one of the following options: \n&quot;</span>
+<span class="nc" id="L166">        System.out.println(&quot;Choose one of the following options: \n&quot;</span>
                 + &quot;1. List of competitive swimmers\n&quot;
                 + &quot;2. Create competitive swimmer\n&quot;
-                + &quot;3. Trainingsresult\n&quot;
+                + &quot;3. Show list of trainingsresults\n&quot;
                 + &quot;4. Edit trainingsresult\n&quot;
                 + &quot;5. Back to main menu\n&quot;
                 + &quot;0. Quit&quot;);
-<span class="nc" id="L177">    }</span>
+<span class="nc" id="L173">    }</span>
 
     @Override
     public int competitiveSwimmersMenuChoice() {
-<span class="nc" id="L181">        int choice = input.nextInt();</span>
-<span class="nc bnc" id="L182" title="All 4 branches missed.">        while (choice &lt; 0 || choice &gt; 5) {</span>
-<span class="nc" id="L183">            System.out.println(choice + &quot; is not an option, try again: &quot;);</span>
-<span class="nc" id="L184">            choice = input.nextInt();</span>
+<span class="nc" id="L177">        int choice = input.nextInt();</span>
+<span class="nc bnc" id="L178" title="All 4 branches missed.">        while (choice &lt; 0 || choice &gt; 5) {</span>
+<span class="nc" id="L179">            System.out.println(choice + &quot; is not an option, try again: &quot;);</span>
+<span class="nc" id="L180">            choice = input.nextInt();</span>
         }
-<span class="nc" id="L186">        return choice;</span>
+<span class="nc" id="L182">        return choice;</span>
     }
 
     @Override
     public void showCompetitionMenu() {
-<span class="nc" id="L191">        System.out.println(&quot;Choose one of the following options: \n&quot;</span>
+<span class="nc" id="L187">        System.out.println(&quot;Choose one of the following options: \n&quot;</span>
                 + &quot;1. List of swimmers in competition\n&quot;
                 + &quot;2. Competition results\n&quot;
-                + &quot;3. Edit results&quot;
+                + &quot;3. Edit results\n&quot;
                 + &quot;4. Back to main menu\n&quot;
                 + &quot;0. Quit&quot;);
-<span class="nc" id="L197">    }</span>
+<span class="nc" id="L193">    }</span>
 
     @Override
     public int competitionMenuChoice() {
-<span class="nc" id="L201">        int choice = input.nextInt();</span>
-<span class="nc bnc" id="L202" title="All 4 branches missed.">        while (choice &lt; 0 || choice &gt; 4) {</span>
-<span class="nc" id="L203">            System.out.println(choice + &quot; is not an option, try again: &quot;);</span>
-<span class="nc" id="L204">            choice = input.nextInt();</span>
+<span class="nc" id="L197">        int choice = input.nextInt();</span>
+<span class="nc bnc" id="L198" title="All 4 branches missed.">        while (choice &lt; 0 || choice &gt; 4) {</span>
+<span class="nc" id="L199">            System.out.println(choice + &quot; is not an option, try again: &quot;);</span>
+<span class="nc" id="L200">            choice = input.nextInt();</span>
         }
-<span class="nc" id="L206">        return choice;</span>
+<span class="nc" id="L202">        return choice;</span>
     }
 
     @Override
     public String scanName() {
-<span class="nc" id="L211">        String choice = input.nextLine();</span>
-<span class="nc bnc" id="L212" title="All 2 branches missed.">        for (char c : choice.toCharArray()) {</span>
-<span class="nc bnc" id="L213" title="All 2 branches missed.">            while (!Character.isAlphabetic(c)) {</span>
-<span class="nc" id="L214">                System.out.println(&quot;Invalid name, please try again&quot;);</span>
-<span class="nc" id="L215">                choice = input.nextLine();</span>
+<span class="nc" id="L207">        String choice = input.nextLine();</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">        for (char c : choice.toCharArray()) {</span>
+<span class="nc bnc" id="L209" title="All 2 branches missed.">            while (!Character.isAlphabetic(c)) {</span>
+<span class="nc" id="L210">                System.out.println(&quot;Invalid name, please try again&quot;);</span>
+<span class="nc" id="L211">                choice = input.nextLine();</span>
             }
         }
-<span class="nc" id="L218">        return choice;</span>
+<span class="nc" id="L214">        return choice;</span>
     }
 
     @Override
     public void showEditMemberMenu() {
-<span class="nc" id="L223">        System.out.println(&quot;What would you like to edit?\n&quot;</span>
+<span class="nc" id="L219">        System.out.println(&quot;What would you like to edit?\n&quot;</span>
                 + &quot;1. First name\n&quot;
                 + &quot;2. Last name\n&quot;
                 + &quot;3. Activeness\n&quot;
                 + &quot;4. Back to main menu\n&quot;
                 + &quot;0. Quit&quot;);
-<span class="nc" id="L229">    }</span>
+<span class="nc" id="L225">    }</span>
 
     @Override
     public int editMemberChoice() {
-<span class="nc" id="L233">        int choice = input.nextInt();</span>
-<span class="nc bnc" id="L234" title="All 4 branches missed.">        while (choice &lt; 0 || choice &gt; 4) {</span>
-<span class="nc" id="L235">            System.out.println(choice + &quot; is not an option, try again: &quot;);</span>
-<span class="nc" id="L236">            choice = input.nextInt();</span>
+<span class="nc" id="L229">        int choice = input.nextInt();</span>
+<span class="nc bnc" id="L230" title="All 4 branches missed.">        while (choice &lt; 0 || choice &gt; 4) {</span>
+<span class="nc" id="L231">            System.out.println(choice + &quot; is not an option, try again: &quot;);</span>
+<span class="nc" id="L232">            choice = input.nextInt();</span>
         }
-<span class="nc" id="L238">        return choice;</span>
+<span class="nc" id="L234">        return choice;</span>
     }
 
     @Override
     public int scanID() {
-<span class="nc" id="L243">        return input.nextInt();</span>
+<span class="nc" id="L239">        return input.nextInt();</span>
     }
 
     @Override
     public void showTop5(ArrayList&lt;CompetitiveSwimmer&gt; competitiveSwimmer) {
-<span class="nc" id="L248">        StringBuilder strbuild = new StringBuilder();</span>
-<span class="nc bnc" id="L249" title="All 2 branches missed.">        for (CompetitiveSwimmer compSwimmer : competitiveSwimmer) {</span>
-<span class="nc" id="L250">            strbuild.append(compSwimmer);</span>
-<span class="nc" id="L251">        }</span>
-<span class="nc" id="L252">        System.out.println(strbuild.toString());</span>
-<span class="nc" id="L253">    }</span>
+<span class="nc" id="L244">        StringBuilder strbuild = new StringBuilder();</span>
+<span class="nc bnc" id="L245" title="All 2 branches missed.">        for (CompetitiveSwimmer compSwimmer : competitiveSwimmer) {</span>
+<span class="nc" id="L246">            strbuild.append(compSwimmer);</span>
+<span class="nc" id="L247">        }</span>
+<span class="nc" id="L248">        System.out.println(strbuild.toString());</span>
+<span class="nc" id="L249">    }</span>
 
     @Override
     public void showContingentList(ArrayList&lt;Contingent&gt; contingent) {
-<span class="nc" id="L257">        StringBuilder strbuild = new StringBuilder();</span>
-<span class="nc bnc" id="L258" title="All 2 branches missed.">        for (Contingent cont : contingent) {</span>
-<span class="nc" id="L259">            strbuild.append(cont);</span>
-<span class="nc" id="L260">        }</span>
-<span class="nc" id="L261">        System.out.println(strbuild.toString());</span>
-<span class="nc" id="L262">    }</span>
+<span class="nc" id="L253">        StringBuilder strbuild = new StringBuilder();</span>
+<span class="nc bnc" id="L254" title="All 2 branches missed.">        for (Contingent cont : contingent) {</span>
+<span class="nc" id="L255">            strbuild.append(cont);</span>
+<span class="nc" id="L256">        }</span>
+<span class="nc" id="L257">        System.out.println(strbuild.toString());</span>
+<span class="nc" id="L258">    }</span>
 
     @Override
     public void showEditContingentMenu() {
-<span class="nc" id="L266">        System.out.println(&quot;\nWhat would you like to change?\n&quot;</span>
+<span class="nc" id="L262">        System.out.println(&quot;\nWhat would you like to change?\n&quot;</span>
                 + &quot;1. Under 18\n&quot;
                 + &quot;2. Between 18 and 60\n&quot;
                 + &quot;3. Over 60\n&quot;
                 + &quot;4. Passive\n&quot;
                 + &quot;5. Back to main menu\n&quot;
                 + &quot;0. Quit&quot;);
-<span class="nc" id="L273">    }</span>
+<span class="nc" id="L269">    }</span>
 
     @Override
     public int editContingentChoice() {
-<span class="nc" id="L277">        int choice = input.nextInt();</span>
-<span class="nc bnc" id="L278" title="All 4 branches missed.">        while (choice &lt; 0 || choice &gt; 5) {</span>
-<span class="nc" id="L279">            System.out.println(choice + &quot; is not an option, try again: &quot;);</span>
-<span class="nc" id="L280">            choice = input.nextInt();</span>
+<span class="nc" id="L273">        int choice = input.nextInt();</span>
+<span class="nc bnc" id="L274" title="All 4 branches missed.">        while (choice &lt; 0 || choice &gt; 5) {</span>
+<span class="nc" id="L275">            System.out.println(choice + &quot; is not an option, try again: &quot;);</span>
+<span class="nc" id="L276">            choice = input.nextInt();</span>
         }
-<span class="nc" id="L282">        return choice;</span>
+<span class="nc" id="L278">        return choice;</span>
     }
 
     @Override
     public void showCompetitiveSwimmerList(ArrayList&lt;CompetitiveSwimmer&gt; competitiveSwimmers) {
-<span class="nc" id="L287">        StringBuilder strbuild = new StringBuilder();</span>
-<span class="nc bnc" id="L288" title="All 2 branches missed.">        for (CompetitiveSwimmer compSwimmer : competitiveSwimmers) {</span>
-<span class="nc" id="L289">            strbuild.append(compSwimmer);</span>
-<span class="nc" id="L290">        }</span>
-<span class="nc" id="L291">        System.out.println(strbuild.toString());</span>
-<span class="nc" id="L292">    }</span>
+<span class="nc" id="L283">        StringBuilder strbuild = new StringBuilder();</span>
+<span class="nc bnc" id="L284" title="All 2 branches missed.">        for (CompetitiveSwimmer compSwimmer : competitiveSwimmers) {</span>
+<span class="nc" id="L285">            strbuild.append(compSwimmer);</span>
+<span class="nc" id="L286">        }</span>
+<span class="nc" id="L287">        System.out.println(strbuild.toString());</span>
+<span class="nc" id="L288">    }</span>
 
     @Override
     public void showTrainingresults(ArrayList&lt;CompetitiveSwimmer&gt; trainingresults) {
-<span class="nc" id="L296">        StringBuilder strbuild = new StringBuilder();</span>
-<span class="nc bnc" id="L297" title="All 2 branches missed.">        for (CompetitiveSwimmer trainingresult : trainingresults) {</span>
-<span class="nc" id="L298">            strbuild.append(trainingresult);</span>
-<span class="nc" id="L299">        }</span>
-<span class="nc" id="L300">        System.out.println(strbuild.toString());</span>
-<span class="nc" id="L301">    }</span>
+<span class="nc" id="L292">        StringBuilder strbuild = new StringBuilder();</span>
+<span class="nc bnc" id="L293" title="All 2 branches missed.">        for (CompetitiveSwimmer trainingresult : trainingresults) {</span>
+<span class="nc" id="L294">            strbuild.append(trainingresult);</span>
+<span class="nc" id="L295">        }</span>
+<span class="nc" id="L296">        System.out.println(strbuild.toString());</span>
+<span class="nc" id="L297">    }</span>
 
     @Override
     public void showSwimmersInCompetition(ArrayList&lt;CompetitiveSwimmer&gt; competitiveSwimmers) {
-<span class="nc" id="L305">        StringBuilder strbuild = new StringBuilder();</span>
-<span class="nc bnc" id="L306" title="All 2 branches missed.">        for (CompetitiveSwimmer competitiveSwimmer : competitiveSwimmers) {</span>
-<span class="nc" id="L307">            strbuild.append(competitiveSwimmer);</span>
-<span class="nc" id="L308">        }</span>
-<span class="nc" id="L309">        System.out.println(strbuild.toString());</span>
-<span class="nc" id="L310">    }</span>
+<span class="nc" id="L301">        StringBuilder strbuild = new StringBuilder();</span>
+<span class="nc bnc" id="L302" title="All 2 branches missed.">        for (CompetitiveSwimmer competitiveSwimmer : competitiveSwimmers) {</span>
+<span class="nc" id="L303">            strbuild.append(competitiveSwimmer);</span>
+<span class="nc" id="L304">        }</span>
+<span class="nc" id="L305">        System.out.println(strbuild.toString());</span>
+<span class="nc" id="L306">    }</span>
 
     @Override
     public void showCompetitionResults(ArrayList&lt;CompetitiveSwimmer&gt; competitionResults) {
-<span class="nc" id="L314">        StringBuilder strbuild = new StringBuilder();</span>
-<span class="nc bnc" id="L315" title="All 2 branches missed.">        for (CompetitiveSwimmer competitionResult : competitionResults) {</span>
-<span class="nc" id="L316">            strbuild.append(competitionResult);</span>
-<span class="nc" id="L317">        }</span>
-<span class="nc" id="L318">        System.out.println(strbuild.toString());</span>
-<span class="nc" id="L319">    }</span>
+<span class="nc" id="L310">        StringBuilder strbuild = new StringBuilder();</span>
+<span class="nc bnc" id="L311" title="All 2 branches missed.">        for (CompetitiveSwimmer competitionResult : competitionResults) {</span>
+<span class="nc" id="L312">            strbuild.append(competitionResult);</span>
+<span class="nc" id="L313">        }</span>
+<span class="nc" id="L314">        System.out.println(strbuild.toString());</span>
+<span class="nc" id="L315">    }</span>
+
+    @Override
+    public void showEditTrainingsresultMenu() {
+<span class="nc" id="L319">        System.out.println(&quot;What would you like to edit?\n&quot;</span>
+                + &quot;\n1. Disciplin&quot;
+                + &quot;\n2. Best time&quot;
+                + &quot;\n3. Date of best time&quot;
+                + &quot;\n4. Back to main menu&quot;
+                + &quot;\n0. Quit&quot;);
+<span class="nc" id="L325">    }</span>
+
+    @Override
+    public int editTrainingsresultChoice() {
+<span class="nc" id="L329">        int choice = input.nextInt();</span>
+<span class="nc bnc" id="L330" title="All 4 branches missed.">        while (choice &lt; 0 || choice &gt; 4) {</span>
+<span class="nc" id="L331">            System.out.println(choice + &quot; is not an option, try again: &quot;);</span>
+<span class="nc" id="L332">            choice = input.nextInt();</span>
+        }
+<span class="nc" id="L334">        return choice;</span>
+    }
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -23,11 +23,11 @@ public class CompetitiveSwimmer extends Member {
     }
     
     public CompetitiveSwimmer(String firstName, String lastName, int age, int id, 
-            String disciplin, LocalTime bestTime, String dateOfBestTime) {
+            String disciplin, LocalTime bestTime, LocalDate dateOfBestTime) {
         super(firstName, lastName, age, id);
         this.disciplin = disciplin;
         this.bestTime = bestTime;
-        this.dateOfBestTime = LocalDate.parse(dateOfBestTime);
+        this.dateOfBestTime = dateOfBestTime;
     }
     
     public CompetitiveSwimmer(String disciplin, LocalTime bestTime, String dateOfBestTime, 
@@ -104,7 +104,7 @@ public class CompetitiveSwimmer extends Member {
                 + "\nID: " + super.getId()
                 + "\nDisciplin: " + disciplin 
                 + "\nBest Time: " + bestTime 
-                + "\nDate of best time: " + dateOfBestTime;
+                + "\nDate of best time: " + dateOfBestTime + "\n";
     }
     
 }

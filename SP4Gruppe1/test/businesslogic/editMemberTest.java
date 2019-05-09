@@ -16,7 +16,7 @@ public class editMemberTest {
     public void testEditMember_editFirstName_withDB() {
         // arrange
         String[] input = {"", "1", "2", "", "Ole", "Jensen", "1989-12-12",
-            "y", "3", "1", "1", "Laila", "0", "0"};
+            "y", "3", "1", "2", "Laila", "0", "0"};
         FakeUI ui = new FakeUI(input);
         DBConnection dbc = new DBConnection();
         DBFacade db = new DBFacade(dbc);

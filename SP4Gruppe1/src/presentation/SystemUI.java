@@ -26,6 +26,10 @@ public class SystemUI implements UI {
     @Override
     public boolean scanBoolean() {
         String answer = input.nextLine();
+        while (!(answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("n"))) {
+            System.out.println("Invalid input, please try again: ");
+            answer = input.nextLine();
+        }
         return answer.equalsIgnoreCase("y");
     }
 
@@ -126,7 +130,7 @@ public class SystemUI implements UI {
 
     @Override
     public void showContingentMenu() {
-        System.out.println("Choose one of the following options: \n"
+        System.out.println("\nChoose one of the following options: \n"
                 + "1. Contingent prices\n"
                 + "2. Edit contingent\n"
                 + "3. Back to main menu\n"
@@ -167,9 +171,8 @@ public class SystemUI implements UI {
         System.out.println("Choose one of the following options: \n"
                 + "1. List of competitive swimmers\n"
                 + "2. Create competitive swimmer\n"
-                + "3. Trainingsresult\n"
-                + "4. Edit trainingsresult\n"
-                + "5. Back to main menu\n"
+                + "3. Edit trainingsresult\n"
+                + "4. Back to main menu\n"
                 + "0. Quit");
     }
 
@@ -191,6 +194,8 @@ public class SystemUI implements UI {
                 + "3. Create result for Swimmer\n"
                 + "4. Edit results\n"
                 + "5. Back to main menu\n"
+                + "3. Edit results\n"
+                + "4. Back to main menu\n"
                 + "0. Quit");
     }
 

@@ -30,137 +30,22 @@ public class Controller {
             switch (ui.mainMenuChoice()) {
                 case 1:
                     ui.showMembersMenu();
-                    do {
-                        switch (ui.memberMenuChoice()) {
-                            case 1:
-                                showMembersList();
-                                ui.showMembersMenu();
-                                break;
-                            case 2:
-                                createMember();
-                                ui.showMembersMenu();
-                                break;
-                            case 3:
-                                editMember();
-                                ui.showMainMenu();
-                                break;
-                            case 4:
-                                deleteMember();
-                                ui.showMainMenu();
-                                break;
-                            case 5:
-                                quit = true;
-                                start();
-                                break;
-                            case 0:
-                                quit = true;
-                                break;
-                        }
-                    } while (!quit);
+                    quit = memberMenu(quit);
                     break;
                 case 2:
                     ui.showContingentMenu();
-                    do {
-                        switch (ui.contingentMenuChoice()) {
-                            case 1:
-                                showContingent();
-                                ui.showContingentMenu();
-                                break;
-                            case 2:
-                                ui.showEditContingentMenu();
-                                do {
-                                    switch (ui.editContingentChoice()) {
-                                        case 1:
-                                            editUnder18();
-                                            ui.showEditContingentMenu();
-                                            break;
-                                        case 2:
-                                            editBetween18And60();
-                                            ui.showEditContingentMenu();
-                                            break;
-                                        case 3:
-                                            editOver60();
-                                            ui.showEditContingentMenu();
-                                            break;
-                                        case 4:
-                                            editPassive();
-                                            ui.showEditContingentMenu();
-                                            break;
-                                        case 5:
-                                            quit = true;
-                                            start();
-                                            break;
-                                        case 0:
-                                            quit = true;
-                                            break;
-                                    }
-                                } while (!quit);
-
-                                break;
-                            case 3:
-                                quit = true;
-                                start();
-                                break;
-                            case 0:
-                                quit = true;
-                                break;
-                        }
-                    } while (!quit);
+                    quit = contingentMenu(quit);
                     break;
                 case 3:
                     ui.showRestanceMenu();
-                    do {
-                        switch (ui.restanceMenuChoice()) {
-                            case 1:
-                                showMembersInRestance();
-                                ui.showRestanceMenu();
-                                break;
-                            case 2:
-                                editRestance();
-                                ui.showRestanceMenu();
-                                break;
-                            case 3:
-                                quit = true;
-                                start();
-                                break;
-                            case 0:
-                                quit = true;
-                                break;
-                        }
-                    } while (!quit);
+                    quit = restanceMenu(quit);
                     break;
                 case 4:
                     showTop5Swimmers();
                     break;
                 case 5:
                     ui.showCompetitiveSwimmersMenu();
-                    do {
-                        switch (ui.competitiveSwimmersMenuChoice()) {
-                            case 1:
-                                showCompetitiveSwimmers();
-                                ui.showCompetitiveSwimmersMenu();
-                                break;
-                            case 2:
-                                createCompetitiveSwimmer();
-                                ui.showCompetitiveSwimmersMenu();
-                                break;
-                            case 3:
-                                showTrainingsresult();
-                                ui.showCompetitiveSwimmersMenu();
-                                break;
-                            case 4:
-                                editTrainingsresult();
-                                ui.showCompetitiveSwimmersMenu();
-                                break;
-                            case 5:
-                                quit = true;
-                                start();
-                                break;
-                            case 0:
-                                quit = true;
-                                break;
-                        }
-                    } while (!quit);
+                    quit = competitiveSwimmersMenu(quit);
                     break;
                 case 6:
                     ui.showCompetitionMenu();
@@ -190,12 +75,48 @@ public class Controller {
                                 quit = true;
                         }
                     } while (!quit);
+                    quit = competitionMenu(quit);
                     break;
                 case 0:
                     quit = true;
                     break;
             }
         } while (!quit);
+    }
+
+    private boolean memberMenu(boolean quit) {
+        do {
+            switch (ui.memberMenuChoice()) {
+                case 1:
+                    showMembersList();
+                    ui.showMembersMenu();
+                    break;
+                case 2:
+                    createMember();
+                    ui.showMembersMenu();
+                    break;
+                case 3:
+                    quit = editMember(quit);
+                    break;
+                case 4:
+                    deleteMember();
+                    ui.showMainMenu();
+                    break;
+                case 5:
+                    quit = true;
+                    start();
+                    break;
+                case 0:
+                    quit = true;
+                    break;
+            }
+        } while (!quit);
+        return quit;
+    }
+
+    private void showMembersList() {
+        ArrayList<Member> members = db.getMembersList();
+        ui.showMemberList(members);
     }
 
     private void createMember() {
@@ -216,27 +137,13 @@ public class Controller {
         ui.print("The following member has been added: " + member.toString());
     }
 
-    private void deleteMember() {
-        showMembersList();
-        ui.print("Enter the ID of the member you want to delete: ");
-        int id = ui.scanInt();
-        db.deleteMember(id);
-        ui.print("The member with ID number " + id + " has been deleted");
-    }
-
-    private void showMembersList() {
-        ArrayList<Member> members = db.getMembersList();
-        ui.showMemberList(members);
-    }
-
-    private void editMember() {
+    private boolean editMember(boolean quit) {
         showMembersList();
         ui.print("Enter the ID of the member, you would like to edit: ");
         int id = ui.scanID();
         Member memberByID = db.getMemberById(id);
         ui.print(memberByID.toString());
 
-        boolean quit = false;
         ui.showEditMemberMenu();
         do {
             switch (ui.editMemberChoice()) {
@@ -264,21 +171,16 @@ public class Controller {
                     db.editActiveness(id, isActive);
                     ui.print("The activeness has now been changed to " + isActive);
                     break;
+                case 4: 
+                    quit = true;
+                    start();
+                    break;
                 case 0:
                     quit = true;
                     break;
             }
         } while (!quit);
-    }
-
-    private void showTop5Swimmers() {
-        ArrayList<CompetitiveSwimmer> competitiveSwimmers = db.getTop5();
-        ui.showTop5(competitiveSwimmers);
-    }
-
-    private void showContingent() {
-        ArrayList<Contingent> contingent = db.getContingentList();
-        ui.showContingentList(contingent);
+        return quit;
     }
 
 //    private Member getMemberbyID(int id) {
@@ -297,87 +199,26 @@ public class Controller {
 //            member = getMemberbyID(id);
 //        }
 //    }
-    private void showMembersInRestance() {
-        ArrayList<Member> membersInRestance = db.getMembersInRestance();
-        ui.showMemberList(membersInRestance);
-    }
-
-    private void editRestance() {
+    private void deleteMember() {
         showMembersList();
-        ui.print("\nEnter the ID of the member, you would like to edit:");
-        int id = ui.scanID();
-        Member memberByID = db.getMemberById(id);
-        ui.print(memberByID.toString());
-        ui.print("\nWhat would you like to change the restance to?");
-        int newRestance = ui.scanInt();
-        db.editRestance(id, newRestance);
-        ui.print("The restance has now been changed to " + newRestance);
+        ui.print("Enter the ID of the member you want to delete: ");
+        int id = ui.scanInt();
+        db.deleteMember(id);
+        ui.print("The member with ID number " + id + " has been deleted");
     }
 
-    private void showCompetitiveSwimmers() {
-        ArrayList<CompetitiveSwimmer> competitiveSwimmers = db.getCompetitiveSwimmers();
-        ui.showCompetitiveSwimmerList(competitiveSwimmers);
-    }
-
-    private void createCompetitiveSwimmer() {
-        showMembersList();
-        ui.print("Please enter the ID for the member you want to add as a competitive swimmer");
-        int id = ui.scanID();
-        Member memberByID = db.getMemberById(id);
-        ui.print(memberByID.toString());
-        ui.scanString();
-        ui.print("Please enter the disciplin: ");
-        String disciplin = ui.scanString();
-        ui.print("Please enter the best time, the swimmer has performed "
-                + "during training: (HH:MM:SS)");
-        LocalTime bestTime = ui.scanTime();
-        ui.print("Please enter the date: (YYYY-MM-DD)");
-        String dateOfBestTime = ui.scanDate();
-        
-        CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer(id, disciplin, bestTime, dateOfBestTime);
-        db.saveCompetitiveSwimmer(competitiveSwimmer);
-
-        ui.print("\nThe following member has been added: " + competitiveSwimmer.toString() + "\n");
-    }
-
-    private void showTrainingsresult() {
-        ArrayList<CompetitiveSwimmer> trainingresults = db.getTrainingsresult();
-        ui.showTrainingresults(trainingresults);
-    }
-
-    private void editTrainingsresult() {
-        showTrainingsresult();
-        ui.print("Enter the ID of the member, you would like to edit: ");
-        int id = ui.scanID();
-        Member memberByID = db.getMemberById(id);
-        ui.print(memberByID.toString());
-        
-        boolean quit = false;
-        ui.showEditTrainingsresultMenu();
+    private boolean contingentMenu(boolean quit) {
         do {
-            switch (ui.editTrainingsresultChoice()) {
+            switch (ui.contingentMenuChoice()) {
                 case 1:
-                    ui.scanString();
-                    ui.print("What would you like to change the disciplin to?");
-                    String newDisciplin = ui.scanString();
-                    db.editDisciplin(id, newDisciplin);
-                    ui.print("The disciplin has now been changed to " + newDisciplin);
+                    showContingent();
+                    ui.showContingentMenu();
                     break;
                 case 2:
-                    ui.scanString();
-                    ui.print("What would you like to change their best time to? (HH:MM:SS)");
-                    LocalTime newBestTime = ui.scanTime();
-                    db.editBestTime(id, newBestTime);
-                    ui.print("The best time has now been changed to " + newBestTime);
+                    ui.showEditContingentMenu();
+                    quit = editContingentMenu(quit);
                     break;
                 case 3:
-                    ui.scanString();
-                    ui.print("What would you like to change the date to? (YYYY-MM-DD)");
-                    String newDateOfBestTime = ui.scanDate();
-                    db.editDate(id, newDateOfBestTime);
-                    ui.print("The date has now been changed to " + newDateOfBestTime);
-                    break;
-                case 4: 
                     quit = true;
                     start();
                     break;
@@ -386,11 +227,12 @@ public class Controller {
                     break;
             }
         } while (!quit);
+        return quit;
     }
 
-    private void showSwimmersInCompetition() {
-        ArrayList<CompetitiveSwimmer> competitiveSwimmers = db.getCompetitionSwimmers();
-        ui.showSwimmersInCompetition(competitiveSwimmers);
+    private void showContingent() {
+        ArrayList<Contingent> contingent = db.getContingentList();
+        ui.showContingentList(contingent);
     }
 
     private void showCompetitionResults() {
@@ -447,6 +289,37 @@ public class Controller {
                     break;
             }
         } while (!quit);
+        }
+    
+    private boolean editContingentMenu(boolean quit) {
+        do {
+            switch (ui.editContingentChoice()) {
+                case 1:
+                    editUnder18();
+                    ui.showEditContingentMenu();
+                    break;
+                case 2:
+                    editBetween18And60();
+                    ui.showEditContingentMenu();
+                    break;
+                case 3:
+                    editOver60();
+                    ui.showEditContingentMenu();
+                    break;
+                case 4:
+                    editPassive();
+                    ui.showEditContingentMenu();
+                    break;
+                case 5:
+                    quit = true;
+                    start();
+                    break;
+                case 0:
+                    quit = true;
+                    break;
+            }
+        } while (!quit);
+        return quit;
     }
 
     private void editUnder18() {
@@ -496,4 +369,187 @@ public class Controller {
         db.saveCompetition(comp, id);
         
     }
-}
+
+    private boolean restanceMenu(boolean quit) {
+        do {
+            switch (ui.restanceMenuChoice()) {
+                case 1:
+                    showMembersInRestance();
+                    ui.showRestanceMenu();
+                    break;
+                case 2:
+                    editRestance();
+                    ui.showRestanceMenu();
+                    break;
+                case 3:
+                    quit = true;
+                    start();
+                    break;
+                case 0:
+                    quit = true;
+                    break;
+            }
+        } while (!quit);
+        return quit;
+    }
+
+    private void showMembersInRestance() {
+        ArrayList<Member> membersInRestance = db.getMembersInRestance();
+        ui.showMemberList(membersInRestance);
+        if(membersInRestance.isEmpty()){
+            System.out.println ("There are currently no members in restance");
+        }        
+    }
+
+    private void editRestance() {
+        showMembersList();
+        ui.print("\nEnter the ID of the member, you would like to edit:");
+        int id = ui.scanID();
+        Member memberByID = db.getMemberById(id);
+        ui.print(memberByID.toString());
+        ui.print("\nWhat would you like to change the restance to?");
+        int newRestance = ui.scanInt();
+        db.editRestance(id, newRestance);
+        ui.print("The restance has now been changed to " + newRestance);
+    }
+
+    private void showTop5Swimmers() {
+        ArrayList<CompetitiveSwimmer> competitiveSwimmers = db.getTop5();
+        ui.showTop5(competitiveSwimmers);
+    }
+
+    private boolean competitiveSwimmersMenu(boolean quit) {
+        do {
+            switch (ui.competitiveSwimmersMenuChoice()) {
+                case 1:
+                    showCompetitiveSwimmers();
+                    ui.showCompetitiveSwimmersMenu();
+                    break;
+                case 2:
+                    createCompetitiveSwimmer();
+                    ui.showCompetitiveSwimmersMenu();
+                    break;
+                case 3:
+                    editTrainingsresult();
+                    ui.showCompetitiveSwimmersMenu();
+                    break;
+                case 4:
+                    quit = true;
+                    start();
+                    break;
+                case 0:
+                    quit = true;
+                    break;
+            }
+        } while (!quit);
+        return quit;
+    }
+
+    private void showCompetitiveSwimmers() {
+        ArrayList<CompetitiveSwimmer> competitiveSwimmers = db.getCompetitiveSwimmers();
+        ui.showCompetitiveSwimmerList(competitiveSwimmers);
+    }
+
+    private void createCompetitiveSwimmer() {
+        showMembersList();
+        ui.print("Please enter the ID for the member you want to add as a competitive swimmer");
+        int id = ui.scanID();
+        Member memberByID = db.getMemberById(id);
+        ui.print(memberByID.toString());
+        ui.scanString();
+        ui.print("Please enter the disciplin: ");
+        String disciplin = ui.scanString();
+        ui.print("Please enter the best time, the swimmer has performed "
+                + "during training: (HH:MM:SS)");
+        LocalTime bestTime = ui.scanTime();
+        ui.print("Please enter the date: (YYYY-MM-DD)");
+        String dateOfBestTime = ui.scanDate();
+
+        CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer(id, disciplin, bestTime, dateOfBestTime);
+        db.saveCompetitiveSwimmer(competitiveSwimmer);
+
+        ui.print("\nThe following member has been added: " + competitiveSwimmer.toString() + "\n");
+    }
+
+    private void showTrainingsresult() {
+        ArrayList<CompetitiveSwimmer> trainingresults = db.getTrainingsresult();
+        ui.showTrainingresults(trainingresults);
+    }
+
+    private void editTrainingsresult() {
+        showTrainingsresult();
+        ui.print("Enter the ID of the member, you would like to edit: ");
+        int id = ui.scanID();
+        Member memberByID = db.getMemberById(id);
+        ui.print(memberByID.toString());
+
+        boolean quit = false;
+        ui.showEditTrainingsresultMenu();
+        do {
+            switch (ui.editTrainingsresultChoice()) {
+                case 1:
+                    ui.scanString();
+                    ui.print("What would you like to change the disciplin to?");
+                    String newDisciplin = ui.scanString();
+                    db.editDisciplin(id, newDisciplin);
+                    ui.print("The disciplin has now been changed to " + newDisciplin);
+                    break;
+                case 2:
+                    ui.scanString();
+                    ui.print("What would you like to change their best time to? (HH:MM:SS)");
+                    LocalTime newBestTime = ui.scanTime();
+                    db.editBestTime(id, newBestTime);
+                    ui.print("The best time has now been changed to " + newBestTime);
+                    break;
+                case 3:
+                    ui.scanString();
+                    ui.print("What would you like to change the date to? (YYYY-MM-DD)");
+                    String newDateOfBestTime = ui.scanDate();
+                    db.editDate(id, newDateOfBestTime);
+                    ui.print("The date has now been changed to " + newDateOfBestTime);
+                    break;
+                case 4:
+                    quit = true;
+                    start();
+                    break;
+                case 0:
+                    quit = true;
+                    break;
+            }
+        } while (!quit);
+    }
+
+    private boolean competitionMenu(boolean quit) {
+        do {
+            switch (ui.competitionMenuChoice()) {
+                case 1:
+                    showSwimmersInCompetition();
+                    ui.showCompetitionMenu();
+                    break;
+                case 2:
+                    showCompetitionResults();
+                    ui.showCompetitionMenu();
+                    break;
+                case 3:
+                    editCompetitionResults();
+                    ui.showCompetitionMenu();
+                    break;
+                case 4:
+                    quit = true;
+                    start();
+                    break;
+                case 0:
+                    quit = true;
+            }
+        } while (!quit);
+        return quit;
+    }
+
+    private void showSwimmersInCompetition() {
+        ArrayList<CompetitiveSwimmer> competitiveSwimmers = db.getCompetitionSwimmers();
+        ui.showSwimmersInCompetition(competitiveSwimmers);
+    }
+
+    }
+
+
