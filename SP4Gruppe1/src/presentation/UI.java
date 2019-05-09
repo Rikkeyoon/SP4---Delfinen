@@ -80,4 +80,8 @@ public interface UI {
 
     public int editTrainingsresultChoice();
 
+    public void showEditCompetitionresultMenu();
+
+    public int editCompetitionresultChoice();
+
 }

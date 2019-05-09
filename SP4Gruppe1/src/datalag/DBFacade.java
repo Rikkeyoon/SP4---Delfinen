@@ -651,4 +651,30 @@ public class DBFacade implements DBStorage {
         } catch (SQLException e) {
         }
     }
+    
+    @Override
+    public CompetitiveSwimmer getComSwimById(int id) {
+        CompetitiveSwimmer compSwim = null;
+        try {
+            String selectSQL = "SELECT first_name, last_name, age, disciplin, "
+                    + "best_time, date_of_best_time FROM members"
+                    + " NATURAL JOIN competitive_swimmers WHERE id = " + id;
+            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+            
+            ResultSet result = preparedStatement.executeQuery(selectSQL);
+            while (result.next()) {
+                String firstName = result.getString(1);
+                String lastName = result.getString(2);
+                int age = result.getInt(3);
+                String disciplin = result.getString(4);
+                String bestTime = result.getString(5);
+                String dateOfBestTime = result.getString(6);
+                
+                compSwim = new CompetitiveSwimmer(firstName, lastName, age, disciplin, 
+                        LocalTime.parse(bestTime), LocalDate.parse(dateOfBestTime));
+            }
+        } catch (SQLException | NullPointerException e) {
+        }
+        return compSwim;
+    }
 }

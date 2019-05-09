@@ -65,6 +65,13 @@ public class CompetitiveSwimmer extends Member {
         this.competition = competit;
     }
 
+     public CompetitiveSwimmer(String firstName, String lastName, int age, String disciplin,
+            LocalTime bestTime, LocalDate dateOfBestTime) {
+        super(firstName, lastName, age);
+        this.disciplin = disciplin;
+        this.bestTime = bestTime;
+        this.dateOfBestTime = dateOfBestTime;
+    }
 
     public String getDisciplin() {
         return disciplin;

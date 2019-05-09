@@ -68,6 +68,6 @@ public interface DBStorage {
 
     public void editCompetitionName(int id, String newCompetitionName);
     
-    
+    public CompetitiveSwimmer getComSwimById(int id);
 
 }

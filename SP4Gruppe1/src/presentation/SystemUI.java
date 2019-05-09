@@ -103,10 +103,6 @@ public class SystemUI implements UI {
             System.out.println(choice + " is not an option, try again: ");
             choice = input.next();
         }
-//        while (choice < 0 || choice > 6) {
-//                System.out.println(choice + " is not an option, try again: ");
-//                choice = input.nextInt();
-//            }            
         return Integer.parseInt(choice);
 
     }
@@ -125,10 +121,6 @@ public class SystemUI implements UI {
     @Override
     public int memberMenuChoice() {
         int choice = input.nextInt();
-//        while (choice < 0 || choice > 5) {
-//            System.out.println(choice + " is not an option, try again: ");
-//            choice = input.nextInt();
-//        }
         return choice;
     }
 
@@ -144,10 +136,6 @@ public class SystemUI implements UI {
     @Override
     public int contingentMenuChoice() {
         int choice = input.nextInt();
-//        while (choice < 0 || choice > 3) {
-//            System.out.println(choice + " is not an option, try again: ");
-//            choice = input.nextInt();
-//        }
         return choice;
     }
 
@@ -163,10 +151,6 @@ public class SystemUI implements UI {
     @Override
     public int restanceMenuChoice() {
         int choice = input.nextInt();
-//        while (choice < 0 || choice > 3) {
-//            System.out.println(choice + " is not an option, try again: ");
-//            choice = input.nextInt();
-//        }
         return choice;
     }
 
@@ -183,10 +167,6 @@ public class SystemUI implements UI {
     @Override
     public int competitiveSwimmersMenuChoice() {
         int choice = input.nextInt();
-//        while (choice < 0 || choice > 5) {
-//            System.out.println(choice + " is not an option, try again: ");
-//            choice = input.nextInt();
-//        }
         return choice;
     }
 
@@ -195,28 +175,15 @@ public class SystemUI implements UI {
         System.out.println("Choose one of the following options: \n"
                 + "1. List of swimmers in competition\n"
                 + "2. Competition results\n"
-                + "3. Create result for Swimmer\n"
+                + "3. Create result for swimmer\n"
                 + "4. Edit results\n"
                 + "5. Back to main menu\n"
-                + "3. Edit results\n"
-                + "4. Back to main menu\n"
                 + "0. Quit");
     }
 
     @Override
     public int competitionMenuChoice() {
         int choice = input.nextInt();
-<<<<<<< HEAD
-//        while (choice < 0 || choice > 4) {
-//            System.out.println(choice + " is not an option, try again: ");
-//            choice = input.nextInt();
-//        }
-=======
-        while (choice < 0 || choice > 5) {
-            System.out.println(choice + " is not an option, try again: ");
-            choice = input.nextInt();
-        }
->>>>>>> origin/master
         return choice;
     }
 
@@ -245,10 +212,6 @@ public class SystemUI implements UI {
     @Override
     public int editMemberChoice() {
         int choice = input.nextInt();
-//        while (choice < 0 || choice > 4) {
-//            System.out.println(choice + " is not an option, try again: ");
-//            choice = input.nextInt();
-//        }
         return choice;
     }
 
@@ -289,10 +252,6 @@ public class SystemUI implements UI {
     @Override
     public int editContingentChoice() {
         int choice = input.nextInt();
-//        while (choice < 0 || choice > 5) {
-//            System.out.println(choice + " is not an option, try again: ");
-//            choice = input.nextInt();
-//        }
         return choice;
     }
 
@@ -345,17 +304,13 @@ public class SystemUI implements UI {
     @Override
     public int editTrainingsresultChoice() {
         int choice = input.nextInt();
-//        while (choice < 0 || choice > 4) {
-//            System.out.println(choice + " is not an option, try again: ");
-//            choice = input.nextInt();
-//        }
         return choice;
     }
 
     @Override
     public void showEditCompetitionresultMenu() {
         System.out.println("What would you like to edit?\n"
-                + "\n1. Competitionname"
+                + "\n1. Competition name"
                 + "\n2. Date of competition"
                 + "\n3. Best time"
                 + "\n4. Ranking"
