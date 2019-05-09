@@ -206,17 +206,17 @@ public class SystemUI implements UI {
     @Override
     public int competitionMenuChoice() {
         int choice = input.nextInt();
-<<<<<<< HEAD
+
 //        while (choice < 0 || choice > 4) {
 //            System.out.println(choice + " is not an option, try again: ");
 //            choice = input.nextInt();
 //        }
-=======
+
         while (choice < 0 || choice > 5) {
             System.out.println(choice + " is not an option, try again: ");
             choice = input.nextInt();
         }
->>>>>>> origin/master
+
         return choice;
     }
 
