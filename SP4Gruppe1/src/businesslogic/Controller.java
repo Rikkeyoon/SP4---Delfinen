@@ -38,34 +38,7 @@ public class Controller {
                                 break;
                             case 2:
                                 ui.showEditContingentMenu();
-                                do {
-                                    switch (ui.editContingentChoice()) {
-                                        case 1:
-                                            editUnder18();
-                                            ui.showEditContingentMenu();
-                                            break;
-                                        case 2:
-                                            editBetween18And60();
-                                            ui.showEditContingentMenu();
-                                            break;
-                                        case 3:
-                                            editOver60();
-                                            ui.showEditContingentMenu();
-                                            break;
-                                        case 4:
-                                            editPassive();
-                                            ui.showEditContingentMenu();
-                                            break;
-                                        case 5:
-                                            quit = true;
-                                            start();
-                                            break;
-                                        case 0:
-                                            quit = true;
-                                            break;
-                                    }
-                                } while (!quit);
-
+                                quit = contingentMenu(quit);
                                 break;
                             case 3:
                                 quit = true;
@@ -266,6 +239,37 @@ public class Controller {
                     break;
             }
         } while (!quit);
+    }
+
+    private boolean contingentMenu(boolean quit) {
+        do {
+            switch (ui.editContingentChoice()) {
+                case 1:
+                    editUnder18();
+                    ui.showEditContingentMenu();
+                    break;
+                case 2:
+                    editBetween18And60();
+                    ui.showEditContingentMenu();
+                    break;
+                case 3:
+                    editOver60();
+                    ui.showEditContingentMenu();
+                    break;
+                case 4:
+                    editPassive();
+                    ui.showEditContingentMenu();
+                    break;
+                case 5:
+                    quit = true;
+                    start();
+                    break;
+                case 0:
+                    quit = true;
+                    break;
+            }
+        } while (!quit);
+        return quit;
     }
 
     private void showTop5Swimmers() {
