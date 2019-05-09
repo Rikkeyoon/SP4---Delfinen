@@ -108,7 +108,7 @@ public class Competition {
 
     @Override
     public String toString() {
-        return "CompetitionName: \t" + competitionName
+        return "\nCompetitionName: \t" + competitionName
                 + "\nRanking: \t\t" + ranking
                 + "\nBestTimeInCompetition: \t\t" + bestTimeInCompetition;
     }
