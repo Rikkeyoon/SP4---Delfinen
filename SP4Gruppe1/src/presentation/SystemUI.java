@@ -188,13 +188,21 @@ public class SystemUI implements UI {
 
     @Override
     public String scanName() {
-        String choice = input.nextLine();
-        for (char c : choice.toCharArray()) {
-            while (!Character.isAlphabetic(c)) {
+        String choice;
+        boolean isLetter = true;
+        do { 
+            choice = input.nextLine();
+            isLetter = true;
+            for (char c : choice.toCharArray()) {
+                if (!Character.isAlphabetic(c)) {
+                    isLetter = false;
+                }
+            }
+            if (isLetter == false){
                 System.out.println("Invalid name, please try again");
-                choice = input.nextLine();
             }
         }
+        while (isLetter == false);
         return choice;
     }
 
@@ -320,10 +328,6 @@ public class SystemUI implements UI {
     @Override
     public int editCompetitionresultChoice() {
         int choice = input.nextInt();
-        while (choice < 0 || choice > 5) {
-            System.out.println(choice + " is not an option, try again: ");
-            choice = input.nextInt();
-        }
         return choice;
     }
 

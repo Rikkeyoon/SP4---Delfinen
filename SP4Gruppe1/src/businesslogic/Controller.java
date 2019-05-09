@@ -417,7 +417,7 @@ public class Controller {
                 case 0:
                     quit = true;
                     break;
-                default: 
+                default:
                     ui.print("Invalid input, please try again: ");
                     break;
             }
@@ -463,13 +463,13 @@ public class Controller {
         ArrayList<CompetitiveSwimmer> competitiveSwimmers = db.getCompetitionSwimmers();
         ui.showSwimmersInCompetition(competitiveSwimmers);
     }
-    
+
     private void showCompetitionResults() {
         ArrayList<Competition> competitionResults = db.getCompetitionResult();
         ui.showCompetitionResults(competitionResults);
 
     }
-    
+
     private void insertCompetitionResultForCompetitiveSwimmer() {
         ui.print("Enter the ID of the competitive swimmer, you would like to write the results for: ");
         int compSwimID = ui.scanID();
@@ -488,7 +488,7 @@ public class Controller {
         Competition comp = new Competition(member, competition, dateOfCompetition, ranking, time);
         db.saveCompetition(comp, id);
     }
-    
+
     private void editCompetitionResults() {
         showCompetitionResults();
         ui.print("Enter the ID of the swimmer, you would like to edit: ");
@@ -535,6 +535,8 @@ public class Controller {
                 case 0:
                     quit = true;
                     break;
+                default:
+                    ui.print("Invalid input, please try again: ");
             }
         } while (!quit);
     }
