@@ -21,9 +21,9 @@ import java.sql.SQLException;
     public Connection getConnection() {
 <span class="fc" id="L22">        Connection connection = null;</span>
         try {
-<span class="nc" id="L24">            connection = DriverManager.getConnection(URL, USER, PASSWORD);</span>
-<span class="fc" id="L25">        } catch (SQLException ex) {</span>
-<span class="nc" id="L26">        }</span>
+<span class="fc" id="L24">            connection = DriverManager.getConnection(URL, USER, PASSWORD);</span>
+<span class="nc" id="L25">        } catch (SQLException ex) {</span>
+<span class="fc" id="L26">        }</span>
 <span class="fc" id="L27">        return connection;</span>
     }
 }
