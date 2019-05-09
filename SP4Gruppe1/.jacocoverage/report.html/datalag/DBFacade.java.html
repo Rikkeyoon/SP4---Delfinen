@@ -29,15 +29,15 @@ public class DBFacade implements DBStorage{
             //create String for the PreparedStatement
 <span class="fc" id="L30">            String selectSQL = &quot;SELECT LAST_INSERT_ID() FROM members&quot;;</span>
             //get connection
-<span class="nc" id="L32">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
+<span class="fc" id="L32">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
 
             //execute the SQL query
-<span class="nc" id="L35">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
-<span class="nc bnc" id="L36" title="All 2 branches missed.">            while (result.next()) {</span>
-<span class="nc" id="L37">                id = result.getInt(1);</span>
+<span class="fc" id="L35">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">            while (result.next()) {</span>
+<span class="fc" id="L37">                id = result.getInt(1);</span>
             }
-<span class="fc" id="L39">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L40">        }</span>
+<span class="nc" id="L39">        } catch (SQLException | NullPointerException e) {</span>
+<span class="fc" id="L40">        }</span>
 <span class="fc" id="L41">        return id;</span>
     }
 
@@ -48,24 +48,24 @@ public class DBFacade implements DBStorage{
             //create String for the PreparedStatement
 <span class="fc" id="L49">            String selectSQL = &quot;SELECT * FROM members ORDER BY first_name&quot;;</span>
             //get connection
-<span class="nc" id="L51">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
+<span class="fc" id="L51">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
 
             //execute the SQL query
-<span class="nc" id="L54">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
-<span class="nc bnc" id="L55" title="All 2 branches missed.">            while (result.next()) {</span>
-<span class="nc" id="L56">                String firstName = result.getString(1);</span>
-<span class="nc" id="L57">                String lastName = result.getString(2);</span>
-<span class="nc" id="L58">                int age = result.getInt(3);</span>
-<span class="nc" id="L59">                boolean isActive = result.getBoolean(4);</span>
-<span class="nc" id="L60">                int id = result.getInt(5);</span>
-<span class="nc" id="L61">                int contingent = result.getInt(6);</span>
-<span class="nc" id="L62">                int restance = result.getInt(7);</span>
+<span class="fc" id="L54">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">            while (result.next()) {</span>
+<span class="fc" id="L56">                String firstName = result.getString(1);</span>
+<span class="fc" id="L57">                String lastName = result.getString(2);</span>
+<span class="fc" id="L58">                int age = result.getInt(3);</span>
+<span class="fc" id="L59">                boolean isActive = result.getBoolean(4);</span>
+<span class="fc" id="L60">                int id = result.getInt(5);</span>
+<span class="fc" id="L61">                int contingent = result.getInt(6);</span>
+<span class="fc" id="L62">                int restance = result.getInt(7);</span>
 
                 //create a new Member object and insert it into the ArrayList
-<span class="nc" id="L65">                members.add(new Member(firstName, lastName, age, isActive, contingent, restance, id));</span>
-<span class="nc" id="L66">            }</span>
-<span class="fc" id="L67">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L68">        }</span>
+<span class="fc" id="L65">                members.add(new Member(firstName, lastName, age, isActive, contingent, restance, id));</span>
+<span class="fc" id="L66">            }</span>
+<span class="nc" id="L67">        } catch (SQLException | NullPointerException e) {</span>
+<span class="fc" id="L68">        }</span>
 <span class="fc" id="L69">        return members;</span>
     }
 
@@ -79,19 +79,19 @@ public class DBFacade implements DBStorage{
                     + &quot;(?, ?, ?, ?, ?, ?)&quot;;
 
             //get connection
-<span class="nc" id="L82">            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);</span>
+<span class="fc" id="L82">            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);</span>
             //insert correct values into the placeholders' (the ?) spaces
-<span class="nc" id="L84">            preparedStatement.setString(1, member.getFirstName());</span>
-<span class="nc" id="L85">            preparedStatement.setString(2, member.getLastName());</span>
-<span class="nc" id="L86">            preparedStatement.setInt(3, member.getAge());</span>
-<span class="nc" id="L87">            preparedStatement.setBoolean(4, member.isIsActive());</span>
-<span class="nc" id="L88">            preparedStatement.setDouble(5, member.getContingent());</span>
-<span class="nc" id="L89">            preparedStatement.setDouble(6, member.getRestance());</span>
+<span class="fc" id="L84">            preparedStatement.setString(1, member.getFirstName());</span>
+<span class="fc" id="L85">            preparedStatement.setString(2, member.getLastName());</span>
+<span class="fc" id="L86">            preparedStatement.setInt(3, member.getAge());</span>
+<span class="fc" id="L87">            preparedStatement.setBoolean(4, member.isIsActive());</span>
+<span class="fc" id="L88">            preparedStatement.setDouble(5, member.getContingent());</span>
+<span class="fc" id="L89">            preparedStatement.setDouble(6, member.getRestance());</span>
 
             //execute the SQL query
-<span class="nc" id="L92">            preparedStatement.executeUpdate();</span>
-<span class="fc" id="L93">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L94">        }</span>
+<span class="fc" id="L92">            preparedStatement.executeUpdate();</span>
+<span class="nc" id="L93">        } catch (SQLException | NullPointerException e) {</span>
+<span class="fc" id="L94">        }</span>
 <span class="fc" id="L95">    }</span>
 
     @Override
@@ -102,14 +102,14 @@ public class DBFacade implements DBStorage{
             //create String for the PreparedStatement
 <span class="fc" id="L103">            String deleteSQL = &quot;DELETE FROM members WHERE id = ?&quot;;</span>
             //get connection
-<span class="nc" id="L105">            PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);</span>
+<span class="fc" id="L105">            PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);</span>
             //insert correct values into the placeholder's (the ?) space
-<span class="nc" id="L107">            preparedStatement.setInt(1, id);</span>
+<span class="fc" id="L107">            preparedStatement.setInt(1, id);</span>
 
             //execute the SQL query
-<span class="nc" id="L110">            preparedStatement.executeUpdate();</span>
-<span class="fc" id="L111">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L112">        }</span>
+<span class="fc" id="L110">            preparedStatement.executeUpdate();</span>
+<span class="nc" id="L111">        } catch (SQLException | NullPointerException e) {</span>
+<span class="fc" id="L112">        }</span>
 <span class="fc" id="L113">    }</span>
 
     private void deleteFromCompetition(int id) {
@@ -117,14 +117,14 @@ public class DBFacade implements DBStorage{
             //create String for the PreparedStatement
 <span class="fc" id="L118">            String deleteSQL = &quot;DELETE FROM competitions WHERE id = ?&quot;;</span>
             //get connection
-<span class="nc" id="L120">            PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);</span>
+<span class="fc" id="L120">            PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);</span>
             //insert correct values into the placeholder's (the ?) space
-<span class="nc" id="L122">            preparedStatement.setInt(1, id);</span>
+<span class="fc" id="L122">            preparedStatement.setInt(1, id);</span>
 
             //execute the SQL query
-<span class="nc" id="L125">            preparedStatement.executeUpdate();</span>
-<span class="fc" id="L126">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L127">        }</span>
+<span class="fc" id="L125">            preparedStatement.executeUpdate();</span>
+<span class="nc" id="L126">        } catch (SQLException | NullPointerException e) {</span>
+<span class="fc" id="L127">        }</span>
 <span class="fc" id="L128">    }</span>
 
     private void deleteFromCompetitiveSwimmers(int id) {
@@ -132,14 +132,14 @@ public class DBFacade implements DBStorage{
             //create String for the PreparedStatement
 <span class="fc" id="L133">            String deleteSQL = &quot;DELETE FROM competitive_swimmers WHERE id = ?&quot;;</span>
             //get connection
-<span class="nc" id="L135">            PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);</span>
+<span class="fc" id="L135">            PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);</span>
             //insert correct values into the placeholder's (the ?) space
-<span class="nc" id="L137">            preparedStatement.setInt(1, id);</span>
+<span class="fc" id="L137">            preparedStatement.setInt(1, id);</span>
 
             //execute the SQL query
-<span class="nc" id="L140">            preparedStatement.executeUpdate();</span>
-<span class="fc" id="L141">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L142">        }</span>
+<span class="fc" id="L140">            preparedStatement.executeUpdate();</span>
+<span class="nc" id="L141">        } catch (SQLException | NullPointerException e) {</span>
+<span class="fc" id="L142">        }</span>
 <span class="fc" id="L143">    }</span>
 
     @Override
@@ -228,25 +228,25 @@ public class DBFacade implements DBStorage{
 <span class="fc" id="L228">            String selectSQL = &quot;SELECT * FROM members  WHERE restance != 0 &quot;</span>
                     + &quot;ORDER BY first_name&quot;;
             //get connection
-<span class="nc" id="L231">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
+<span class="fc" id="L231">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
 
             //execute the SQL query
-<span class="nc" id="L234">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
-<span class="nc bnc" id="L235" title="All 2 branches missed.">            while (result.next()) {</span>
-<span class="nc" id="L236">                String firstName = result.getString(1);</span>
-<span class="nc" id="L237">                String lastName = result.getString(2);</span>
-<span class="nc" id="L238">                int age = result.getInt(3);</span>
-<span class="nc" id="L239">                boolean isActive = result.getBoolean(4);</span>
-<span class="nc" id="L240">                int id = result.getInt(5);</span>
-<span class="nc" id="L241">                int contingent = result.getInt(6);</span>
-<span class="nc" id="L242">                int restance = result.getInt(7);</span>
+<span class="fc" id="L234">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
+<span class="fc bfc" id="L235" title="All 2 branches covered.">            while (result.next()) {</span>
+<span class="fc" id="L236">                String firstName = result.getString(1);</span>
+<span class="fc" id="L237">                String lastName = result.getString(2);</span>
+<span class="fc" id="L238">                int age = result.getInt(3);</span>
+<span class="fc" id="L239">                boolean isActive = result.getBoolean(4);</span>
+<span class="fc" id="L240">                int id = result.getInt(5);</span>
+<span class="fc" id="L241">                int contingent = result.getInt(6);</span>
+<span class="fc" id="L242">                int restance = result.getInt(7);</span>
 
                 //create a new Member object and insert it into the ArrayList
-<span class="nc" id="L245">                membersInRestance.add(new Member(firstName, lastName, age,</span>
+<span class="fc" id="L245">                membersInRestance.add(new Member(firstName, lastName, age,</span>
                         isActive, contingent, restance, id));
-<span class="nc" id="L247">            }</span>
-<span class="fc" id="L248">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L249">        }</span>
+<span class="fc" id="L247">            }</span>
+<span class="nc" id="L248">        } catch (SQLException | NullPointerException e) {</span>
+<span class="fc" id="L249">        }</span>
 <span class="fc" id="L250">        return membersInRestance;</span>
     }
 
@@ -372,38 +372,38 @@ public class DBFacade implements DBStorage{
             //create String for the PreparedStatement
 <span class="fc" id="L373">            String selectSQL = &quot;SELECT * FROM members WHERE id = &quot; + id;</span>
             //get connection
-<span class="nc" id="L375">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
+<span class="fc" id="L375">            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);</span>
 
             //execute the SQL query
-<span class="nc" id="L378">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
-<span class="nc bnc" id="L379" title="All 2 branches missed.">            while (result.next()) {</span>
-<span class="nc" id="L380">                String firstName = result.getString(1);</span>
-<span class="nc" id="L381">                String lastName = result.getString(2);</span>
-<span class="nc" id="L382">                int age = result.getInt(3);</span>
-<span class="nc" id="L383">                boolean isActive = result.getBoolean(4);</span>
-<span class="nc" id="L384">                int contingent = result.getInt(6);</span>
-<span class="nc" id="L385">                int restance = result.getInt(7);</span>
+<span class="fc" id="L378">            ResultSet result = preparedStatement.executeQuery(selectSQL);</span>
+<span class="fc bfc" id="L379" title="All 2 branches covered.">            while (result.next()) {</span>
+<span class="fc" id="L380">                String firstName = result.getString(1);</span>
+<span class="fc" id="L381">                String lastName = result.getString(2);</span>
+<span class="fc" id="L382">                int age = result.getInt(3);</span>
+<span class="fc" id="L383">                boolean isActive = result.getBoolean(4);</span>
+<span class="fc" id="L384">                int contingent = result.getInt(6);</span>
+<span class="fc" id="L385">                int restance = result.getInt(7);</span>
 
                 //create a new Member object and insert it into the ArrayList
-<span class="nc" id="L388">                member = new Member(firstName, lastName, age, isActive, contingent, restance, id);</span>
-<span class="nc" id="L389">            }</span>
-<span class="fc" id="L390">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L391">        }</span>
+<span class="fc" id="L388">                member = new Member(firstName, lastName, age, isActive, contingent, restance, id);</span>
+<span class="fc" id="L389">            }</span>
+<span class="nc" id="L390">        } catch (SQLException | NullPointerException e) {</span>
+<span class="fc" id="L391">        }</span>
 <span class="fc" id="L392">        return member;</span>
     }
 
     @Override
     public void editRestance(int id, int newRestance) {
         try {
-<span class="nc" id="L398">            String UpdateSQL = &quot;UPDATE members SET restance = ? WHERE id = ?&quot;;</span>
-<span class="nc" id="L399">            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);</span>
-<span class="nc" id="L400">            preparedStatement.setInt(1, newRestance);</span>
-<span class="nc" id="L401">            preparedStatement.setInt(2, id);</span>
-<span class="nc" id="L402">            preparedStatement.executeUpdate();</span>
+<span class="fc" id="L398">            String UpdateSQL = &quot;UPDATE members SET restance = ? WHERE id = ?&quot;;</span>
+<span class="fc" id="L399">            PreparedStatement preparedStatement = connection.prepareStatement(UpdateSQL);</span>
+<span class="fc" id="L400">            preparedStatement.setInt(1, newRestance);</span>
+<span class="fc" id="L401">            preparedStatement.setInt(2, id);</span>
+<span class="fc" id="L402">            preparedStatement.executeUpdate();</span>
             
 <span class="nc" id="L404">        } catch (SQLException e) {</span>
-<span class="nc" id="L405">        }</span>
-<span class="nc" id="L406">    }</span>
+<span class="fc" id="L405">        }</span>
+<span class="fc" id="L406">    }</span>
 
     @Override
     public void editFirstName(int id, String firstName) {
