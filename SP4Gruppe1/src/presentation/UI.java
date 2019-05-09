@@ -1,10 +1,13 @@
 package presentation;
 
+import businesslogic.Competition;
 import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 /*
  * @author Caroline, Nina, Rikke og Kristine
@@ -14,7 +17,7 @@ public interface UI {
     public String scanString();
 
     public boolean scanBoolean();
-    
+
     public void print(String str);
 
     public int scanInt();
@@ -50,7 +53,7 @@ public interface UI {
     public void showContingentList(ArrayList<Contingent> contingent);
 
     public String scanDate();
-    
+
     public String scanName();
 
     public int editMemberChoice();
@@ -69,7 +72,23 @@ public interface UI {
 
     public void showSwimmersInCompetition(ArrayList<CompetitiveSwimmer> competitiveSwimmers);
 
-    public void showCompetitionResults(ArrayList<CompetitiveSwimmer> competitionResults);
+    public void showCompetitionResults(ArrayList<Competition> competitionResults);
+
+    public LocalTime scanTime();
+
+    public void showEditTrainingsresultMenu();
+
+    public int editTrainingsresultChoice();
+
+    public void showEditCompetitionresultMenu();
+
+    public int editCompetitionresultChoice();
+
+
+
+
+
+
 
     
     

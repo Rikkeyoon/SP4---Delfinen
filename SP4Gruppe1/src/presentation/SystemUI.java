@@ -1,9 +1,12 @@
 package presentation;
 
+import businesslogic.Competition;
 import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -34,6 +37,36 @@ public class SystemUI implements UI {
     @Override
     public int scanInt() {
         return input.nextInt();
+    }
+
+    @Override
+    public String scanDate() {
+        String choice = input.nextLine();
+        while (choice.isEmpty()) {
+            System.out.println("Please enter a date: ");
+            choice = input.nextLine();
+        }
+
+        try {
+            LocalDate.parse(choice);
+        } catch (DateTimeParseException e) {
+            boolean exceptionCaught = true;
+
+            while (exceptionCaught) {
+                System.out.println(choice + " is not an option, try again: ");
+                exceptionCaught = false;
+                choice = scanDate();
+            }
+        }
+        return choice;
+    }
+
+    @Override
+    public LocalTime scanTime() {
+        String choice = input.next();
+        DateTimeFormatter dft = DateTimeFormatter.ISO_LOCAL_TIME;
+        String time = choice;
+        return LocalTime.parse(time, dft);
     }
 
     @Override
@@ -94,7 +127,7 @@ public class SystemUI implements UI {
     @Override
     public void showContingentMenu() {
         System.out.println("Choose one of the following options: \n"
-                + "1. Contingent\n"
+                + "1. Contingent prices\n"
                 + "2. Edit contingent\n"
                 + "3. Back to main menu\n"
                 + "0. Quit");
@@ -113,7 +146,7 @@ public class SystemUI implements UI {
     @Override
     public void showRestanceMenu() {
         System.out.println("Choose one of the following options: \n"
-                + "1. Swimmers in restance\n"
+                + "1. List of swimmers in restance\n"
                 + "2. Edit restance\n"
                 + "3. back to main menu\n"
                 + "0. Quit");
@@ -132,17 +165,18 @@ public class SystemUI implements UI {
     @Override
     public void showCompetitiveSwimmersMenu() {
         System.out.println("Choose one of the following options: \n"
-                + "1. Competitive swimmers\n"
-                + "2. Trainingsresult\n"
-                + "3. Edit trainingsresult\n"
-                + "4. Back to main menu\n"
+                + "1. List of competitive swimmers\n"
+                + "2. Create competitive swimmer\n"
+                + "3. Trainingsresult\n"
+                + "4. Edit trainingsresult\n"
+                + "5. Back to main menu\n"
                 + "0. Quit");
     }
 
     @Override
     public int competitiveSwimmersMenuChoice() {
         int choice = input.nextInt();
-        while (choice < 0 || choice > 4) {
+        while (choice < 0 || choice > 5) {
             System.out.println(choice + " is not an option, try again: ");
             choice = input.nextInt();
         }
@@ -152,9 +186,9 @@ public class SystemUI implements UI {
     @Override
     public void showCompetitionMenu() {
         System.out.println("Choose one of the following options: \n"
-                + "1. Swimmers in competition\n"
+                + "1. List of swimmers in competition\n"
                 + "2. Competition results\n"
-                + "3. Result for Swimmer\n"
+                + "3. Create result for Swimmer\n"
                 + "4. Edit results\n"
                 + "5. Back to main menu\n"
                 + "0. Quit");
@@ -166,28 +200,6 @@ public class SystemUI implements UI {
         while (choice < 0 || choice > 5) {
             System.out.println(choice + " is not an option, try again: ");
             choice = input.nextInt();
-        }
-        return choice;
-    }
-
-    @Override
-    public String scanDate() {
-        String choice = input.nextLine();
-        while (choice.isEmpty()) {
-            System.out.println("Please enter a date: ");
-            choice = input.nextLine();
-        }
-
-        try {
-            LocalDate.parse(choice);
-        } catch (DateTimeParseException e) {
-            boolean exceptionCaught = true;
-
-            while (exceptionCaught) {
-                System.out.println(choice + " is not an option, try again: ");
-                exceptionCaught = false;
-                choice = scanDate();
-            }
         }
         return choice;
     }
@@ -285,8 +297,8 @@ public class SystemUI implements UI {
         }
         System.out.println(strbuild.toString());
     }
-    
-        @Override
+
+    @Override
     public void showSwimmersInCompetition(ArrayList<CompetitiveSwimmer> competitiveSwimmers) {
         StringBuilder strbuild = new StringBuilder();
         for (CompetitiveSwimmer competitiveSwimmer : competitiveSwimmers) {
@@ -296,12 +308,53 @@ public class SystemUI implements UI {
     }
 
     @Override
-    public void showCompetitionResults(ArrayList<CompetitiveSwimmer> competitionResults) {
+    public void showCompetitionResults(ArrayList<Competition> competitionResults) {
         StringBuilder strbuild = new StringBuilder();
-        for (CompetitiveSwimmer competitionResult : competitionResults) {
+        for (Competition competitionResult : competitionResults) {
             strbuild.append(competitionResult);
         }
         System.out.println(strbuild.toString());
     }
-    
+
+    @Override
+    public void showEditTrainingsresultMenu() {
+        System.out.println("What would you like to edit?\n"
+                + "\n1. Disciplin"
+                + "\n2. Best time"
+                + "\n3. Date of best time"
+                + "\n4. Back to main menu"
+                + "\n0. Quit");
+    }
+
+    @Override
+    public int editTrainingsresultChoice() {
+        int choice = input.nextInt();
+        while (choice < 0 || choice > 4) {
+            System.out.println(choice + " is not an option, try again: ");
+            choice = input.nextInt();
+        }
+        return choice;
+    }
+
+    @Override
+    public void showEditCompetitionresultMenu() {
+        System.out.println("What would you like to edit?\n"
+                + "\n1. Competitionname"
+                + "\n2. Date of competition"
+                + "\n3. Best time"
+                + "\n4. Ranking"
+                + "\n5. Back to main menu"
+                + "\n0. Quit");
+    }
+
+    @Override
+    public int editCompetitionresultChoice() {
+        int choice = input.nextInt();
+        while (choice < 0 || choice > 5) {
+            System.out.println(choice + " is not an option, try again: ");
+            choice = input.nextInt();
+        }
+        return choice;
+    }
+
 }

@@ -3,8 +3,11 @@ package businesslogic;
 import datalag.DBFacade;
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import presentation.UI;
+import datalag.DBStorage;
+import java.time.LocalDate;
 
 /*
  * @author Caroline, Nina, Rikke og Kristine
@@ -12,9 +15,9 @@ import presentation.UI;
 public class Controller {
 
     private UI ui;
-    private DBFacade db;
+    private DBStorage db;
 
-    public Controller(UI ui, DBFacade db) {
+    public Controller(UI ui, DBStorage db) {
         this.ui = ui;
         this.db = db;
     }
@@ -138,14 +141,18 @@ public class Controller {
                                 ui.showCompetitiveSwimmersMenu();
                                 break;
                             case 2:
-                                showTrainingsresult();
+                                createCompetitiveSwimmer();
                                 ui.showCompetitiveSwimmersMenu();
                                 break;
                             case 3:
-                                editTrainingsresult();
+                                showTrainingsresult();
                                 ui.showCompetitiveSwimmersMenu();
                                 break;
                             case 4:
+                                editTrainingsresult();
+                                ui.showCompetitiveSwimmersMenu();
+                                break;
+                            case 5:
                                 quit = true;
                                 start();
                                 break;
@@ -312,28 +319,134 @@ public class Controller {
         ui.showCompetitiveSwimmerList(competitiveSwimmers);
     }
 
+    private void createCompetitiveSwimmer() {
+        showMembersList();
+        ui.print("Please enter the ID for the member you want to add as a competitive swimmer");
+        int id = ui.scanID();
+        Member memberByID = db.getMemberById(id);
+        ui.print(memberByID.toString());
+        ui.scanString();
+        ui.print("Please enter the disciplin: ");
+        String disciplin = ui.scanString();
+        ui.print("Please enter the best time, the swimmer has performed "
+                + "during training: (HH:MM:SS)");
+        LocalTime bestTime = ui.scanTime();
+        ui.print("Please enter the date: (YYYY-MM-DD)");
+        String dateOfBestTime = ui.scanDate();
+        
+        CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer(id, disciplin, bestTime, dateOfBestTime);
+        db.saveCompetitiveSwimmer(competitiveSwimmer);
+
+        ui.print("\nThe following member has been added: " + competitiveSwimmer.toString() + "\n");
+    }
+
     private void showTrainingsresult() {
         ArrayList<CompetitiveSwimmer> trainingresults = db.getTrainingsresult();
         ui.showTrainingresults(trainingresults);
     }
 
     private void editTrainingsresult() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        showTrainingsresult();
+        ui.print("Enter the ID of the member, you would like to edit: ");
+        int id = ui.scanID();
+        Member memberByID = db.getMemberById(id);
+        ui.print(memberByID.toString());
+        
+        boolean quit = false;
+        ui.showEditTrainingsresultMenu();
+        do {
+            switch (ui.editTrainingsresultChoice()) {
+                case 1:
+                    ui.scanString();
+                    ui.print("What would you like to change the disciplin to?");
+                    String newDisciplin = ui.scanString();
+                    db.editDisciplin(id, newDisciplin);
+                    ui.print("The disciplin has now been changed to " + newDisciplin);
+                    break;
+                case 2:
+                    ui.scanString();
+                    ui.print("What would you like to change their best time to? (HH:MM:SS)");
+                    LocalTime newBestTime = ui.scanTime();
+                    db.editBestTime(id, newBestTime);
+                    ui.print("The best time has now been changed to " + newBestTime);
+                    break;
+                case 3:
+                    ui.scanString();
+                    ui.print("What would you like to change the date to? (YYYY-MM-DD)");
+                    String newDateOfBestTime = ui.scanDate();
+                    db.editDate(id, newDateOfBestTime);
+                    ui.print("The date has now been changed to " + newDateOfBestTime);
+                    break;
+                case 4: 
+                    quit = true;
+                    start();
+                    break;
+                case 0:
+                    quit = true;
+                    break;
+            }
+        } while (!quit);
     }
 
-     private void showSwimmersInCompetition() {
+    private void showSwimmersInCompetition() {
         ArrayList<CompetitiveSwimmer> competitiveSwimmers = db.getCompetitionSwimmers();
         ui.showSwimmersInCompetition(competitiveSwimmers);
     }
 
     private void showCompetitionResults() {
-        ArrayList<CompetitiveSwimmer> competitionResults = db.getCompetitionResult();
+        ArrayList<Competition> competitionResults = db.getCompetitionResult();
         ui.showCompetitionResults(competitionResults);
 
     }
 
     private void editCompetitionResults() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        showCompetitionResults();
+        ui.print("Enter the ID of the swimmer, you would like to edit: ");
+        int id = ui.scanID();
+        Member memberByID = db.getCompetitiveSwimmerbyID(id);
+        //ui.print(memberByID.toString());
+        
+        boolean quit = false;
+        ui.showEditCompetitionresultMenu();
+        do {
+            switch (ui.editCompetitionresultChoice()) {
+                case 1:
+                    ui.scanString();
+                    ui.print("What would you like to change the competitionname to?");
+                    String newCompetitionName = ui.scanString();
+                    db.editCompetitionName(id, newCompetitionName);
+                    ui.print("The competitionname has now been changed to " + newCompetitionName);
+                    break;
+                case 2:
+                    ui.scanString();
+                    ui.print("What would you like to change the date to? (YYYY-MM-DD)");
+                    String newDateOfBestTime = ui.scanDate();
+                    db.editDate(id, newDateOfBestTime);
+                    ui.print("The date has now been changed to " + newDateOfBestTime);
+                    break;
+                case 3:
+                    ui.scanString();
+                    ui.print("What would you like to change their best time to? (HH:MM:SS)");
+                    LocalTime newBestTime = ui.scanTime();
+                    db.editBestTime(id, newBestTime);
+                    ui.print("The best time has now been changed to " + newBestTime);
+                    break;
+                case 4: 
+                    ui.scanString();
+                    ui.print("What would you like to change the ranking to?");
+                    int newRanking = ui.scanInt();
+                    db.editRanking(id, newRanking);
+                    ui.print("The ranking has been changed to " + newRanking);
+                    break;
+                case 5:
+                    quit = true;
+                    start();
+                    break;
+                case 0:
+                    quit = true;
+                    break;
+            }
+        } while (!quit);
     }
 
     private void editUnder18() {
@@ -368,14 +481,15 @@ public class Controller {
         ui.print("Enter the ID of the competitiveSwimmer, you would like to write the results for: ");
         int compSwimID = ui.scanID();
         Member id = db.getCompetitiveSwimmerbyID(compSwimID);
+        ui.scanString();
         ui.print("Enter the name of the Competition: ");
         String competition = ui.scanString();
         ui.print("Enter the date of the competition (YYYY-MM-DD): ");
         String dateOfCompetition = ui.scanDate();
         ui.print("Enter ranking: ");
         int ranking = ui.scanInt();
-        ui.print("Enter the best time the swimmer swam(HH:MM:SS): ");
-        String time = ui.scanString();
+        ui.print("Enter the best time from the competition (HH:MM:SS): ");
+        LocalTime time = ui.scanTime();
         
         Member member = new Member(id);
         Competition comp  = new Competition(member, competition, dateOfCompetition, ranking, time);

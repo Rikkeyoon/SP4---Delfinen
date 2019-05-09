@@ -1,7 +1,7 @@
 package businesslogic;
 
-import java.sql.Time;
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
  /*
  * @author Caroline, Nina, Rikke og Kristine
@@ -9,37 +9,36 @@ import java.sql.Date;
 public class CompetitiveSwimmer extends Member {
     
     private String disciplin;
-    private Time bestTime;
-    private Date dateOfBestTime;
+    private LocalTime bestTime;
+    private LocalDate dateOfBestTime;
     private Competition competition;
-    private Date dateOfCompetition;
     
     public CompetitiveSwimmer(String firstName, String lastName, 
             String dateOfBirth, boolean isActive, int id, String disciplin,
-            Time bestTime, Date dateOfBestTime) {
+            LocalTime bestTime, String dateOfBestTime) {
         super(firstName, lastName, dateOfBirth, isActive, id);
         this.disciplin = disciplin;
         this.bestTime = bestTime;
-        this.dateOfBestTime = dateOfBestTime;
+        this.dateOfBestTime = LocalDate.parse(dateOfBestTime);
     }
     
     public CompetitiveSwimmer(String firstName, String lastName, int age, int id, 
-            String disciplin, Time bestTime, Date dateOfBestTime) {
+            String disciplin, LocalTime bestTime, String dateOfBestTime) {
         super(firstName, lastName, age, id);
         this.disciplin = disciplin;
         this.bestTime = bestTime;
-        this.dateOfBestTime = dateOfBestTime;
+        this.dateOfBestTime = LocalDate.parse(dateOfBestTime);
     }
     
-    public CompetitiveSwimmer(String disciplin, Time bestTime, Date dateOfBestTime, 
+    public CompetitiveSwimmer(String disciplin, LocalTime bestTime, String dateOfBestTime, 
             Competition competition, String firstName, String lastName, int age, int id) {
         super(firstName, lastName, age, id);
         this.disciplin = disciplin;
         this.bestTime = bestTime;
-        this.dateOfBestTime = dateOfBestTime;
+        this.dateOfBestTime = LocalDate.parse(dateOfBestTime);
         this.competition = competition;
     }
-
+    
     public CompetitiveSwimmer(int id, Competition comp, String firstName, String lastName, int age) {
         super(firstName, lastName, age, id);
         this.competition = comp;
@@ -49,6 +48,23 @@ public class CompetitiveSwimmer extends Member {
         super(member.getId());
         this.competition = comp;
     }
+    
+    public CompetitiveSwimmer(int id, String disciplin,
+            LocalTime bestTime, String dateOfBestTime) {
+        super(id);
+        this.disciplin = disciplin;
+        this.bestTime = bestTime;
+        this.dateOfBestTime = LocalDate.parse(dateOfBestTime);
+    }
+
+    public CompetitiveSwimmer(String disciplin, LocalTime bestTime, LocalDate dateOfBestTime, Competition competit, String firstName, String lastName, int age, int id) {
+        super(firstName, lastName, age, id);
+        this.disciplin = disciplin;
+        this.bestTime = bestTime;
+        this.dateOfBestTime = dateOfBestTime;
+        this.competition = competit;
+    }
+
 
     public String getDisciplin() {
         return disciplin;
@@ -58,19 +74,19 @@ public class CompetitiveSwimmer extends Member {
         this.disciplin = disciplin;
     }
 
-    public Time getBestTime() {
+    public LocalTime getBestTime() {
         return bestTime;
     }
 
-    public void setBestTime(Time bestTime) {
+    public void setBestTime(LocalTime bestTime) {
         this.bestTime = bestTime;
     }
 
-    public Date getDateOfBestTime() {
+    public LocalDate getDateOfBestTime() {
         return dateOfBestTime;
     }
 
-    public void setDateOfBestTime(Date dateOfBestTime) {
+    public void setDateOfBestTime(LocalDate dateOfBestTime) {
         this.dateOfBestTime = dateOfBestTime;
     }
 
@@ -81,23 +97,14 @@ public class CompetitiveSwimmer extends Member {
     public void setCompetition(Competition competition) {
         this.competition = competition;
     }
-
-    public Date getDateOfCompetition() {
-        return dateOfCompetition;
-    }
-
-    public void setDateOfCompetition(Date dateOfCompetition) {
-        this.dateOfCompetition = dateOfCompetition;
-    }
-
+    
     @Override
     public String toString() {
-        return super.getFirstName() + " " + super.getLastName() 
+        return "\n" + super.getFirstName() + " " + super.getLastName()
+                + "\nID: " + super.getId()
                 + "\nDisciplin: " + disciplin 
                 + "\nBest Time: " + bestTime 
                 + "\nDate of best time: " + dateOfBestTime;
     }
-
-    
     
 }

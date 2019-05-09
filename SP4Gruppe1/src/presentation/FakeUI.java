@@ -1,9 +1,11 @@
 package presentation;
 
+import businesslogic.Competition;
 import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
-import java.sql.Time;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /*
@@ -190,7 +192,11 @@ public class FakeUI implements UI {
 
     @Override
     public void showEditContingentMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        output.add("Choose one of the following options: \n"
+                + "1. Contingent\n"
+                + "2. Edit contingent\n"
+                + "3. Back to main menu\n"
+                + "0. Quit");
     }
 
     @Override
@@ -218,11 +224,51 @@ public class FakeUI implements UI {
 
     @Override
     public void showSwimmersInCompetition(ArrayList<CompetitiveSwimmer> competitiveSwimmers) {
+        StringBuilder strBuild = new StringBuilder();
+        for (CompetitiveSwimmer compSwimmer : competitiveSwimmers) {
+            strBuild.append(compSwimmer);
+        }
+        output.add(strBuild.toString());
+    }
+
+    @Override
+    public void showCompetitionResults(ArrayList<Competition> competitionResults) {
+        StringBuilder strBuild = new StringBuilder();
+        for (Competition compSwimmer : competitionResults) {
+            strBuild.append(compSwimmer);
+        }
+        output.add(strBuild.toString());
+    }
+
+    @Override
+    public LocalTime scanTime() {
+        String choice = input[index++];
+        DateTimeFormatter dft = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String time = choice;
+        return LocalTime.parse(time, dft);
+    }
+
+    @Override
+    public void showEditTrainingsresultMenu() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void showCompetitionResults(ArrayList<CompetitiveSwimmer> competitionResults) {
+    public int editTrainingsresultChoice() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void showEditCompetitionresultMenu() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int editCompetitionresultChoice() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+
+ 
 }

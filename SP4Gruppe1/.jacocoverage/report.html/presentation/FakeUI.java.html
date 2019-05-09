@@ -4,6 +4,8 @@ import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
 import java.sql.Time;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /*
@@ -12,45 +14,45 @@ import java.util.ArrayList;
 public class FakeUI implements UI {
 
     String[] input;
-<span class="fc" id="L15">    int index = 1;</span>
-<span class="fc" id="L16">    public ArrayList&lt;String&gt; output = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L17">    int index = 1;</span>
+<span class="fc" id="L18">    public ArrayList&lt;String&gt; output = new ArrayList&lt;&gt;();</span>
 
-<span class="fc" id="L18">    public FakeUI(String[] input) {</span>
-<span class="fc" id="L19">        this.input = input;</span>
-<span class="fc" id="L20">    }</span>
+<span class="fc" id="L20">    public FakeUI(String[] input) {</span>
+<span class="fc" id="L21">        this.input = input;</span>
+<span class="fc" id="L22">    }</span>
 
     @Override
     public String scanString() {
-<span class="fc" id="L24">        return input[index++];</span>
+<span class="fc" id="L26">        return input[index++];</span>
     }
 
     @Override
     public boolean scanBoolean() {
-<span class="fc" id="L29">        return input[index++].contains(&quot;y&quot;);</span>
+<span class="fc" id="L31">        return input[index++].contains(&quot;y&quot;);</span>
     }
 
     @Override
     public void print(String str) {
-<span class="fc" id="L34">        output.add(str);</span>
-<span class="fc" id="L35">    }</span>
+<span class="fc" id="L36">        output.add(str);</span>
+<span class="fc" id="L37">    }</span>
 
     @Override
     public int scanInt() {
-<span class="fc" id="L39">        return Integer.parseInt(input[index++]);</span>
+<span class="fc" id="L41">        return Integer.parseInt(input[index++]);</span>
     }
 
     @Override
     public void showMemberList(ArrayList&lt;Member&gt; members) {
-<span class="fc" id="L44">        StringBuilder strBuild = new StringBuilder();</span>
-<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        for (Member member : members) {</span>
-<span class="nc" id="L46">            strBuild.append(member.toString());</span>
-<span class="nc" id="L47">        }</span>
-<span class="fc" id="L48">        output.add(strBuild.toString());</span>
-<span class="fc" id="L49">    }</span>
+<span class="fc" id="L46">        StringBuilder strBuild = new StringBuilder();</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        for (Member member : members) {</span>
+<span class="fc" id="L48">            strBuild.append(member.toString());</span>
+<span class="fc" id="L49">        }</span>
+<span class="fc" id="L50">        output.add(strBuild.toString());</span>
+<span class="fc" id="L51">    }</span>
 
     @Override
     public void showMainMenu() {
-<span class="fc" id="L53">        output.add(&quot;-------------------------\n&quot;</span>
+<span class="fc" id="L55">        output.add(&quot;-------------------------\n&quot;</span>
                 + &quot;SVØMMEKLUBBEN - DELFINEN\n&quot;
                 + &quot;-------------------------\n&quot;
                 + &quot;Choose one of the following options: \n&quot;
@@ -61,159 +63,193 @@ public class FakeUI implements UI {
                 + &quot;5. Competitive swimmers\n&quot;
                 + &quot;6. Competition\n&quot;
                 + &quot;0. Quit&quot;);
-<span class="fc" id="L64">    }</span>
+<span class="fc" id="L66">    }</span>
 
     @Override
     public int mainMenuChoice() {
-<span class="fc" id="L68">        return Integer.parseInt(input[index++]);</span>
+<span class="fc" id="L70">        return Integer.parseInt(input[index++]);</span>
     }
 
     @Override
     public void showMembersMenu() {
-<span class="fc" id="L73">        output.add(&quot;Choose one of the following options: \n&quot;</span>
+<span class="fc" id="L75">        output.add(&quot;Choose one of the following options: \n&quot;</span>
                 + &quot;1. List of members\n&quot;
                 + &quot;2. Add member\n&quot;
                 + &quot;3. Edit members\n&quot;
                 + &quot;4. Delete member\n&quot;
                 + &quot;5. Back to main menu\n&quot;
                 + &quot;0. Quit&quot;);
-<span class="fc" id="L80">    }</span>
+<span class="fc" id="L82">    }</span>
 
     @Override
     public int memberMenuChoice() {
-<span class="fc" id="L84">        return Integer.parseInt(input[index++]);</span>
+<span class="fc" id="L86">        return Integer.parseInt(input[index++]);</span>
     }
 
     @Override
     public void showContingentMenu() {
-<span class="nc" id="L89">        output.add(&quot;Choose one of the following options: \n&quot;</span>
+<span class="fc" id="L91">        output.add(&quot;Choose one of the following options: \n&quot;</span>
                 + &quot;1. Contingent\n&quot;
                 + &quot;2. Edit contingent\n&quot;
                 + &quot;3. Back to main menu\n&quot;
                 + &quot;0. Quit&quot;);
-<span class="nc" id="L94">    }</span>
+<span class="fc" id="L96">    }</span>
 
     @Override
     public int contingentMenuChoice() {
-<span class="nc" id="L98">        return Integer.parseInt(input[index++]);</span>
+<span class="fc" id="L100">        return Integer.parseInt(input[index++]);</span>
     }
 
     @Override
     public void showRestanceMenu() {
-<span class="nc" id="L103">        output.add(&quot;Choose one of the following options: \n&quot;</span>
+<span class="fc" id="L105">        output.add(&quot;Choose one of the following options: \n&quot;</span>
                 + &quot;1. Swimmers in restance\n&quot;
                 + &quot;2. Edit restance\n&quot;
                 + &quot;3. back to main menu\n&quot;
                 + &quot;0. Quit&quot;);
-<span class="nc" id="L108">    }</span>
+<span class="fc" id="L110">    }</span>
 
     @Override
     public int restanceMenuChoice() {
-<span class="nc" id="L112">        return Integer.parseInt(input[index++]);</span>
+<span class="fc" id="L114">        return Integer.parseInt(input[index++]);</span>
     }
 
     @Override
     public void showCompetitiveSwimmersMenu() {
-<span class="nc" id="L117">        output.add(&quot;Choose one of the following options: \n&quot;</span>
+<span class="fc" id="L119">        output.add(&quot;Choose one of the following options: \n&quot;</span>
                 + &quot;1. Competitive swimmers\n&quot;
                 + &quot;2. Trainingsresult\n&quot;
                 + &quot;3. Edit trainingsresult\n&quot;
                 + &quot;4. Back to main menu\n&quot;
                 + &quot;0. Quit&quot;);
-<span class="nc" id="L123">    }</span>
+<span class="fc" id="L125">    }</span>
 
     @Override
     public int competitiveSwimmersMenuChoice() {
-<span class="nc" id="L127">        return Integer.parseInt(input[index++]);</span>
+<span class="fc" id="L129">        return Integer.parseInt(input[index++]);</span>
     }
 
     @Override
     public void showCompetitionMenu() {
-<span class="nc" id="L132">        output.add(&quot;Choose one of the following options: \n&quot;</span>
+<span class="nc" id="L134">        output.add(&quot;Choose one of the following options: \n&quot;</span>
                 + &quot;1. Swimmers in competition\n&quot;
                 + &quot;2. Competition results\n&quot;
                 + &quot;3. Edit results&quot;
                 + &quot;4. Back to main menu\n&quot;
                 + &quot;0. Quit&quot;);
-<span class="nc" id="L138">    }</span>
+<span class="nc" id="L140">    }</span>
 
     @Override
     public int competitionMenuChoice() {
-<span class="nc" id="L142">        return Integer.parseInt(input[index++]);</span>
+<span class="nc" id="L144">        return Integer.parseInt(input[index++]);</span>
     }
 
     @Override
     public void showTop5(ArrayList&lt;CompetitiveSwimmer&gt; competitiveSwimmers) {
-<span class="nc" id="L147">        StringBuilder strBuild = new StringBuilder();</span>
-<span class="nc bnc" id="L148" title="All 2 branches missed.">        for (CompetitiveSwimmer compSwimmer : competitiveSwimmers) {</span>
-<span class="nc" id="L149">            strBuild.append(compSwimmer.toString());</span>
-<span class="nc" id="L150">        }</span>
-<span class="nc" id="L151">        output.add(strBuild.toString());</span>
-<span class="nc" id="L152">    }</span>
+<span class="nc" id="L149">        StringBuilder strBuild = new StringBuilder();</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">        for (CompetitiveSwimmer compSwimmer : competitiveSwimmers) {</span>
+<span class="nc" id="L151">            strBuild.append(compSwimmer.toString());</span>
+<span class="nc" id="L152">        }</span>
+<span class="nc" id="L153">        output.add(strBuild.toString());</span>
+<span class="nc" id="L154">    }</span>
 
     @Override
     public void showContingentList(ArrayList&lt;Contingent&gt; contingent) {
-<span class="nc" id="L156">        StringBuilder strBuild = new StringBuilder();</span>
-<span class="nc bnc" id="L157" title="All 2 branches missed.">        for (Contingent cont : contingent) {</span>
-<span class="nc" id="L158">            strBuild.append(cont.toString());</span>
-<span class="nc" id="L159">        }</span>
-<span class="nc" id="L160">        output.add(strBuild.toString());</span>
-<span class="nc" id="L161">    }</span>
+<span class="fc" id="L158">        StringBuilder strBuild = new StringBuilder();</span>
+<span class="fc bfc" id="L159" title="All 2 branches covered.">        for (Contingent cont : contingent) {</span>
+<span class="fc" id="L160">            strBuild.append(cont.toString());</span>
+<span class="fc" id="L161">        }</span>
+<span class="fc" id="L162">        output.add(strBuild.toString());</span>
+<span class="fc" id="L163">    }</span>
 
     @Override
     public String scanDate() {
-<span class="fc" id="L165">        return input[index++];</span>
+<span class="fc" id="L167">        return input[index++];</span>
     }
 
     @Override
     public String scanName() {
-<span class="fc" id="L170">        return input[index++];</span>
+<span class="fc" id="L172">        return input[index++];</span>
     }
 
     @Override
     public int editMemberChoice() {
-<span class="nc" id="L175">        return Integer.parseInt(input[index++]);</span>
+<span class="fc" id="L177">        return Integer.parseInt(input[index++]);</span>
     }
 
     @Override
     public int scanID() {
-<span class="nc" id="L180">        return Integer.parseInt(input[index++]);</span>
+<span class="fc" id="L182">        return Integer.parseInt(input[index++]);</span>
     }
 
     @Override
     public void showEditMemberMenu() {
-<span class="nc" id="L185">        output.add(&quot;Press 1 to edit first name\n&quot;</span>
+<span class="fc" id="L187">        output.add(&quot;Press 1 to edit first name\n&quot;</span>
                 + &quot;Press 2 to edit last name\n&quot;
                 + &quot;Press 3 to edit activeness\n&quot;
                 + &quot;Press 4 to return&quot;);
-<span class="nc" id="L189">    }</span>
+<span class="fc" id="L191">    }</span>
 
     @Override
     public void showEditContingentMenu() {
-<span class="nc" id="L193">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
-    }
+<span class="fc" id="L195">        output.add(&quot;Choose one of the following options: \n&quot;</span>
+                + &quot;1. Contingent\n&quot;
+                + &quot;2. Edit contingent\n&quot;
+                + &quot;3. Back to main menu\n&quot;
+                + &quot;0. Quit&quot;);
+<span class="fc" id="L200">    }</span>
 
     @Override
     public int editContingentChoice() {
-<span class="nc" id="L198">        return Integer.parseInt(input[index++]);</span>
+<span class="fc" id="L204">        return Integer.parseInt(input[index++]);</span>
     }
 
     @Override
     public void showCompetitiveSwimmerList(ArrayList&lt;CompetitiveSwimmer&gt; competitiveSwimmers) {
-<span class="nc" id="L203">        StringBuilder strBuild = new StringBuilder();</span>
-<span class="nc bnc" id="L204" title="All 2 branches missed.">        for (CompetitiveSwimmer compSwimmer : competitiveSwimmers) {</span>
-<span class="nc" id="L205">            strBuild.append(compSwimmer.toString());</span>
-<span class="nc" id="L206">        }</span>
-<span class="nc" id="L207">        output.add(strBuild.toString());</span>
-<span class="nc" id="L208">    }</span>
+<span class="fc" id="L209">        StringBuilder strBuild = new StringBuilder();</span>
+<span class="fc bfc" id="L210" title="All 2 branches covered.">        for (CompetitiveSwimmer compSwimmer : competitiveSwimmers) {</span>
+<span class="fc" id="L211">            strBuild.append(compSwimmer.toString());</span>
+<span class="fc" id="L212">        }</span>
+<span class="fc" id="L213">        output.add(strBuild.toString());</span>
+<span class="fc" id="L214">    }</span>
 
     @Override
     public void showTrainingresults(ArrayList&lt;CompetitiveSwimmer&gt; trainingresults) {
-<span class="nc" id="L212">        StringBuilder strBuild = new StringBuilder();</span>
-<span class="nc bnc" id="L213" title="All 2 branches missed.">        for (CompetitiveSwimmer trainingresult : trainingresults) {</span>
-<span class="nc" id="L214">            strBuild.append(trainingresult);</span>
-<span class="nc" id="L215">        }</span>
-<span class="nc" id="L216">        output.add(strBuild.toString());</span>
-<span class="nc" id="L217">    }</span>
+<span class="nc" id="L218">        StringBuilder strBuild = new StringBuilder();</span>
+<span class="nc bnc" id="L219" title="All 2 branches missed.">        for (CompetitiveSwimmer trainingresult : trainingresults) {</span>
+<span class="nc" id="L220">            strBuild.append(trainingresult);</span>
+<span class="nc" id="L221">        }</span>
+<span class="nc" id="L222">        output.add(strBuild.toString());</span>
+<span class="nc" id="L223">    }</span>
+
+    @Override
+    public void showSwimmersInCompetition(ArrayList&lt;CompetitiveSwimmer&gt; competitiveSwimmers) {
+<span class="nc" id="L227">        StringBuilder strBuild = new StringBuilder();</span>
+<span class="nc bnc" id="L228" title="All 2 branches missed.">        for (CompetitiveSwimmer compSwimmer : competitiveSwimmers) {</span>
+<span class="nc" id="L229">            strBuild.append(compSwimmer);</span>
+<span class="nc" id="L230">        }</span>
+<span class="nc" id="L231">        output.add(strBuild.toString());</span>
+<span class="nc" id="L232">    }</span>
+
+    @Override
+    public void showCompetitionResults(ArrayList&lt;CompetitiveSwimmer&gt; competitionResults) {
+<span class="nc" id="L236">        StringBuilder strBuild = new StringBuilder();</span>
+<span class="nc bnc" id="L237" title="All 2 branches missed.">        for (CompetitiveSwimmer compSwimmer : competitionResults) {</span>
+<span class="nc" id="L238">            strBuild.append(compSwimmer);</span>
+<span class="nc" id="L239">        }</span>
+<span class="nc" id="L240">        output.add(strBuild.toString());</span>
+<span class="nc" id="L241">    }</span>
+
+    @Override
+    public LocalTime scanTime() {
+<span class="fc" id="L245">        String choice = input[index++];</span>
+<span class="fc" id="L246">        DateTimeFormatter dft = DateTimeFormatter.ofPattern(&quot;HH:mm:ss&quot;);</span>
+<span class="fc" id="L247">        String time = choice;</span>
+<span class="fc" id="L248">        return LocalTime.parse(time, dft);</span>
+    }
+
+
+
+ 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
