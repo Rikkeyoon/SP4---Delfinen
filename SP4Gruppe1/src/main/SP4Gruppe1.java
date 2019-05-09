@@ -20,12 +20,7 @@ public class SP4Gruppe1 {
         DBStorage db = new DBFacade(dbc);
         
         Controller ctrl = new Controller(ui, db);
-//        ctrl.createMember();
-//        ctrl.deleteMember();
-//        ctrl.createMember();
-//        ctrl.deleteMember();
-//        ctrl.showMemberList();
-//        System.out.println(db.getCompetitiveSwimmersList());
+
           ctrl.start();
         
     }

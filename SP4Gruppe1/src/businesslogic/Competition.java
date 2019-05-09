@@ -1,7 +1,5 @@
 package businesslogic;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -108,7 +106,7 @@ public class Competition {
 
     @Override
     public String toString() {
-        return "CompetitionName: \t" + competitionName
+        return "\nCompetitionName: \t" + competitionName
                 + "\nRanking: \t\t" + ranking
                 + "\nBestTimeInCompetition: \t\t" + bestTimeInCompetition;
     }

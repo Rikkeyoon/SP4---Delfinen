@@ -1,13 +1,9 @@
 package businesslogic;
 
-import datalag.DBFacade;
-import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import presentation.UI;
 import datalag.DBStorage;
-import java.time.LocalDate;
 
 /*
  * @author Caroline, Nina, Rikke og Kristine

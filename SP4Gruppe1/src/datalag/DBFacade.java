@@ -2,16 +2,12 @@ package datalag;
 
 import businesslogic.*;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-//import java.util.Date;
 
 /*
  * @author Caroline, Nina, Rikke og Kristine
@@ -454,7 +450,7 @@ public class DBFacade implements DBStorage {
             String selectSQL = "SELECT id, first_name, last_name, age, disciplin,"
                     + "best_time, date_of_best_time, competition_name, ranking, "
                     + "best_time FROM members NATURAL JOIN competitive_swimmers"
-                    + "NATURAL JOIN competitions ORDER BY id";
+                    + " NATURAL JOIN competitions ORDER BY id";
             //get connection
             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
 
@@ -480,6 +476,7 @@ public class DBFacade implements DBStorage {
                         LocalDate.parse(dateOfBestTime), competit, firstName, lastName, age, id));
             }
         } catch (SQLException | NullPointerException e) {
+            e.printStackTrace();
         }
         return competitionSwimmers;
     }
@@ -489,7 +486,7 @@ public class DBFacade implements DBStorage {
         ArrayList<Competition> competitionResults = new ArrayList<>();
         try {
             //create String for the PreparedStatement
-            String selectSQL = "SELECT * FROM competition ORDER BY id";
+            String selectSQL = "SELECT * FROM competitions ORDER BY id";
 
             //get connection
             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
@@ -513,7 +510,7 @@ public class DBFacade implements DBStorage {
         }
         return competitionResults;
     }
-
+    @Override
     public CompetitiveSwimmer getCompetitiveSwimmerbyID(int id) {
         CompetitiveSwimmer competitiveSwimmer = null;
         try {
