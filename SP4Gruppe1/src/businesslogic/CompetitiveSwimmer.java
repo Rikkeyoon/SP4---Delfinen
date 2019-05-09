@@ -39,12 +39,30 @@ public class CompetitiveSwimmer extends Member {
         this.competition = competition;
     }
     
+    public CompetitiveSwimmer(int id, Competition comp, String firstName, String lastName, int age) {
+        super(firstName, lastName, age, id);
+        this.competition = comp;
+    }
+
+    public CompetitiveSwimmer(Member member, Competition comp) {
+        super(member.getId());
+        this.competition = comp;
+    }
+    
     public CompetitiveSwimmer(int id, String disciplin,
             LocalTime bestTime, String dateOfBestTime) {
         super(id);
         this.disciplin = disciplin;
         this.bestTime = bestTime;
         this.dateOfBestTime = LocalDate.parse(dateOfBestTime);
+    }
+
+    public CompetitiveSwimmer(String disciplin, LocalTime bestTime, LocalDate dateOfBestTime, Competition competit, String firstName, String lastName, int age, int id) {
+        super(firstName, lastName, age, id);
+        this.disciplin = disciplin;
+        this.bestTime = bestTime;
+        this.dateOfBestTime = dateOfBestTime;
+        this.competition = competit;
     }
 
 
@@ -86,7 +104,7 @@ public class CompetitiveSwimmer extends Member {
                 + "\nID: " + super.getId()
                 + "\nDisciplin: " + disciplin 
                 + "\nBest Time: " + bestTime 
-                + "\nDate of best time: " + dateOfBestTime;
+                + "\nDate of best time: " + dateOfBestTime + "\n";
     }
     
 }

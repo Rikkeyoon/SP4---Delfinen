@@ -1,5 +1,6 @@
 package presentation;
 
+import businesslogic.Competition;
 import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
@@ -62,8 +63,8 @@ public class SystemUI implements UI {
 
     @Override
     public LocalTime scanTime() {
-        String choice = input.nextLine();
-        DateTimeFormatter dft = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String choice = input.next();
+        DateTimeFormatter dft = DateTimeFormatter.ISO_LOCAL_TIME;
         String time = choice;
         return LocalTime.parse(time, dft);
     }
@@ -174,9 +175,8 @@ public class SystemUI implements UI {
         System.out.println("Choose one of the following options: \n"
                 + "1. List of competitive swimmers\n"
                 + "2. Create competitive swimmer\n"
-                + "3. Show list of trainingsresults\n"
-                + "4. Edit trainingsresult\n"
-                + "5. Back to main menu\n"
+                + "3. Edit trainingsresult\n"
+                + "4. Back to main menu\n"
                 + "0. Quit");
     }
 
@@ -195,6 +195,9 @@ public class SystemUI implements UI {
         System.out.println("Choose one of the following options: \n"
                 + "1. List of swimmers in competition\n"
                 + "2. Competition results\n"
+                + "3. Create result for Swimmer\n"
+                + "4. Edit results\n"
+                + "5. Back to main menu\n"
                 + "3. Edit results\n"
                 + "4. Back to main menu\n"
                 + "0. Quit");
@@ -203,10 +206,17 @@ public class SystemUI implements UI {
     @Override
     public int competitionMenuChoice() {
         int choice = input.nextInt();
+<<<<<<< HEAD
 //        while (choice < 0 || choice > 4) {
 //            System.out.println(choice + " is not an option, try again: ");
 //            choice = input.nextInt();
 //        }
+=======
+        while (choice < 0 || choice > 5) {
+            System.out.println(choice + " is not an option, try again: ");
+            choice = input.nextInt();
+        }
+>>>>>>> origin/master
         return choice;
     }
 
@@ -314,9 +324,9 @@ public class SystemUI implements UI {
     }
 
     @Override
-    public void showCompetitionResults(ArrayList<CompetitiveSwimmer> competitionResults) {
+    public void showCompetitionResults(ArrayList<Competition> competitionResults) {
         StringBuilder strbuild = new StringBuilder();
-        for (CompetitiveSwimmer competitionResult : competitionResults) {
+        for (Competition competitionResult : competitionResults) {
             strbuild.append(competitionResult);
         }
         System.out.println(strbuild.toString());
@@ -339,6 +349,27 @@ public class SystemUI implements UI {
 //            System.out.println(choice + " is not an option, try again: ");
 //            choice = input.nextInt();
 //        }
+        return choice;
+    }
+
+    @Override
+    public void showEditCompetitionresultMenu() {
+        System.out.println("What would you like to edit?\n"
+                + "\n1. Competitionname"
+                + "\n2. Date of competition"
+                + "\n3. Best time"
+                + "\n4. Ranking"
+                + "\n5. Back to main menu"
+                + "\n0. Quit");
+    }
+
+    @Override
+    public int editCompetitionresultChoice() {
+        int choice = input.nextInt();
+        while (choice < 0 || choice > 5) {
+            System.out.println(choice + " is not an option, try again: ");
+            choice = input.nextInt();
+        }
         return choice;
     }
 

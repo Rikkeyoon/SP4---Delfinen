@@ -1,5 +1,6 @@
 package presentation;
 
+import businesslogic.Competition;
 import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
@@ -73,7 +74,7 @@ public interface UI {
 
     public void showSwimmersInCompetition(ArrayList<CompetitiveSwimmer> competitiveSwimmers);
 
-    public void showCompetitionResults(ArrayList<CompetitiveSwimmer> competitionResults);
+    public void showCompetitionResults(ArrayList<Competition> competitionResults);
 
     public void showEditTrainingsresultMenu();
 

@@ -184,32 +184,32 @@ public class FakeDBFacade implements DBStorage {
         return swimmersInCompetition;
     }
 
-    @Override
-    public ArrayList<CompetitiveSwimmer> getCompetitionResult() {
-        /*We can't just compare the swimmers by their best time, because it
-         *correlates to their trainingresults, and not their results/times 
-         *in the competitions; therefore, we have to do it this way
-         */
-        
-        //get the compititions the competitive swimmer has been in
-        ArrayList<Competition> competitions = new ArrayList<>();
-        for (CompetitiveSwimmer compSwimmer : swimmersInCompetition) {
-            Competition competition = compSwimmer.getCompetition();
-            competitions.add(competition);
-        }
-        //sort the list of competitions after the best times
-        Collections.sort(competitions, compareCompetitionTime);
-        
-        /*create a temporary ArrayList, so the ArrayList returned is 
-         *sorted by the best times
-         */
-        ArrayList<CompetitiveSwimmer> compSwimmers = new ArrayList<>();
-        for (Competition competition : competitions) {
-            CompetitiveSwimmer compSwimmer = competition.getCompetitiveSwimmer();
-            compSwimmers.add(compSwimmer);
-        }
-        return compSwimmers;
-    }
+//    @Override
+//    public ArrayList<CompetitiveSwimmer> getCompetitionResult() {
+//        /*We can't just compare the swimmers by their best time, because it
+//         *correlates to their trainingresults, and not their results/times 
+//         *in the competitions; therefore, we have to do it this way
+//         */
+//        
+//        //get the compititions the competitive swimmer has been in
+//        ArrayList<Competition> competitions = new ArrayList<>();
+//        for (CompetitiveSwimmer compSwimmer : swimmersInCompetition) {
+//            Competition competition = compSwimmer.getCompetition();
+//            competitions.add(competition);
+//        }
+//        //sort the list of competitions after the best times
+//        Collections.sort(competitions, compareCompetitionTime);
+//        
+//        /*create a temporary ArrayList, so the ArrayList returned is 
+//         *sorted by the best times
+//         */
+//        ArrayList<CompetitiveSwimmer> compSwimmers = new ArrayList<>();
+//        for (Competition competition : competitions) {
+//            CompetitiveSwimmer compSwimmer = competition.getCompetitiveSwimmer();
+//            compSwimmers.add(compSwimmer);
+//        }
+//        return compSwimmers;
+//    }
 
     @Override
     public void editDisciplin(int id, String newDisciplin) {
@@ -223,6 +223,31 @@ public class FakeDBFacade implements DBStorage {
 
     @Override
     public void editDate(int id, String newDateOfBestTime) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Member getCompetitiveSwimmerbyID(int compSwimID) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void saveCompetition(Competition comp, Member id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Competition> getCompetitionResult() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void editRanking(int id, int newRanking) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void editCompetitionName(int id, String newCompetitionName) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

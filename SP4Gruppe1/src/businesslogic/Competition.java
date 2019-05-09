@@ -1,30 +1,63 @@
 package businesslogic;
 
+import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /*
  * @author Caroline, Nina, Rikke og Kristine
  */
 public class Competition {
-    
+
     private String competitionName;
     private int ranking;
-    private Time bestTimeInCompetition;
+    private LocalTime bestTimeInCompetition;
+    private LocalDate dateOfCompetition;
+    private String competition;
     private CompetitiveSwimmer competitiveSwimmer;
 
-    public Competition(CompetitiveSwimmer competitiveSwimmer, String competitionName, int ranking, Time bestTimeInCompetition) {
+    public Competition(CompetitiveSwimmer competitiveSwimmer, String competitionName, int ranking, LocalTime bestTimeInCompetition) {
         this.competitionName = competitionName;
         this.ranking = ranking;
         this.bestTimeInCompetition = bestTimeInCompetition;
         this.competitiveSwimmer = competitiveSwimmer;
     }
 
-    public Competition(String competitionName, int ranking, Time bestTimeInCompetition) {
+    public Competition(String competitionName, LocalDate dateOfCompetition, int ranking, LocalTime bestTimeInCompetition) {
         this.competitionName = competitionName;
+        this.dateOfCompetition = dateOfCompetition;
         this.ranking = ranking;
         this.bestTimeInCompetition = bestTimeInCompetition;
     }
-    
+
+    public Competition(Member id, String competition, LocalDate dateOfCompetition) {
+        this.competition = competition;
+        this.dateOfCompetition = dateOfCompetition;
+    }
+
+    public Competition(Member member, String competition, LocalDate dateOfCompetition, int ranking, LocalTime bestTimeInCompetition) {
+        member.getId();
+        this.competition = competition;
+        this.dateOfCompetition = dateOfCompetition;
+        this.ranking = ranking;
+        this.bestTimeInCompetition = bestTimeInCompetition;
+    }
+
+    public Competition(String competition, int ranking, LocalTime bestTimeInCompetition) {
+        this.competition = competition;
+        this.ranking = ranking;
+        this.bestTimeInCompetition = bestTimeInCompetition;
+    }
+
+    public Competition(Member member, String competition, String dateOfCompetition, int ranking, LocalTime time) {
+        member.getId();
+        this.competition =competition;
+        this.dateOfCompetition = LocalDate.parse(dateOfCompetition);
+        this.ranking = ranking;
+        this.bestTimeInCompetition = time;
+    }
+
     public String getCompetitionName() {
         return competitionName;
     }
@@ -41,14 +74,30 @@ public class Competition {
         this.ranking = ranking;
     }
 
-    public Time getBestTimeInCompetition() {
+    public LocalTime getBestTimeInCompetition() {
         return bestTimeInCompetition;
     }
 
-    public void setBestTimeInCompetition(Time bestTimeInCompetition) {
+    public void setBestTimeInCompetition(LocalTime bestTimeInCompetition) {
         this.bestTimeInCompetition = bestTimeInCompetition;
     }
 
+    public LocalDate getDateOfCompetition() {
+        return dateOfCompetition;
+    }
+
+    public void setDateOfCompetition(LocalDate dateOfCompetition) {
+        this.dateOfCompetition = dateOfCompetition;
+    }
+
+    public String getCompetition() {
+        return competition;
+    }
+
+    public void setCompetition(String competition) {
+        this.competition = competition;
+    }
+    
     public CompetitiveSwimmer getCompetitiveSwimmer() {
         return competitiveSwimmer;
     }
@@ -59,8 +108,8 @@ public class Competition {
 
     @Override
     public String toString() {
-        return "CompetitionName: \t" + competitionName 
-                + "\nRanking: \t\t" + ranking 
+        return "CompetitionName: \t" + competitionName
+                + "\nRanking: \t\t" + ranking
                 + "\nBestTimeInCompetition: \t\t" + bestTimeInCompetition;
     }
 }

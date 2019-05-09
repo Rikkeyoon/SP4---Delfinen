@@ -1,5 +1,6 @@
 package datalag;
 
+import businesslogic.Competition;
 import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
@@ -51,13 +52,21 @@ public interface DBStorage {
     
     public ArrayList<CompetitiveSwimmer> getCompetitionSwimmers();
     
-    public ArrayList<CompetitiveSwimmer> getCompetitionResult();
+    public ArrayList<Competition> getCompetitionResult();
 
     public void editDisciplin(int id, String newDisciplin);
 
     public void editBestTime(int id, LocalTime newBestTime);
 
     public void editDate(int id, String newDateOfBestTime);
+
+    public Member getCompetitiveSwimmerbyID(int compSwimID);
+
+    public void saveCompetition(Competition comp, Member id);
+
+    public void editRanking(int id, int newRanking);
+
+    public void editCompetitionName(int id, String newCompetitionName);
     
     
 

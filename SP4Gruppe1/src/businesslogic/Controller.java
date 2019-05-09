@@ -1,9 +1,13 @@
 package businesslogic;
 
+import datalag.DBFacade;
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import presentation.UI;
 import datalag.DBStorage;
+import java.time.LocalDate;
 
 /*
  * @author Caroline, Nina, Rikke og Kristine
@@ -45,6 +49,32 @@ public class Controller {
                     break;
                 case 6:
                     ui.showCompetitionMenu();
+                    do {
+                        switch (ui.competitionMenuChoice()) {
+                            case 1:
+                                showSwimmersInCompetition();
+                                ui.showCompetitionMenu();
+                                break;
+                            case 2:
+                                showCompetitionResults();
+                                ui.showCompetitionMenu();
+                                break;
+                            case 3:
+                                insertCompetitionResultForCompetitiveSwimmer();
+                                ui.showCompetitionMenu();
+                                break;
+                            case 4:
+                                editCompetitionResults();
+                                ui.showCompetitionMenu();
+                                break;
+                            case 5:
+                                quit = true;
+                                start();
+                                break;
+                            case 0:
+                                quit = true;
+                        }
+                    } while (!quit);
                     quit = competitionMenu(quit);
                     break;
                 case 0:
@@ -217,6 +247,62 @@ public class Controller {
         ui.showContingentList(contingent);
     }
 
+    private void showCompetitionResults() {
+        ArrayList<Competition> competitionResults = db.getCompetitionResult();
+        ui.showCompetitionResults(competitionResults);
+
+    }
+
+    private void editCompetitionResults() {
+        showCompetitionResults();
+        ui.print("Enter the ID of the swimmer, you would like to edit: ");
+        int id = ui.scanID();
+        Member memberByID = db.getCompetitiveSwimmerbyID(id);
+        //ui.print(memberByID.toString());
+        
+        boolean quit = false;
+        ui.showEditCompetitionresultMenu();
+        do {
+            switch (ui.editCompetitionresultChoice()) {
+                case 1:
+                    ui.scanString();
+                    ui.print("What would you like to change the competitionname to?");
+                    String newCompetitionName = ui.scanString();
+                    db.editCompetitionName(id, newCompetitionName);
+                    ui.print("The competitionname has now been changed to " + newCompetitionName);
+                    break;
+                case 2:
+                    ui.scanString();
+                    ui.print("What would you like to change the date to? (YYYY-MM-DD)");
+                    String newDateOfBestTime = ui.scanDate();
+                    db.editDate(id, newDateOfBestTime);
+                    ui.print("The date has now been changed to " + newDateOfBestTime);
+                    break;
+                case 3:
+                    ui.scanString();
+                    ui.print("What would you like to change their best time to? (HH:MM:SS)");
+                    LocalTime newBestTime = ui.scanTime();
+                    db.editBestTime(id, newBestTime);
+                    ui.print("The best time has now been changed to " + newBestTime);
+                    break;
+                case 4: 
+                    ui.scanString();
+                    ui.print("What would you like to change the ranking to?");
+                    int newRanking = ui.scanInt();
+                    db.editRanking(id, newRanking);
+                    ui.print("The ranking has been changed to " + newRanking);
+                    break;
+                case 5:
+                    quit = true;
+                    start();
+                    break;
+                case 0:
+                    quit = true;
+                    break;
+            }
+        } while (!quit);
+        }
+    
     private boolean editContingentMenu(boolean quit) {
         do {
             switch (ui.editContingentChoice()) {
@@ -277,6 +363,26 @@ public class Controller {
         int contingent = ui.scanInt();
         contingent = db.editPassive(contingent);
         ui.print("The contingent has now been changed " + contingent);
+    }
+
+    private void insertCompetitionResultForCompetitiveSwimmer() {
+        ui.print("Enter the ID of the competitiveSwimmer, you would like to write the results for: ");
+        int compSwimID = ui.scanID();
+        Member id = db.getCompetitiveSwimmerbyID(compSwimID);
+        ui.scanString();
+        ui.print("Enter the name of the Competition: ");
+        String competition = ui.scanString();
+        ui.print("Enter the date of the competition (YYYY-MM-DD): ");
+        String dateOfCompetition = ui.scanDate();
+        ui.print("Enter ranking: ");
+        int ranking = ui.scanInt();
+        ui.print("Enter the best time from the competition (HH:MM:SS): ");
+        LocalTime time = ui.scanTime();
+        
+        Member member = new Member(id);
+        Competition comp  = new Competition(member, competition, dateOfCompetition, ranking, time);
+        db.saveCompetition(comp, id);
+        
     }
 
     private boolean restanceMenu(boolean quit) {
@@ -342,14 +448,10 @@ public class Controller {
                     ui.showCompetitiveSwimmersMenu();
                     break;
                 case 3:
-                    showTrainingsresult();
-                    ui.showCompetitiveSwimmersMenu();
-                    break;
-                case 4:
                     editTrainingsresult();
                     ui.showCompetitiveSwimmersMenu();
                     break;
-                case 5:
+                case 4:
                     quit = true;
                     start();
                     break;
@@ -476,13 +578,6 @@ public class Controller {
         ui.showSwimmersInCompetition(competitiveSwimmers);
     }
 
-    private void showCompetitionResults() {
-        ArrayList<CompetitiveSwimmer> competitionResults = db.getCompetitionResult();
-        ui.showCompetitionResults(competitionResults);
-
     }
 
-    private void editCompetitionResults() {
-    }
 
-}

@@ -1,5 +1,6 @@
 package presentation;
 
+import businesslogic.Competition;
 import businesslogic.CompetitiveSwimmer;
 import businesslogic.Contingent;
 import businesslogic.Member;
@@ -231,9 +232,9 @@ public class FakeUI implements UI {
     }
 
     @Override
-    public void showCompetitionResults(ArrayList<CompetitiveSwimmer> competitionResults) {
+    public void showCompetitionResults(ArrayList<Competition> competitionResults) {
         StringBuilder strBuild = new StringBuilder();
-        for (CompetitiveSwimmer compSwimmer : competitionResults) {
+        for (Competition compSwimmer : competitionResults) {
             strBuild.append(compSwimmer);
         }
         output.add(strBuild.toString());
@@ -254,6 +255,16 @@ public class FakeUI implements UI {
 
     @Override
     public int editTrainingsresultChoice() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void showEditCompetitionresultMenu() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int editCompetitionresultChoice() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
