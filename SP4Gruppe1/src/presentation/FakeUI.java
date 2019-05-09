@@ -267,8 +267,5 @@ public class FakeUI implements UI {
     public int editCompetitionresultChoice() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-
-
  
 }
