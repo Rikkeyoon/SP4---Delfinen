@@ -535,6 +535,8 @@ public class Controller {
                 case 0:
                     quit = true;
                     break;
+                default: 
+                    ui.print("Invalid input, please try again: ");
             }
         } while (!quit);
     }

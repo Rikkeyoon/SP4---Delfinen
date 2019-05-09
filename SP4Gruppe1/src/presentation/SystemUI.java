@@ -329,10 +329,6 @@ public class SystemUI implements UI {
     @Override
     public int editCompetitionresultChoice() {
         int choice = input.nextInt();
-        while (choice < 0 || choice > 5) {
-            System.out.println(choice + " is not an option, try again: ");
-            choice = input.nextInt();
-        }
         return choice;
     }
 
