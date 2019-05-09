@@ -25,7 +25,7 @@ public class SystemUI implements UI {
     @Override
     public boolean scanBoolean() {
         String answer = input.nextLine();
-        while (!(answer.equalsIgnoreCase("y")) || (!(answer.equalsIgnoreCase("n")))) {
+        while (!(answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("n"))) {
             System.out.println("Invalid input, please try again: ");
             answer = input.nextLine();
         }
