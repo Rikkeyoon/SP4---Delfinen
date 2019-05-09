@@ -166,7 +166,7 @@ public class SystemUI implements UI {
         System.out.println("Choose one of the following options: \n"
                 + "1. List of competitive swimmers\n"
                 + "2. Create competitive swimmer\n"
-                + "3. Trainingsresult\n"
+                + "3. Show list of trainingsresults\n"
                 + "4. Edit trainingsresult\n"
                 + "5. Back to main menu\n"
                 + "0. Quit");
@@ -187,7 +187,7 @@ public class SystemUI implements UI {
         System.out.println("Choose one of the following options: \n"
                 + "1. List of swimmers in competition\n"
                 + "2. Competition results\n"
-                + "3. Edit results"
+                + "3. Edit results\n"
                 + "4. Back to main menu\n"
                 + "0. Quit");
     }
