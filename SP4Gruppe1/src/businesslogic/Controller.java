@@ -324,14 +324,10 @@ public class Controller {
                     ui.showCompetitiveSwimmersMenu();
                     break;
                 case 3:
-                    showTrainingsresult();
-                    ui.showCompetitiveSwimmersMenu();
-                    break;
-                case 4:
                     editTrainingsresult();
                     ui.showCompetitiveSwimmersMenu();
                     break;
-                case 5:
+                case 4:
                     quit = true;
                     start();
                     break;

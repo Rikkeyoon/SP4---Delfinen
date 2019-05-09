@@ -15,7 +15,7 @@ import java.util.Date;
 /*
  * @author Caroline, Nina, Rikke og Kristine
  */
-public class DBFacade implements DBStorage{
+public class DBFacade implements DBStorage {
 
     private Connection connection;
 
@@ -148,7 +148,7 @@ public class DBFacade implements DBStorage{
         try {
             saveMember(member);
             //create String for the PreparedStatement
-            String insertSQL = "INSERT INTO competitive_swimmer "
+            String insertSQL = "INSERT INTO competitive_swimmers "
                     + "VALUES (?, ?, ?, ?)";
 
             //get connection
@@ -163,15 +163,15 @@ public class DBFacade implements DBStorage{
         } catch (SQLException | NullPointerException e) {
         }
     }
-    
+
     @Override
     public ArrayList<CompetitiveSwimmer> getTop5() {
         ArrayList<CompetitiveSwimmer> top5 = new ArrayList<>();
         try {
             //create String for the PreparedStatement
             String selectSQL = "SELECT id, first_name, last_name, age, disciplin, "
-                    + "best_time, date_of_best_time FROM members"
-                    + "NATURAL JOIN competitive_swimmers ORDER BY best_time"
+                    + "best_time, date_of_best_time FROM members "
+                    + "NATURAL JOIN competitive_swimmers ORDER BY best_time "
                     + "LIMIT 5";
             //get connection
             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
@@ -184,12 +184,12 @@ public class DBFacade implements DBStorage{
                 String lastName = result.getString(3);
                 int age = result.getInt(4);
                 String disciplin = result.getString(5);
-                LocalTime bestTime = (LocalTime) result.getObject(6);
-                LocalDate dateOfBestTime = (LocalDate) result.getObject(7);
+                String bestTime = result.getString(6);
+                String dateOfBestTime = result.getString(7);
 
                 //create a new Member object and insert it into the ArrayList
                 top5.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
-                        bestTime, dateOfBestTime));
+                        LocalTime.parse(bestTime), LocalDate.parse(dateOfBestTime)));
             }
         } catch (SQLException | NullPointerException e) {
         }
@@ -258,7 +258,7 @@ public class DBFacade implements DBStorage{
             //create String for the PreparedStatement
             String selectSQL = "SELECT id, first_name, last_name, age, disciplin, "
                     + "best_time, date_of_best_time FROM members"
-                    + "NATURAL JOIN competitive_swimmers";
+                    + " NATURAL JOIN competitive_swimmers";
             //get connection
             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
 
@@ -270,12 +270,10 @@ public class DBFacade implements DBStorage{
                 String lastName = result.getString(3);
                 int age = result.getInt(4);
                 String disciplin = result.getString(5);
-                LocalTime bestTime = (LocalTime) result.getObject(6);
-                LocalDate dateOfBestTime = (LocalDate) result.getObject(7);
-
-                //create a new Member object and insert it into the ArrayList
+                String bestTime = result.getString(6);
+                String dateOfBestTime = result.getString(7);
                 competitiveSwimmers.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
-                        bestTime, dateOfBestTime));
+                      LocalTime.parse(bestTime), LocalDate.parse(dateOfBestTime)));
             }
         } catch (SQLException | NullPointerException e) {
         }
@@ -401,7 +399,7 @@ public class DBFacade implements DBStorage{
             preparedStatement.setInt(1, newRestance);
             preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
-            
+
         } catch (SQLException e) {
         }
     }
@@ -414,7 +412,7 @@ public class DBFacade implements DBStorage{
             preparedStatement.setString(1, firstName);
             preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
-            
+
         } catch (SQLException e) {
         }
     }
@@ -427,7 +425,7 @@ public class DBFacade implements DBStorage{
             preparedStatement.setString(1, lastName);
             preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
-            
+
         } catch (SQLException e) {
         }
     }
@@ -440,11 +438,11 @@ public class DBFacade implements DBStorage{
             preparedStatement.setBoolean(1, active);
             preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
-            
+
         } catch (SQLException e) {
         }
     }
-    
+
     @Override
     public ArrayList<CompetitiveSwimmer> getCompetitionSwimmers() {
         ArrayList<CompetitiveSwimmer> competitionSwimmers = new ArrayList<>();
@@ -506,7 +504,6 @@ public class DBFacade implements DBStorage{
                 String disciplin = result.getString(8);
                 Time bestTime = result.getTime(9);
                 Timestamp dateOfBestTime = result.getTimestamp(10);
-                
 
                 //create a new Member object and insert it into the ArrayList
 //                Competition competition = new Competition(competitionName, ranking, bestTimeInCompetition);
@@ -549,7 +546,7 @@ public class DBFacade implements DBStorage{
             preparedStatement.setObject(1, newDateOfBestTime);
             preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
-            
+
         } catch (SQLException e) {
         }
     }

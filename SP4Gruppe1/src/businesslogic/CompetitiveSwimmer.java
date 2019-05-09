@@ -86,7 +86,7 @@ public class CompetitiveSwimmer extends Member {
                 + "\nID: " + super.getId()
                 + "\nDisciplin: " + disciplin 
                 + "\nBest Time: " + bestTime 
-                + "\nDate of best time: " + dateOfBestTime;
+                + "\nDate of best time: " + dateOfBestTime + "\n";
     }
     
 }
