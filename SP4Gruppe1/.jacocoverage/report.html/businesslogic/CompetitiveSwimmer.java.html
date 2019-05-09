@@ -23,11 +23,11 @@ public class CompetitiveSwimmer extends Member {
 <span class="nc" id="L23">    }</span>
     
     public CompetitiveSwimmer(String firstName, String lastName, int age, int id, 
-            String disciplin, LocalTime bestTime, String dateOfBestTime) {
+            String disciplin, LocalTime bestTime, LocalDate dateOfBestTime) {
 <span class="fc" id="L27">        super(firstName, lastName, age, id);</span>
 <span class="fc" id="L28">        this.disciplin = disciplin;</span>
 <span class="fc" id="L29">        this.bestTime = bestTime;</span>
-<span class="fc" id="L30">        this.dateOfBestTime = LocalDate.parse(dateOfBestTime);</span>
+<span class="fc" id="L30">        this.dateOfBestTime = dateOfBestTime;</span>
 <span class="fc" id="L31">    }</span>
     
     public CompetitiveSwimmer(String disciplin, LocalTime bestTime, String dateOfBestTime, 

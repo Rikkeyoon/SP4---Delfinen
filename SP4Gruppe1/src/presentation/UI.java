@@ -13,13 +13,21 @@ import java.util.Date;
  */
 public interface UI {
 
+    public void print(String str);
+
     public String scanString();
+
+    public int scanInt();
 
     public boolean scanBoolean();
 
-    public void print(String str);
+    public int scanID();
 
-    public int scanInt();
+    public String scanDate();
+
+    public String scanName();
+
+    public LocalTime scanTime();
 
     public void showMemberList(ArrayList<Member> members);
 
@@ -51,13 +59,7 @@ public interface UI {
 
     public void showContingentList(ArrayList<Contingent> contingent);
 
-    public String scanDate();
-
-    public String scanName();
-
     public int editMemberChoice();
-
-    public int scanID();
 
     public void showEditMemberMenu();
 
@@ -73,18 +75,8 @@ public interface UI {
 
     public void showCompetitionResults(ArrayList<CompetitiveSwimmer> competitionResults);
 
-    public LocalTime scanTime();
-
     public void showEditTrainingsresultMenu();
 
     public int editTrainingsresultChoice();
 
-
-
-
-
-
-
-    
-    
 }

@@ -50,6 +50,9 @@ public class Controller {
                 case 0:
                     quit = true;
                     break;
+                default:
+                    ui.print("Invalid input, please try again: ");
+                    break;
             }
         } while (!quit);
     }
@@ -78,6 +81,9 @@ public class Controller {
                     break;
                 case 0:
                     quit = true;
+                    break;
+                default:
+                    ui.print("Invalid input, please try again: ");
                     break;
             }
         } while (!quit);
@@ -141,12 +147,15 @@ public class Controller {
                     db.editActiveness(id, isActive);
                     ui.print("The activeness has now been changed to " + isActive);
                     break;
-                case 4: 
+                case 4:
                     quit = true;
                     start();
                     break;
                 case 0:
                     quit = true;
+                    break;
+                default:
+                    ui.print("Invalid input, please try again: ");
                     break;
             }
         } while (!quit);
@@ -172,7 +181,7 @@ public class Controller {
     private void deleteMember() {
         showMembersList();
         ui.print("Enter the ID of the member you want to delete: ");
-        int id = ui.scanInt();
+        int id = ui.scanID();
         db.deleteMember(id);
         ui.print("The member with ID number " + id + " has been deleted");
     }
@@ -194,6 +203,9 @@ public class Controller {
                     break;
                 case 0:
                     quit = true;
+                    break;
+                default:
+                    ui.print("Invalid input, please try again: ");
                     break;
             }
         } while (!quit);
@@ -230,6 +242,9 @@ public class Controller {
                     break;
                 case 0:
                     quit = true;
+                    break;
+                default:
+                    ui.print("Invalid input, please try again: ");
                     break;
             }
         } while (!quit);
@@ -282,6 +297,9 @@ public class Controller {
                 case 0:
                     quit = true;
                     break;
+                default:
+                    ui.print("Invalid input, please try again: ");
+                    break;
             }
         } while (!quit);
         return quit;
@@ -290,9 +308,9 @@ public class Controller {
     private void showMembersInRestance() {
         ArrayList<Member> membersInRestance = db.getMembersInRestance();
         ui.showMemberList(membersInRestance);
-        if(membersInRestance.isEmpty()){
-            System.out.println ("There are currently no members in restance");
-        }        
+        if (membersInRestance.isEmpty()) {
+            System.out.println("There are currently no members in restance");
+        }
     }
 
     private void editRestance() {
@@ -337,6 +355,9 @@ public class Controller {
                     break;
                 case 0:
                     quit = true;
+                    break;
+                default:
+                    ui.print("Invalid input, please try again: ");
                     break;
             }
         } while (!quit);
@@ -413,6 +434,9 @@ public class Controller {
                 case 0:
                     quit = true;
                     break;
+                default:
+                    ui.print("Invalid input, please try again: ");
+                    break;
             }
         } while (!quit);
     }
@@ -438,6 +462,10 @@ public class Controller {
                     break;
                 case 0:
                     quit = true;
+                    break;
+                default:
+                    ui.print("Invalid input, please try again: ");
+                    break;
             }
         } while (!quit);
         return quit;

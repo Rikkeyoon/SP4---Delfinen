@@ -8,6 +8,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /*
@@ -53,13 +54,8 @@ public class SystemUI implements UI {
         try {
             LocalDate.parse(choice);
         } catch (DateTimeParseException e) {
-            boolean exceptionCaught = true;
-
-            while (exceptionCaught) {
-                System.out.println(choice + " is not an option, try again: ");
-                exceptionCaught = false;
-                choice = scanDate();
-            }
+            System.out.println(choice + " is not an option, try again: ");
+            choice = scanDate();
         }
         return choice;
     }
@@ -98,12 +94,20 @@ public class SystemUI implements UI {
 
     @Override
     public int mainMenuChoice() {
-        int choice = input.nextInt();
-        while (choice < 0 || choice > 6) {
+        String choice = input.next();
+
+        try {
+            Integer.parseInt(choice);
+        } catch (NumberFormatException e) {
             System.out.println(choice + " is not an option, try again: ");
-            choice = input.nextInt();
+            choice = input.next();
         }
-        return choice;
+//        while (choice < 0 || choice > 6) {
+//                System.out.println(choice + " is not an option, try again: ");
+//                choice = input.nextInt();
+//            }            
+        return Integer.parseInt(choice);
+
     }
 
     @Override
@@ -120,10 +124,10 @@ public class SystemUI implements UI {
     @Override
     public int memberMenuChoice() {
         int choice = input.nextInt();
-        while (choice < 0 || choice > 5) {
-            System.out.println(choice + " is not an option, try again: ");
-            choice = input.nextInt();
-        }
+//        while (choice < 0 || choice > 5) {
+//            System.out.println(choice + " is not an option, try again: ");
+//            choice = input.nextInt();
+//        }
         return choice;
     }
 
@@ -139,10 +143,10 @@ public class SystemUI implements UI {
     @Override
     public int contingentMenuChoice() {
         int choice = input.nextInt();
-        while (choice < 0 || choice > 3) {
-            System.out.println(choice + " is not an option, try again: ");
-            choice = input.nextInt();
-        }
+//        while (choice < 0 || choice > 3) {
+//            System.out.println(choice + " is not an option, try again: ");
+//            choice = input.nextInt();
+//        }
         return choice;
     }
 
@@ -158,10 +162,10 @@ public class SystemUI implements UI {
     @Override
     public int restanceMenuChoice() {
         int choice = input.nextInt();
-        while (choice < 0 || choice > 3) {
-            System.out.println(choice + " is not an option, try again: ");
-            choice = input.nextInt();
-        }
+//        while (choice < 0 || choice > 3) {
+//            System.out.println(choice + " is not an option, try again: ");
+//            choice = input.nextInt();
+//        }
         return choice;
     }
 
@@ -179,10 +183,10 @@ public class SystemUI implements UI {
     @Override
     public int competitiveSwimmersMenuChoice() {
         int choice = input.nextInt();
-        while (choice < 0 || choice > 5) {
-            System.out.println(choice + " is not an option, try again: ");
-            choice = input.nextInt();
-        }
+//        while (choice < 0 || choice > 5) {
+//            System.out.println(choice + " is not an option, try again: ");
+//            choice = input.nextInt();
+//        }
         return choice;
     }
 
@@ -199,10 +203,10 @@ public class SystemUI implements UI {
     @Override
     public int competitionMenuChoice() {
         int choice = input.nextInt();
-        while (choice < 0 || choice > 4) {
-            System.out.println(choice + " is not an option, try again: ");
-            choice = input.nextInt();
-        }
+//        while (choice < 0 || choice > 4) {
+//            System.out.println(choice + " is not an option, try again: ");
+//            choice = input.nextInt();
+//        }
         return choice;
     }
 
@@ -231,10 +235,10 @@ public class SystemUI implements UI {
     @Override
     public int editMemberChoice() {
         int choice = input.nextInt();
-        while (choice < 0 || choice > 4) {
-            System.out.println(choice + " is not an option, try again: ");
-            choice = input.nextInt();
-        }
+//        while (choice < 0 || choice > 4) {
+//            System.out.println(choice + " is not an option, try again: ");
+//            choice = input.nextInt();
+//        }
         return choice;
     }
 
@@ -275,10 +279,10 @@ public class SystemUI implements UI {
     @Override
     public int editContingentChoice() {
         int choice = input.nextInt();
-        while (choice < 0 || choice > 5) {
-            System.out.println(choice + " is not an option, try again: ");
-            choice = input.nextInt();
-        }
+//        while (choice < 0 || choice > 5) {
+//            System.out.println(choice + " is not an option, try again: ");
+//            choice = input.nextInt();
+//        }
         return choice;
     }
 
@@ -331,10 +335,10 @@ public class SystemUI implements UI {
     @Override
     public int editTrainingsresultChoice() {
         int choice = input.nextInt();
-        while (choice < 0 || choice > 4) {
-            System.out.println(choice + " is not an option, try again: ");
-            choice = input.nextInt();
-        }
+//        while (choice < 0 || choice > 4) {
+//            System.out.println(choice + " is not an option, try again: ");
+//            choice = input.nextInt();
+//        }
         return choice;
     }
 
