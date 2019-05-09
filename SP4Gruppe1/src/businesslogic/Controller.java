@@ -66,8 +66,7 @@ public class Controller {
                     ui.showMembersMenu();
                     break;
                 case 3:
-                    editMember();
-                    ui.showMainMenu();
+                    quit = editMember(quit);
                     break;
                 case 4:
                     deleteMember();
@@ -108,14 +107,13 @@ public class Controller {
         ui.print("The following member has been added: " + member.toString());
     }
 
-    private void editMember() {
+    private boolean editMember(boolean quit) {
         showMembersList();
         ui.print("Enter the ID of the member, you would like to edit: ");
         int id = ui.scanID();
         Member memberByID = db.getMemberById(id);
         ui.print(memberByID.toString());
 
-        boolean quit = false;
         ui.showEditMemberMenu();
         do {
             switch (ui.editMemberChoice()) {
@@ -143,11 +141,16 @@ public class Controller {
                     db.editActiveness(id, isActive);
                     ui.print("The activeness has now been changed to " + isActive);
                     break;
+                case 4: 
+                    quit = true;
+                    start();
+                    break;
                 case 0:
                     quit = true;
                     break;
             }
         } while (!quit);
+        return quit;
     }
 
 //    private Member getMemberbyID(int id) {

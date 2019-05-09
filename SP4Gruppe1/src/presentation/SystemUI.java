@@ -125,7 +125,7 @@ public class SystemUI implements UI {
 
     @Override
     public void showContingentMenu() {
-        System.out.println("Choose one of the following options: \n"
+        System.out.println("\nChoose one of the following options: \n"
                 + "1. Contingent prices\n"
                 + "2. Edit contingent\n"
                 + "3. Back to main menu\n"

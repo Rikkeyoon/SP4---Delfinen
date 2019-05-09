@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -162,7 +163,7 @@ public class DBFacade implements DBStorage{
         } catch (SQLException | NullPointerException e) {
         }
     }
-
+    
     @Override
     public ArrayList<CompetitiveSwimmer> getTop5() {
         ArrayList<CompetitiveSwimmer> top5 = new ArrayList<>();
@@ -183,12 +184,12 @@ public class DBFacade implements DBStorage{
                 String lastName = result.getString(3);
                 int age = result.getInt(4);
                 String disciplin = result.getString(5);
-                Time bestTime = result.getTime(6);
-                Date dateOfBestTime = result.getDate(7);
+                LocalTime bestTime = (LocalTime) result.getObject(6);
+                LocalDate dateOfBestTime = (LocalDate) result.getObject(7);
 
                 //create a new Member object and insert it into the ArrayList
-//                top5.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
-//                        bestTime, dateOfBestTime));
+                top5.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
+                        bestTime, dateOfBestTime));
             }
         } catch (SQLException | NullPointerException e) {
         }
@@ -269,12 +270,12 @@ public class DBFacade implements DBStorage{
                 String lastName = result.getString(3);
                 int age = result.getInt(4);
                 String disciplin = result.getString(5);
-                Time bestTime = result.getTime(6);
-                Timestamp dateOfBestTime = result.getTimestamp(7);
+                LocalTime bestTime = (LocalTime) result.getObject(6);
+                LocalDate dateOfBestTime = (LocalDate) result.getObject(7);
 
                 //create a new Member object and insert it into the ArrayList
-//                competitiveSwimmers.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
-//                        bestTime, dateOfBestTime));
+                competitiveSwimmers.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
+                        bestTime, dateOfBestTime));
             }
         } catch (SQLException | NullPointerException e) {
         }
@@ -301,11 +302,11 @@ public class DBFacade implements DBStorage{
                 String lastName = result.getString(3);
                 int age = result.getInt(4);
                 String disciplin = result.getString(5);
-                Time bestTime = result.getTime(6);
-                Timestamp dateOfBestTime = result.getTimestamp(7);
+                LocalTime bestTime = (LocalTime) result.getObject(6);
+                LocalDate dateOfBestTime = (LocalDate) result.getObject(7);
 
-//                trainingresults.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
-//                        bestTime, dateOfBestTime));
+                trainingresults.add(new CompetitiveSwimmer(firstName, lastName, age, id, disciplin,
+                        bestTime, dateOfBestTime));
             }
         } catch (SQLException | NullPointerException e) {
         }

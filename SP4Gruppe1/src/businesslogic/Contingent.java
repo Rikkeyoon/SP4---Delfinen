@@ -52,9 +52,9 @@ public class Contingent {
     @Override
     public String toString() {
         return "Contingent:"
-                + "\nUnder 18\t\t= " + under18
-                + "\nBetween 18 and 60\t= " + between18And60
-                + "\nOver 60\t\t\t= " + over60 
-                + "\nPassive\t\t\t= " + passive;
+                + "\nUnder 18\t\t= " + under18 + " DKK"
+                + "\nBetween 18 and 60\t= " + between18And60 + " DKK"
+                + "\nOver 60\t\t\t= " + over60 + " DKK"
+                + "\nPassive\t\t\t= " + passive + " DKK";
     }
 }
