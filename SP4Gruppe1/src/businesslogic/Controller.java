@@ -131,7 +131,7 @@ public class Controller {
                     ui.scanString();
                     ui.print(memberByID.toString());
                     ui.print("What would you like to change the first name to?");
-                    String firstName = ui.scanString();
+                    String firstName = ui.scanName();
                     db.editFirstName(id, firstName);
                     ui.print("The first name has now been changed to " + firstName);
                     break;
@@ -139,7 +139,7 @@ public class Controller {
                     ui.scanString();
                     ui.print(memberByID.toString());
                     ui.print("What would you like to change the last name to?");
-                    String lastName = ui.scanString();
+                    String lastName = ui.scanName();
                     db.editLastName(id, lastName);
                     ui.print("The last name has now been changed to " + lastName);
                     break;
